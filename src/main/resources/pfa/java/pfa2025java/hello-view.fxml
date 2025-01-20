@@ -13,7 +13,7 @@
     </padding>
 
     <Label fx:id="welcomeText"/>
-    <ImageView fx:id="image"/>
+
     <Button text="Hello!" onAction="#onHelloButtonClick"/>
     <Button text="clickini" onAction="#onclikini"/>
 </VBox>

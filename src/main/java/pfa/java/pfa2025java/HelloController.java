@@ -8,7 +8,7 @@ public class HelloController {
     @FXML
     private Label welcomeText;
     private int num=0;
-    public Image image;
+
     @FXML
     protected void onHelloButtonClick() {
         num++;
