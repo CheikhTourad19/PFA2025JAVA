@@ -8,4 +8,6 @@ module pfa.java.pfa2025java {
 
     opens pfa.java.pfa2025java to javafx.fxml;
     exports pfa.java.pfa2025java;
+    exports pfa.java.pfa2025java.controllers;
+    opens pfa.java.pfa2025java.controllers to javafx.fxml;
 }

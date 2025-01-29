@@ -13,7 +13,7 @@ import java.util.Optional;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 720);
         stage.setTitle("Accueil");
         stage.setScene(scene);
@@ -24,7 +24,8 @@ public class HelloApplication extends Application {
         });
 
     }
-public void confirmexit(Stage stage) {
+
+    public void confirmexit(Stage stage) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Confirmation");
         alert.setContentText("etes vous sur de vouloir quitter?");
