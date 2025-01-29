@@ -1,8 +1,10 @@
 package pfa.java.pfa2025java;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -15,7 +17,7 @@ public class HelloController {
     private Label welcomeText;
     private int num=0;
     @FXML
-    private Image image1;
+    private Button buttonClose;
 
     @FXML
     protected void onHelloButtonClick() {
@@ -25,5 +27,10 @@ public class HelloController {
     @FXML
     protected void onclikini() throws IOException {
         welcomeText.setText("Baraaaaa neyek bataaaaaaard");
+    }
+
+    @FXML
+    protected void buttonClose(ActionEvent event) {
+        System.exit(0);
     }
 }
