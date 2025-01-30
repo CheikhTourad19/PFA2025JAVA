@@ -21,6 +21,10 @@ public class HelloApplication extends Application {
         stage.setTitle("Accueil");
         stage.setScene(scene);
         stage.show();
+        HelloApplication.closeAlert(stage);
+
+    }
+    public static void closeAlert(Stage stage) throws IOException {
         stage.setOnCloseRequest(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert");
@@ -30,7 +34,6 @@ public class HelloApplication extends Application {
                 event.consume();
             }
         });
-
     }
 
     public static void main(String[] args) {
