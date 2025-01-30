@@ -4,25 +4,35 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
-import java.io.IOException;
+
 
 
 public class HelloController {
     @FXML
-    private Label welcomeText;
-    private int num=0;
+    private Text loginresult;
     @FXML
-    private Button buttonClose;
+    private TextField username;
+    @FXML
+    private TextField password;
+    @FXML
+    private Button login;
+    @FXML
+    private Button Register;
+
 
     @FXML
-    protected void onHelloButtonClick() {
-        num++;
-        welcomeText.setText("Welcome to JavaFX Application!"+num);
-    }
-    @FXML
-    protected void onclikini() throws IOException {
-        welcomeText.setText("Baraaaaa neyek bataaaaaaard");
+    public void login(ActionEvent event) {
+        if (username.getText().isEmpty() || password.getText().isEmpty()) {
+            loginresult.setText("Username ou password vide");
+            loginresult.setStyle("-fx-text-fill: red;");
+        }else {
+            loginresult.setText(username.getText()+" "+password.getText());
+            loginresult.setStyle("-fx-text-fill: #000606;");
+
+        }
     }
 
 

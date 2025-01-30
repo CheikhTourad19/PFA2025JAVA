@@ -1,7 +1,7 @@
 package pfa.java.pfa2025java;
 
 import javafx.application.Application;
-import javafx.application.Platform;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
-import java.util.prefs.Preferences;
 
 
 public class HelloApplication extends Application {
