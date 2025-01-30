@@ -1,6 +1,7 @@
 package pfa.java.pfa2025java;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -9,6 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.prefs.Preferences;
+
 
 public class HelloApplication extends Application {
     @Override
@@ -19,21 +22,17 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(event -> {
-            event.consume();
-            confirmexit(stage);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Alert");
+            alert.setContentText("voulez vous Quitter");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isEmpty() || result.get() != ButtonType.OK) {
+                event.consume();
+            }
         });
 
     }
 
-    public void confirmexit(Stage stage) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Confirmation");
-        alert.setContentText("etes vous sur de vouloir quitter?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            stage.close();
-        }
-}
     public static void main(String[] args) {
         launch();
     }
