@@ -27,7 +27,8 @@ public class HelloApplication extends Application {
         stage.setOnCloseRequest(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert");
-            alert.setContentText("voulez vous Quitter");
+            alert.setHeaderText("Quitter");
+            alert.setContentText("Voulez vous Quitter");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isEmpty() || result.get() != ButtonType.OK) {
                 event.consume();
