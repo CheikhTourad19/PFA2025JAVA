@@ -28,8 +28,10 @@ public class HelloController {
             loginresult.setText("Username ou password vide");
             loginresult.setStyle("-fx-text-fill: red;");
         }else {
-            loginresult.setText(username.getText()+" "+password.getText());
-            loginresult.setStyle("-fx-text-fill: #000606;");
+            if (username.getText().equals(UserSession.getEmail()) && password.getText().equals(UserSession.getPassword())) {
+                loginresult.setText("Bonjour Mr " + UserSession.getNom());
+            } else
+                loginresult.setText("Mauvais identifiants");
 
         }
     }

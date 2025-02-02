@@ -5,12 +5,29 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="819.0" spacing="20" style="-fx-padding: 20; -fx-background-image: url('../assets/img.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.HelloController">
+<HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="414.0" prefWidth="819.0" spacing="20"
+      style="-fx-padding: 20; -fx-background-image: url('../assets/img.png'); -fx-background-size: cover;"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pfa.java.pfa2025java.controllers.HelloController">
     <children>
+        <AnchorPane prefHeight="483.0" prefWidth="485.0">
+            <children>
+                <ImageView fitHeight="374.0" fitWidth="467.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../assets/img.png"/>
+                    </image>
+                </ImageView>
+                <Text layoutX="6.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="zbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçureh"
+                      wrappingWidth="467.0"/>
+            </children>
+        </AnchorPane>
 
         <!-- Right Form Section -->
         <VBox alignment="CENTER" prefHeight="384.0" prefWidth="339.0" spacing="30.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, #dcdcdc, 10, 0, 0, 5);">
@@ -41,6 +58,9 @@
 
                 <!-- Login Button -->
                 <Button onAction="#login" prefHeight="45.0" prefWidth="250.0" style="-fx-background-color: #11a9e1; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;" text="Se Connecter" />
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vous n'avez pas de compte?"/>
+                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: gray;"
+                        text="Creer Un compte" textFill="#eff0f2"/>
             </children>
         </VBox>
     </children>
