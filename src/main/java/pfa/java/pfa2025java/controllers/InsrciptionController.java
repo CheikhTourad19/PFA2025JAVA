@@ -22,8 +22,8 @@ public class InsrciptionController {
         message.setContentText("Votre Compte a ete cree avec succes");
         message.showAndWait();
         if (message.getResult() == ButtonType.OK) {
-            SwtichScene switchScene = new SwtichScene();
-            switchScene.loadScene(nom, "views/hello-view.fxml", "Accueil", false);
+           Stage stage = (Stage) signupButton.getScene().getWindow();
+           stage.close();
         }
 
     }

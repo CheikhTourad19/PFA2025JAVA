@@ -48,7 +48,7 @@ public class HelloController {
     public void inscription(ActionEvent actionEvent) throws IOException {
 
         SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/inscription-view.fxml", "Inscription", false);
+        swtichScene.loadScene(actionEvent, "views/inscription-view.fxml", "Inscription", true);
 
     }
 

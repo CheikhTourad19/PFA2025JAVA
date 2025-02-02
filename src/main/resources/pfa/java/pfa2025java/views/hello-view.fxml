@@ -10,22 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="414.0" prefWidth="819.0" spacing="20"
-      style="-fx-padding: 20; -fx-background-image: url('../assets/img.png'); -fx-background-size: cover;"
-      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="pfa.java.pfa2025java.controllers.HelloController">
+<HBox id="page" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="819.0" spacing="20" style="-fx-padding: 20; -fx-background-size: cover;" stylesheets="@../Style/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.HelloController">
     <children>
         <AnchorPane prefHeight="483.0" prefWidth="485.0">
             <children>
                 <ImageView fitHeight="374.0" fitWidth="467.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../assets/img.png"/>
+                        <Image url="@../assets/img.png" />
                     </image>
                 </ImageView>
-                <Text layoutX="6.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="zbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçureh"
-                      wrappingWidth="467.0"/>
+                <Text layoutX="6.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="zbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçureh" wrappingWidth="467.0" />
             </children>
         </AnchorPane>
 
@@ -58,9 +52,8 @@
 
                 <!-- Login Button -->
                 <Button onAction="#login" prefHeight="45.0" prefWidth="250.0" style="-fx-background-color: #11a9e1; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;" text="Se Connecter" />
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vous n'avez pas de compte?"/>
-                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: gray;"
-                        text="Creer Un compte" textFill="#eff0f2" onAction="#inscription"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vous n'avez pas de compte?" />
+                <Button mnemonicParsing="false" onAction="#inscription" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: gray;" text="Creer Un compte" textFill="#eff0f2" />
             </children>
         </VBox>
     </children>
