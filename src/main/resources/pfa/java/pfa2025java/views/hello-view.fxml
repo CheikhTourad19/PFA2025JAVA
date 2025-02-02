@@ -60,7 +60,7 @@
                 <Button onAction="#login" prefHeight="45.0" prefWidth="250.0" style="-fx-background-color: #11a9e1; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;" text="Se Connecter" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vous n'avez pas de compte?"/>
                 <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: gray;"
-                        text="Creer Un compte" textFill="#eff0f2"/>
+                        text="Creer Un compte" textFill="#eff0f2" onAction="#inscription"/>
             </children>
         </VBox>
     </children>
