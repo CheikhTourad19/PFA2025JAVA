@@ -12,11 +12,11 @@ import java.io.IOException;
 public class SwtichScene {
     public void loadScene(ActionEvent actionEvent, String fxmlPath, String title, boolean newWindow) {
         try {
-            // Charger le fichier FXML
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
 
-            // Récupérer la scène actuelle à partir de l'événement
+
             Stage stage;
             if (newWindow) {
                 stage = new Stage(); // Ouvre une nouvelle fenêtre
@@ -24,7 +24,7 @@ public class SwtichScene {
                 stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow(); // Remplace la scène actuelle
             }
 
-            // Définir la nouvelle scène
+
             Scene scene = new Scene(root, 500, 580);
             stage.setScene(scene);
             stage.setTitle(title);
