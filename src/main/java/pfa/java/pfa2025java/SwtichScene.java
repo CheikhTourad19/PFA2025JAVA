@@ -19,9 +19,9 @@ public class SwtichScene {
 
             Stage stage;
             if (newWindow) {
-                stage = new Stage(); // Ouvre une nouvelle fenêtre
+                stage = new Stage();
             } else {
-                stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow(); // Remplace la scène actuelle
+                stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             }
 
 
