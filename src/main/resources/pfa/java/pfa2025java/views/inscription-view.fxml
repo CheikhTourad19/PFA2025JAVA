@@ -22,6 +22,6 @@
         <PasswordField fx:id="passwordField" promptText="Mot de passe" styleClass="input-field"/>
         <PasswordField fx:id="confirmPasswordField" promptText="Confirmer le mot de passe" styleClass="input-field"/>
         <Button fx:id="signupButton" onAction="#handleSignup" styleClass="signup-button" text="S'inscrire"/>
-        <Text fx:id="message" strokeType="OUTSIDE" strokeWidth="0.0"/>
+        <Text fx:id="message" fill="#f80e0e" strokeType="OUTSIDE" strokeWidth="0.0"/>
     </VBox>
 </AnchorPane>

@@ -16,7 +16,8 @@ public class SwtichScene {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
 
-
+            double x = root.prefHeight(-1);
+            double y = root.prefWidth(-1);
             Stage stage;
             if (newWindow) {
                 stage = new Stage();
@@ -25,7 +26,7 @@ public class SwtichScene {
             }
 
 
-            Scene scene = new Scene(root, 500, 580);
+            Scene scene = new Scene(root, x, y);
             stage.setScene(scene);
             stage.setTitle(title);
             stage.show();
@@ -34,5 +35,29 @@ public class SwtichScene {
             System.out.println("Erreur de chargement Impossible de charger la vue : " + fxmlPath);
         }
     }
+
+    public void loadScene(Node node, String fxmlPath, String title, boolean newWindow) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            double x = root.prefWidth(-1);
+            double y = root.prefHeight(-1);
+            Stage stage;
+            if (newWindow || node == null) {
+                stage = new Stage();
+            } else {
+                stage = (Stage) node.getScene().getWindow();
+            }
+
+            Scene scene = new Scene(root, x, y);
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erreur de chargement : Impossible de charger la vue " + fxmlPath);
+        }
+    }
+
 
 }
