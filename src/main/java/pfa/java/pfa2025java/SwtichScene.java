@@ -29,6 +29,7 @@ public class SwtichScene {
             Scene scene = new Scene(root, x, y);
             stage.setScene(scene);
             stage.setTitle(title);
+            stage.sizeToScene();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -52,6 +53,7 @@ public class SwtichScene {
             Scene scene = new Scene(root, x, y);
             stage.setScene(scene);
             stage.setTitle(title);
+            stage.sizeToScene();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
