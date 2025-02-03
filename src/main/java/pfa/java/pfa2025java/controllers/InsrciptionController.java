@@ -14,6 +14,7 @@ public class InsrciptionController {
     public TextField prenom;
     public TextField nom;
     public Text message;
+    public Button loginButton;
 
     public void saveUser() {
 
@@ -35,5 +36,10 @@ public class InsrciptionController {
             saveUser();
         } else
             message.setText("Les mots de passe ne correspondent pas");
+    }
+
+    public void login(ActionEvent actionEvent) {
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.close();
     }
 }
