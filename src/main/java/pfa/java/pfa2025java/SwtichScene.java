@@ -32,7 +32,7 @@ public class SwtichScene {
             stage.sizeToScene();
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+
             System.out.println("Erreur de chargement Impossible de charger la vue : " + fxmlPath);
         }
     }
@@ -56,7 +56,7 @@ public class SwtichScene {
             stage.sizeToScene();
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+
             System.out.println("Erreur de chargement : Impossible de charger la vue " + fxmlPath);
         }
     }
