@@ -16,8 +16,8 @@ public class SwtichScene {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
 
-            double x = root.prefHeight(-1);
-            double y = root.prefWidth(-1);
+            double y = root.prefHeight(-1);
+            double x = root.prefWidth(-1);
             Stage stage;
             if (newWindow) {
                 stage = new Stage();
