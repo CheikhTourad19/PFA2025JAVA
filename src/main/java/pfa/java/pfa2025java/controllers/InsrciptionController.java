@@ -23,8 +23,8 @@ public class InsrciptionController {
         message.setContentText("Votre Compte a ete cree avec succes");
         message.showAndWait();
         if (message.getResult() == ButtonType.OK) {
-           Stage stage = (Stage) signupButton.getScene().getWindow();
-           stage.close();
+            SwtichScene swtichScene = new SwtichScene();
+            swtichScene.loadScene(nom,"views/hello-view.fxml","login",false);
         }
 
     }
@@ -39,7 +39,7 @@ public class InsrciptionController {
     }
 
     public void login(ActionEvent actionEvent) {
-        Stage stage = (Stage) loginButton.getScene().getWindow();
-        stage.close();
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent,"views/hello-view.fxml","login",false);
     }
 }
