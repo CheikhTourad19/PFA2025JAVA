@@ -12,7 +12,7 @@
 
 <HBox id="page" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="902.0" spacing="20" style="-fx-padding: 20; -fx-background-size: cover;" stylesheets="@../Style/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.HelloController">
     <children>
-          <ImageView fitHeight="346.0" fitWidth="579.0" pickOnBounds="true" preserveRatio="true">
+          <ImageView fitHeight="460.0" fitWidth="607.0" pickOnBounds="true" preserveRatio="false">
               <image>
                   <Image url="@../assets/img.png" />
               </image>
@@ -21,7 +21,7 @@
          <children>
       
                     <!-- Right Form Section -->
-              <VBox alignment="CENTER" layoutX="-11.0" layoutY="-16.0" prefHeight="422.0" prefWidth="268.0" spacing="30.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, #dcdcdc, 10, 0, 0, 5);">
+              <VBox alignment="CENTER" layoutX="-21.0" layoutY="-16.0" prefHeight="475.0" prefWidth="288.0" spacing="30.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, #dcdcdc, 10, 0, 0, 5);">
                   <children>
                       <Text fx:id="loginresult" fill="#ff0808" text="" />
                       <!-- Title -->

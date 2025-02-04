@@ -30,6 +30,7 @@ public class SwtichScene {
             stage.setScene(scene);
             stage.setTitle(title);
             stage.sizeToScene();
+            stage.resizableProperty().setValue(false);
             stage.show();
         } catch (IOException e) {
 

@@ -22,12 +22,10 @@ public class HelloApplication extends Application {
         stage.setTitle("Accueil");
         stage.setScene(scene);
         stage.show();
+        stage.resizableProperty().setValue(false);
+
         HelloApplication.closeAlert(stage);
-        UserSession.setEmail("test");
-        UserSession.setPassword("test");
-        UserSession.setNom("test");
-        UserSession.setPrenom("test");
-        UserSession.setRole("admin");
+
 
     }
     public static void closeAlert(Stage stage) throws IOException {
