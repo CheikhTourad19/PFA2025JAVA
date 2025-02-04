@@ -34,5 +34,8 @@
 }
 .login-button:hover {
     -fx-background-color: #45a049;
+}
+.login-button{
+    -fx-background-color: gray;
 
 }
