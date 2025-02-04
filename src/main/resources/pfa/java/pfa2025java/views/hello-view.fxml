@@ -10,51 +10,50 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<HBox id="page" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="819.0" spacing="20" style="-fx-padding: 20; -fx-background-size: cover;" stylesheets="@../Style/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.HelloController">
+<HBox id="page" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="902.0" spacing="20" style="-fx-padding: 20; -fx-background-size: cover;" stylesheets="@../Style/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.HelloController">
     <children>
+          <ImageView fitHeight="346.0" fitWidth="579.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@../assets/img.png" />
+              </image>
+          </ImageView>
         <AnchorPane prefHeight="483.0" prefWidth="485.0">
-            <children>
-                <ImageView fitHeight="374.0" fitWidth="467.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../assets/img.png" />
-                    </image>
-                </ImageView>
-                <Text layoutX="6.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="zbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçurehzbfihzegbfizgfbizerfgzieurfguizefgziurfgiurzefgizrufgizuerfgizuegfizuefgzeiugruiozegrzuegfuozegfzoeurehgçureh" wrappingWidth="467.0" />
-            </children>
+         <children>
+      
+                    <!-- Right Form Section -->
+              <VBox alignment="CENTER" layoutX="-11.0" layoutY="-16.0" prefHeight="422.0" prefWidth="268.0" spacing="30.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, #dcdcdc, 10, 0, 0, 5);">
+                  <children>
+                      <Text fx:id="loginresult" fill="#ff0808" text="" />
+                      <!-- Title -->
+                      <Text fill="#11a9e1" style="-fx-font-family: 'Baskerville Old Face'; -fx-font-size: 27px; -fx-font-weight: bold; -fx-text-alignment: center;" text="Se Connecter" />
+      
+                            <!-- Username Field -->
+                      <HBox spacing="10" style="-fx-alignment: center-left;">
+                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@../assets/username.png" />
+                              </image>
+                          </ImageView>
+                          <TextField fx:id="username" prefHeight="40.0" prefWidth="250.0" promptText="Nom d'utilisateur" style="-fx-background-radius: 10; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-padding: 5;" />
+                      </HBox>
+      
+                            <!-- Password Field -->
+                      <HBox spacing="10" style="-fx-alignment: center-left;">
+                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@../assets/password.jpg" />
+                              </image>
+                          </ImageView>
+                          <PasswordField fx:id="password" prefHeight="40.0" prefWidth="250.0" promptText="Mot de passe" style="-fx-background-radius: 10; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-padding: 5;" />
+                      </HBox>
+      
+                            <!-- Login Button -->
+                      <Button onAction="#login" prefHeight="45.0" prefWidth="250.0" style="-fx-background-color: #11a9e1; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;" text="Se Connecter" />
+                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vous n'avez pas de compte?" />
+                      <Button mnemonicParsing="false" onAction="#inscription" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: gray;" text="Creer Un compte" textFill="#eff0f2" />
+                  </children>
+              </VBox>
+         </children>
         </AnchorPane>
-
-        <!-- Right Form Section -->
-        <VBox alignment="CENTER" prefHeight="384.0" prefWidth="339.0" spacing="30.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, #dcdcdc, 10, 0, 0, 5);">
-            <children>
-                <Text fx:id="loginresult" fill="#ff0808" text="" />
-                <!-- Title -->
-                <Text fill="#11a9e1" style="-fx-font-family: 'Baskerville Old Face'; -fx-font-size: 27px; -fx-font-weight: bold; -fx-text-alignment: center;" text="Se Connecter" />
-
-                <!-- Username Field -->
-                <HBox spacing="10" style="-fx-alignment: center-left;">
-                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../assets/username.png" />
-                        </image>
-                    </ImageView>
-                    <TextField fx:id="username" prefHeight="40.0" prefWidth="250.0" promptText="Nom d'utilisateur" style="-fx-background-radius: 10; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-padding: 5;" />
-                </HBox>
-
-                <!-- Password Field -->
-                <HBox spacing="10" style="-fx-alignment: center-left;">
-                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../assets/password.jpg" />
-                        </image>
-                    </ImageView>
-                    <PasswordField fx:id="password" prefHeight="40.0" prefWidth="250.0" promptText="Mot de passe" style="-fx-background-radius: 10; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-padding: 5;" />
-                </HBox>
-
-                <!-- Login Button -->
-                <Button onAction="#login" prefHeight="45.0" prefWidth="250.0" style="-fx-background-color: #11a9e1; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;" text="Se Connecter" />
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vous n'avez pas de compte?" />
-                <Button mnemonicParsing="false" onAction="#inscription" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: gray;" text="Creer Un compte" textFill="#eff0f2" />
-            </children>
-        </VBox>
     </children>
 </HBox>

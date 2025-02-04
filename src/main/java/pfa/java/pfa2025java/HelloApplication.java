@@ -23,7 +23,7 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
         HelloApplication.closeAlert(stage);
-        UserSession.setEmail("test@gmail.com");
+        UserSession.setEmail("test");
         UserSession.setPassword("test");
         UserSession.setNom("test");
         UserSession.setPrenom("test");
