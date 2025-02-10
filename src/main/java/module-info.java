@@ -6,6 +6,7 @@ module pfa.java.pfa2025java {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.prefs;
+    requires java.sql;
 
     opens pfa.java.pfa2025java to javafx.fxml;
     exports pfa.java.pfa2025java;

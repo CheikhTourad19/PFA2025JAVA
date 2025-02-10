@@ -15,6 +15,8 @@ import pfa.java.pfa2025java.UserSession;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 
 public class HelloController {
@@ -32,6 +34,7 @@ public class HelloController {
 
     @FXML
     public void login(ActionEvent event) {
+
         if (username.getText().isEmpty() || password.getText().isEmpty()) {
             loginresult.setText("Username ou password vide");
             loginresult.setStyle("-fx-text-fill: red;");
