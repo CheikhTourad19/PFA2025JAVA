@@ -11,6 +11,8 @@ public class OrdonnanceController {
 
 
     public void gotostock(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/pharmacie/stock-view.fxml", "Stock", false);
     }
 
     public void gotoaccueil(ActionEvent actionEvent) {

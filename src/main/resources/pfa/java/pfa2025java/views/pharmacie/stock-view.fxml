@@ -9,7 +9,8 @@
         <children>
             <VBox layoutY="120.0" prefHeight="160.0" prefWidth="160.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="120.0">
                 <Button style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Accueil" fx:id="accueilButton" onAction="#gotoaccueil" />
-                <Button style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Ordonnance" />
+                <Button style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;"
+                        text="Ordonnance" onAction="#gotoordonnance"/>
                 <Button style="-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;" text="Stock" />
                 <Button style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;" text="Deconnexion" />
             </VBox>
