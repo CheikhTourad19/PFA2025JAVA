@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.pharmacie.OrdonnanceController">
+    <AnchorPane prefHeight="400.0" prefWidth="151.0" style="-fx-background-color: #2C3E50;">
+        <children>
+            <VBox layoutY="120.0" prefHeight="160.0" prefWidth="160.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="120.0">
+                <Button style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Accueil"  />
+                <Button style="-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;" text="Ordonnance" fx:id="ordonnanceButton" onAction="#gotoordonnance"/>
+                <Button style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Stock" fx:id="stockButton" onAction="#gotostock"/>
+                <Button style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;" text="Deconnexion" />
+            </VBox>
+        </children>
+    </AnchorPane>
+</AnchorPane>

@@ -9,7 +9,10 @@ module pfa.java.pfa2025java {
     requires java.sql;
 
     opens pfa.java.pfa2025java to javafx.fxml;
+    opens pfa.java.pfa2025java.controllers.pharmacie to javafx.fxml;
     exports pfa.java.pfa2025java;
     exports pfa.java.pfa2025java.controllers;
+    exports pfa.java.pfa2025java.controllers.pharmacie;
+
     opens pfa.java.pfa2025java.controllers to javafx.fxml;
 }

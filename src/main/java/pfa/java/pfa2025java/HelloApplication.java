@@ -16,8 +16,14 @@ import java.util.Optional;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/pharmacie/accueil-view.fxml"));
+        if (fxmlLoader.getLocation() == null) {
+            System.out.println("FXML file not found!");
+        } else {
+            System.out.println("FXML file found!");
+        }
         Parent root = fxmlLoader.load();
+
         Scene scene = new Scene(root, root.prefWidth(-1), root.prefHeight(-1));
         stage.setTitle("Accueil");
         stage.setScene(scene);
