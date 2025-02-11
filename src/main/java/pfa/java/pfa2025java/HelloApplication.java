@@ -27,8 +27,11 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.resizableProperty().setValue(false);
         stage.sizeToScene();
-        SwtichScene.loadimage(stage);
+        new Thread(() -> {
+            SwtichScene.loadimage(stage);
+        }).start();
         stage.show();
+
         HelloApplication.closeAlert(stage);
 
 
