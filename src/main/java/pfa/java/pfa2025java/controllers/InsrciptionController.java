@@ -52,5 +52,7 @@ public class InsrciptionController {
 
 
     public void login(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "Login", false);
     }
 }
