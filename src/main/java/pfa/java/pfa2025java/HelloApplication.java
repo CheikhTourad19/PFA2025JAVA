@@ -2,14 +2,11 @@ package pfa.java.pfa2025java;
 
 import javafx.application.Application;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,16 +24,14 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.resizableProperty().setValue(false);
         stage.sizeToScene();
-        new Thread(() -> {
-            SwtichScene.loadimage(stage);
-        }).start();
+        new Thread(() -> SwtichScene.loadimage(stage)).start();
         stage.show();
 
         HelloApplication.closeAlert(stage);
 
 
     }
-    public static void closeAlert(Stage stage) throws IOException {
+    public static void closeAlert(Stage stage) {
         stage.setOnCloseRequest(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert");
