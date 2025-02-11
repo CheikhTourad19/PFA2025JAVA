@@ -56,7 +56,7 @@ public class HelloController {
                 } else if (user.getRole().equals("patient")) {
 
                 } else if (user.getRole().equals("admin")) {
-
+                    swtichScene.loadScene(event, "views/admin/accueil-view.fxml", "Accueil", false);
                 } else if (user.getRole().equals("infermier")) {
 
                 }
