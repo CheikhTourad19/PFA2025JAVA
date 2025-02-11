@@ -1,7 +1,5 @@
 package pfa.java.pfa2025java;
-
 import javafx.application.Application;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,10 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Optional;
-
 
 public class HelloApplication extends Application {
     @Override
