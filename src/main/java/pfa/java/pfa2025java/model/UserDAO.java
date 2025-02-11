@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO {
-    private static Connection connection;
+    private static final Connection connection;
 
     static {
         try {
@@ -16,9 +16,6 @@ public class UserDAO {
         }
     }
 
-    public UserDAO() throws SQLException {
-        this.connection = DBconnection.connect();
-    }
 
     public static User getUserByEmail(String email) {
         String sql = "SELECT * FROM user WHERE email = ?";
@@ -44,12 +41,7 @@ public class UserDAO {
 
     public static boolean login(String email, String password) {
         User user = getUserByEmail(email);
-        if (user != null && PasswordUtils.checkPassword(password, user.getPassword())) {
-
-            return true;
-        }
-
-        return false;
+        return user != null && PasswordUtils.checkPassword(password, user.getPassword());
     }
 
     public static boolean registerUser(String nom, String email, String password, String prenom, String numero) {
