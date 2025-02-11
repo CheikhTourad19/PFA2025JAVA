@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import pfa.java.pfa2025java.SwtichScene;
+import pfa.java.pfa2025java.model.UserDAO;
 
 public class InsrciptionController {
     public PasswordField passwordField;
@@ -15,17 +16,28 @@ public class InsrciptionController {
     public TextField nom;
     public Text message;
     public Button loginButton;
+    public TextField numero;
 
+    public void initialize() {
+    }
     public void saveUser() {
-
-        Alert message = new Alert(Alert.AlertType.INFORMATION);
-        message.setHeaderText("Succes ");
-        message.setContentText("Votre Compte a ete cree avec succes");
-        message.showAndWait();
-        if (message.getResult() == ButtonType.OK) {
-            SwtichScene swtichScene = new SwtichScene();
-            swtichScene.loadScene(nom,"views/hello-view.fxml","login",false);
+        boolean log = UserDAO.registerUser(nom.getText(), emailField.getText(), passwordField.getText(), prenom.getText(), numero.getText());
+        if (log) {
+            Alert message = new Alert(Alert.AlertType.INFORMATION);
+            message.setHeaderText("Succes ");
+            message.setContentText("Votre Compte a ete cree avec succes");
+            message.showAndWait();
+            if (message.getResult() == ButtonType.OK) {
+                SwtichScene swtichScene = new SwtichScene();
+                swtichScene.loadScene(nom, "views/hello-view.fxml", "login", false);
+            }
+        } else {
+            Alert message = new Alert(Alert.AlertType.ERROR);
+            message.setHeaderText("Erreur ");
+            message.setContentText("Votre Compte n'a pas ete cree");
+            message.showAndWait();
         }
+
 
     }
     public void handleSignup(ActionEvent actionEvent) {
@@ -38,8 +50,7 @@ public class InsrciptionController {
             message.setText("Les mots de passe ne correspondent pas");
     }
 
+
     public void login(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent,"views/hello-view.fxml","login",false);
     }
 }
