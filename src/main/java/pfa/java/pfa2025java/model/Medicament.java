@@ -1,57 +1,81 @@
 package pfa.java.pfa2025java.model;
 
+import javafx.beans.property.*;
+
 public class Medicament {
-    private int id;
-    private String nom;
-    private String description;
-    private int prix;
-    private int stock;
+    private final IntegerProperty id = new SimpleIntegerProperty();
+    private final StringProperty nom = new SimpleStringProperty();
+    private final StringProperty description = new SimpleStringProperty();
+    private final IntegerProperty prix = new SimpleIntegerProperty();
+    private final IntegerProperty stock = new SimpleIntegerProperty();
 
     public Medicament(int id, String nom, String description, int prix, int stock) {
-        this.id = id;
-        this.nom = nom;
-        this.description = description;
-        this.prix = prix;
-        this.stock = stock;
+        this.id.set(id);
+        this.nom.set(nom);
+        this.description.set(description);
+        this.prix.set(prix);
+        this.stock.set(stock);
     }
 
-    public int getId() {
+    // Getters et setters pour JavaFX TableView
+    public IntegerProperty idProperty() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNom() {
+    public StringProperty nomProperty() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getDescription() {
+    public StringProperty descriptionProperty() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getPrix() {
+    public IntegerProperty prixProperty() {
         return prix;
     }
 
-    public void setPrix(int prix) {
-        this.prix = prix;
-    }
-
-    public int getStock() {
+    public IntegerProperty stockProperty() {
         return stock;
     }
 
+    // Getters et setters classiques (si nécessaire)
+    public int getId() {
+        return id.get();
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
+    }
+
+    public String getNom() {
+        return nom.get();
+    }
+
+    public void setNom(String nom) {
+        this.nom.set(nom);
+    }
+
+    public String getDescription() {
+        return description.get();
+    }
+
+    public void setDescription(String description) {
+        this.description.set(description);
+    }
+
+    public int getPrix() {
+        return prix.get();
+    }
+
+    public void setPrix(int prix) {
+        this.prix.set(prix);
+    }
+
+    public int getStock() {
+        return stock.get();
+    }
+
     public void setStock(int stock) {
-        this.stock = stock;
+        this.stock.set(stock);
     }
 }

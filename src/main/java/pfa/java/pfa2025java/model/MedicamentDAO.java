@@ -60,10 +60,10 @@ public class MedicamentDAO {
 
     public static List<Medicament> getMedicamentsByPharmacie() {
         List<Medicament> medicaments = new ArrayList<>();
-        String sql = "SELECT m.id, m.nom, m.description, pm.stock , m.prix " +
+        String sql = "SELECT m.id, m.nom, m.description, pm.quantite , m.prix " +
                 "FROM medicament m " +
-                "JOIN pharmacie_medicament pm ON m.id = pm.id_medicament " +
-                "WHERE pm.id_pharmacie = ?";
+                "JOIN stock pm ON m.id = pm.medicament_id " +
+                "WHERE pm.pharmacie_id = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, UserSession.getId());
@@ -85,7 +85,7 @@ public class MedicamentDAO {
 
 
     public static boolean ajouterStock(int idMedicament, int increment) {
-        String sql = "UPDATE pharmacie_medicament SET stock = stock + ? WHERE id_pharmacie = ? AND id_medicament = ?";
+        String sql = "UPDATE stock SET quantite = quantite + ? WHERE pharmacie_id = ? AND medicament_id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, increment);
             stmt.setInt(2, UserSession.getId());
@@ -98,14 +98,14 @@ public class MedicamentDAO {
         return false;
     }
 
-    public boolean addMedicamentWithStock(String nom, String description, String prix) {
+    public static boolean addMedicamentWithStock(String nom, String description, String prix) {
         String sqlMedicament = "INSERT INTO medicament (nom, description,prix) VALUES (?, ?,?)";
-        String sqlStock = "INSERT INTO stock (id_pharmacie, id_medicament, quantite) VALUES (?, ?, 0)";
+        String sqlStock = "INSERT INTO stock (pharmacie_id, medicament_id, quantite) VALUES (?, ?, 0)";
 
         try (PreparedStatement stmtMedicament = connection.prepareStatement(sqlMedicament, Statement.RETURN_GENERATED_KEYS)) {
             stmtMedicament.setString(1, nom);
             stmtMedicament.setString(2, description);
-            stmtMedicament.setString(3, prix);
+            stmtMedicament.setInt(3, Integer.parseInt(prix));
             int rowsInserted = stmtMedicament.executeUpdate();
 
             if (rowsInserted > 0) {
@@ -118,7 +118,6 @@ public class MedicamentDAO {
                     try (PreparedStatement stmtStock = connection.prepareStatement(sqlStock)) {
                         stmtStock.setInt(1, UserSession.getId());
                         stmtStock.setInt(2, idMedicament);
-                        stmtStock.setInt(3, 0);
                         stmtStock.executeUpdate();
                     }
 
