@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.model.UserDAO;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class InsrciptionController {
     public PasswordField passwordField;
     public PasswordField confirmPasswordField;
@@ -45,12 +48,31 @@ public class InsrciptionController {
                 confirmPasswordField.getText().isEmpty()) {
             message.setText("Veuillez remplir tous les champs");
         } else if (passwordField.getText().equals(confirmPasswordField.getText())) {
-            if (passwordField.getText().length() < 8)
+            if (passwordField.getText().length() < 8) {
                 message.setText("il faut au moins 8 caracteres");
-            else
-                saveUser();
+                passwordField.styleProperty().setValue("-fx-border-color: red");
+                confirmPasswordField.styleProperty().setValue("-fx-border-color: red");
+            } else {
+                if (!isValidEmail(emailField.getText())) {
+                    message.setText("Email invalide");
+                    emailField.styleProperty().setValue("-fx-border-color: red");
+                } else if (numero.getText().length() != 8) {
+                    message.setText("Numero de telephone invalide");
+                    numero.styleProperty().setValue("-fx-border-color: red");
+                } else {
+                    saveUser();
+                }
+
+            }
         } else
             message.setText("Les mots de passe ne correspondent pas");
+    }
+
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
 

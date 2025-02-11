@@ -19,6 +19,16 @@
     -fx-text-fill: #333333;
 }
 
+.password-field {
+    -fx-pref-width: 300px;
+    -fx-padding: 10px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #cccccc;
+    -fx-background-color: white;
+    -fx-text-fill: #333333;
+}
+
 .signup-button {
     -fx-background-color:  #11a9e1;
     -fx-text-fill: white;

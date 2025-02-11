@@ -35,9 +35,9 @@ public class HelloApplication extends Application {
     }
     public static void closeAlert(Stage stage) throws IOException {
         stage.setOnCloseRequest(event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Alert");
-            alert.setHeaderText("Quitter");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setHeaderText(null);
             alert.setContentText("Voulez vous Quitter");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isEmpty() || result.get() != ButtonType.OK) {
