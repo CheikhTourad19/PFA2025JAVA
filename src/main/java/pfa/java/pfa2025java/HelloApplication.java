@@ -15,7 +15,7 @@ import java.util.Optional;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/inscription-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/hello-view.fxml"));
         Parent root = loader.load();
         double y = root.prefHeight(-1);
         double x = root.prefWidth(-1);
