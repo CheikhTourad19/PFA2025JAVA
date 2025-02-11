@@ -49,7 +49,20 @@ public class HelloController {
                 UserSession.setNom(user.getNom());
                 UserSession.setId(user.getId());
                 UserSession.setRole(user.getRole());
-                swtichScene.loadScene(event, "views/pharmacie/accueil-view.fxml", "Pharmacie", false);
+                if (user.getRole().equals("pharmacie")) {
+                    swtichScene.loadScene(event, "views/pharmacie/accueil-view.fxml", "Pharmacie", false);
+                } else if (user.getRole().equals("medecin")) {
+
+                } else if (user.getRole().equals("patient")) {
+
+                } else if (user.getRole().equals("admin")) {
+
+                } else if (user.getRole().equals("infermier")) {
+
+                }
+            } else {
+                loginresult.setText("Username ou password incorrect");
+                loginresult.setStyle("-fx-text-fill: red;");
             }
         }
     }
