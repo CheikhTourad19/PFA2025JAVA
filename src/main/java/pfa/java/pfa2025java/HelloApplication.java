@@ -2,7 +2,7 @@ package pfa.java.pfa2025java;
 
 import javafx.application.Application;
 
-import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,7 +12,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -20,9 +19,18 @@ import java.util.Optional;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-       SwtichScene swtichScene = new SwtichScene();
-       swtichScene.loadScene((Node) null,"views/pharmacie/accueil-view.fxml","Accueil",false);
-       HelloApplication.closeAlert(stage);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/pharmacie/accueil-view.fxml"));
+        Parent root = loader.load();
+        double y = root.prefHeight(-1);
+        double x = root.prefWidth(-1);
+        Scene scene = new Scene(root, x, y);
+        stage.setScene(scene);
+        stage.resizableProperty().setValue(false);
+        stage.sizeToScene();
+        SwtichScene.loadimage(stage);
+        stage.show();
+        HelloApplication.closeAlert(stage);
+
 
     }
     public static void closeAlert(Stage stage) throws IOException {
