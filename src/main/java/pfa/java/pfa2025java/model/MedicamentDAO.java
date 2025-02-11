@@ -17,8 +17,27 @@ public class MedicamentDAO {
         }
     }
 
+    public static Medicament getMedicamentByNom(String nom) {
+        String sql = "SELECT * FROM medicament WHERE nom = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, nom);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Medicament(
+                        rs.getInt("id"),
+                        rs.getString("nom"),
+                        rs.getString("description"),
+                        rs.getInt("prix"),
+                        0
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    public Medicament getMedicamentById(int id) {
+    public static Medicament getMedicamentById(int id) {
         String sql = "SELECT * FROM medicament WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -39,7 +58,7 @@ public class MedicamentDAO {
     }
 
 
-    public List<Medicament> getMedicamentsByPharmacie() {
+    public static List<Medicament> getMedicamentsByPharmacie() {
         List<Medicament> medicaments = new ArrayList<>();
         String sql = "SELECT m.id, m.nom, m.description, pm.stock , m.prix " +
                 "FROM medicament m " +
@@ -65,7 +84,7 @@ public class MedicamentDAO {
     }
 
 
-    public boolean ajouterStock(int idMedicament, int increment) {
+    public static boolean ajouterStock(int idMedicament, int increment) {
         String sql = "UPDATE pharmacie_medicament SET stock = stock + ? WHERE id_pharmacie = ? AND id_medicament = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, increment);
