@@ -45,7 +45,10 @@ public class InsrciptionController {
                 confirmPasswordField.getText().isEmpty()) {
             message.setText("Veuillez remplir tous les champs");
         } else if (passwordField.getText().equals(confirmPasswordField.getText())) {
-            saveUser();
+            if (passwordField.getText().length() < 8)
+                message.setText("il faut au moins 8 caracteres");
+            else
+                saveUser();
         } else
             message.setText("Les mots de passe ne correspondent pas");
     }

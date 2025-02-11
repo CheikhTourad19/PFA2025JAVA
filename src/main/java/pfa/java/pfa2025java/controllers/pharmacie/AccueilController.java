@@ -2,12 +2,19 @@ package pfa.java.pfa2025java.controllers.pharmacie;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
+import pfa.java.pfa2025java.UserSession;
 
 public class AccueilController {
 
     public Button stockButton;
     public Button ordonnanceButton;
+    public Text name;
+
+    public void initialize() {
+        name.setText(UserSession.getPrenom() + " " + UserSession.getNom());
+    }
 
     public void gotostock(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
