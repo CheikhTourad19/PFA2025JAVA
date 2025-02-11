@@ -19,4 +19,7 @@ public class OrdonnanceController {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent,"views/pharmacie/accueil-view.fxml","Accueil",false);
     }
+
+    public void logout(ActionEvent actionEvent) {
+    }
 }

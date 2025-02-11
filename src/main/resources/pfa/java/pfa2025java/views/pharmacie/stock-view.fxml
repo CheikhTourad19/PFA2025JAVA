@@ -12,7 +12,7 @@
                 <Button style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;"
                         text="Ordonnance" onAction="#gotoordonnance"/>
                 <Button style="-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;" text="Stock" />
-                <Button style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;" text="Deconnexion" />
+                <Button style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;" text="Deconnexion" onAction="#logout"/>
             </VBox>
         </children>
     </AnchorPane>
