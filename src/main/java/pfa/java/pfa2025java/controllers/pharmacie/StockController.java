@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import pfa.java.pfa2025java.SwtichScene;
+import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.Medicament;
 import pfa.java.pfa2025java.model.MedicamentDAO;
 
@@ -112,6 +113,17 @@ public class StockController {
     }
 
     public void logout(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setContentText("Etes vous sur de vouloir vous deconnecter ?");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.OK) {
+            SwtichScene swtichScene = new SwtichScene();
+            swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "Login", false);
+            UserSession.logout();
+        }
+
     }
 
 }
