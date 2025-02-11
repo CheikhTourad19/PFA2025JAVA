@@ -5,9 +5,9 @@ module pfa.java.pfa2025java {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
-    requires java.prefs;
     requires java.sql;
-
+    requires java.desktop;
+    requires javafx.swing; // <-- Nécessaire pour SwingFXUtils
     opens pfa.java.pfa2025java to javafx.fxml;
     opens pfa.java.pfa2025java.controllers.pharmacie to javafx.fxml;
     exports pfa.java.pfa2025java;

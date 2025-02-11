@@ -20,5 +20,7 @@ public class AccueilController {
     }
 
     public void logout(ActionEvent actionEvent) {
+
+
     }
 }

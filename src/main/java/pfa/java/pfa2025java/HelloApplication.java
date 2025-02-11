@@ -2,13 +2,17 @@ package pfa.java.pfa2025java;
 
 import javafx.application.Application;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -16,22 +20,9 @@ import java.util.Optional;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/pharmacie/accueil-view.fxml"));
-        if (fxmlLoader.getLocation() == null) {
-            System.out.println("FXML file not found!");
-        } else {
-            System.out.println("FXML file found!");
-        }
-        Parent root = fxmlLoader.load();
-
-        Scene scene = new Scene(root, root.prefWidth(-1), root.prefHeight(-1));
-        stage.setTitle("Accueil");
-        stage.setScene(scene);
-        stage.show();
-        stage.resizableProperty().setValue(false);
-
-        HelloApplication.closeAlert(stage);
-
+       SwtichScene swtichScene = new SwtichScene();
+       swtichScene.loadScene((Node) null,"views/pharmacie/accueil-view.fxml","Accueil",false);
+       HelloApplication.closeAlert(stage);
 
     }
     public static void closeAlert(Stage stage) throws IOException {

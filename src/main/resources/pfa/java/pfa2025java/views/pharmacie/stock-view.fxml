@@ -4,16 +4,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.pharmacie.StockController">
     <AnchorPane prefHeight="400.0" prefWidth="151.0" style="-fx-background-color: #2C3E50;">
         <children>
-            <VBox layoutY="120.0" prefHeight="160.0" prefWidth="160.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="120.0">
+            <VBox layoutX="14.0" layoutY="151.0" prefHeight="160.0" prefWidth="160.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="151.0">
                 <Button style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Accueil" fx:id="accueilButton" onAction="#gotoaccueil" />
                 <Button style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;"
                         text="Ordonnance" onAction="#gotoordonnance"/>
                 <Button style="-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;" text="Stock" />
                 <Button style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;" text="Deconnexion" onAction="#logout"/>
             </VBox>
+            <ImageView fitHeight="115.0" fitWidth="194.0" layoutY="-2.0" pickOnBounds="true">
+                <image>
+                    <Image url="@../../assets/pharamalogo.png" />
+                </image>
+            </ImageView>
         </children>
     </AnchorPane>
 </AnchorPane>
