@@ -3,7 +3,6 @@ package pfa.java.pfa2025java.controllers;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.model.UserDAO;
 

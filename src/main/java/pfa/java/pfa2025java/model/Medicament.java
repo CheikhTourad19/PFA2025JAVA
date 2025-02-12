@@ -1,6 +1,9 @@
 package pfa.java.pfa2025java.model;
 
-import javafx.beans.property.*;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Medicament {
     private final IntegerProperty id = new SimpleIntegerProperty();

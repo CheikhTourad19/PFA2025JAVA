@@ -2,6 +2,8 @@ package pfa.java.pfa2025java.controllers.pharmacie;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,9 +11,6 @@ import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.Medicament;
 import pfa.java.pfa2025java.model.MedicamentDAO;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-
 
 import java.util.List;
 
@@ -151,4 +150,7 @@ public class StockController {
 
     }
 
+    public void clearSearch(ActionEvent actionEvent) {
+        searchField.clear();
+    }
 }

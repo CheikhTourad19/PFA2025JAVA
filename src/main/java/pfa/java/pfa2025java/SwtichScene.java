@@ -1,5 +1,6 @@
 package pfa.java.pfa2025java;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -7,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.embed.swing.SwingFXUtils;
+
 import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
