@@ -75,8 +75,9 @@
             <TextField fx:id="prixField" promptText="Prix" style="-fx-pref-width: 100;" />
         </HBox>
         <TextArea fx:id="descriptionFiled" prefHeight="46.0" prefWidth="574.0" promptText="Description"/>
-
         <Button fx:id="addmedicamentButton" onAction="#addmecidament" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-pref-width: 180;" text="Ajouter médicament" />
+        <Button fx:id="exportExcelButton" onAction="#exportToExcel"
+                text="📄 Exporter Excel" style="-fx-background-color: #27AE60; -fx-text-fill: white;"/>
         <PieChart fx:id="stockPieChart" prefHeight="122.0" prefWidth="574.0"/>
     </VBox>
 </AnchorPane>

@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.model.MedicamentDAO;
 
 public class AccueilController {
 
@@ -14,6 +15,7 @@ public class AccueilController {
 
     public void initialize() {
         name.setText(UserSession.getPrenom() + " " + UserSession.getNom());
+        StockController.checkLowStock(MedicamentDAO.getMedicamentsByPharmacie());
     }
 
     public void gotostock(ActionEvent actionEvent) {

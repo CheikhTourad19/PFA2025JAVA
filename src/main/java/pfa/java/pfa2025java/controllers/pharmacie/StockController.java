@@ -8,11 +8,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.Medicament;
 import pfa.java.pfa2025java.model.MedicamentDAO;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
+import javafx.util.Callback;
 import java.util.List;
 
 public class StockController {
@@ -46,6 +51,18 @@ public class StockController {
         prixColumn.setCellValueFactory(cellData -> cellData.getValue().prixProperty().asObject());
         descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().descriptionProperty());
         stock.setCellValueFactory(cellData -> cellData.getValue().stockProperty().asObject());
+        // Utilisation de RowFactory pour personnaliser le style de la ligne entière
+        listeMedicamentStock.setRowFactory(tv -> {
+            TableRow<Medicament> row = new TableRow<>();
+            row.itemProperty().addListener((observable, oldItem, newItem) -> {
+                if (newItem != null && newItem.getStock() < 10) {
+                    row.setStyle("-fx-background-color: #FF5733; -fx-text-fill: white;");
+                } else {
+                    row.setStyle("");  // réinitialise le style si le stock est suffisant
+                }
+            });
+            return row;
+        });
 
         loadMedicaments();
         // Initialize FilteredList with the full list
@@ -67,7 +84,7 @@ public class StockController {
         sortedData.comparatorProperty().bind(listeMedicamentStock.comparatorProperty());
         listeMedicamentStock.setItems(sortedData);
         updateStockChart();
-        checkLowStock();
+
     }
 
     private void loadMedicaments() {
@@ -168,7 +185,7 @@ public class StockController {
         stockPieChart.setData(pieChartData);
     }
 
-    private void checkLowStock() {
+    public static void checkLowStock(List<Medicament> medicamentList) {
         for (Medicament med : medicamentList) {
             if (med.getStock() < 10) {
                 showNotification("Stock Faible", "Le médicament " + med.getNom() + " est presque épuisé !");
@@ -176,7 +193,7 @@ public class StockController {
         }
     }
 
-    private void showNotification(String title, String message) {
+    private static void showNotification(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -186,4 +203,30 @@ public class StockController {
         // Ajout d'un son d'alerte
         java.awt.Toolkit.getDefaultToolkit().beep();
     }
+
+
+    @FXML
+    private void exportToExcel() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier CSV", "*.csv"));
+        fileChooser.setTitle("Enregistrer le fichier");
+        fileChooser.setInitialFileName(UserSession.getNom() + ".csv");
+
+        java.io.File file = fileChooser.showSaveDialog(null);
+        if (file != null) {
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.append("Nom,Prix,Description,Stock\n");
+                for (Medicament med : medicamentList) {
+                    writer.append(med.getNom()).append(",");
+                    writer.append(String.valueOf(med.getPrix())).append(",");
+                    writer.append(med.getDescription()).append(",");
+                    writer.append(String.valueOf(med.getStock())).append("\n");
+                }
+                showAlert(Alert.AlertType.INFORMATION, "Succès", "Exportation réussie !");
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.ERROR, "Erreur", "Échec de l'exportation !");
+            }
+        }
+    }
+
 }
