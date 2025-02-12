@@ -2,23 +2,19 @@ package pfa.java.pfa2025java.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import pfa.java.pfa2025java.HelloApplication;
+
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.User;
 import pfa.java.pfa2025java.model.UserDAO;
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 
 
 public class HelloController {
@@ -54,7 +50,7 @@ public class HelloController {
                 } else if (user.getRole().equals("medecin")) {
 
                 } else if (user.getRole().equals("patient")) {
-
+                    swtichScene.loadScene(loginresult,"views/patient/accueil-view.fxml", "Accueil", false);
                 } else if (user.getRole().equals("admin")) {
                     swtichScene.loadScene(event, "views/admin/hello-view.fxml", "Accueil", false);
                 } else if (user.getRole().equals("infermier")) {

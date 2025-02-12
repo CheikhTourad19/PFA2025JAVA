@@ -12,22 +12,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="511.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pfa.java.pfa2025java.controllers.pharmacie.StockController">
+<AnchorPane prefHeight="511.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.pharmacie.StockController">
     <AnchorPane prefHeight="511.0" prefWidth="194.0" style="-fx-background-color: #2C3E50;">
         <children>
             <VBox layoutX="14.0" layoutY="151.0" prefHeight="160.0" prefWidth="160.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="151.0">
-                <Button fx:id="accueilButton" onAction="#gotoaccueil"
-                        style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;"
-                        text="Accueil"/>
-                <Button onAction="#gotoordonnance"
-                        style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;"
-                        text="Ordonnance"/>
+                <Button fx:id="accueilButton" onAction="#gotoaccueil" style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Accueil" />
+                <Button onAction="#gotoordonnance" style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Ordonnance" />
                 <Button style="-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;" text="Stock" />
-                <Button onAction="#logout"
-                        style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;"
-                        text="Deconnexion"/>
+                <Button onAction="#logout" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;" text="Deconnexion" />
             </VBox>
             <ImageView fitHeight="115.0" fitWidth="194.0" layoutY="-2.0" pickOnBounds="true">
                 <image>
@@ -37,42 +29,31 @@
         </children>
     </AnchorPane>
     <VBox layoutX="220.0" layoutY="20.0" prefHeight="481.0" prefWidth="574.0" spacing="15">
-        <Text style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Liste des médicaments et leur stock"/>
+        <Text style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Liste des médicaments et leur stock" />
 
-        <TableView fx:id="listeMedicamentStock" prefHeight="250.0" prefWidth="650.0"
-                   style="-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-background-color: #f4f4f4; -fx-border-color: #c8c8c8;">
+        <TableView fx:id="listeMedicamentStock" prefHeight="250.0" prefWidth="650.0" style="-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-background-color: #f4f4f4; -fx-border-color: #c8c8c8;">
             <columns>
-                <TableColumn fx:id="nomColumn" prefWidth="200.0"
-                             style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Nom"/>
-                <TableColumn fx:id="prixColumn" prefWidth="100.0"
-                             style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Prix"/>
-                <TableColumn fx:id="descriptionColumn" prefWidth="230.0"
-                             style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #333333;"
-                             text="Description"/>
-                <TableColumn fx:id="stock" prefWidth="100.0"
-                             style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #333333;"
-                             text="Stock"/>
+                <TableColumn fx:id="nomColumn" prefWidth="200.0" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Nom" />
+                <TableColumn fx:id="prixColumn" prefWidth="100.0" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Prix" />
+                <TableColumn fx:id="descriptionColumn" prefWidth="230.0" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Description" />
+                <TableColumn fx:id="stock" prefWidth="100.0" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Stock" />
             </columns>
         </TableView>
 
 
         <HBox spacing="10">
-            <TextField fx:id="stockFiled" promptText="Quantité" style="-fx-pref-width: 150;"/>
-            <Button fx:id="addstockButton" onAction="#addstock"
-                    style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-pref-width: 140;"
-                    text="Ajouter stock"/>
+            <TextField fx:id="stockFiled" promptText="Quantité" style="-fx-pref-width: 150;" />
+            <Button fx:id="addstockButton" onAction="#addstock" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-pref-width: 140;" text="Ajouter stock" />
         </HBox>
 
-        <Text style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Ajouter un nouveau médicament"/>
+        <Text style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Ajouter un nouveau médicament" />
 
         <HBox spacing="10">
-            <TextField fx:id="nomField" promptText="Nom du médicament" style="-fx-pref-width: 180;"/>
-            <TextField fx:id="prixField" promptText="Prix" style="-fx-pref-width: 100;"/>
+            <TextField fx:id="nomField" promptText="Nom du médicament" style="-fx-pref-width: 180;" />
+            <TextField fx:id="prixField" promptText="Prix" style="-fx-pref-width: 100;" />
         </HBox>
-        <TextArea fx:id="descriptionFiled" prefHeight="60.0" prefWidth="400.0" promptText="Description"/>
+        <TextArea fx:id="descriptionFiled" prefHeight="60.0" prefWidth="400.0" promptText="Description" />
 
-        <Button fx:id="addmedicamentButton" onAction="#addmecidament"
-                style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-pref-width: 180;"
-                text="Ajouter médicament"/>
+        <Button fx:id="addmedicamentButton" onAction="#addmecidament" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-pref-width: 180;" text="Ajouter médicament" />
     </VBox>
 </AnchorPane>
