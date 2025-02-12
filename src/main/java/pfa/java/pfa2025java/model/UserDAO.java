@@ -1,5 +1,7 @@
 package pfa.java.pfa2025java.model;
 
+import pfa.java.pfa2025java.UserSession;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,5 +62,14 @@ public class UserDAO {
             e.printStackTrace();
         }
         return false;
+    }
+    public static boolean changePassword(String newPassword) throws SQLException {
+        String sql = "UPDATE user SET password = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+            stmt.setString(1, PasswordUtils.hashPassword(newPassword));
+            stmt.setInt(2, UserSession.getId());
+            return stmt.executeUpdate() > 0;
+        }
+
     }
 }

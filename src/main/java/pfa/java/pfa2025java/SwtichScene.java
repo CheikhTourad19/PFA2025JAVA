@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 
 public class SwtichScene {
@@ -66,21 +67,30 @@ public class SwtichScene {
         }
     }
 
-    public static void loadimage(Stage stage){
-        String Imageurl="assets/img.png";
-        Image fxImage = new Image(Objects.requireNonNull(SwtichScene.class.getResourceAsStream(Imageurl)));
-        stage.getIcons().add(new Image(Objects.requireNonNull(SwtichScene.class.getResourceAsStream(Imageurl))));
+    public static void loadimage(Stage stage) {
+        String imageUrl = "assets/img.png";
 
+        // Vérifier si l'image existe
+        URL imageURL = SwtichScene.class.getResource(imageUrl);
+        if (imageURL == null) {
+            System.out.println("⚠ Image non trouvée : " + imageUrl);
+            return;
+        }
+
+        // Charger une seule fois l'image
+        Image fxImage = new Image(((java.net.URL) imageURL).toExternalForm());
         stage.getIcons().add(fxImage);
 
-        // Définir l'icône pour le Dock (macOS) et la barre des tâches (Windows/Linux)
+        // Définir l'icône pour la barre des tâches (Windows/Linux) et le Dock (macOS)
         if (Taskbar.isTaskbarSupported()) {
-            Taskbar taskbar = Taskbar.getTaskbar();
             try {
+                Taskbar taskbar = Taskbar.getTaskbar();
                 java.awt.Image awtImage = SwingFXUtils.fromFXImage(fxImage, null);
-                taskbar.setIconImage(awtImage);
+                if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
+                    taskbar.setIconImage(awtImage);
+                }
             } catch (Exception e) {
-                System.out.println("Impossible de définir l'icône du Dock/Taskbar : " + e.getMessage());
+                System.out.println("⚠ Impossible de définir l'icône du Dock/Taskbar : " + e.getMessage());
             }
         }
     }

@@ -17,15 +17,12 @@ public class HelloApplication extends Application {
         Parent root = loader.load();
         double y = root.prefHeight(-1);
         double x = root.prefWidth(-1);
-        Scene scene = new Scene(root, x, y);
-        stage.setScene(scene);
+        stage.setScene(new Scene(root, x, y));
         stage.resizableProperty().setValue(false);
-        stage.sizeToScene();
+
         SwtichScene.loadimage(stage);
         stage.show();
-        HelloApplication.closeAlert(stage);
-
-
+        closeAlert(stage);
     }
     public static void closeAlert(Stage stage) throws IOException {
         stage.setOnCloseRequest(event -> {

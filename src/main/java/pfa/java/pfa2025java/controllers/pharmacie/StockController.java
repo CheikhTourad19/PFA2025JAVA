@@ -47,6 +47,7 @@ public class StockController {
 
     @FXML
     public void initialize() {
+
         nomColumn.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
         prixColumn.setCellValueFactory(cellData -> cellData.getValue().prixProperty().asObject());
         descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().descriptionProperty());
@@ -178,18 +179,34 @@ public class StockController {
     }
 
     private void updateStockChart() {
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-        for (Medicament med : medicamentList) {
-            pieChartData.add(new PieChart.Data(med.getNom(), med.getStock()));
+        if (stockPieChart.getData().isEmpty()) {
+            // Première initialisation
+            for (Medicament med : medicamentList) {
+                stockPieChart.getData().add(new PieChart.Data(med.getNom(), med.getStock()));
+            }
+        } else {
+            // Mise à jour des données existantes
+            for (PieChart.Data data : stockPieChart.getData()) {
+                for (Medicament med : medicamentList) {
+                    if (data.getName().equals(med.getNom())) {
+                        data.setPieValue(med.getStock());
+                    }
+                }
+            }
         }
-        stockPieChart.setData(pieChartData);
     }
 
     public static void checkLowStock(List<Medicament> medicamentList) {
+        StringBuilder message = new StringBuilder();
+
         for (Medicament med : medicamentList) {
             if (med.getStock() < 10) {
-                showNotification( "Le médicament " + med.getNom() + " est presque épuisé !");
+                message.append("Le médicament ").append(med.getNom()).append(" est presque épuisé !\n");
             }
+        }
+
+        if (message.length() > 0) {
+            showNotification(message.toString());
         }
     }
 

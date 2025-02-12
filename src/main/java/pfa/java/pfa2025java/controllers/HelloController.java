@@ -42,6 +42,7 @@ public class HelloController {
                 UserSession.setNom(user.getNom());
                 UserSession.setId(user.getId());
                 UserSession.setRole(user.getRole());
+                UserSession.setPassword(user.getPassword());
                 if (user.getRole().equals("pharmacie")) {
                     swtichScene.loadScene(event, "views/pharmacie/accueil-view.fxml", "Pharmacie", false);
                 } else if (user.getRole().equals("medecin")) {
