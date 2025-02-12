@@ -49,7 +49,7 @@ public class HelloController {
                 } else if (user.getRole().equals("patient")) {
                     swtichScene.loadScene(loginresult,"views/patient/accueil-view.fxml", "Accueil", false);
                 } else if (user.getRole().equals("admin")) {
-                    swtichScene.loadScene(event, "views/admin/hello-view.fxml", "Accueil", false);
+                    swtichScene.loadScene(event, "views/Admin/dashboard.fxml", "Accueil", false);
                 } else if (user.getRole().equals("infermier")) {
 
                 }

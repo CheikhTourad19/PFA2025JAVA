@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pfa.java.pfa2025java.controllers.Admin.DashboardController">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox prefWidth="200.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;">
+            <Label fx:id="UserNameLabel" style="-fx-text-fill: white; -fx-font-size: 16px;" />
+            <Button text="Dashboard" onAction="#gotodashboard" />
+            <Button text="Utilisateurs" onAction="#gotousers" />
+            <Button text="Rapports" onAction="#gotorapports" />
+            <Button text="Paramètres" onAction="#gotoparametre" />
+            <Button text="Déconnexion" onAction="#gotodeconnexion" style="-fx-background-color: #E74C3C; -fx-text-fill: white;" />
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <VBox fx:id="mainContent" prefHeight="600.0" prefWidth="600.0" />
+    </center>
+
+</BorderPane>

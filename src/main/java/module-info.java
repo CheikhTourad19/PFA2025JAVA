@@ -8,14 +8,16 @@ module pfa.java.pfa2025java {
     requires java.sql;
     requires java.desktop;
     requires javafx.swing;
-    requires jbcrypt; // <-- Nécessaire pour SwingFXUtils
+    requires jbcrypt;
 
     opens pfa.java.pfa2025java to javafx.fxml;
     opens pfa.java.pfa2025java.controllers.pharmacie to javafx.fxml;
     opens pfa.java.pfa2025java.controllers.patient to javafx.fxml;
+    opens pfa.java.pfa2025java.controllers.Admin to javafx.fxml;
+
     exports pfa.java.pfa2025java;
     exports pfa.java.pfa2025java.controllers;
     exports pfa.java.pfa2025java.controllers.pharmacie;
-
+    exports pfa.java.pfa2025java.controllers.Admin;
     opens pfa.java.pfa2025java.controllers to javafx.fxml;
 }
