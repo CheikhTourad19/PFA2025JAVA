@@ -9,6 +9,9 @@ import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.Medicament;
 import pfa.java.pfa2025java.model.MedicamentDAO;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+
 
 import java.util.List;
 
@@ -30,6 +33,10 @@ public class StockController {
     public TextArea descriptionFiled;
     public TableView listeMedicamentStock;
     private ObservableList<Medicament> medicamentList = FXCollections.observableArrayList();
+    @FXML
+    private TextField searchField; // Add this for the search field
+
+    private FilteredList<Medicament> filteredData;
 
 
     @FXML
@@ -40,12 +47,30 @@ public class StockController {
         stock.setCellValueFactory(cellData -> cellData.getValue().stockProperty().asObject());
 
         loadMedicaments();
+        // Initialize FilteredList with the full list
+        filteredData = new FilteredList<>(medicamentList, p -> true);
+
+        // Add a listener to searchField
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(medicament -> {
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    return true; // Show all if search is empty
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                return medicament.getNom().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+
+        // Wrap FilteredList in a SortedList and bind it to TableView
+        SortedList<Medicament> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(listeMedicamentStock.comparatorProperty());
+        listeMedicamentStock.setItems(sortedData);
     }
 
     private void loadMedicaments() {
         List<Medicament> medicaments = MedicamentDAO.getMedicamentsByPharmacie();
+
         medicamentList.setAll(medicaments);
-        listeMedicamentStock.setItems(medicamentList);
     }
 
 
