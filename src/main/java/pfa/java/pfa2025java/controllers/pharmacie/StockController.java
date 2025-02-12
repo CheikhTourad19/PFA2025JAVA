@@ -67,6 +67,7 @@ public class StockController {
         sortedData.comparatorProperty().bind(listeMedicamentStock.comparatorProperty());
         listeMedicamentStock.setItems(sortedData);
         updateStockChart();
+        checkLowStock();
     }
 
     private void loadMedicaments() {
@@ -165,5 +166,24 @@ public class StockController {
             pieChartData.add(new PieChart.Data(med.getNom(), med.getStock()));
         }
         stockPieChart.setData(pieChartData);
+    }
+
+    private void checkLowStock() {
+        for (Medicament med : medicamentList) {
+            if (med.getStock() < 10) {
+                showNotification("Stock Faible", "Le médicament " + med.getNom() + " est presque épuisé !");
+            }
+        }
+    }
+
+    private void showNotification(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
+
+        // Ajout d'un son d'alerte
+        java.awt.Toolkit.getDefaultToolkit().beep();
     }
 }
