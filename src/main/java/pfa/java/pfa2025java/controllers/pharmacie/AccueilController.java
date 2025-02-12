@@ -12,6 +12,8 @@ import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.*;
 
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AccueilController {
 
@@ -65,7 +67,7 @@ public class AccueilController {
     }
 
     public void updateProfile(ActionEvent actionEvent) throws SQLException {
-        if (newpasswordField.getText().equals(newpasswordFieldConfirmed.getText()) && !newpasswordField.getText().isEmpty() ) {
+        if (newpasswordField.getText().equals(newpasswordFieldConfirmed.getText()) && !newpasswordField.getText().isEmpty() && newpasswordField.getText().length()>=8) {
             if (PasswordUtils.checkPassword(oldpasswordField.getText(),UserSession.getPassword())) {
                 if (UserDAO.changePassword(newpasswordField.getText())){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -85,7 +87,7 @@ public class AccueilController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("les mots de passe ne se corresponde pas ");
+            alert.setContentText("les mots de passe ne se corresponde pas ou ne comporte pas 8 lettre ");
             alert.show();
         }
         boolean updated = PharmacieDAO.UpdatePharmacieAdresse(streetField.getText(),cityField.getText(),neighborhoodField.getText());
@@ -104,5 +106,11 @@ public class AccueilController {
             alert.setContentText("l'adresse n'a pas pu etre saisi");
             alert.show();
         }
+    }
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }
