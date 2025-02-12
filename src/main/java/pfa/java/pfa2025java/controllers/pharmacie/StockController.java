@@ -17,7 +17,6 @@ import pfa.java.pfa2025java.model.MedicamentDAO;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javafx.util.Callback;
 import java.util.List;
 
 public class StockController {
@@ -37,7 +36,8 @@ public class StockController {
     public TextField prixField;
     public Button addmedicamentButton;
     public TextArea descriptionFiled;
-    public TableView listeMedicamentStock;
+    @FXML
+    private TableView listeMedicamentStock;
     private ObservableList<Medicament> medicamentList = FXCollections.observableArrayList();
     @FXML
     private TextField searchField; // Add this for the search field
@@ -84,7 +84,7 @@ public class StockController {
         sortedData.comparatorProperty().bind(listeMedicamentStock.comparatorProperty());
         listeMedicamentStock.setItems(sortedData);
         updateStockChart();
-
+        checkLowStock(medicamentList);
     }
 
     private void loadMedicaments() {
@@ -94,7 +94,7 @@ public class StockController {
     }
 
 
-    public void addstock(ActionEvent actionEvent) {
+    public void addstock() {
         Medicament selectedMedicament = (Medicament) listeMedicamentStock.getSelectionModel().getSelectedItem();
         if (selectedMedicament == null) {
             showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez sélectionner un médicament.");
@@ -120,7 +120,7 @@ public class StockController {
         updateStockChart();
     }
 
-    public void addmecidament(ActionEvent actionEvent) {
+    public void addmecidament() {
         String nom = nomField.getText();
         String description = descriptionFiled.getText();
         String prix = prixField.getText();
@@ -143,7 +143,7 @@ public class StockController {
 
     private void showAlert(Alert.AlertType alertType, String erreur, String s) {
         Alert alert = new Alert(alertType);
-        alert.setTitle("erreur");
+        alert.setTitle(erreur);
         alert.setHeaderText(null);
         alert.setContentText(s);
         alert.showAndWait();
@@ -173,7 +173,7 @@ public class StockController {
 
     }
 
-    public void clearSearch(ActionEvent actionEvent) {
+    public void clearSearch() {
         searchField.clear();
     }
 
@@ -188,14 +188,14 @@ public class StockController {
     public static void checkLowStock(List<Medicament> medicamentList) {
         for (Medicament med : medicamentList) {
             if (med.getStock() < 10) {
-                showNotification("Stock Faible", "Le médicament " + med.getNom() + " est presque épuisé !");
+                showNotification( "Le médicament " + med.getNom() + " est presque épuisé !");
             }
         }
     }
 
-    private static void showNotification(String title, String message) {
+    private static void showNotification( String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
+        alert.setTitle("Attention");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.show();

@@ -15,7 +15,7 @@ public class AccueilController {
 
     public void initialize() {
         name.setText(UserSession.getPrenom() + " " + UserSession.getNom());
-        StockController.checkLowStock(MedicamentDAO.getMedicamentsByPharmacie());
+//        StockController.checkLowStock(MedicamentDAO.getMedicamentsByPharmacie());
     }
 
     public void gotostock(ActionEvent actionEvent) {
