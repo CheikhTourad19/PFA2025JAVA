@@ -129,5 +129,29 @@ public class MedicamentDAO {
         }
         return false; // Échec
     }
+    public static List<Medicament> getMedicamentsByOrdonnanceId(int ordonnanceId) {
+        List<Medicament> medicaments = new ArrayList<>();
+        String sql = "SELECT m.id, m.nom, m.description ,m.prix" +
+                "FROM medicament m " +
+                "JOIN ordonnance_medicament om ON m.id = om.medicament_id " +
+                "WHERE om.ordonnance_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, ordonnanceId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Medicament medicament = new Medicament(
+                        rs.getInt("id"),
+                        rs.getString("nom"),
+                        rs.getString("description"),
+                        rs.getInt("prix"),
+                        0
+                );
+                medicaments.add(medicament);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return medicaments;
+    }
 }
 
