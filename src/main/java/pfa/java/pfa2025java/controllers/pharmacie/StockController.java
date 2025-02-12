@@ -6,6 +6,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class StockController {
     public Button accueilButton;
+    public PieChart stockPieChart;
     @FXML
     private TableColumn<Medicament, String> nomColumn;
     @FXML
@@ -64,6 +66,7 @@ public class StockController {
         SortedList<Medicament> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(listeMedicamentStock.comparatorProperty());
         listeMedicamentStock.setItems(sortedData);
+        updateStockChart();
     }
 
     private void loadMedicaments() {
@@ -96,6 +99,7 @@ public class StockController {
         } else {
             showAlert(Alert.AlertType.ERROR, "Erreur", "Échec de la mise à jour du stock.");
         }
+        updateStockChart();
     }
 
     public void addmecidament(ActionEvent actionEvent) {
@@ -116,6 +120,7 @@ public class StockController {
         } else {
             showAlert(Alert.AlertType.ERROR, "Erreur", "Échec de l'ajout du médicament.");
         }
+        updateStockChart();
     }
 
     private void showAlert(Alert.AlertType alertType, String erreur, String s) {
@@ -152,5 +157,13 @@ public class StockController {
 
     public void clearSearch(ActionEvent actionEvent) {
         searchField.clear();
+    }
+
+    private void updateStockChart() {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        for (Medicament med : medicamentList) {
+            pieChartData.add(new PieChart.Data(med.getNom(), med.getStock()));
+        }
+        stockPieChart.setData(pieChartData);
     }
 }
