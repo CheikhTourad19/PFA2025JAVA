@@ -99,36 +99,77 @@ public class MedicamentDAO {
     }
 
     public static boolean addMedicamentWithStock(String nom, String description, String prix) {
-        String sqlMedicament = "INSERT INTO medicament (nom, description,prix) VALUES (?, ?,?)";
-        String sqlStock = "INSERT INTO stock (pharmacie_id, medicament_id, quantite) VALUES (?, ?, 0)";
+        // Vérification si le médicament existe déjà
+        String sqlCheckMedicament = "SELECT id FROM medicament WHERE nom = ?";
+        String sqlMedicament = "INSERT INTO medicament (nom, description, prix) VALUES (?, ?, ?)";
+        String sqlStock = "INSERT INTO stock (pharmacie_id, medicament_id, quantite) VALUES (?, ?, 1)";
+        String sqlUpdateStock = "UPDATE stock SET quantite = 1 WHERE pharmacie_id = ? AND medicament_id = ?";
 
-        try (PreparedStatement stmtMedicament = connection.prepareStatement(sqlMedicament, Statement.RETURN_GENERATED_KEYS)) {
-            stmtMedicament.setString(1, nom);
-            stmtMedicament.setString(2, description);
-            stmtMedicament.setInt(3, Integer.parseInt(prix));
-            int rowsInserted = stmtMedicament.executeUpdate();
+        try (PreparedStatement stmtCheckMedicament = connection.prepareStatement(sqlCheckMedicament)) {
+            stmtCheckMedicament.setString(1, nom);
+            ResultSet rs = stmtCheckMedicament.executeQuery();
 
-            if (rowsInserted > 0) {
-                // Récupérer l'ID du médicament nouvellement créé
-                ResultSet generatedKeys = stmtMedicament.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    int idMedicament = generatedKeys.getInt(1);
+            if (rs.next()) {
+                // Si le médicament existe, récupérer son ID
+                int idMedicament = rs.getInt("id");
 
-                    // Ajouter le stock initialisé à 0 pour la pharmacie donnée
-                    try (PreparedStatement stmtStock = connection.prepareStatement(sqlStock)) {
-                        stmtStock.setInt(1, UserSession.getId());
-                        stmtStock.setInt(2, idMedicament);
-                        stmtStock.executeUpdate();
+                // Vérifier si le stock existe déjà pour ce médicament
+                try (PreparedStatement stmtStockCheck = connection.prepareStatement("SELECT quantite FROM stock WHERE pharmacie_id = ? AND medicament_id = ?")) {
+                    stmtStockCheck.setInt(1, UserSession.getId());
+                    stmtStockCheck.setInt(2, idMedicament);
+                    ResultSet stockResult = stmtStockCheck.executeQuery();
+
+                    if (!stockResult.next()) {
+                        // Si le stock n'existe pas, initialiser à 1
+                        try (PreparedStatement stmtAddStock = connection.prepareStatement(sqlStock)) {
+                            stmtAddStock.setInt(1, UserSession.getId());
+                            stmtAddStock.setInt(2, idMedicament);
+                            stmtAddStock.executeUpdate();
+                        }
+                    } else {
+                        // Sinon, on met à jour le stock à 1
+                        try (PreparedStatement stmtUpdateStock = connection.prepareStatement(sqlUpdateStock)) {
+                            stmtUpdateStock.setInt(1, UserSession.getId());
+                            stmtUpdateStock.setInt(2, idMedicament);
+                            stmtUpdateStock.executeUpdate();
+                        }
                     }
+                }
 
-                    return true; // Succès
+                return true; // Succès si le médicament existe déjà et son stock a été mis à jour
+            } else {
+                // Si le médicament n'existe pas, on le crée
+                try (PreparedStatement stmtMedicament = connection.prepareStatement(sqlMedicament, Statement.RETURN_GENERATED_KEYS)) {
+                    stmtMedicament.setString(1, nom);
+                    stmtMedicament.setString(2, description);
+                    stmtMedicament.setInt(3, Integer.parseInt(prix));
+                    int rowsInserted = stmtMedicament.executeUpdate();
+
+                    if (rowsInserted > 0) {
+                        // Récupérer l'ID du médicament nouvellement créé
+                        ResultSet generatedKeys = stmtMedicament.getGeneratedKeys();
+                        if (generatedKeys.next()) {
+                            int idMedicament = generatedKeys.getInt(1);
+
+                            // Ajouter le stock initialisé à 1 pour la pharmacie donnée
+                            try (PreparedStatement stmtStock = connection.prepareStatement(sqlStock)) {
+                                stmtStock.setInt(1, UserSession.getId());
+                                stmtStock.setInt(2, idMedicament);
+                                stmtStock.executeUpdate();
+                            }
+
+                            return true; // Succès
+                        }
+                    }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return false; // Échec
     }
+
     public static List<Medicament> getMedicamentsByOrdonnanceId(int ordonnanceId) {
         List<Medicament> medicaments = new ArrayList<>();
         String sql = "SELECT m.id, m.nom, m.description ,m.prix" +
