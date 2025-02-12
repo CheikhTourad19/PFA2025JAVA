@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import pfa.java.pfa2025java.HelloApplication;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.model.User;
+import pfa.java.pfa2025java.model.UserDAO;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,11 +41,29 @@ public class HelloController {
             loginresult.setText("Username ou password vide");
             loginresult.setStyle("-fx-text-fill: red;");
         }else {
-            if (username.getText().equals(UserSession.getEmail()) && password.getText().equals(UserSession.getPassword())) {
-                loginresult.setText("Bonjour Mr " + UserSession.getNom());
-            } else
-                loginresult.setText("Mauvais identifiants");
+            if (UserDAO.login(username.getText(), password.getText())) {
+                SwtichScene swtichScene = new SwtichScene();
+                User user = UserDAO.getUserByEmail(username.getText());
+                UserSession.setEmail(user.getEmail());
+                UserSession.setPrenom(user.getPrenom());
+                UserSession.setNom(user.getNom());
+                UserSession.setId(user.getId());
+                UserSession.setRole(user.getRole());
+                if (user.getRole().equals("pharmacie")) {
+                    swtichScene.loadScene(event, "views/pharmacie/accueil-view.fxml", "Pharmacie", false);
+                } else if (user.getRole().equals("medecin")) {
 
+                } else if (user.getRole().equals("patient")) {
+
+                } else if (user.getRole().equals("admin")) {
+                    swtichScene.loadScene(event, "views/admin/hello-view.fxml", "Accueil", false);
+                } else if (user.getRole().equals("infermier")) {
+
+                }
+            } else {
+                loginresult.setText("Username ou password incorrect");
+                loginresult.setStyle("-fx-text-fill: red;");
+            }
         }
     }
 
