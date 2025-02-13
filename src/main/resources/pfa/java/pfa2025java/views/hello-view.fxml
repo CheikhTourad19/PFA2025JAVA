@@ -12,7 +12,7 @@
 <HBox id="page" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="511.0" prefWidth="985.0" spacing="20"
       style="-fx-padding: 20; -fx-background-size: cover;" stylesheets="@../Style/home.css"
-      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      xmlns="http://javafx.com/javafx/21.0.0" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="pfa.java.pfa2025java.controllers.HelloController"><!-- Right Form Section -->
     <VBox alignment="CENTER" prefHeight="420.0" prefWidth="281.0" spacing="30.0" style="-fx-background-radius: 10;">
         <Text fx:id="loginresult" fill="#ff0808"/>
