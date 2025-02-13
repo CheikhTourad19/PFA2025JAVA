@@ -47,5 +47,7 @@
 }
 .login-button{
     -fx-background-color: gray;
+    -fx-cursor: hand;
+
 
 }

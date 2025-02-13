@@ -16,11 +16,15 @@
               style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="89.0"
               AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="151.0">
             <Button fx:id="accueilButton" onAction="#gotoaccueil"
-                    style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Accueil"/>
-            <Button style="-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;" text="Ordonnance"/>
+                    style=" -fx-cursor: hand;-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;"
+                    text="Accueil"/>
+            <Button style=" -fx-cursor: hand;-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;"
+                    text="Ordonnance"/>
             <Button fx:id="stockButton" onAction="#gotostock"
-                    style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Stock"/>
-            <Button onAction="#logout" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;"
+                    style=" -fx-cursor: hand;-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;"
+                    text="Stock"/>
+            <Button onAction="#logout"
+                    style=" -fx-cursor: hand;-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;"
                     text="Deconnexion"/>
         </VBox>
         <ImageView fitHeight="115.0" fitWidth="194.0" layoutY="-2.0" pickOnBounds="true">

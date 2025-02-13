@@ -16,13 +16,16 @@
         <VBox layoutX="14.0" layoutY="200.0" prefHeight="160.0" prefWidth="160.0" spacing="10"
               style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="40.0"
               AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="200.0">
-            <Button style="-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;" text="Accueil"/>
+            <Button style=" -fx-cursor: hand;-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;"
+                    text="Accueil"/>
             <Button fx:id="ordonnanceButton" onAction="#gotoordonnance"
-                    style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;"
+                    style=" -fx-cursor: hand;-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;"
                     text="Ordonnance"/>
             <Button fx:id="stockButton" onAction="#gotostock"
-                    style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Stock"/>
-            <Button onAction="#logout" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;"
+                    style=" -fx-cursor: hand;-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;"
+                    text="Stock"/>
+            <Button onAction="#logout"
+                    style=" -fx-cursor: hand;-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;"
                     text="Deconnexion"/>
         </VBox>
         <ImageView fitHeight="115.0" fitWidth="194.0" layoutY="-2.0" pickOnBounds="true">
@@ -45,6 +48,8 @@
         <PasswordField fx:id="oldpasswordField" promptText="Ancien mot de passe" />
         <PasswordField fx:id="newpasswordField" promptText="Nouveau mot de passe" />
         <PasswordField fx:id="newpasswordFieldConfirmed" promptText="Nouveau mot de passe" />
-        <Button onAction="#updateProfile" style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold;" text="Enregistrer" />
+        <Button onAction="#updateProfile"
+                style=" -fx-cursor: hand;-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold;"
+                text="Enregistrer"/>
     </VBox>
 </AnchorPane>
