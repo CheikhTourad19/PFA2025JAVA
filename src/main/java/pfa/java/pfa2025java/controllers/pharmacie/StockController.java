@@ -10,19 +10,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
-import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
-import pfa.java.pfa2025java.model.Adresse;
 import pfa.java.pfa2025java.model.Medicament;
 import pfa.java.pfa2025java.model.MedicamentDAO;
-import pfa.java.pfa2025java.model.PharmacieDAO;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class StockController {
@@ -34,8 +30,7 @@ public class StockController {
     private TableColumn<Medicament, Integer> prixColumn;
     @FXML
     private TableColumn<Medicament, String> descriptionColumn;
-    @FXML
-    private StackPane loadingOverlay;  // Make sure this is linked to your FXML
+
 
     @FXML
     private TableColumn<Medicament, Integer> stock;
@@ -90,15 +85,13 @@ public class StockController {
         filteredData = new FilteredList<>(medicamentList, p -> true);
 
         // Add a listener to searchField
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(medicament -> {
-                if (newValue == null || newValue.trim().isEmpty()) {
-                    return true; // Show all if search is empty
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                return medicament.getNom().toLowerCase().contains(lowerCaseFilter);
-            });
-        });
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(medicament -> {
+            if (newValue == null || newValue.trim().isEmpty()) {
+                return true; // Show all if search is empty
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            return medicament.getNom().toLowerCase().contains(lowerCaseFilter);
+        }));
 
         // Wrap FilteredList in a SortedList and bind it to TableView
         SortedList<Medicament> sortedData = new SortedList<>(filteredData);
@@ -228,7 +221,7 @@ public class StockController {
             }
         }
 
-        if (message.length() > 0) {
+        if (!message.isEmpty()) {
             showNotification(message.toString());
         }
     }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MedicamentDAO {
-    private static Connection connection;
+    private static final Connection connection;
 
     static {
         try {
@@ -32,7 +32,7 @@ public class MedicamentDAO {
                 );
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -190,7 +190,7 @@ public class MedicamentDAO {
                 medicaments.add(medicament);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return medicaments;
     }

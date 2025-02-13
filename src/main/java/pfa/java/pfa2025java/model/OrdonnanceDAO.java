@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.List;
 
 public class OrdonnanceDAO {
-    private static Connection connection;
+    private static final Connection connection;
 
 
     static {
@@ -19,14 +19,16 @@ public class OrdonnanceDAO {
 
     // Récupérer les détails d'une ordonnance
     public  static OrdonnanceDetails getOrdonnanceDetailsById(int ordonnanceId) {
-        String sql = "SELECT o.id AS ordonnanceId, \n" +
-                "       u1.nom AS medecinNom, \n" +
-                "       u2.nom AS patientNom, \n" +
-                "       o.date_creation\n" +
-                "FROM ordonnance o\n" +
-                "JOIN user u1 ON o.medecin_id = u1.id  -- Récupérer le nom du médecin\n" +
-                "JOIN user u2 ON o.patient_id = u2.id  -- Récupérer le nom du patient\n" +
-                "WHERE o.id = ?;\n";
+        String sql = """
+                SELECT o.id AS ordonnanceId,\s
+                       u1.nom AS medecinNom,\s
+                       u2.nom AS patientNom,\s
+                       o.date_creation
+                FROM ordonnance o
+                JOIN user u1 ON o.medecin_id = u1.id  -- Récupérer le nom du médecin
+                JOIN user u2 ON o.patient_id = u2.id  -- Récupérer le nom du patient
+                WHERE o.id = ?;
+                """;
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, ordonnanceId);

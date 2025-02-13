@@ -21,5 +21,7 @@ public class OrdonnanceController {
     }
 
     public void logout(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "Login", false);
     }
 }

@@ -12,32 +12,32 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.pharmacie.OrdonnanceController">
     <AnchorPane prefHeight="400.0" prefWidth="151.0" style="-fx-background-color: #2C3E50;">
-        <children>
-            <VBox layoutX="14.0" layoutY="151.0" prefHeight="160.0" prefWidth="160.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="151.0">
-                <Button fx:id="accueilButton" onAction="#gotoaccueil" style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Accueil" />
-                <Button style="-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;" text="Ordonnance" />
-                <Button fx:id="stockButton" onAction="#gotostock" style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Stock" />
-                <Button onAction="#logout" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;" text="Deconnexion" />
-            </VBox>
-            <ImageView fitHeight="115.0" fitWidth="194.0" layoutY="-2.0" pickOnBounds="true">
-                <image>
-                    <Image url="@../../assets/pharamalogo.png" />
-                </image>
-            </ImageView>
-        </children>
+        <VBox layoutX="14.0" layoutY="151.0" prefHeight="160.0" prefWidth="160.0" spacing="10"
+              style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="89.0"
+              AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="151.0">
+            <Button fx:id="accueilButton" onAction="#gotoaccueil"
+                    style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Accueil"/>
+            <Button style="-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;" text="Ordonnance"/>
+            <Button fx:id="stockButton" onAction="#gotostock"
+                    style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Stock"/>
+            <Button onAction="#logout" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;"
+                    text="Deconnexion"/>
+        </VBox>
+        <ImageView fitHeight="115.0" fitWidth="194.0" layoutY="-2.0" pickOnBounds="true">
+            <Image url="@../../assets/pharamalogo.png"/>
+        </ImageView>
     </AnchorPane>
-   <VBox layoutX="194.0" layoutY="14.0" prefHeight="385.0" prefWidth="258.0">
-      <children>
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cherhcher ordonnance par code" textAlignment="CENTER" wrappingWidth="255.61767578125" />
-         <TextField prefHeight="26.0" prefWidth="345.0" promptText="Inserer code ..." />
-         <Button mnemonicParsing="false" text="chercher" />
-         <TableView prefHeight="200.0" prefWidth="183.0">
-           <columns>
-             <TableColumn prefWidth="75.0" text="C1" />
-             <TableColumn prefWidth="75.0" text="C2" />
-           </columns>
-         </TableView>
-         <Button mnemonicParsing="false" text="Valider Ordonnance" />
-      </children>
-   </VBox>
+    <VBox layoutX="194.0" layoutY="14.0" prefHeight="385.0" prefWidth="258.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cherhcher ordonnance par code" textAlignment="CENTER"
+              wrappingWidth="255.61767578125"/>
+        <TextField prefHeight="26.0" prefWidth="345.0" promptText="Inserer code ..."/>
+        <Button mnemonicParsing="false" text="chercher"/>
+        <TableView prefHeight="200.0" prefWidth="183.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="C1"/>
+                <TableColumn prefWidth="75.0" text="C2"/>
+            </columns>
+        </TableView>
+        <Button mnemonicParsing="false" text="Valider Ordonnance"/>
+    </VBox>
 </AnchorPane>
