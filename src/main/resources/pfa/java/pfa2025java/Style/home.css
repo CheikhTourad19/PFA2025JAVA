@@ -1,4 +1,4 @@
 #page{
-    -fx-background-image: url('pfa/java/pfa2025java/assets/img.png');
+    -fx-background-image: url('../assets/img.png');
     -fx-background-size: cover;
 }

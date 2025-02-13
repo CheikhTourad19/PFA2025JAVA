@@ -1,6 +1,7 @@
 package pfa.java.pfa2025java;
 
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,7 +21,7 @@ public class HelloApplication extends Application {
         stage.setScene(new Scene(root, x, y));
         stage.resizableProperty().setValue(false);
 
-        SwtichScene.loadimage(stage);
+        SwtichScene.loadImage(stage);
         stage.show();
         closeAlert(stage);
     }

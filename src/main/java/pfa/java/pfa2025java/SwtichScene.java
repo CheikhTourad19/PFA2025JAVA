@@ -13,6 +13,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+import java.io.InputStream;
+
 
 public class SwtichScene {
     public void loadScene(ActionEvent actionEvent, String fxmlPath, String title, boolean newWindow) {
@@ -34,7 +36,7 @@ public class SwtichScene {
             stage.setTitle(title);
             stage.sizeToScene();
             stage.resizableProperty().setValue(false);
-            loadimage(stage);
+            loadImage(stage);
             stage.show();
         } catch (IOException e) {
 
@@ -59,7 +61,7 @@ public class SwtichScene {
             stage.setScene(scene);
             stage.setTitle(title);
             stage.sizeToScene();
-            loadimage(stage);
+            loadImage(stage);
             stage.show();
         } catch (IOException e) {
 
@@ -67,26 +69,32 @@ public class SwtichScene {
         }
     }
 
-    public static void loadimage(Stage stage) {
-        String imageUrl = "assets/img.png";
+    public static void loadImage(Stage stage) {
+        String imagePath = "assets/img.png"; // Chemin depuis src/main/resources
 
-        // Vérifier si l'image existe
-        URL imageURL = SwtichScene.class.getResource(imageUrl);
-        if (imageURL == null) {
-            System.out.println("⚠ Image non trouvée : " + imageUrl);
-            return;
+        try (InputStream imageStream = SwtichScene.class.getResourceAsStream(imagePath)) {
+            if (imageStream == null) {
+                System.out.println("⚠ Image non trouvée : " + imagePath);
+                return;
+            }
+
+            // Charger l'image en mémoire
+            Image fxImage = new Image(imageStream);
+            stage.getIcons().add(fxImage);
+
+            // Définir l'icône pour la barre des tâches (Windows/Linux) et le Dock (macOS)
+            setTaskbarIcon(fxImage);
+        } catch (Exception e) {
+            System.out.println("⚠ Erreur lors du chargement de l'icône : " + e.getMessage());
         }
+    }
 
-        // Charger une seule fois l'image
-        Image fxImage = new Image(((java.net.URL) imageURL).toExternalForm());
-        stage.getIcons().add(fxImage);
-
-        // Définir l'icône pour la barre des tâches (Windows/Linux) et le Dock (macOS)
+    private static void setTaskbarIcon(Image fxImage) {
         if (Taskbar.isTaskbarSupported()) {
             try {
                 Taskbar taskbar = Taskbar.getTaskbar();
                 java.awt.Image awtImage = SwingFXUtils.fromFXImage(fxImage, null);
-                if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
+                if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE) && awtImage != null) {
                     taskbar.setIconImage(awtImage);
                 }
             } catch (Exception e) {
@@ -94,6 +102,5 @@ public class SwtichScene {
             }
         }
     }
-
 
 }
