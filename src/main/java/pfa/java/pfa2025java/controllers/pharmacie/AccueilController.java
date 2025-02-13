@@ -28,7 +28,7 @@ public class AccueilController {
     public PasswordField newpasswordField;
     public PasswordField newpasswordFieldConfirmed;
 
-    public void initialize() throws SQLException {
+    public void initialize() {
         name.setText(UserSession.getPrenom() + " " + UserSession.getNom());
         Task<Void> backgroundTask = new Task<>() {
             @Override
@@ -66,7 +66,7 @@ public class AccueilController {
         swtichScene.loadScene(actionEvent,"views/hello-view.fxml","Login",false);
     }
 
-    public void updateProfile(ActionEvent actionEvent) throws SQLException {
+    public void updateProfile() throws SQLException {
         if (newpasswordField.getText().equals(newpasswordFieldConfirmed.getText()) && !newpasswordField.getText().isEmpty() && newpasswordField.getText().length()>=8) {
             if (PasswordUtils.checkPassword(oldpasswordField.getText(),UserSession.getPassword())) {
                 if (UserDAO.changePassword(newpasswordField.getText())){
@@ -92,38 +92,38 @@ public class AccueilController {
         }
         boolean updatedPass = PharmacieDAO.UpdatePharmacieAdresse(streetField.getText(),cityField.getText(),neighborhoodField.getText());
 
+        Alert alert;
         if (updatedPass) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Succes");
             alert.setHeaderText(null);
             alert.setContentText("l'adresse a bien ete mise a jour");
-            alert.show();
 
         }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
             alert.setContentText("l'adresse n'a pas pu etre saisi");
-            alert.show();
         }
+        alert.show();
 
         if (!emailField.getText().isEmpty() && isValidEmail(emailField.getText())) {
             boolean updatemail=UserDAO.updateEmail(emailField.getText());
             if (updatemail) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Succes");
                 alert.setHeaderText(null);
                 alert.setContentText("l'adresse mail a bien ete mise a jour");
                 alert.show();
             }else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
                 alert.setHeaderText(null);
                 alert.setContentText("errur lors de la modification du mail ");
                 alert.show();
             }
         } else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
             alert.setContentText("email n'est pas valide ");

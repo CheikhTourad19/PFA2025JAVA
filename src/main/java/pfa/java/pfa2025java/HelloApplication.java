@@ -1,7 +1,6 @@
 package pfa.java.pfa2025java;
 
 import javafx.application.Application;
-import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,13 +18,14 @@ public class HelloApplication extends Application {
         double y = root.prefHeight(-1);
         double x = root.prefWidth(-1);
         stage.setScene(new Scene(root, x, y));
-        stage.resizableProperty().setValue(false);
+
 
         SwtichScene.loadImage(stage);
         stage.show();
         closeAlert(stage);
     }
-    public static void closeAlert(Stage stage) throws IOException {
+
+    public static void closeAlert(Stage stage) {
         stage.setOnCloseRequest(event -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Attention");

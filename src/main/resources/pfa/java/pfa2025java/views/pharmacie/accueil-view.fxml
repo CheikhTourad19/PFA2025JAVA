@@ -12,26 +12,29 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="523.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.pharmacie.AccueilController">
-   <AnchorPane layoutY="6.0" prefHeight="516.0" prefWidth="194.0" style="-fx-background-color: #2C3E50;">
-      <children>
-          <VBox layoutX="14.0" layoutY="200.0" prefHeight="160.0" prefWidth="160.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="200.0">
-              <Button style="-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;" text="Accueil" />
-              <Button fx:id="ordonnanceButton" onAction="#gotoordonnance" style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Ordonnance" />
-              <Button fx:id="stockButton" onAction="#gotostock" style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Stock" />
-              <Button onAction="#logout" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;" text="Deconnexion" />
-          </VBox>
-         <ImageView fitHeight="115.0" fitWidth="194.0" layoutY="-2.0" pickOnBounds="true">
-            <image>
-               <Image url="@../../assets/pharamalogo.png" />
-            </image>
-         </ImageView>
-          <Text fx:id="name" fill="#f5efef" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="188.0">
-              <font>
-                  <Font size="17.0" />
-              </font>
-          </Text>
-      </children>
-   </AnchorPane>
+    <AnchorPane layoutY="6.0" prefHeight="516.0" prefWidth="194.0" style="-fx-background-color: #2C3E50;">
+        <VBox layoutX="14.0" layoutY="200.0" prefHeight="160.0" prefWidth="160.0" spacing="10"
+              style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="40.0"
+              AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="200.0">
+            <Button style="-fx-background-color: green; -fx-text-fill: white; -fx-pref-width: 180;" text="Accueil"/>
+            <Button fx:id="ordonnanceButton" onAction="#gotoordonnance"
+                    style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;"
+                    text="Ordonnance"/>
+            <Button fx:id="stockButton" onAction="#gotostock"
+                    style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180;" text="Stock"/>
+            <Button onAction="#logout" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180;"
+                    text="Deconnexion"/>
+        </VBox>
+        <ImageView fitHeight="115.0" fitWidth="194.0" layoutY="-2.0" pickOnBounds="true">
+            <Image url="@../../assets/pharamalogo.png"/>
+        </ImageView>
+        <Text fx:id="name" fill="#f5efef" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+              textAlignment="CENTER" wrappingWidth="188.0">
+            <font>
+                <Font size="17.0"/>
+            </font>
+        </Text>
+    </AnchorPane>
 
     <VBox layoutX="199.0" prefHeight="350.0" prefWidth="437.0" spacing="10" style="-fx-padding: 20; -fx-background-color: #ECF0F1; -fx-border-color: #BDC3C7; -fx-border-radius: 5;">
         <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Mettre à jour le profil" />
