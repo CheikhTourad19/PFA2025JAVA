@@ -45,7 +45,7 @@ public class AccueilController {
 
         new Thread(backgroundTask).start();
 
-
+        emailField.setText(UserSession.getEmail());
 
     }
 
@@ -83,16 +83,16 @@ public class AccueilController {
                 alert.setContentText("l'ancien mot de passe n'est pas valide ");
                 alert.show();
             }
-        }else {
+        }else if ((!newpasswordField.getText().isEmpty() && newpasswordField.getText().length()<=8) || !newpasswordField.getText().equals(newpasswordFieldConfirmed.getText()) ){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
             alert.setContentText("les mots de passe ne se corresponde pas ou ne comporte pas 8 lettre ");
             alert.show();
         }
-        boolean updated = PharmacieDAO.UpdatePharmacieAdresse(streetField.getText(),cityField.getText(),neighborhoodField.getText());
+        boolean updatedPass = PharmacieDAO.UpdatePharmacieAdresse(streetField.getText(),cityField.getText(),neighborhoodField.getText());
 
-        if (updated) {
+        if (updatedPass) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Succes");
             alert.setHeaderText(null);
@@ -106,6 +106,30 @@ public class AccueilController {
             alert.setContentText("l'adresse n'a pas pu etre saisi");
             alert.show();
         }
+
+        if (!emailField.getText().isEmpty() && isValidEmail(emailField.getText())) {
+            boolean updatemail=UserDAO.updateEmail(emailField.getText());
+            if (updatemail) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Succes");
+                alert.setHeaderText(null);
+                alert.setContentText("l'adresse mail a bien ete mise a jour");
+                alert.show();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText(null);
+                alert.setContentText("errur lors de la modification du mail ");
+                alert.show();
+            }
+        } else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("email n'est pas valide ");
+            alert.show();
+        }
+
     }
     public boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";

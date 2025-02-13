@@ -72,4 +72,12 @@ public class UserDAO {
         }
 
     }
+    public static boolean updateEmail(String newEmail) throws SQLException {
+        String sql = "UPDATE user SET email = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+            stmt.setString(1, newEmail);
+            stmt.setInt(2, UserSession.getId());
+            return stmt.executeUpdate() > 0;
+        }
+    }
 }

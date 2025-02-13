@@ -1,22 +1,28 @@
 package pfa.java.pfa2025java.controllers.pharmacie;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.model.Adresse;
 import pfa.java.pfa2025java.model.Medicament;
 import pfa.java.pfa2025java.model.MedicamentDAO;
+import pfa.java.pfa2025java.model.PharmacieDAO;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class StockController {
@@ -28,6 +34,9 @@ public class StockController {
     private TableColumn<Medicament, Integer> prixColumn;
     @FXML
     private TableColumn<Medicament, String> descriptionColumn;
+    @FXML
+    private StackPane loadingOverlay;  // Make sure this is linked to your FXML
+
     @FXML
     private TableColumn<Medicament, Integer> stock;
     public Button addstockButton;
@@ -47,12 +56,22 @@ public class StockController {
 
     @FXML
     public void initialize() {
+        Task<Void> backgroundTask = new Task<>() {
+            @Override
+            protected Void call()  {
+                loadMedicaments();
+                return null;
+            }
+
+
+        };
 
         nomColumn.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
         prixColumn.setCellValueFactory(cellData -> cellData.getValue().prixProperty().asObject());
         descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().descriptionProperty());
         stock.setCellValueFactory(cellData -> cellData.getValue().stockProperty().asObject());
         // Utilisation de RowFactory pour personnaliser le style de la ligne entière
+
         listeMedicamentStock.setRowFactory(tv -> {
             TableRow<Medicament> row = new TableRow<>();
             row.itemProperty().addListener((observable, oldItem, newItem) -> {
@@ -65,7 +84,8 @@ public class StockController {
             return row;
         });
 
-        loadMedicaments();
+        new Thread(backgroundTask).start();
+
         // Initialize FilteredList with the full list
         filteredData = new FilteredList<>(medicamentList, p -> true);
 
@@ -84,14 +104,17 @@ public class StockController {
         SortedList<Medicament> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(listeMedicamentStock.comparatorProperty());
         listeMedicamentStock.setItems(sortedData);
-        updateStockChart();
-        checkLowStock(medicamentList);
+
     }
 
     private void loadMedicaments() {
         List<Medicament> medicaments = MedicamentDAO.getMedicamentsByPharmacie();
 
-        medicamentList.setAll(medicaments);
+        Platform.runLater(() -> {
+            medicamentList.setAll(medicaments);
+            updateStockChart();
+            checkLowStock(medicamentList);
+        });
     }
 
 
