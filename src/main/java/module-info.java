@@ -9,6 +9,7 @@ module pfa.java.pfa2025java {
     requires java.desktop;
     requires javafx.swing;
     requires jbcrypt;
+    requires java.prefs;
 
     opens pfa.java.pfa2025java to javafx.fxml;
     opens pfa.java.pfa2025java.controllers.pharmacie to javafx.fxml;

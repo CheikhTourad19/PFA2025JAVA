@@ -10,7 +10,7 @@ import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.User;
 import pfa.java.pfa2025java.model.UserDAO;
 
-
+import java.util.prefs.Preferences;
 
 
 public class HelloController {
@@ -22,6 +22,14 @@ public class HelloController {
     private TextField password;
 
 
+    @FXML
+    public void initialize() {
+        Preferences prefs = Preferences.userNodeForPackage(getClass());
+        String last_seremail = prefs.get("last_seremail", "");
+        if (!last_seremail.isEmpty()) {
+            username.setText(last_seremail);
+        }
+    }
 
     @FXML
     public void login(ActionEvent event) {
@@ -40,6 +48,8 @@ public class HelloController {
                 UserSession.setId(user.getId());
                 UserSession.setRole(user.getRole());
                 UserSession.setPassword(user.getPassword());
+                Preferences prefs = Preferences.userNodeForPackage(getClass());
+                prefs.put("last_seremail", user.getEmail());
                 switch (user.getRole()) {
                     case "pharmacie" ->
                             swtichScene.loadScene(event, "views/pharmacie/accueil-view.fxml", "Pharmacie", false);
