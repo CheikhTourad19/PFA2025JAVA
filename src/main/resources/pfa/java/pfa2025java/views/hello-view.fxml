@@ -9,46 +9,65 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.effect.DropShadow?>
+
 <HBox id="page" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="511.0" prefWidth="985.0" spacing="20"
       style="-fx-padding: 20; -fx-background-size: cover;" stylesheets="@../Style/home.css"
       xmlns="http://javafx.com/javafx/21.0.0" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="pfa.java.pfa2025java.controllers.HelloController"><!-- Right Form Section -->
-    <VBox alignment="CENTER" prefHeight="420.0" prefWidth="281.0" spacing="30.0" style="-fx-background-radius: 10;">
-        <Text fx:id="loginresult" fill="#ff0808"/>
+      fx:controller="pfa.java.pfa2025java.controllers.HelloController">
+    <!-- Right Form Section -->
+    <VBox alignment="CENTER" prefHeight="420.0" prefWidth="350.0" spacing="20.0" style="-fx-background-radius: 15; -fx-background-color: rgba(255, 255, 255, 0.9); -fx-padding: 30;">
         <!-- Title -->
-        <Text fill="#f8fdff"
-              style="-fx-font-family: 'Baskerville Old Face'; -fx-font-size: 27px; -fx-font-weight: bold; -fx-text-alignment: center;"
-              text="Se Connecter"/>
+        <Text fill="#2C3E50"
+              style="-fx-font-family: 'Segoe UI'; -fx-font-size: 32px; -fx-font-weight: bold; -fx-text-alignment: center;"
+              text="Se Connecter">
+            <effect>
+                <DropShadow color="rgba(0,0,0,0.1)" radius="5" offsetX="2" offsetY="2"/>
+            </effect>
+        </Text>
 
         <!-- Username Field -->
-        <HBox prefHeight="40.0" prefWidth="270.0" spacing="10" style="-fx-alignment: center-left;">
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-
-                <Image url="@../assets/username.png"/>
-
-            </ImageView>
-            <TextField fx:id="username" prefHeight="40.0" prefWidth="239.0" promptText="Nom d'utilisateur"
-                       style="-fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 10; -fx-padding: 5;"/>
-        </HBox>
+        <VBox spacing="5">
+            <Text fill="#2C3E50" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14px;" text="Nom d'utilisateur"/>
+            <HBox prefHeight="40.0" prefWidth="270.0" spacing="10" style="-fx-alignment: center-left;">
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../assets/username.png"/>
+                </ImageView>
+                <TextField fx:id="username" prefHeight="40.0" prefWidth="239.0" promptText="Entrez votre nom d'utilisateur"
+                           style="-fx-background-radius: 10; -fx-border-color: #BDC3C7; -fx-border-radius: 10; -fx-padding: 10; -fx-font-size: 14px;"/>
+            </HBox>
+        </VBox>
 
         <!-- Password Field -->
-        <HBox spacing="10" style="-fx-alignment: center-left;">
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-
-                <Image url="@../assets/password.png"/>
-
-            </ImageView>
-            <PasswordField fx:id="password" prefHeight="40.0" prefWidth="239.0" promptText="Mot de passe"
-                           style="-fx-background-radius: 10; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-padding: 5;"/>
-        </HBox>
+        <VBox spacing="5">
+            <Text fill="#2C3E50" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14px;" text="Mot de passe"/>
+            <HBox spacing="10" style="-fx-alignment: center-left;">
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../assets/password.png"/>
+                </ImageView>
+                <PasswordField fx:id="password" prefHeight="40.0" prefWidth="239.0" promptText="Entrez votre mot de passe"
+                               style="-fx-background-radius: 10; -fx-border-color: #BDC3C7; -fx-border-radius: 10; -fx-padding: 10; -fx-font-size: 14px;"/>
+            </HBox>
+        </VBox>
 
         <!-- Login Button -->
-        <Button onAction="#login" prefHeight="45.0" prefWidth="250.0"
-                style="-fx-background-color: #11a9e1; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;    -fx-cursor: hand;"
-                text="Se Connecter"/>
-        <Text fill="#fcf5f5" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous n'avez pas de compte?"/>
-        <Button mnemonicParsing="false" onAction="#inscription" prefHeight="42.0" prefWidth="133.0"
-                style="-fx-background-color: #45a049;    -fx-cursor: hand;" text="Creer Un compte" textFill="#f6f9ff"/>
+        <Button onAction="#login" prefHeight="45.0" prefWidth="270.0"
+                style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-weight: bold;"
+                text="Se Connecter">
+            <effect>
+                <DropShadow color="rgba(0,0,0,0.1)" radius="5" offsetX="2" offsetY="2"/>
+            </effect>
+        </Button>
+
+        <!-- Sign Up Section -->
+        <Text fill="#2C3E50" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14px;" text="Vous n'avez pas de compte?"/>
+        <Button mnemonicParsing="false" onAction="#inscription" prefHeight="40.0" prefWidth="270.0"
+                style="-fx-background-color: transparent; -fx-border-color: #3498DB; -fx-border-radius: 10; -fx-text-fill: #3498DB; -fx-font-size: 14px; -fx-cursor: hand; -fx-font-weight: bold;"
+                text="Créer Un compte">
+            <effect>
+                <DropShadow color="rgba(0,0,0,0.1)" radius="5" offsetX="2" offsetY="2"/>
+            </effect>
+        </Button>
     </VBox>
 </HBox>
