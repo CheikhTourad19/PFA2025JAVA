@@ -110,6 +110,8 @@ public class AccueilController {
         if (!emailField.getText().isEmpty() && isValidEmail(emailField.getText())) {
             boolean updatemail=UserDAO.updateEmail(emailField.getText());
             if (updatemail) {
+                UserSession.setEmail(emailField.getText());
+
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Succes");
                 alert.setHeaderText(null);
