@@ -70,6 +70,7 @@ public class AccueilController {
         if (newpasswordField.getText().equals(newpasswordFieldConfirmed.getText()) && !newpasswordField.getText().isEmpty() && newpasswordField.getText().length()>=8) {
             if (PasswordUtils.checkPassword(oldpasswordField.getText(),UserSession.getPassword())) {
                 if (UserDAO.changePassword(newpasswordField.getText())){
+                    UserSession.setPassword(PasswordUtils.hashPassword(newpasswordField.getText()));
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Succes");
                     alert.setHeaderText(null);
