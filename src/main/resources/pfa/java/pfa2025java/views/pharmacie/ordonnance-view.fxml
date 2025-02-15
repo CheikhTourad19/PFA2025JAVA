@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1"
+<AnchorPane prefHeight="559.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="pfa.java.pfa2025java.controllers.pharmacie.OrdonnanceController">
     <!-- Sidebar Navigation -->
-    <AnchorPane prefHeight="500.0" prefWidth="170.0" style="-fx-background-color: #2C3E50;">
+    <AnchorPane prefHeight="559.0" prefWidth="170.0" style="-fx-background-color: #2C3E50;">
         <VBox layoutX="10.0" layoutY="150.0" prefWidth="150.0" spacing="15"
               style="-fx-background-color: #2C3E50; -fx-padding: 15;">
             <Button onAction="#gotoaccueil"
@@ -57,11 +57,14 @@
                 <TableColumn fx:id="Medicamentcolumn" prefWidth="180.0" text="Médicament"/>
                 <TableColumn fx:id="quantiteColumn" prefWidth="80.0" text="Quantité"/>
                 <TableColumn fx:id="dispoColumn" prefWidth="80.0" text="disponible"/>
+                <TableColumn fx:id="prixColumn" prefWidth="80.0" text="prix"/>
                 <TableColumn fx:id="instructionColumn" prefWidth="320.0" text="Instructions"/>
             </columns>
         </TableView>
 
         <Button style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10;"
                 text="Valider Ordonnance"/>
+        <Text fx:id="total" style="-fx-font-size: 18px; -fx-fill: #34495E; -fx-font-weight: bold;" text="Total : "/>
+
     </VBox>
 </AnchorPane>

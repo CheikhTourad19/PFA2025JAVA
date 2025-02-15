@@ -18,6 +18,8 @@ public class OrdonnanceController {
 
 
     public TableColumn<Medicament, Integer> dispoColumn;
+    public Text total;
+    public TableColumn<Medicament, Integer> prixColumn;
     @FXML
     private TableView<Medicament> ordonnannceTable;
     @FXML
@@ -41,7 +43,7 @@ public class OrdonnanceController {
         dispoColumn.setCellValueFactory(cellData -> cellData.getValue().stockProperty().asObject());
         quantiteColumn.setCellValueFactory(cellData -> cellData.getValue().quantiteProperty().asObject());
         instructionColumn.setCellValueFactory(cellData -> cellData.getValue().instructionProperty());
-
+        prixColumn.setCellValueFactory(cellData -> cellData.getValue().prixProperty().asObject());
         ordonnannceTable.setItems(medicamentList);
     }
     public void gotostock(ActionEvent actionEvent) {
@@ -60,18 +62,20 @@ public class OrdonnanceController {
     }
 
     public void search() {
+        double somme = 0;
         int code = Integer.parseInt(this.code.getText());
         OrdonnanceDetails ordonnanceDetails = OrdonnanceDAO.getOrdonnanceDetailsById(code);
         if (ordonnanceDetails != null) {
             medecinname.setText("Medecin : " + ordonnanceDetails.getMedecinNom());
             patientname.setText("Patient :" + ordonnanceDetails.getPatientNom());
-
+            for (Medicament medicament : ordonnanceDetails.getMedicaments()) {
+                somme = somme + medicament.getPrix();
+            }
             // Remplir la table avec les médicaments
             medicamentList.clear();
             medicamentList.addAll(ordonnanceDetails.getMedicaments());
             ordonnannceTable.setItems(medicamentList);
-            System.out.println(ordonnanceDetails.getMedicaments());
-            System.out.println(UserSession.getRole());
+            total.setText("Total : " + somme);
         }
     }
 }
