@@ -54,7 +54,7 @@ public class HelloController {
                     case "pharmacie" ->
                             swtichScene.loadScene(event, "views/pharmacie/accueil-view.fxml", "Pharmacie", false);
                     case "medecin" -> {
-
+                            swtichScene.loadScene(event,"views/medicin/sidebar-view.fxml","medicin",false);
                     }
                     case "patient" ->
                             swtichScene.loadScene(loginresult, "views/patient/accueil-view.fxml", "Accueil", false);

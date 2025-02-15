@@ -3,8 +3,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
 
-<VBox xmlns="http://javafx.com/javafx/23.0.1"
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<VBox fx:controller="pfa.java.pfa2025java.controllers.Admin.UsersController" xmlns="http://javafx.com/javafx/23.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
       alignment="CENTER" spacing="10">
     <Label text="👥 User Management" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+    <TableView fx:id="usersTable" prefHeight="400">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn"/>
+            <TableColumn text="Nom" fx:id="nomColumn"/>
+            <TableColumn text="Prénom" fx:id="prenomColumn"/>
+            <TableColumn text="Email" fx:id="emailColumn"/>
+            <TableColumn text="Role" fx:id="roleColumn"/>
+            <TableColumn text="Actions" fx:id="actionsColumn"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10">
+        <Button text="Ajouter Utilisateur" onAction="#handleAddUser"/>
+    </HBox>
 </VBox>
