@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
+import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.Medicament;
 import pfa.java.pfa2025java.model.OrdonnanceDAO;
 import pfa.java.pfa2025java.model.OrdonnanceDetails;
@@ -16,6 +17,7 @@ import pfa.java.pfa2025java.model.OrdonnanceDetails;
 public class OrdonnanceController {
 
 
+    public TableColumn<Medicament, Integer> dispoColumn;
     @FXML
     private TableView<Medicament> ordonnannceTable;
     @FXML
@@ -36,6 +38,7 @@ public class OrdonnanceController {
     @FXML
     public void initialize() {
         Medicamentcolumn.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
+        dispoColumn.setCellValueFactory(cellData -> cellData.getValue().stockProperty().asObject());
         quantiteColumn.setCellValueFactory(cellData -> cellData.getValue().quantiteProperty().asObject());
         instructionColumn.setCellValueFactory(cellData -> cellData.getValue().instructionProperty());
 
@@ -67,6 +70,8 @@ public class OrdonnanceController {
             medicamentList.clear();
             medicamentList.addAll(ordonnanceDetails.getMedicaments());
             ordonnannceTable.setItems(medicamentList);
+            System.out.println(ordonnanceDetails.getMedicaments());
+            System.out.println(UserSession.getRole());
         }
     }
 }

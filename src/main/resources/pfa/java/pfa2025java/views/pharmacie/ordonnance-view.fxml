@@ -56,6 +56,7 @@
             <columns>
                 <TableColumn fx:id="Medicamentcolumn" prefWidth="180.0" text="Médicament"/>
                 <TableColumn fx:id="quantiteColumn" prefWidth="80.0" text="Quantité"/>
+                <TableColumn fx:id="dispoColumn" prefWidth="80.0" text="disponible"/>
                 <TableColumn fx:id="instructionColumn" prefWidth="320.0" text="Instructions"/>
             </columns>
         </TableView>

@@ -114,6 +114,6 @@ public class Medicament {
     }
 
     public String toString() {
-        return this.nom.get();
+        return this.nom.get() + " " + stock.get();
     }
 }
