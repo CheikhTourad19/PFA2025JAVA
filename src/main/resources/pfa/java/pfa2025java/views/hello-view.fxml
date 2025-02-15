@@ -12,8 +12,9 @@
 
 <HBox id="page" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="985.0" spacing="20" style="-fx-padding: 20; -fx-background-size: cover;" stylesheets="@../Style/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.HelloController">
     <!-- Right Form Section -->
-    <VBox alignment="CENTER" prefHeight="420.0" prefWidth="350.0" spacing="20.0" style="-fx-background-radius: 15; -fx-background-color: rgba(255, 255, 255, 0.9); -fx-padding: 30;">
-      <Text fill="red" fx:id="loginresult" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+    <VBox alignment="CENTER" opacity="0.86" prefHeight="420.0" prefWidth="350.0" spacing="20.0"
+          style="-fx-background-radius: 15; -fx-background-color: rgba(255, 255, 255, 0.9); -fx-padding: 30;">
+        <Text fx:id="loginresult" fill="red" strokeType="OUTSIDE" strokeWidth="0.0" text=""/>
         <!-- Title -->
         <Text fill="#2C3E50" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 32px; -fx-font-weight: bold; -fx-text-alignment: center;" text="Se Connecter">
             <effect>
