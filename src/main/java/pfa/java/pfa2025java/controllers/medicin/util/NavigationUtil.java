@@ -6,11 +6,11 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class NavigationUtil {
-    private static final String VIEWS_PATH = "/pfa.java.pfa2025java/views/medicin/";
+    private static final String VIEWS__PATH = "/pfa.java.pfa2025java/views/medicin/";
 
     public static void navigateTo(AnchorPane container, String viewName) {
         try {
-            String fullPath = VIEWS_PATH + viewName + "-view.fxml";
+            String fullPath = VIEWS__PATH + viewName + "-view.fxml";
             FXMLLoader loader = new FXMLLoader(NavigationUtil.class.getResource(fullPath));
 
             Parent view = loader.load();
