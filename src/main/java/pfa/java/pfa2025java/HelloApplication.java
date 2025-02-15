@@ -20,6 +20,7 @@ public class HelloApplication extends Application {
         stage.setScene(new Scene(root, x, y));
         SwtichScene.loadImage(stage);
         stage.show();
+        stage.setTitle("E-Medical");
         closeAlert(stage);
     }
 

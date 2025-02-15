@@ -40,6 +40,7 @@ public class SwtichScene {
         } catch (IOException e) {
 
             System.out.println("Erreur de chargement Impossible de charger la vue : " + fxmlPath);
+
         }
     }
 
@@ -65,6 +66,7 @@ public class SwtichScene {
         } catch (IOException e) {
 
             System.out.println("Erreur de chargement : Impossible de charger la vue " + fxmlPath);
+
         }
     }
 
