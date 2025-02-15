@@ -73,7 +73,6 @@
                                    style="-fx-background-radius: 20;"/>
                         <Button fx:id="sendButton"
                                 mnemonicParsing="false"
-                                onAction="#handleSendMessage"
                                 style="-fx-background-color: #0F72B3; -fx-text-fill: white; -fx-background-radius: 20;">
                             <graphic>
                                 <ImageView fitHeight="20" fitWidth="20">

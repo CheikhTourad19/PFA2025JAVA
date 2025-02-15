@@ -6,7 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class NavigationUtil {
-    private static final String VIEWS__PATH = "/pfa.java.pfa2025java/views/medicin/";
+    private static final String VIEWS__PATH = "/pfa/java/pfa2025java/views/medicin/";
 
     public static void navigateTo(AnchorPane container, String viewName) {
         try {

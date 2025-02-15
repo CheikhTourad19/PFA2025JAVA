@@ -121,7 +121,7 @@ public class SidebarController {
 
 
     private void goToMessages() {
-        NavigationUtil.navigateTo(mainContent, "messages");
+        NavigationUtil.navigateTo(mainContent, "message");
     }
 
     // Exemple pour la page dashboard
