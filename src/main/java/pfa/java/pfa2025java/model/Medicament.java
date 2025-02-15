@@ -11,7 +11,11 @@ public class Medicament {
     private final StringProperty description = new SimpleStringProperty();
     private final IntegerProperty prix = new SimpleIntegerProperty();
     private final IntegerProperty stock = new SimpleIntegerProperty();
+    private final StringProperty instruction = new SimpleStringProperty();
+    private final IntegerProperty quantite = new SimpleIntegerProperty();
 
+
+    //Pour stock
     public Medicament(int id, String nom, String description, int prix, int stock) {
         this.id.set(id);
         this.nom.set(nom);
@@ -20,10 +24,37 @@ public class Medicament {
         this.stock.set(stock);
     }
 
+    //Pour Ordonnance
+    public Medicament(int id, String nom, String description, int prix, int stock, String instruction, int quantite) {
+        this.id.set(id);
+        this.nom.set(nom);
+        this.description.set(description);
+        this.prix.set(prix);
+        this.stock.set(stock);
+        this.instruction.set(instruction);
+        this.quantite.set(quantite);
+    }
+
+    public IntegerProperty quantiteProperty() {
+        return quantite;
+    }
+
     // Getters et setters pour JavaFX TableView
     public IntegerProperty idProperty() {
         return id;
     }
+
+    public String getInstruction() {
+        return instruction.get();
+    }
+
+    public StringProperty instructionProperty() {
+        return instruction;
+    }
+
+
+
+
 
     public StringProperty nomProperty() {
         return nom;
@@ -80,5 +111,9 @@ public class Medicament {
 
     public void setStock(int stock) {
         this.stock.set(stock);
+    }
+
+    public String toString() {
+        return this.nom.get();
     }
 }

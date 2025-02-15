@@ -8,6 +8,7 @@ public class OrdonnanceDetails {
     private String dateCreation;
     private List<Medicament> medicaments; // Liste des médicaments
 
+
     // Constructeur
     public OrdonnanceDetails(int ordonnanceId, String medecinNom, String patientNom, String dateCreation, List<Medicament> medicaments) {
         this.ordonnanceId = ordonnanceId;

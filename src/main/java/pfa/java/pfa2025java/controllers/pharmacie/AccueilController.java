@@ -2,6 +2,7 @@ package pfa.java.pfa2025java.controllers.pharmacie;
 
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -17,16 +18,24 @@ import java.util.regex.Pattern;
 
 public class AccueilController {
 
-    public Button stockButton;
-    public Button ordonnanceButton;
-    public Text name;
-    public TextField streetField;
-    public TextField cityField;
-    public TextField neighborhoodField;
-    public TextField emailField;
-    public PasswordField oldpasswordField;
-    public PasswordField newpasswordField;
-    public PasswordField newpasswordFieldConfirmed;
+
+    @FXML
+    private Text name;
+    @FXML
+    private TextField streetField;
+    @FXML
+    private TextField cityField;
+    @FXML
+    private TextField neighborhoodField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField oldpasswordField;
+    @FXML
+    private PasswordField newpasswordField;
+    @FXML
+    private PasswordField newpasswordFieldConfirmed;
+
 
     public void initialize() {
         name.setText(UserSession.getPrenom() + " " + UserSession.getNom());

@@ -172,10 +172,11 @@ public class MedicamentDAO {
 
     public static List<Medicament> getMedicamentsByOrdonnanceId(int ordonnanceId) {
         List<Medicament> medicaments = new ArrayList<>();
-        String sql = "SELECT m.id, m.nom, m.description ,m.prix" +
+        String sql = "SELECT m.id, m.nom, m.description, m.prix, om.instructions, om.quantite " +
                 "FROM medicament m " +
                 "JOIN ordonnance_medicament om ON m.id = om.medicament_id " +
                 "WHERE om.ordonnance_id = ?";
+
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, ordonnanceId);
             ResultSet rs = stmt.executeQuery();
@@ -185,7 +186,9 @@ public class MedicamentDAO {
                         rs.getString("nom"),
                         rs.getString("description"),
                         rs.getInt("prix"),
-                        0
+                        0,
+                        rs.getString("instructions"),
+                        rs.getInt("quantite")
                 );
                 medicaments.add(medicament);
             }
