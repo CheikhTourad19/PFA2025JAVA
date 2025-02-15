@@ -18,8 +18,6 @@ public class HelloApplication extends Application {
         double y = root.prefHeight(-1);
         double x = root.prefWidth(-1);
         stage.setScene(new Scene(root, x, y));
-
-
         SwtichScene.loadImage(stage);
         stage.show();
         closeAlert(stage);
