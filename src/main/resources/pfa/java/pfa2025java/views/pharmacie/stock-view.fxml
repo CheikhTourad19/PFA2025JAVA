@@ -76,7 +76,6 @@
 
         <!-- Pie Chart -->
         <PieChart fx:id="stockPieChart" prefHeight="131.0" prefWidth="641.0"
-                  style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5;"
-                  title="statistique"/>
+                  style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5;"/>
     </VBox>
 </AnchorPane>
