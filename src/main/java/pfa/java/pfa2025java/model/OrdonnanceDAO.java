@@ -17,6 +17,31 @@ public class OrdonnanceDAO {
         }
     }
 
+    public static boolean retirerOrdonnance(int Ordonnanceid) {
+        OrdonnanceDetails ordonnanceDetails = getOrdonnanceDetailsById(Ordonnanceid);
+        if (ordonnanceDetails == null) {
+            return false;
+        }
+        for (Medicament medicament : ordonnanceDetails.getMedicaments()) {
+            if (medicament.getStock() < medicament.getQuantite()) {
+                return false;
+            }
+            String sql = "UPDATE stock SET quantite=quantite-? WHERE pharmacie_id = ? AND medicament_id = ?";
+            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                stmt.setInt(1, medicament.getQuantite());
+                stmt.setInt(2, UserSession.getId());
+                stmt.setInt(3, medicament.getId());
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+        }
+        return true;
+
+    }
+
     // Récupérer les détails d'une ordonnance
     public  static OrdonnanceDetails getOrdonnanceDetailsById(int ordonnanceId) {
         String sql = """

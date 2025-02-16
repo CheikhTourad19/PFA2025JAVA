@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -72,7 +73,11 @@ public class OrdonnanceController {
     }
 
     public void search() {
+
         double somme = 0;
+        if (this.code.getText().isEmpty()) {
+            return;
+        }
         int code = Integer.parseInt(this.code.getText());
         OrdonnanceDetails ordonnanceDetails = OrdonnanceDAO.getOrdonnanceDetailsById(code);
         if (ordonnanceDetails != null) {
@@ -117,7 +122,7 @@ public class OrdonnanceController {
             contentStream.beginText();
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
             contentStream.newLineAtOffset(200, 750);
-            contentStream.showText("Ordonnance Médicale");
+            contentStream.showText("Ordonnance Médicale Par E-Medical");
             contentStream.endText();
 
             // Infos médecin & patient
@@ -167,5 +172,27 @@ public class OrdonnanceController {
         }
     }
 
+    public void retirer() {
+        boolean success = OrdonnanceDAO.retirerOrdonnance(Integer.parseInt(code.getText()));
+        Alert alert;
+        if (success) {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Ordonnance retirer Avec Succes veiller consulter votre stock");
+            alert.setTitle("Succes");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+        } else {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Echec de la retirer Ordonnance veiller consulter votre stock");
+            alert.setTitle("Echec");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+        }
+        medicamentList.clear();
+        medecinname.setText("");
+        patientname.setText("");
+        total.setText("");
+
+    }
 }
 

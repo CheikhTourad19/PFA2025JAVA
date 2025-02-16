@@ -62,7 +62,8 @@
             </columns>
         </TableView>
 
-        <Button style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10;"
+        <Button onAction="#retirer"
+                style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10;"
                 text="Valider Ordonnance"/>
         <Text fx:id="total" style="-fx-font-size: 18px; -fx-fill: #34495E; -fx-font-weight: bold;" text="Total : "/>
         <Button fx:id="exportPdfButton" onAction="#exportToPdf"
