@@ -113,6 +113,10 @@ public class Medicament {
         this.stock.set(stock);
     }
 
+    public int getQuantite() {
+        return quantite.get();
+    }
+
     public String toString() {
         return this.nom.get() + " " + stock.get();
     }

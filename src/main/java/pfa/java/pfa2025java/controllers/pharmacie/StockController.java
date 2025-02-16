@@ -42,7 +42,7 @@ public class StockController {
     public TextArea descriptionFiled;
     @FXML
     private TableView listeMedicamentStock;
-    private ObservableList<Medicament> medicamentList = FXCollections.observableArrayList();
+    private final ObservableList<Medicament> medicamentList = FXCollections.observableArrayList();
     @FXML
     private TextField searchField; // Add this for the search field
 

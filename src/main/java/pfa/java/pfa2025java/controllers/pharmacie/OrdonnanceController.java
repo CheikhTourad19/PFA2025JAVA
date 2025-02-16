@@ -34,7 +34,7 @@ public class OrdonnanceController {
     @FXML
     private TextField code;
 
-    private ObservableList<Medicament> medicamentList = FXCollections.observableArrayList();
+    private final ObservableList<Medicament> medicamentList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -45,6 +45,7 @@ public class OrdonnanceController {
         prixColumn.setCellValueFactory(cellData -> cellData.getValue().prixProperty().asObject());
         ordonnannceTable.setItems(medicamentList);
     }
+
     public void gotostock(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/pharmacie/stock-view.fxml", "Stock", false);
@@ -52,7 +53,7 @@ public class OrdonnanceController {
 
     public void gotoaccueil(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent,"views/pharmacie/accueil-view.fxml","Accueil",false);
+        swtichScene.loadScene(actionEvent, "views/pharmacie/accueil-view.fxml", "Accueil", false);
     }
 
     public void logout(ActionEvent actionEvent) {
@@ -68,7 +69,7 @@ public class OrdonnanceController {
             medecinname.setText("Medecin : " + ordonnanceDetails.getMedecinNom());
             patientname.setText("Patient :" + ordonnanceDetails.getPatientNom());
             for (Medicament medicament : ordonnanceDetails.getMedicaments()) {
-                somme = somme + medicament.getPrix();
+                somme = somme + (medicament.getPrix() * medicament.getQuantite());
             }
             // Remplir la table avec les médicaments
             medicamentList.clear();
