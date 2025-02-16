@@ -10,6 +10,7 @@ module pfa.java.pfa2025java {
     requires javafx.swing;
     requires jbcrypt;
     requires java.prefs;
+    requires org.apache.pdfbox;
 
     opens pfa.java.pfa2025java to javafx.fxml;
     opens pfa.java.pfa2025java.controllers.pharmacie to javafx.fxml;
