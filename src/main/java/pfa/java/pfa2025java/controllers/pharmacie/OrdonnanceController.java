@@ -1,13 +1,12 @@
 package pfa.java.pfa2025java.controllers.pharmacie;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -30,6 +29,7 @@ public class OrdonnanceController {
     public TableColumn<Medicament, Integer> dispoColumn;
     public Text total;
     public TableColumn<Medicament, Integer> prixColumn;
+    public ProgressIndicator loading;
     @FXML
     private TableView<Medicament> ordonnannceTable;
     @FXML
@@ -49,6 +49,7 @@ public class OrdonnanceController {
 
     @FXML
     public void initialize() {
+        loading.setVisible(false);
         Medicamentcolumn.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
         dispoColumn.setCellValueFactory(cellData -> cellData.getValue().stockProperty().asObject());
         quantiteColumn.setCellValueFactory(cellData -> cellData.getValue().quantiteProperty().asObject());
@@ -74,24 +75,57 @@ public class OrdonnanceController {
 
     public void search() {
 
-        double somme = 0;
+
         if (this.code.getText().isEmpty()) {
             return;
         }
-        int code = Integer.parseInt(this.code.getText());
-        OrdonnanceDetails ordonnanceDetails = OrdonnanceDAO.getOrdonnanceDetailsById(code);
-        if (ordonnanceDetails != null) {
-            medecinname.setText("Medecin : Dr " + ordonnanceDetails.getMedecinNom());
-            patientname.setText("Patient :" + ordonnanceDetails.getPatientNom() + " ");
-            for (Medicament medicament : ordonnanceDetails.getMedicaments()) {
-                somme = somme + (medicament.getPrix() * medicament.getQuantite());
+        int code1 = Integer.parseInt(code.getText());
+        loading.setVisible(true); // Afficher le ProgressIndicator
+
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                double somme = 0;
+
+                OrdonnanceDetails ordonnanceDetails = OrdonnanceDAO.getOrdonnanceDetailsById(code1);
+
+                if (ordonnanceDetails != null) {
+                    // Calculer la somme des médicaments
+                    for (Medicament medicament : ordonnanceDetails.getMedicaments()) {
+                        somme += medicament.getPrix() * medicament.getQuantite();
+                    }
+
+                    // Mise à jour de l'interface graphique (doit être dans `Platform.runLater`)
+                    final double finalSomme = somme;
+                    Platform.runLater(() -> {
+                        medecinname.setText("Médecin : Dr " + ordonnanceDetails.getMedecinNom());
+                        patientname.setText("Patient : " + ordonnanceDetails.getPatientNom() + " ");
+
+                        // Mettre à jour la table
+                        medicamentList.clear();
+                        medicamentList.addAll(ordonnanceDetails.getMedicaments());
+                        ordonnannceTable.setItems(medicamentList);
+
+                        // Afficher le total
+                        total.setText("Total : " + finalSomme);
+                    });
+                }
+
+                return null;
             }
-            // Remplir la table avec les médicaments
-            medicamentList.clear();
-            medicamentList.addAll(ordonnanceDetails.getMedicaments());
-            ordonnannceTable.setItems(medicamentList);
-            total.setText("Total : " + somme);
-        }
+
+            @Override
+            protected void succeeded() {
+                loading.setVisible(false); // Masquer après la fin
+            }
+
+            @Override
+            protected void failed() {
+                loading.setVisible(false); // Masquer même en cas d’erreur
+            }
+        };
+
+        new Thread(task).start();
     }
 
     public void exportToPdf(ActionEvent actionEvent) {

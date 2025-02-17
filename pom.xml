@@ -25,6 +25,14 @@
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.gluonhq</groupId>-->
+<!--            <artifactId>charm-glisten</artifactId>-->
+<!--            <version>6.2.0</version>-->
+<!--        </dependency>-->
+
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId> <!-- Ajoute JavaFX Swing -->
@@ -97,6 +105,14 @@
                 <configuration>
                     <source>22</source>
                     <target>22</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.gluonhq</groupId>
+                <artifactId>gluonfx-maven-plugin</artifactId>
+                <version>1.0.25</version>
+                <configuration>
+                    <mainClass>pfa.java.pfa2025java.HelloApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>
