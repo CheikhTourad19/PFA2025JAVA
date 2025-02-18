@@ -7,14 +7,20 @@ public class UserSession {
     static private String email;
     static private String password;
     static private String role;
+    static private String numero;
 
-    public UserSession(int id, String nom, String prenom, String email, String password, String role) {
+    public UserSession(int id, String nom, String prenom, String email, String password, String role, String numero) {
         UserSession.id = id;
         UserSession.nom = nom;
         UserSession.prenom = prenom;
         UserSession.email = email;
         UserSession.password = password;
         UserSession.role = role;
+        UserSession.numero = numero;
+    }
+
+    public static String getNumero() {
+        return numero;
     }
 
     public UserSession() {
@@ -26,6 +32,10 @@ public class UserSession {
 
     public static void setId(int id) {
         UserSession.id = id;
+    }
+
+    public static void setNumero(String numero) {
+        UserSession.numero = numero;
     }
 
     public static String getNom() {

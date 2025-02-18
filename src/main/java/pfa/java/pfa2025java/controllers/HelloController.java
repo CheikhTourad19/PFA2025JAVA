@@ -68,6 +68,7 @@ public class HelloController {
                         UserSession.setId(user.getId());
                         UserSession.setRole(user.getRole());
                         UserSession.setPassword(user.getPassword());
+                        UserSession.setNumero(user.getNumero());
 
                         // Sauvegarder l'email dans les préférences
                         Preferences prefs = Preferences.userNodeForPackage(getClass());

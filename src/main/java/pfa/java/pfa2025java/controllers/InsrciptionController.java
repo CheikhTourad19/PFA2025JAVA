@@ -67,7 +67,7 @@ public class InsrciptionController {
             message.setText("Les mots de passe ne correspondent pas");
     }
 
-    public boolean isValidEmail(String email) {
+    public static boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);

@@ -74,6 +74,17 @@ public class UserDAO {
         }
 
     }
+
+    public static boolean changePrenomNomNumero(String newPrenom, String newNom, String newNumero) throws SQLException {
+        String sql = "UPDATE user SET prenom = ?, nom = ?, numero = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, newPrenom);
+            stmt.setString(2, newNom);
+            stmt.setString(3, newNumero);
+            stmt.setInt(4, UserSession.getId());
+            return stmt.executeUpdate() > 0;
+        }
+    }
     public static boolean updateEmail(String newEmail) throws SQLException {
         String sql = "UPDATE user SET email = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)){
