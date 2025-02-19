@@ -24,6 +24,7 @@ import java.util.List;
 public class StockController {
     public Button accueilButton;
     public PieChart stockPieChart;
+    public ProgressIndicator loading;
     @FXML
     private TableColumn<Medicament, String> nomColumn;
     @FXML
@@ -51,13 +52,21 @@ public class StockController {
 
     @FXML
     public void initialize() {
+        loading.setVisible(true);
         Task<Void> backgroundTask = new Task<>() {
             @Override
             protected Void call()  {
                 loadMedicaments();
                 return null;
             }
-
+            @Override
+            protected void succeeded() {
+                loading.setVisible(false);
+            }
+            @Override
+            protected void failed() {
+                loading.setVisible(false);
+            }
 
         };
 

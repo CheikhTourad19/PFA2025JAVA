@@ -40,7 +40,7 @@
             </ImageView>
             <TextField fx:id="searchField" promptText="Rechercher un médicament..." style="-fx-pref-width: 250; -fx-font-size: 14px; -fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10;" />
             <Button onAction="#clearSearch" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 30; -fx-cursor: hand; -fx-background-radius: 5;" text="X" />
-         <ProgressIndicator prefHeight="38.0" prefWidth="50.0" visible="false" />
+         <ProgressIndicator fx:id="loading" prefHeight="38.0" prefWidth="50.0" visible="false" />
         </HBox>
 
         <!-- TableView -->
