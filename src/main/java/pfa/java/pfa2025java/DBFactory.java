@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 import pfa.java.pfa2025java.model.MedicamentDAO;
 
 public class DBFactory {
-    private static Faker faker = new Faker();
+    private static final Faker faker = new Faker();
 
     public static void main(String[] args) {
 //        for (int i = 0; i < 100; i++) {
