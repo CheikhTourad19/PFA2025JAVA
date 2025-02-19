@@ -33,8 +33,8 @@ public class SwtichScene {
             Scene scene = new Scene(root, x, y);
             stage.setScene(scene);
             stage.setTitle(title);
-            stage.sizeToScene();
-            stage.resizableProperty().setValue(false);
+
+
             loadImage(stage);
             stage.show();
         } catch (IOException e) {
@@ -60,7 +60,7 @@ public class SwtichScene {
             Scene scene = new Scene(root, x, y);
             stage.setScene(scene);
             stage.setTitle(title);
-            stage.sizeToScene();
+
             loadImage(stage);
             stage.show();
         } catch (IOException e) {

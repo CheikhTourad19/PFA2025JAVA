@@ -15,6 +15,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import pfa.java.pfa2025java.SwtichScene;
+import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.Medicament;
 import pfa.java.pfa2025java.model.OrdonnanceDAO;
 import pfa.java.pfa2025java.model.OrdonnanceDetails;
@@ -30,6 +31,7 @@ public class OrdonnanceController {
     public Text total;
     public TableColumn<Medicament, Integer> prixColumn;
     public ProgressIndicator loading;
+    public Text name;
     @FXML
     private TableView<Medicament> ordonnannceTable;
     @FXML
@@ -45,10 +47,12 @@ public class OrdonnanceController {
     @FXML
     private TextField code;
 
+
     private final ObservableList<Medicament> medicamentList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
+        name.setText(UserSession.getNom() + " " + UserSession.getPrenom());
         loading.setVisible(false);
         Medicamentcolumn.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
         dispoColumn.setCellValueFactory(cellData -> cellData.getValue().stockProperty().asObject());

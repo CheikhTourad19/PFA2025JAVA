@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
@@ -25,6 +26,7 @@ public class StockController {
     public Button accueilButton;
     public PieChart stockPieChart;
     public ProgressIndicator loading;
+    public Text name;
     @FXML
     private TableColumn<Medicament, String> nomColumn;
     @FXML
@@ -52,6 +54,7 @@ public class StockController {
 
     @FXML
     public void initialize() {
+        name.setText(UserSession.getNom() + " " + UserSession.getPrenom());
         loading.setVisible(true);
         Task<Void> backgroundTask = new Task<>() {
             @Override

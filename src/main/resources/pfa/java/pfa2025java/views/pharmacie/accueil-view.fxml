@@ -4,21 +4,27 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="523.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.pharmacie.AccueilController">
-    <!-- Sidebar -->
-    <AnchorPane layoutY="6.0" prefHeight="516.0" prefWidth="194.0" style="-fx-background-color: #2C3E50;">
-        <VBox layoutX="14.0" layoutY="200.0" prefHeight="160.0" prefWidth="160.0" spacing="10"
-              style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="40.0"
-              AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="200.0">
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pfa.java.pfa2025java.controllers.pharmacie.AccueilController">
+    <children>
+        <VBox prefHeight="541.0" prefWidth="198.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;">
+            <ImageView fitHeight="114.0" fitWidth="203.0" pickOnBounds="true">
+                <Image url="@../../assets/pharamalogo.png"/>
+            </ImageView>
+            <Text fx:id="name" fill="#f5efef" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER"
+                  wrappingWidth="188.0">
+                <font>
+                    <Font name="Segoe UI" size="17.0"/>
+                </font>
+            </Text>
             <Button style=" -fx-cursor: hand; -fx-background-color: #27AE60; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                     text="Accueil"/>
             <Button fx:id="ordonnanceButton" onAction="#gotoordonnance"
@@ -31,36 +37,36 @@
                     style=" -fx-cursor: hand; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                     text="Déconnexion"/>
         </VBox>
-        <ImageView fitHeight="115.0" fitWidth="194.0" layoutY="-2.0" pickOnBounds="true">
-            <Image url="@../../assets/pharamalogo.png"/>
-        </ImageView>
-        <Text fx:id="name" fill="#f5efef" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
-              textAlignment="CENTER" wrappingWidth="188.0">
-            <font>
-                <Font size="17.0" name="Segoe UI"/>
-            </font>
-        </Text>
-    </AnchorPane>
 
-    <!-- Profile Update Section -->
-    <VBox layoutX="199.0" prefHeight="350.0" prefWidth="437.0" spacing="15" style="-fx-padding: 25; -fx-background-color: #FFFFFF; -fx-border-color: #BDC3C7; -fx-border-radius: 10;">
-        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Mettre à jour le profil" />
+        <!-- Profile Update Section -->
+        <VBox prefHeight="350.0" prefWidth="437.0" spacing="15"
+              style="-fx-padding: 25; -fx-background-color: #FFFFFF; -fx-border-color: #BDC3C7; -fx-border-radius: 10;">
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"
+                   text="Mettre à jour le profil"/>
 
-        <TextField fx:id="streetField" promptText="Rue" style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;" />
-        <TextField fx:id="cityField" promptText="Ville" style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;" />
-        <TextField fx:id="neighborhoodField" promptText="Quartier" style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;" />
-        <TextField fx:id="emailField" promptText="Email" style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;" />
+            <TextField fx:id="streetField" promptText="Rue"
+                       style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;"/>
+            <TextField fx:id="cityField" promptText="Ville"
+                       style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;"/>
+            <TextField fx:id="neighborhoodField" promptText="Quartier"
+                       style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;"/>
+            <TextField fx:id="emailField" promptText="Email"
+                       style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;"/>
 
-        <PasswordField fx:id="oldpasswordField" promptText="Ancien mot de passe" style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;" />
-        <PasswordField fx:id="newpasswordField" promptText="Nouveau mot de passe" style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;" />
-        <PasswordField fx:id="newpasswordFieldConfirmed" promptText="Confirmer le nouveau mot de passe" style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;" />
+            <PasswordField fx:id="oldpasswordField" promptText="Ancien mot de passe"
+                           style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;"/>
+            <PasswordField fx:id="newpasswordField" promptText="Nouveau mot de passe"
+                           style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;"/>
+            <PasswordField fx:id="newpasswordFieldConfirmed" promptText="Confirmer le nouveau mot de passe"
+                           style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;"/>
 
-        <Button onAction="#updateProfile"
-                style=" -fx-cursor: hand; -fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 5; -fx-padding: 10;"
-                text="Enregistrer">
-            <effect>
-                <DropShadow color="rgba(0,0,0,0.1)" radius="5" offsetX="2" offsetY="2"/>
-            </effect>
-        </Button>
-    </VBox>
-</AnchorPane>
+            <Button onAction="#updateProfile"
+                    style=" -fx-cursor: hand; -fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 5; -fx-padding: 10;"
+                    text="Enregistrer">
+                <effect>
+                    <DropShadow color="rgba(0,0,0,0.1)" offsetX="2" offsetY="2" radius="5"/>
+                </effect>
+            </Button>
+        </VBox>
+    </children>
+</HBox>
