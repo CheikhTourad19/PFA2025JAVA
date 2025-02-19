@@ -13,8 +13,6 @@ import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.*;
 
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.List;
 
 public class DemanderdvController {
 
@@ -41,7 +39,7 @@ public class DemanderdvController {
         medecinList.clear(); // Clear existing data (if any)
 
         // Fetch the list of doctors from the DAO
-        medecinList.addAll(MedcinDAO.getAllMedecin());
+        medecinList.addAll(MedecinDAO.getAllMedecin());
 
         // Set the list in the TableView
         MedecinTable.setItems(medecinList);
