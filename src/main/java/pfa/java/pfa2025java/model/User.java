@@ -1,13 +1,13 @@
 package pfa.java.pfa2025java.model;
 
 public class User {
-    private int id;
-    private String nom;
-    private String prenom;
-    private String email;
-    private String password;
-    private String role;
-    private String numero;
+    protected int id;
+    protected String nom;
+    protected String prenom;
+    protected String email;
+    protected String password;
+    protected String role;
+    protected String numero;
 
     // Constructeur
 

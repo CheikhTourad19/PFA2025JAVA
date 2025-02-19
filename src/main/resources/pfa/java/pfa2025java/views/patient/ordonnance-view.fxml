@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="pfa.java.pfa2025java.views.patient.Ordonnance"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="681.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.patient.OrdonnanceController">
+    <VBox alignment="CENTER_LEFT" layoutX="-2.0" prefHeight="521.0" prefWidth="206.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.topAnchor="0.0">
+        <Text fill="#eeebeb" strokeType="OUTSIDE" strokeWidth="0.0" text="Ali Benjannet" textAlignment="CENTER">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Text>
+        <Button fx:id="accueilButton" onAction="#gotoaccueil" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Profil" />
+        <Button style=" -fx-cursor: hand; -fx-background-color: #27AE60; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Mes Ordonnance" />
+        <Button onAction="#consulterRdv" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Mes RDV" />
+        <Button onAction="#consulterPharmacies" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Consulter Pharmacies" />
+        <Button onAction="#demandeRendezVous" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Demande RDV" />
+
+        <Button onAction="#logout" style=" -fx-cursor: hand; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Déconnexion" />
+    </VBox>
+   <Text layoutX="300.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consulter les ordonnances">
+      <font>
+         <Font size="26.0" />
+      </font>
+   </Text>
+   <TableView fx:id="ordonnancesTable" layoutX="250.0" layoutY="66.0" prefHeight="273.0" prefWidth="431.0">
+     <columns>
+       <TableColumn fx:id="MedecinColOrd" prefWidth="217.0" text="Medecin" />
+       <TableColumn fx:id="dateColOrd" prefWidth="211.0" text="date" />
+     </columns>
+   </TableView>
+   <TableView fx:id="medicamentTable" layoutX="250.0" layoutY="354.0" prefHeight="267.0" prefWidth="431.0">
+      <columns>
+         <TableColumn fx:id="mednameCol" prefWidth="128.0" text="Medicament" />
+         <TableColumn fx:id="quantiteCol" prefWidth="97.0" text="quantite" />
+          <TableColumn fx:id="instruCol" minWidth="0.0" prefWidth="204.0" text="instructions" />
+      </columns>
+   </TableView>
 
 </AnchorPane>

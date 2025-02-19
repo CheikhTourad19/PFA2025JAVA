@@ -14,6 +14,13 @@ public class Medicament {
     private final StringProperty instruction = new SimpleStringProperty();
     private final IntegerProperty quantite = new SimpleIntegerProperty();
 
+    //basic medicament
+    public Medicament(int id, String nom, String description, int prix) {
+        this.id.set(id);
+        this.nom.set(nom);
+        this.description.set(description);
+        this.prix.set(prix);
+    }
 
     //Pour stock
     public Medicament(int id, String nom, String description, int prix, int stock) {

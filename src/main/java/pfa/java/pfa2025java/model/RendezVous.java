@@ -1,28 +1,25 @@
 package pfa.java.pfa2025java.model;
 
+import java.util.Date;
 
 public class RendezVous {
+
     private int id;
-    private String date;
-    private String heure;
-    private String medecin;
+    private int medecinId;
+    private String medecinNom;
+    private int patientId;
+    private String patientNom;
+    private Date date;
+    private String etat;
 
-    public RendezVous(int id, String date, String heure, String medecin) {
+
+    public RendezVous(int id, int medecinId, String medecinNom, int patientId, String patientNom, Date date, String etat) {
         this.id = id;
+        this.medecinId = medecinId;
+        this.medecinNom = medecinNom;
+        this.patientId = patientId;
+        this.patientNom = patientNom;
         this.date = date;
-        this.heure = heure;
-        this.medecin = medecin;
+        this.etat = etat;
     }
-
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-
-    public String getDate() { return date; }
-    public void setDate(String date) { this.date = date; }
-
-    public String getHeure() { return heure; }
-    public void setHeure(String heure) { this.heure = heure; }
-
-    public String getMedecin() { return medecin; }
-    public void setMedecin(String medecin) { this.medecin = medecin; }
 }
