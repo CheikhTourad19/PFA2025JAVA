@@ -3,6 +3,7 @@ package pfa.java.pfa2025java.model;
 import pfa.java.pfa2025java.UserSession;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrdonnanceDAO {
@@ -118,6 +119,42 @@ public class OrdonnanceDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+
+    public static List<OrdonnanceDetails> getOrdonnanceDetailsByPatient(int patientId) {
+        List<OrdonnanceDetails> ordonnanceDetails = new ArrayList<>();
+        String sql="""
+                SELECT o.id ,
+                       u1.nom AS medecinNom,\s
+                       u2.nom AS patientNom,\s
+                       o.date_creation
+                FROM ordonnance o
+                JOIN user u1 ON o.medecin_id = u1.id  
+                JOIN user u2 ON o.patient_id = u2.id  
+                WHERE u2.id = ?;
+                """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, patientId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                List<Medicament> medicaments = MedicamentDAO.getMedicamentsByOrdonnanceId(rs.getInt("id"));
+                ordonnanceDetails.add(
+                        new OrdonnanceDetails(
+                                rs.getInt("id"),
+                                rs.getString("medecinNom"),
+                                rs.getString("patientNom"),
+                                rs.getString("date_creation"),
+                                medicaments
+                        )
+                );
+            }
+            return ordonnanceDetails;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
