@@ -10,9 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
-import pfa.java.pfa2025java.model.Medecin;
-import pfa.java.pfa2025java.model.MedecinDAO;
-import pfa.java.pfa2025java.model.RendezVous;
+import pfa.java.pfa2025java.model.*;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -31,21 +29,22 @@ public class DemanderdvController {
     private final ObservableList<Medecin> medecinList = FXCollections.observableArrayList();
 
     public void initialize() throws SQLException {
-
         mednameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
         serviceCol.setCellValueFactory(new PropertyValueFactory<>("service"));
+
+        loadMedecins();
 
 
     }
 
     private void loadMedecins() throws SQLException {
-        //medecinList.clear(); // Clear existing data (if any)
+        medecinList.clear(); // Clear existing data (if any)
 
         // Fetch the list of doctors from the DAO
-        //medecinList.addAll(MedecinDAO.getAllMedecin());
+        medecinList.addAll(MedcinDAO.getAllMedecin());
 
         // Set the list in the TableView
-        //MedecinTable.setItems(medecinList);
+        MedecinTable.setItems(medecinList);
 
         // Initialize columns
         //mednameCol.setCellValueFactory(new PropertyValueFactory<>("nom")); // Ensure "nom" matches Medecin class attribute
