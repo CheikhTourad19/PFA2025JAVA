@@ -2,6 +2,7 @@
 
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -13,9 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="852.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pfa.java.pfa2025java.controllers.pharmacie.StockController">
+<AnchorPane prefHeight="852.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.pharmacie.StockController">
     <!-- Sidebar -->
     <AnchorPane prefHeight="852.0" prefWidth="194.0" style="-fx-background-color: #2C3E50;">
         <VBox layoutX="14.0" layoutY="151.0" prefHeight="160.0" prefWidth="160.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="151.0">
@@ -30,11 +29,9 @@
     </AnchorPane>
 
     <!-- Main Content -->
-    <VBox layoutX="210.0" prefHeight="852.0" prefWidth="651.0" spacing="20"
-          style="-fx-padding: 5; -fx-background-color: #FFFFFF;">
+    <VBox layoutX="210.0" prefHeight="852.0" prefWidth="651.0" spacing="20" style="-fx-padding: 5; -fx-background-color: #FFFFFF;">
         <!-- Title -->
-        <Text style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #2C3E50;"
-              text="Liste des médicaments et leur stock" wrappingWidth="333.046875"/>
+        <Text style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #2C3E50;" text="Liste des médicaments et leur stock" wrappingWidth="333.046875" />
 
         <!-- Search Bar -->
         <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="611.0" spacing="10">
@@ -43,11 +40,11 @@
             </ImageView>
             <TextField fx:id="searchField" promptText="Rechercher un médicament..." style="-fx-pref-width: 250; -fx-font-size: 14px; -fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5; -fx-padding: 10;" />
             <Button onAction="#clearSearch" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 30; -fx-cursor: hand; -fx-background-radius: 5;" text="X" />
+         <ProgressIndicator prefHeight="38.0" prefWidth="50.0" visible="false" />
         </HBox>
 
         <!-- TableView -->
-        <TableView fx:id="listeMedicamentStock" prefHeight="255.0" prefWidth="641.0"
-                   style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14px; -fx-background-color: #f4f4f4; -fx-border-color: #c8c8c8; -fx-border-radius: 5;">
+        <TableView fx:id="listeMedicamentStock" prefHeight="255.0" prefWidth="641.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14px; -fx-background-color: #f4f4f4; -fx-border-color: #c8c8c8; -fx-border-radius: 5;">
             <columns>
                 <TableColumn fx:id="nomColumn" prefWidth="200.0" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Nom" />
                 <TableColumn fx:id="prixColumn" prefWidth="100.0" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Prix" />
@@ -75,7 +72,6 @@
         <Button onAction="#exportToExcel" style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-cursor: hand; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 5;" text="📄 Exporter Excel" />
 
         <!-- Pie Chart -->
-        <PieChart fx:id="stockPieChart" prefHeight="131.0" prefWidth="641.0"
-                  style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5;"/>
+        <PieChart fx:id="stockPieChart" prefHeight="131.0" prefWidth="641.0" style="-fx-background-radius: 5; -fx-border-color: #BDC3C7; -fx-border-radius: 5;" />
     </VBox>
 </AnchorPane>

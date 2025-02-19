@@ -1,11 +1,15 @@
 package pfa.java.pfa2025java.controllers.patient;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.Medicament;
 import pfa.java.pfa2025java.model.OrdonnanceDAO;
@@ -28,6 +32,7 @@ public class OrdonnanceController {
 
     private final ObservableList<OrdonnanceDetails> ordonnanceDetailsList = FXCollections.observableArrayList();
     private final ObservableList<Medicament> medicamentList = FXCollections.observableArrayList();
+    public ProgressIndicator loading;
 
 
     public void initialize() {
@@ -36,7 +41,7 @@ public class OrdonnanceController {
 
         mednameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
         quantiteCol.setCellValueFactory(new PropertyValueFactory<>("quantite"));
-        instruCol.setCellValueFactory(new PropertyValueFactory<>("instructions"));
+        instruCol.setCellValueFactory(new PropertyValueFactory<>("instruction"));
 
         // Associer les listes aux tables
         ordonnancesTable.setItems(ordonnanceDetailsList);
@@ -55,12 +60,34 @@ public class OrdonnanceController {
     }
     private void loadOrdonnances() {
         int patientId = UserSession.getId();  // Remplacez par la vraie source de l'ID patient
-        List<OrdonnanceDetails> ordonnances = OrdonnanceDAO.getOrdonnanceDetailsByPatient(patientId);
-        ordonnanceDetailsList.setAll(ordonnances); // Mise à jour de la TableView
-    }
-    public void consulterRdv(ActionEvent actionEvent) {
-    }
+        loading.setVisible(true);
 
+        Task<List<OrdonnanceDetails>> task = new Task<>() {
+            @Override
+            protected List<OrdonnanceDetails> call() {
+                return OrdonnanceDAO.getOrdonnanceDetailsByPatient(patientId);
+            }
+
+            @Override
+            protected void succeeded() {
+                // Cacher le loader et mettre à jour l'UI avec les données
+                Platform.runLater(() -> {
+                    ordonnanceDetailsList.setAll(getValue());
+                    loading.setVisible(false);
+                });
+            }
+
+            @Override
+            protected void failed() {
+                // En cas d'erreur, cacher le loader
+                Platform.runLater(() -> loading.setVisible(false));
+            }
+        };
+
+        // Exécuter la tâche dans un nouveau thread
+        new Thread(task).start();
+
+    }
     public void consulterPharmacies(ActionEvent actionEvent) {
     }
 
@@ -71,5 +98,11 @@ public class OrdonnanceController {
     }
 
     public void gotoaccueil(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent,"views/patient/accueil-view.fxml","Accueil",false);
+    }
+
+    public void gotprofil(ActionEvent actionEvent) {
+
     }
 }
