@@ -138,7 +138,7 @@ public class StockController {
             return;
         }
 
-        boolean success = MedicamentDAO.ajouterStock(selectedMedicament.getId(), increment);
+        boolean success = MedicamentDAO.ajouterStock(selectedMedicament.getId(), increment, UserSession.getId());
 
         if (success) {
             showAlert(Alert.AlertType.INFORMATION, "Succès", "Stock mis à jour avec succès.");
@@ -159,7 +159,7 @@ public class StockController {
             return;
         }
 
-        boolean success = MedicamentDAO.addMedicamentWithStock(nom, description, prix);
+        boolean success = MedicamentDAO.addMedicamentWithStock(nom, description, prix, UserSession.getId());
 
         if (success) {
             showAlert(Alert.AlertType.INFORMATION, "Succès", "Médicament ajouté avec succès.");

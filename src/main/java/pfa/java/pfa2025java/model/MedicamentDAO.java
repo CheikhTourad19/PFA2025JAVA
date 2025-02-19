@@ -83,11 +83,11 @@ public class MedicamentDAO {
     }
 
 
-    public static boolean ajouterStock(int idMedicament, int increment) {
+    public static boolean ajouterStock(int idMedicament, int increment, int pharmacieId) {
         String sql = "UPDATE stock SET quantite = quantite + ? WHERE pharmacie_id = ? AND medicament_id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, increment);
-            stmt.setInt(2, UserSession.getId());
+            stmt.setInt(2, pharmacieId);
             stmt.setInt(3, idMedicament);
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0; // Retourne true si la mise à jour a réussi
@@ -97,7 +97,7 @@ public class MedicamentDAO {
         return false;
     }
 
-    public static boolean addMedicamentWithStock(String nom, String description, String prix) {
+    public static boolean addMedicamentWithStock(String nom, String description, String prix, int pharmacieId) {
         // Vérification si le médicament existe déjà
         String sqlCheckMedicament = "SELECT id FROM medicament WHERE nom = ?";
         String sqlMedicament = "INSERT INTO medicament (nom, description, prix) VALUES (?, ?, ?)";
@@ -114,21 +114,21 @@ public class MedicamentDAO {
 
                 // Vérifier si le stock existe déjà pour ce médicament
                 try (PreparedStatement stmtStockCheck = connection.prepareStatement("SELECT quantite FROM stock WHERE pharmacie_id = ? AND medicament_id = ?")) {
-                    stmtStockCheck.setInt(1, UserSession.getId());
+                    stmtStockCheck.setInt(1, pharmacieId);
                     stmtStockCheck.setInt(2, idMedicament);
                     ResultSet stockResult = stmtStockCheck.executeQuery();
 
                     if (!stockResult.next()) {
                         // Si le stock n'existe pas, initialiser à 1
                         try (PreparedStatement stmtAddStock = connection.prepareStatement(sqlStock)) {
-                            stmtAddStock.setInt(1, UserSession.getId());
+                            stmtAddStock.setInt(1, pharmacieId);
                             stmtAddStock.setInt(2, idMedicament);
                             stmtAddStock.executeUpdate();
                         }
                     } else {
                         // Sinon, on met à jour le stock à 1
                         try (PreparedStatement stmtUpdateStock = connection.prepareStatement(sqlUpdateStock)) {
-                            stmtUpdateStock.setInt(1, UserSession.getId());
+                            stmtUpdateStock.setInt(1, pharmacieId);
                             stmtUpdateStock.setInt(2, idMedicament);
                             stmtUpdateStock.executeUpdate();
                         }
@@ -152,7 +152,7 @@ public class MedicamentDAO {
 
                             // Ajouter le stock initialisé à 1 pour la pharmacie donnée
                             try (PreparedStatement stmtStock = connection.prepareStatement(sqlStock)) {
-                                stmtStock.setInt(1, UserSession.getId());
+                                stmtStock.setInt(1, pharmacieId);
                                 stmtStock.setInt(2, idMedicament);
                                 stmtStock.executeUpdate();
                             }

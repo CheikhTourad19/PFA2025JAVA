@@ -30,7 +30,7 @@ public class SwtichScene {
             } else {
                 stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             }
-            Scene scene = new Scene(root, x, y);
+            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle(title);
 
@@ -57,7 +57,7 @@ public class SwtichScene {
                 stage = (Stage) node.getScene().getWindow();
             }
 
-            Scene scene = new Scene(root, x, y);
+            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle(title);
 
