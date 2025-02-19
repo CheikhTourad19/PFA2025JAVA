@@ -78,7 +78,10 @@ public class HelloController {
                         SwtichScene swtichScene = new SwtichScene();
                         switch (user.getRole()) {
                             case "pharmacie" -> swtichScene.loadScene(event, "views/pharmacie/accueil-view.fxml", "Pharmacie", false);
-                            case "medecin" -> swtichScene.loadScene(event, "views/medicin/sidebar-view.fxml", "Médecin", false);
+                            case "medecin" -> {
+
+                                swtichScene.loadScene(event, "views/medicin/sidebar-view.fxml", "Médecin", false);
+                            }
                             case "patient" -> swtichScene.loadScene(event, "views/patient/accueil-view.fxml", "Accueil", false);
                             case "admin" -> swtichScene.loadScene(event, "views/Admin/dashboard.fxml", "Admin", false);
                             default -> {

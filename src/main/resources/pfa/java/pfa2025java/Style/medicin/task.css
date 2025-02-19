@@ -1,0 +1,91 @@
+/* Appliquer à tout l'AnchorPane */
+.root {
+    -fx-background-color: #F8F9FA;
+    -fx-font-family: "Arial";
+}
+
+/* Style du menu latéral */
+VBox {
+    -fx-background-color: #F5F5F5;
+    -fx-padding: 80px 20px 20px 30px;
+}
+
+/* Style du bouton Compose */
+.button {
+    -fx-background-color: #4A90E2;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 15px;
+    -fx-background-radius: 5px;
+}
+
+/* Changement de couleur au survol */
+.button:hover {
+    -fx-background-color: #357ABD;
+}
+
+/* Style des labels du menu latéral */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6C757D;
+    -fx-padding: 5px 0;
+}
+
+/* Style du label actif (Create Task) */
+.label:selected, .label:focused {
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+/* Style de l'en-tête de la section principale */
+.label-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+/* Style des champs de texte */
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #CED4DA;
+    -fx-border-radius: 5px;
+    -fx-padding: 7px;
+    -fx-font-size: 14px;
+}
+
+/* Style du champ de texte au focus */
+.text-field:focused {
+    -fx-border-color: #4A90E2;
+    -fx-border-width: 2px;
+}
+
+/* Style des ComboBox (mois de la deadline) */
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #CED4DA;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* Style des avatars (Assign to) */
+.image-view {
+    -fx-background-radius: 50%;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+}
+
+/* Style du bouton "Create new task" */
+.button-create {
+    -fx-background-color: #4A90E2;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 8px;
+}
+
+/* Effet au survol du bouton */
+.button-create:hover {
+    -fx-background-color: #357ABD;
+}
