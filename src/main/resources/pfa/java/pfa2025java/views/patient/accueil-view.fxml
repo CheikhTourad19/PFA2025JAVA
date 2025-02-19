@@ -60,14 +60,6 @@
         <ComboBox fx:id="genderComboBox" promptText="Gender" />
         <ComboBox fx:id="languageComboBox" promptText="Spoken Language" />
 
-        <!-- Cases à cocher -->
-        <VBox spacing="5">
-            <CheckBox fx:id="cnamCheckBox" text="An agreement with the CNAM" />
-            <CheckBox fx:id="carteCheckBox" text="An agreement with CARTE Assurances" />
-            <CheckBox fx:id="homeVisitCheckBox" text="Visite à domicile" />
-            <CheckBox fx:id="emergencyCheckBox" text="Services de garde 24/7" />
-        </VBox>
-
         <!-- Bouton de recherche -->
         <Button fx:id="searchDoctorsButton" text="🔍 SEARCH" style="-fx-background-color: #FFC107; -fx-text-fill: black; -fx-font-size: 16px;" />
 
