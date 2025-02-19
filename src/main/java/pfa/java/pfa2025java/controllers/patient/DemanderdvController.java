@@ -10,42 +10,47 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.model.Medecin;
+import pfa.java.pfa2025java.model.MedecinDAO;
 import pfa.java.pfa2025java.model.RendezVous;
+
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 public class DemanderdvController {
+
+    public TableView MedecinTable;
+    public TableColumn mednameCol;
+    public TableColumn serviceCol;
     @FXML
     private Text Bienvenu;
 
-    @FXML
-    private TableView<RendezVous> medicamentTable;
+  
 
-    @FXML
-    private TableColumn<RendezVous, String> mednameCol;
+    private final ObservableList<Medecin> medecinList = FXCollections.observableArrayList();
 
-    @FXML
-    private TableColumn<RendezVous, String> quantiteCol;
+    public void initialize() throws SQLException {
 
-    private ObservableList<RendezVous> rendezVousList = FXCollections.observableArrayList();
+        mednameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        serviceCol.setCellValueFactory(new PropertyValueFactory<>("service"));
 
-    public void initialize() {
-        Bienvenu.setText(UserSession.getPrenom() + " " + UserSession.getNom());
 
-        // Initialisation des colonnes de la table
-        mednameCol.setCellValueFactory(new PropertyValueFactory<>("medecinNom"));
-        quantiteCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
-
-        // Chargement des rendez-vous
-        chargerRendezVous();
     }
 
-    private void chargerRendezVous() {
-        // Simulation des rendez-vous (remplace avec une récupération depuis la base de données)
-        rendezVousList.add(new RendezVous(1, 101, "Dr. Mohamed", 202, "Ali Ben Jannet", new Date(), "Confirmé"));
-        rendezVousList.add(new RendezVous(2, 102, "Dr. Yassine", 202, "Ali Ben Jannet", new Date(), "En attente"));
+    private void loadMedecins() throws SQLException {
+        //medecinList.clear(); // Clear existing data (if any)
 
-        // Mise à jour de la table
-        medicamentTable.setItems(rendezVousList);
+        // Fetch the list of doctors from the DAO
+        //medecinList.addAll(MedecinDAO.getAllMedecin());
+
+        // Set the list in the TableView
+        //MedecinTable.setItems(medecinList);
+
+        // Initialize columns
+        //mednameCol.setCellValueFactory(new PropertyValueFactory<>("nom")); // Ensure "nom" matches Medecin class attribute
+        //serviceCol.setCellValueFactory(new PropertyValueFactory<>("service")); // Ensure "specialite" matches Medecin class attribute
+        //serviceCol.setCellValueFactory(cellData -> cellData.getValue().getService().asObject());
     }
 
 
