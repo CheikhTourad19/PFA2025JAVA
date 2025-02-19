@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
-<VBox fx:controller="pfa.java.pfa2025java.controllers.Admin.UsersController" xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      alignment="CENTER" spacing="10">
-    <Label text="👥 User Management" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.Admin.UsersController">
+    <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="👥 Gestion Utilisateurs" />
     <TableView fx:id="usersTable" prefHeight="400">
         <columns>
-            <TableColumn text="ID" fx:id="idColumn"/>
-            <TableColumn text="Nom" fx:id="nomColumn"/>
-            <TableColumn text="Prénom" fx:id="prenomColumn"/>
-            <TableColumn text="Email" fx:id="emailColumn"/>
-            <TableColumn text="Role" fx:id="roleColumn"/>
-            <TableColumn text="Actions" fx:id="actionsColumn"/>
+            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="nomColumn" text="Nom" />
+            <TableColumn fx:id="prenomColumn" text="Prénom" />
+            <TableColumn fx:id="emailColumn" text="Email" />
+            <TableColumn fx:id="roleColumn" text="Role" />
+            <TableColumn fx:id="actionsColumn" text="Actions" />
         </columns>
     </TableView>
 
     <HBox spacing="10">
-        <Button text="Ajouter Utilisateur" onAction="#handleAddUser"/>
+      <MenuButton mnemonicParsing="false" text="selection">
+        <items>
+            <MenuItem mnemonicParsing="false" text="tous utilisateurs" />
+            <MenuItem mnemonicParsing="false" text="Medecin" />
+            <MenuItem mnemonicParsing="false" text="infermier(e)(s)" />
+            <MenuItem mnemonicParsing="false" text="pharmacies" />
+            <MenuItem mnemonicParsing="false" text="patients" />
+        </items>
+      </MenuButton>
+        <Button onAction="#handleAddUser" text="Ajouter Utilisateur" />
     </HBox>
 </VBox>

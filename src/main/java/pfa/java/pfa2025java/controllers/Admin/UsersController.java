@@ -21,7 +21,7 @@ public class UsersController {
     @FXML private TableColumn<User, String> emailColumn;
     @FXML private TableColumn<User, String> roleColumn;
     @FXML private TableColumn<User, Void> actionsColumn;
-
+    @FXML private MenuButton menuButton;
     private final ObservableList<User> userList = FXCollections.observableArrayList();
 
     public void initialize() {

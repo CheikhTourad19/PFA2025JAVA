@@ -16,7 +16,6 @@ public class MedicamentDAO {
             throw new RuntimeException(e);
         }
     }
-
     public static Medicament getMedicamentByNom(String nom) {
         String sql = "SELECT * FROM medicament WHERE nom = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {

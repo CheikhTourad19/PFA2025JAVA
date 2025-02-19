@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/main/java/pfa/java/pfa2025java/model/MedicamentDAO.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/pfa/java/pfa2025java/model/OrdonnanceDAO.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/pfa/java/pfa2025java/model/PharmacieDAO.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/pfa/java/pfa2025java/model/UserDAO.java" dialect="GenericSQL" />
-  </component>
-</project>

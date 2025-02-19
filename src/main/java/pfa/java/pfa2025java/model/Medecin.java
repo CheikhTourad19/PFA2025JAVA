@@ -3,7 +3,8 @@ package pfa.java.pfa2025java.model;
 public class Medecin extends User{
 
     String service;
-    public Medecin() {}
+    public Medecin() {
+    }
     public Medecin(int medecinID, String service) {
         this.service = service;
     }
