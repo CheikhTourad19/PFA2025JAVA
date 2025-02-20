@@ -86,8 +86,8 @@ public class MessageDAO {
     }
     public List<UserMessage> getUsersWithLastMessage(int userId) throws SQLException {
         List<UserMessage> userMessages = new ArrayList<>();
-        String sql = "SELECT u.id AS user_id, u.username, m.content, m.sent_at " +
-                "FROM users u " +
+        String sql = "SELECT u.id AS user_id, u.nom, m.content, m.sent_at " +
+                "FROM user u " +
                 "JOIN messages m ON (u.id = m.sender_id OR u.id = m.receiver_id) " +
                 "WHERE (m.sender_id = ? OR m.receiver_id = ?) AND u.id != ? " +
                 "AND m.id = ( " +
