@@ -8,7 +8,7 @@ public class UserMessage {
     private String username;
     private String lastMessage;
     private LocalDateTime sentAt;
-
+ public UserMessage() {}
     public UserMessage(int userId, String username, String lastMessage, LocalDateTime sentAt) {
         this.userId = userId;
         this.username = username;
