@@ -84,4 +84,47 @@ public class MessageDAO {
         }
         return messages;
     }
+    public List<UserMessage> getUsersWithLastMessage(int userId) throws SQLException {
+        List<UserMessage> userMessages = new ArrayList<>();
+        String sql = "SELECT u.id AS user_id, u.nom, m.content, m.sent_at " +
+                "FROM user u " +
+                "JOIN messages m ON (u.id = m.sender_id OR u.id = m.receiver_id) " +
+                "WHERE (m.sender_id = ? OR m.receiver_id = ?) AND u.id != ? " +
+                "AND m.id = ( " +
+                "    SELECT MAX(id) " +
+                "    FROM messages " +
+                "    WHERE (sender_id = u.id AND receiver_id = ?) OR (sender_id = ? AND receiver_id = u.id) " +
+                "    AND sent_at = ( " +
+                "        SELECT MAX(sent_at) " +
+                "        FROM messages " +
+                "        WHERE (sender_id = u.id AND receiver_id = ?) OR (sender_id = ? AND receiver_id = u.id) " +
+                "    ) " +
+                ") " +
+                "ORDER BY m.sent_at DESC";
+
+        try (Connection conn = DBconnection.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            stmt.setInt(2, userId);
+            stmt.setInt(3, userId);
+            stmt.setInt(4, userId);
+            stmt.setInt(5, userId);
+            stmt.setInt(6, userId);
+            stmt.setInt(7, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    UserMessage userMessage = new UserMessage(
+                            rs.getInt("user_id"),
+                            rs.getString("username"),
+                            rs.getString("content"),
+                            rs.getTimestamp("sent_at").toLocalDateTime()
+                    );
+                    userMessages.add(userMessage);
+                }
+            }
+        }
+        return userMessages;
+    }
 }

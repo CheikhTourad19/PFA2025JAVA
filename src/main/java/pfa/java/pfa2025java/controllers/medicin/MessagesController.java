@@ -17,6 +17,7 @@ import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 import pfa.java.pfa2025java.model.Message;
 import pfa.java.pfa2025java.model.MessageDAO;
+import pfa.java.pfa2025java.model.UserMessage;
 
 import java.io.*;
 import java.net.Socket;
@@ -39,13 +40,30 @@ public class MessagesController {
     private final  int receiverId = 1;
     private MessageDAO messageDao = new MessageDAO();
     private LocalDateTime sent_at = LocalDateTime.now();
-
+    private boolean userScrolledUp = false;
+    @FXML
+    private ListView<UserMessage> userList;
     public void initialize() {
         try {
             setupNetworkConnection();
             loadPreviousMessages();
             startMessageUpdater();
             startMessageListener();
+            loadUserList();
+            userList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    int selectedUserId = newValue.getUserId(); // استرجاع userId الخاص بالمستخدم المحدد
+                    System.out.println("Selected User ID: " + selectedUserId); // طباعة userId (لأغراض الاختبار)
+                    loadChatWithUser(selectedUserId); // تحميل الرسائل مع المستخدم المحدد
+                }
+            });
+            scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.doubleValue() < 1.0) {
+                    userScrolledUp = true;
+                } else {
+                    userScrolledUp = false;
+                }
+            });
         } catch (IOException e) {
             showError("Connection error: " + e.getMessage());
         }
@@ -154,7 +172,7 @@ public class MessagesController {
 
     private void scrollToBottom() {
         Platform.runLater(() -> {
-            if(scrollPane != null) {
+            if (scrollPane != null && !userScrolledUp) {
                 scrollPane.setVvalue(1.0);
                 scrollPane.requestLayout();
             }
@@ -170,5 +188,57 @@ public class MessagesController {
             alert.showAndWait();
         });
     }
+    private void loadUserList() {
+        try {
+            List<UserMessage> userMessages = messageDao.getUsersWithLastMessage(userId);
+
+            userList.getItems().setAll(userMessages);
+
+            userList.setCellFactory(param -> new ListCell<UserMessage>() {
+                @Override
+                protected void updateItem(UserMessage userMessage, boolean empty) {
+                    super.updateItem(userMessage, empty);
+
+                    if (empty || userMessage == null) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        HBox hbox = new HBox(10); // تباعد بين العناصر
+                        hbox.setAlignment(Pos.CENTER_LEFT);
+
+                        Label usernameLabel = new Label(userMessage.getUsername());
+                        usernameLabel.setStyle("-fx-font-weight: bold;");
+
+                        Label lastMessageLabel = new Label(userMessage.getLastMessage());
+                        lastMessageLabel.setStyle("-fx-text-fill: gray;");
+
+                        Label sentAtLabel = new Label(userMessage.getSentAt().toString());
+                        sentAtLabel.setStyle("-fx-text-fill: gray; -fx-font-size: 10;");
+
+
+                        hbox.getChildren().addAll(usernameLabel, lastMessageLabel, sentAtLabel);
+
+
+                        setGraphic(hbox);
+                    }
+                }
+            });
+        } catch (SQLException e) {
+            showError("Failed to load user list: " + e.getMessage());
+        }
+    }
+    private void loadChatWithUser(int otherUserId) {
+        try {
+            chatBox.getChildren().clear();
+            List<Message> messages = messageDao.getMessagesBetweenUsers(userId, otherUserId);
+            for (Message message : messages) {
+                addMessageToUI(message.getSenderId(), message.getContent());
+            }
+            scrollToBottom();
+        } catch (SQLException e) {
+            showError("Failed to load messages: " + e.getMessage());
+        }
+    }
+
 
 }

@@ -14,7 +14,7 @@
             <children>
                 <HBox>
                     <children>
-                        <AnchorPane fx:id="drawer" prefHeight="600.0" prefWidth="121.0" style="-fx-background-color: #0F72B3;" styleClass="drawer" stylesheets="@../../Style/medicin/style.css">
+                        <AnchorPane fx:id="drawer" prefHeight="600.0" prefWidth="121.0" style="-fx-background-color: #0F72B3;" styleClass="drawer" stylesheets="@../../Style/medicin/sidebar.css">
                             <children>
                                 <Label fx:id="dashboardLabel" layoutX="51.0" layoutY="180.0" text="Dashboard" textFill="WHITE">
                                     <font>
@@ -58,7 +58,7 @@
                                                 <Image url="@../../assets/dashboard.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="tasks" fitHeight="25.0" fitWidth="31.0" layoutX="2.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="tasks" fitHeight="25.0" fitWidth="31.0" layoutX="2.0" layoutY="184.0" onMouseClicked="#goToTask" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/task.png" />
                                             </image>

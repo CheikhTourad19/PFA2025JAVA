@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane stylesheets="@../../Style/medicin/task.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Contexte principal -->
+    <children>
+        <HBox prefHeight="600" prefWidth="800" spacing="20">
+
+            <!-- Menu latéral -->
+            <VBox prefHeight="600.0" prefWidth="216.0" spacing="25.0" style="-fx-background-color: #F5F5F5; -fx-padding: 15;">
+                <VBox prefHeight="532.0" prefWidth="160.0" spacing="10">
+                   <Button prefHeight="36.0" prefWidth="123.0" style="-fx-background-color: #4A90E2; -fx-text-fill: white;" text="✎ Compose">
+                  <VBox.margin>
+                     <Insets bottom="30.0" />
+                  </VBox.margin>
+               </Button>
+                    <Label text="Inbox" />
+                    <Label style="-fx-font-weight: bold; -fx-text-fill: #000000;" text="Create Task" />
+                    <Label text="Important" />
+                    <Label text="Trash" />
+                </VBox>
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            </VBox>
+
+            <!-- Contenu principal -->
+            <VBox alignment="CENTER" prefWidth="600" spacing="20" style="-fx-padding: 30;">
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Create new task" />
+
+                <!-- Formulaire -->
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Task name:" />
+                    <TextField fx:id="newTask" GridPane.columnIndex="1" />
+
+                    <Label text="Deadline:" GridPane.rowIndex="1" />
+                    <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="jj" prefWidth="40" promptText="29" />
+                        <ComboBox fx:id="mm" promptText="January" />
+                        <Label fx:id="yy" text="2023" />
+                    </HBox>
+
+                    <Label text="Assign to:" GridPane.rowIndex="2" />
+                    <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <ImageView fitHeight="30" fitWidth="30" />
+                        <ImageView fitHeight="30" fitWidth="30" />
+                        <ImageView fitHeight="30" fitWidth="30" />
+                    </HBox>
+
+                    <Label text="Required:" GridPane.rowIndex="3" />
+                    <TextField prefHeight="32.0" prefWidth="229.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+
+                <Button style="-fx-background-color: #4A90E2; -fx-text-fill: white;" text="Create new task" />
+            </VBox>
+        </HBox>
+    </children>
+</AnchorPane>
