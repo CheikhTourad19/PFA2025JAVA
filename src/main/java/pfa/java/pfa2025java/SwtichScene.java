@@ -71,7 +71,7 @@ public class SwtichScene {
     }
 
     public static void loadImage(Stage stage) {
-        String imagePath = "assets/img.png"; // Chemin depuis src/main/resources
+        String imagePath = "assets/img.jpg"; // Chemin depuis src/main/resources
 
         try (InputStream imageStream = SwtichScene.class.getResourceAsStream(imagePath)) {
             if (imageStream == null) {
