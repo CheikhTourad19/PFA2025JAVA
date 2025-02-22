@@ -10,8 +10,8 @@ public class DBFactory {
 //        for (int i = 0; i < 100; i++) {
 //            MedicamentDAO.addMedicamentWithStock(faker.name().firstName(),faker.name().firstName(),"100",2);
 //            System.out.println("crree");
-//        }
-//        for (int i = 1319; i < 1414; i++) {
+////        }
+//        for (int i = 1414; i < 1512; i++) {
 //            MedicamentDAO.ajouterStock(i,faker.number().numberBetween(10,100),2);
 //        }
     }
