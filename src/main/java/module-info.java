@@ -17,8 +17,8 @@ module pfa.java.pfa2025java {
     opens pfa.java.pfa2025java.controllers.pharmacie to javafx.fxml;
     opens pfa.java.pfa2025java.controllers.patient to javafx.fxml;
     opens pfa.java.pfa2025java.controllers.Admin to javafx.fxml;
-    opens pfa.java.pfa2025java.controllers.medicin to javafx.fxml;
-    opens pfa.java.pfa2025java.controllers.medicin.util to javafx.fxml;
+    opens pfa.java.pfa2025java.controllers.medecin to javafx.fxml;
+    opens pfa.java.pfa2025java.controllers.medecin.util to javafx.fxml;
 
 
     exports pfa.java.pfa2025java;

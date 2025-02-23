@@ -111,7 +111,7 @@ public class MessageDAO {
                 ") " +
                 "ORDER BY m.sent_at DESC";
 
-        try (connection;
+        try (
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
@@ -136,4 +136,35 @@ public class MessageDAO {
         }
         return userMessages;
     }
+    public List<UserMessage> searchUsers(int currentUserId, String query) throws SQLException {
+        List<UserMessage> userMessages = new ArrayList<>();
+        String sql = "SELECT u.id AS user_id, u.username, m.content, m.sent_at " +
+                "FROM users u " +
+                "LEFT JOIN messages m ON (u.id = m.sender_id OR u.id = m.receiver_id) " +
+                "WHERE (u.username LIKE ?) AND u.id != ? " +
+                "GROUP BY u.id " +
+                "ORDER BY m.sent_at DESC";
+
+        try (
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, "%" + query + "%");
+            stmt.setInt(2, currentUserId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    UserMessage userMessage = new UserMessage(
+                            rs.getInt("user_id"),
+                            rs.getString("username"),
+                            rs.getString("content"),
+                            rs.getTimestamp("sent_at") != null ?
+                                    rs.getTimestamp("sent_at").toLocalDateTime() : LocalDateTime.now()
+                    );
+                    userMessages.add(userMessage);
+                }
+            }
+        }
+        return userMessages;
+    }
+
 }

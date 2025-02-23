@@ -1,4 +1,4 @@
-package pfa.java.pfa2025java.controllers.medicin;
+package pfa.java.pfa2025java.controllers.medecin;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import javafx.util.Duration;
-import pfa.java.pfa2025java.controllers.medicin.util.NavigationUtil;
+import pfa.java.pfa2025java.controllers.medecin.util.NavigationUtil;
 
 import java.util.Arrays;
 import java.util.List;
