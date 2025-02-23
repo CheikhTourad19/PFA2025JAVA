@@ -26,14 +26,14 @@ public class MesRDVController {
 
     @FXML
     private void initialize() {
-        medecinNomCol.setCellValueFactory(new PropertyValueFactory<>("medecinNom"));
-        statutCol.setCellValueFactory(new PropertyValueFactory<>("statut"));
-
-        try {
-            loadRendezVous();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        medecinNomCol.setCellValueFactory(new PropertyValueFactory<>("medecinNom"));
+//        statutCol.setCellValueFactory(new PropertyValueFactory<>("statut"));
+//
+//        try {
+//            loadRendezVous();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void loadRendezVous() throws SQLException {
