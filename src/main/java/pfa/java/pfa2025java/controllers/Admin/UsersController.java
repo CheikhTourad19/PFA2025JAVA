@@ -5,14 +5,27 @@ import javafx.collections.ObservableList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import pfa.java.pfa2025java.HelloApplication;
+import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.model.User;
 import pfa.java.pfa2025java.model.UserDAO;
 
-public class UsersController {
+import java.io.IOException;
+import java.util.Objects;
 
+public class UsersController {
+    @FXML
+    protected AnchorPane root;
     @FXML
     private TableView<User> usersTable;
     @FXML private TableColumn<User, Integer> idColumn;
@@ -64,11 +77,7 @@ public class UsersController {
         usersTable.setItems(userList);
     }
 
-    @FXML
-    private void handleAddUser() {
-        System.out.println("Ajouter utilisateur - Open Add User Form");
-        // Open an "Add User" form (implement later)
-    }
+
 
     private void handleEditUser(User user) {
         System.out.println("Modifier utilisateur: " + user.getNom());
@@ -90,4 +99,8 @@ public class UsersController {
     }
 
 
+    public void handleAddUser(ActionEvent event) throws IOException {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(root,"/pfa/java/pfa2025java/views/Admin/addUser.fxml","ajouter utilisateur",false);
+    }
 }
