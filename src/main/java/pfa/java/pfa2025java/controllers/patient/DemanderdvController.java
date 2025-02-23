@@ -13,7 +13,8 @@ import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.*;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+
 import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
@@ -36,6 +37,7 @@ public class DemanderdvController {
         serviceCol.setCellValueFactory(new PropertyValueFactory<>("service"));
 
         loadMedecins();
+        loadSpecialties();
 
         // Activer la recherche dynamique
         setupSearchFilter();
@@ -64,6 +66,16 @@ public class DemanderdvController {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/patient/profile-view.fxml", "Profil", false);
     }
+    @FXML
+    private ComboBox<String> specialtyComboBox;
+
+    private void loadSpecialties() {
+        specialtyComboBox.getItems().clear(); // Nettoyer le ComboBox avant de charger les nouvelles valeurs
+
+        // Récupérer les spécialités depuis la base de données via MedecinDAO
+        specialtyComboBox.getItems().addAll(MedecinDAO.getAllSpecialties());
+    }
+
 
     private void setupSearchFilter() {
         FilteredList<Medecin> filteredData = new FilteredList<>(medecinList, b -> true);

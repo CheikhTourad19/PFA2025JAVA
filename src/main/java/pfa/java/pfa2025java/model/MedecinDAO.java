@@ -104,5 +104,23 @@ public class MedecinDAO {
             throw new RuntimeException(e);
         }
     }
+    public static List<String> getAllSpecialties() {
+        String sql = "SELECT DISTINCT service FROM medecin"; // Assurez-vous que 'service' est bien la colonne contenant les spécialités
+        List<String> specialties = new ArrayList<>();
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                specialties.add(rs.getString("service")); // Ajoute chaque spécialité trouvée
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return specialties;
+    }
+
 }
 
