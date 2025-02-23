@@ -1,4 +1,4 @@
-package pfa.java.pfa2025java.controllers.medicin;
+package pfa.java.pfa2025java.controllers.medecin;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -7,6 +7,7 @@ import pfa.java.pfa2025java.model.RendezVous;
 import pfa.java.pfa2025java.model.MedecinDAO;
 
 public class MedecinController {
+
 
     @FXML
     private TableView<RendezVous> rdvTable; // La table affichant les rendez-vous
@@ -19,6 +20,7 @@ public class MedecinController {
 
         if (selectedRdv != null) {
             // Met à jour le statut du rendez-vous à "Accepté"
+            //?????
             MedecinDAO.updateRDVStatus(selectedRdv.getId(), "Accepté");
 
             // Affiche une confirmation que le rendez-vous a été accepté
