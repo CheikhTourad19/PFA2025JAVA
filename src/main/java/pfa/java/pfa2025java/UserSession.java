@@ -86,4 +86,20 @@ public class UserSession {
         UserSession.password = null;
         UserSession.role = null;
     }
+    public static UserSession getCurrentUser() {
+        if (UserSession.getId() != 0) { // Vérifie si un utilisateur est connecté
+            return new UserSession(
+                    UserSession.getId(),
+                    UserSession.getNom(),
+                    UserSession.getPrenom(),
+                    UserSession.getEmail(),
+                    UserSession.getPassword(),
+                    UserSession.getRole(),
+                    UserSession.getNumero()
+            );
+        } else {
+            return null; // Aucun utilisateur connecté
+        }
+    }
+
 }

@@ -14,6 +14,10 @@ import pfa.java.pfa2025java.model.*;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import java.util.Optional;
+
 
 import javafx.scene.control.TextField;
 
@@ -104,6 +108,33 @@ public class DemanderdvController {
         MedecinTable.setItems(sortedData);
     }
 
+    @FXML
+    private void handleMedecinSelection() {
+        Medecin selectedMedecin = (Medecin) MedecinTable.getSelectionModel().getSelectedItem();
+
+        if (selectedMedecin != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Prendre un rendez-vous");
+            alert.setHeaderText(null);
+            alert.setContentText("Voulez-vous prendre un rendez-vous avec " + selectedMedecin.getNom() + " ?");
+
+            // Ajouter le bouton OK
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                sendRDVRequest(selectedMedecin.getId());
+            }
+        }
+    }
+    private void sendRDVRequest(int medecinId) {
+        int patientId = UserSession.getCurrentUser().getId(); // Récupérer l'ID du patient connecté
+        MedecinDAO.sendRDVRequest(medecinId, patientId);
+
+        Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+        confirmation.setTitle("Demande envoyée");
+        confirmation.setHeaderText(null);
+        confirmation.setContentText("Votre demande de rendez-vous a été envoyée !");
+        confirmation.showAndWait();
+    }
 
     public void consulterOrdonnances(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
@@ -113,6 +144,10 @@ public class DemanderdvController {
     public void demandeRendezVous(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/patient/demanderdv-view.fxml", "Rendez-vous", false);
+    }
+    public void mesRDV(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/patient/mesRDV-view.fxml", "Rendez-vous", false);
     }
 
     public void consulterPharmacies(ActionEvent actionEvent) {

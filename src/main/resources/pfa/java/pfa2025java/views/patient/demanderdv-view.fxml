@@ -33,7 +33,8 @@
                     styleClass="sidebar-button"/>
             <Button onAction="#consulterOrdonnances" text="Mes Ordonnances"
                     styleClass="sidebar-button"/>
-            <Button text="Mes RDV" style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;" />
+            <Button onAction="#mesRDV" text="Mes RendezVous"
+                    styleClass="sidebar-button" />
             <Button onAction="#consulterPharmacies" text="Consulter Pharmacies"
                     styleClass="sidebar-button"/>
             <Button onAction="#demandeRendezVous" text="Demande RDV"
