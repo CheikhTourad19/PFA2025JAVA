@@ -12,11 +12,11 @@
         <children>
             <ImageView fx:id="splashImage" fitHeight="478.0" fitWidth="771.0">
                 <image>
-                    <Image url="@../assets/img.png"/>
+                    <Image url="@../assets/img.jpg"/>
                 </image>
             </ImageView>
             <ProgressIndicator fx:id="progressIndicator" layoutX="360.0" layoutY="402.0"
-                               style="-fx-background-color: white;"/>
+                               />
         </children>
     </AnchorPane>
 </StackPane>

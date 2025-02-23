@@ -6,10 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessageDAO {
+    private static final Connection connection;
+
+    static {
+        try {
+            connection = DBconnection.connect();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void saveMessage(Message message) throws SQLException {
         String sql = "INSERT INTO messages (sender_id, receiver_id, content, sent_at) VALUES (?, ?, ?, ?)";
-        try (Connection conn = DBconnection.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (
+             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setInt(1, message.getSenderId());
             stmt.setInt(2, message.getReceiverId());
@@ -29,8 +38,8 @@ public class MessageDAO {
         List<Message> messages = new ArrayList<>();
         String sql = "SELECT * FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY sent_at ASC";
 
-        try (Connection conn = DBconnection.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setInt(1, user1);
             stmt.setInt(2, user2);
@@ -59,8 +68,8 @@ public class MessageDAO {
         List<Message> messages = new ArrayList<>();
         String sql = "SELECT * FROM messages WHERE ((sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)) AND sent_at > ?";
 
-        try (Connection conn = DBconnection.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setInt(1, user1);
             stmt.setInt(2, user2);
@@ -102,8 +111,8 @@ public class MessageDAO {
                 ") " +
                 "ORDER BY m.sent_at DESC";
 
-        try (Connection conn = DBconnection.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (connection;
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
             stmt.setInt(2, userId);

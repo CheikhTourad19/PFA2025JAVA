@@ -27,11 +27,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 public class MessagesController {
     private Set<String> displayedMessages = new HashSet<>();
+    @FXML private Label UserMessage;
     @FXML private TextField messageField;
     @FXML private VBox chatBox;
     @FXML private ScrollPane scrollPane;
+    private boolean errorDisplayed = false; // Flag to track if an error is shown
+
 
     private Socket socket;
     private PrintWriter out;
@@ -41,6 +45,7 @@ public class MessagesController {
     private MessageDAO messageDao = new MessageDAO();
     private LocalDateTime sent_at = LocalDateTime.now();
     private boolean userScrolledUp = false;
+    private UserMessage userMessage = new UserMessage();
     @FXML
     private ListView<UserMessage> userList;
     public void initialize() {
@@ -52,9 +57,9 @@ public class MessagesController {
             loadUserList();
             userList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
-                    int selectedUserId = newValue.getUserId(); // استرجاع userId الخاص بالمستخدم المحدد
-                    System.out.println("Selected User ID: " + selectedUserId); // طباعة userId (لأغراض الاختبار)
-                    loadChatWithUser(selectedUserId); // تحميل الرسائل مع المستخدم المحدد
+                    int selectedUserId = newValue.getUserId();
+                    System.out.println("Selected User ID: " + selectedUserId);
+                    loadChatWithUser(selectedUserId);
                 }
             });
             scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
@@ -127,7 +132,11 @@ public class MessagesController {
             sent_at = LocalDateTime.now();
             scrollToBottom();
         } catch (SQLException e) {
-            showError("Error checking new messages: " + e.getMessage());
+            if (!errorDisplayed){
+                showError("Error checking new messages: " + e.getMessage());
+
+                errorDisplayed = true;
+            }
         }
     }
 
@@ -155,7 +164,7 @@ public class MessagesController {
             HBox messageContainer = new HBox();
             messageContainer.setAlignment(senderId == userId ? Pos.CENTER_RIGHT : Pos.CENTER_LEFT);
             messageContainer.setPadding(new Insets(5, 10, 5, 10));
-
+            UserMessage.setText(userMessage.getUsername());
             TextFlow textFlow = new TextFlow(new Text(content));
             textFlow.setMaxWidth(300);
             textFlow.setPadding(new Insets(8));
@@ -203,7 +212,7 @@ public class MessagesController {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        HBox hbox = new HBox(10); // تباعد بين العناصر
+                        HBox hbox = new HBox(10);
                         hbox.setAlignment(Pos.CENTER_LEFT);
 
                         Label usernameLabel = new Label(userMessage.getUsername());

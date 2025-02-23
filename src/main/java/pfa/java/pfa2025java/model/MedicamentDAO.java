@@ -102,7 +102,7 @@ public class MedicamentDAO {
         String sqlCheckMedicament = "SELECT id FROM medicament WHERE nom = ?";
         String sqlMedicament = "INSERT INTO medicament (nom, description, prix) VALUES (?, ?, ?)";
         String sqlStock = "INSERT INTO stock (pharmacie_id, medicament_id, quantite) VALUES (?, ?, 1)";
-        String sqlUpdateStock = "UPDATE stock SET quantite = 1 WHERE pharmacie_id = ? AND medicament_id = ?";
+        String sqlUpdateStock = "UPDATE stock SET quantite = 12 WHERE pharmacie_id = ? AND medicament_id = ?";
 
         try (PreparedStatement stmtCheckMedicament = connection.prepareStatement(sqlCheckMedicament)) {
             stmtCheckMedicament.setString(1, nom);
