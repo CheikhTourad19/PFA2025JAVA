@@ -1,109 +1,23 @@
-/* Style général */
-.root {
-    -fx-font-family: "Arial";
-    -fx-background-color: #ECF0F1;
-}
-
-/* Style de la barre latérale */
-VBox {
-    -fx-background-color: #2C3E50;
-    -fx-padding: 15px;
-    -fx-spacing: 10px;
-}
-
-/* Style du texte de bienvenue */
-#Bienvenu {
-    -fx-fill: white;
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-}
-
-/* Style des boutons */
-Button {
+.sidebar-button {
     -fx-background-color: #34495E;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-pref-width: 180;
-    -fx-padding: 10px;
-    -fx-background-radius: 5px;
+    -fx-pref-width: 180px;
+    -fx-background-radius: 20px;
+    -fx-padding: 8px;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #5D6D7E;
+}
+
+.button {
     -fx-cursor: hand;
-}
-
-Button:hover {
-    -fx-background-color: #1ABC9C;
-}
-
-/* Style des boutons spéciaux */
-#logout {
-    -fx-background-color: #E74C3C;
-}
-
-#logout:hover {
-    -fx-background-color: #C0392B;
-}
-
-#searchDoctorsButton, #searchButton {
-    -fx-background-color: #FFC107;
-    -fx-text-fill: black;
-    -fx-font-weight: bold;
-    -fx-font-size: 16px;
-}
-
-#searchDoctorsButton:hover, #searchButton:hover {
-    -fx-background-color: #FFA000;
-}
-
-/* Style des champs de texte */
-TextField, ComboBox {
-    -fx-background-color: white;
-    -fx-border-color: #2980B9;
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px;
-    -fx-pref-width: 200px;
-}
-
-/* Style des ComboBox */
-ComboBox {
-    -fx-background-color: white;
-    -fx-text-fill: black;
-}
-
-ComboBox .list-cell {
-    -fx-padding: 5px;
-}
-
-ComboBox:hover {
-    -fx-border-color: #1ABC9C;
-}
-
-/* Style des cases à cocher */
-CheckBox {
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-}
-
-CheckBox:selected {
-    -fx-text-fill: #1ABC9C;
-}
-
-/* Style de la TableView */
-TableView {
-    -fx-background-color: white;
-    -fx-border-color: #2980B9;
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px;
-}
-
-TableColumn {
-    -fx-alignment: CENTER;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
 
-/* Style du ProgressIndicator */
-#loading {
-    -fx-progress-color: #FFC107;
+.text-field {
+    -fx-font-size: 14px;
 }

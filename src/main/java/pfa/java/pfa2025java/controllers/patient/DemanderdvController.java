@@ -11,6 +11,10 @@ import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.*;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
@@ -22,7 +26,8 @@ public class DemanderdvController {
     @FXML
     private Text Bienvenu;
 
-  
+    @FXML
+    private TextField searchField;
 
     private final ObservableList<Medecin> medecinList = FXCollections.observableArrayList();
 
@@ -32,8 +37,10 @@ public class DemanderdvController {
 
         loadMedecins();
 
-
+        // Activer la recherche dynamique
+        setupSearchFilter();
     }
+
 
     private void loadMedecins() throws SQLException {
         medecinList.clear(); // Clear existing data (if any)
@@ -57,6 +64,34 @@ public class DemanderdvController {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/patient/profile-view.fxml", "Profil", false);
     }
+
+    private void setupSearchFilter() {
+        FilteredList<Medecin> filteredData = new FilteredList<>(medecinList, b -> true);
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(medecin -> {
+                // Si la barre de recherche est vide, afficher tout
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    return true;
+                }
+
+                // Convertir la recherche en minuscule pour éviter la casse
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                // Vérifier si le nom ou le service du médecin contient la recherche
+                return medecin.getNom().toLowerCase().contains(lowerCaseFilter) ||
+                        medecin.getService().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+
+        // Trier les résultats
+        SortedList<Medecin> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(MedecinTable.comparatorProperty());
+
+        // Appliquer les données filtrées à la TableView
+        MedecinTable.setItems(sortedData);
+    }
+
 
     public void consulterOrdonnances(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
