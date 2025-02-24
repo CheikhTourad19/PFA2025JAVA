@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.input.*?>
-<?import javafx.collections.*?>
-<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="pfa.java.pfa2025java.controllers.patient.MesRDVController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="602.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.patient.MesRDVController">
 
     <!-- Titre de la page -->
-    <Label text="Mes Rendez-vous" layoutX="250.0" layoutY="20.0" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <Label layoutX="250.0" layoutY="20.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Mes Rendez-vous" />
 
     <!-- TableView pour afficher la liste des rendez-vous -->
-    <TableView fx:id="rdvTable" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="500.0">
+    <TableView fx:id="rdvTable" layoutX="220.0" layoutY="59.0" prefHeight="189.0" prefWidth="467.0">
         <columns>
-            <TableColumn fx:id="colDate" text="Date" prefWidth="150.0" />
-            <TableColumn fx:id="colMedecin" text="Médecin" prefWidth="200.0" />
-            <TableColumn fx:id="colStatut" text="Statut" prefWidth="150.0" />
+            <TableColumn fx:id="colDate" prefWidth="150.0" text="Date" />
+            <TableColumn fx:id="colMedecin" prefWidth="200.0" text="Médecin" />
+            <TableColumn fx:id="colStatut" prefWidth="129.59991455078125" text="Statut" />
         </columns>
     </TableView>
 
     <!-- Bouton pour accepter un rendez-vous -->
-    <Button text="Accepter" layoutX="200.0" layoutY="300.0" onAction="#acceptRDV"/>
+    <Button layoutX="417.0" layoutY="300.0" onAction="#acceptRDV" text="Accepter" />
 
     <!-- Bouton pour refuser un rendez-vous -->
-    <Button text="Refuser" layoutX="300.0" layoutY="300.0" onAction="#refuseRDV"/>
+    <Button layoutX="546.0" layoutY="300.0" onAction="#refuseRDV" text="Refuser" />
+    <!-- Barre latérale -->
+    <VBox alignment="CENTER_LEFT" prefHeight="600.0" prefWidth="220.0" spacing="12" style="-fx-background-color: #14243D; -fx-padding: 15px; -fx-border-radius: 10px;">
+        <stylesheets>
+            <URL value="@../../Style/patient/accueilRDV.css" />
+        </stylesheets>
+
+        <Button fx:id="accueilButton" onAction="#consulterProfil" styleClass="sidebar-button" text="Profil" />
+        <Button onAction="#consulterOrdonnances" styleClass="sidebar-button" text="Mes Ordonnances" />
+        <Button onAction="#mesRDV" styleClass="sidebar-button" text="Mes RendezVous" />
+        <Button onAction="#consulterPharmacies" styleClass="sidebar-button" text="Consulter Pharmacies" />
+        <Button onAction="#demandeRendezVous" styleClass="sidebar-button" text="Demande RDV" />
+        <Button onAction="#logout" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;" text="Déconnexion" />
+    </VBox>
 
 </AnchorPane>

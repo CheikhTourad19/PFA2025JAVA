@@ -62,14 +62,7 @@ public class DemanderdvController {
         //serviceCol.setCellValueFactory(new PropertyValueFactory<>("service")); // Ensure "specialite" matches Medecin class attribute
         //serviceCol.setCellValueFactory(cellData -> cellData.getValue().getService().asObject());
     }
-
-
-    @FXML
-
-    public void consulterProfil(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/profile-view.fxml", "Profil", false);
-    }
+    
     @FXML
     private ComboBox<String> specialtyComboBox;
 
@@ -135,6 +128,14 @@ public class DemanderdvController {
         confirmation.setContentText("Votre demande de rendez-vous a été envoyée !");
         confirmation.showAndWait();
     }
+    public void consulterProfil(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/patient/profile-view.fxml", "Profil", false);
+    }
+    public void mesRDV(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/patient/mesRDV-view.fxml", "Profil", false);
+    }
 
     public void consulterOrdonnances(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
@@ -145,15 +146,12 @@ public class DemanderdvController {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/patient/demanderdv-view.fxml", "Rendez-vous", false);
     }
-    public void mesRDV(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/mesRDV-view.fxml", "Rendez-vous", false);
-    }
 
     public void consulterPharmacies(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/patient/pharmacie-view.fxml", "Pharmacies", false);
     }
+
     public void logout(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "Login", false);

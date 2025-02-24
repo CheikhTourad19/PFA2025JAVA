@@ -7,7 +7,7 @@ public class RendezVous {
     private String statut;
     private String medecinNom;
 
-    public RendezVous(int id, int medecinId, int patientId, String statut, String medecinNom) {
+    public RendezVous(int id, int medecinId, int patientId, String statut) {
         this.id = id;
         this.medecinId = medecinId;
         this.patientId = patientId;

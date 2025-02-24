@@ -2,8 +2,10 @@ package pfa.java.pfa2025java.controllers.patient;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -99,5 +101,36 @@ public class MesRDVController {
     private void loadRDVList() {
         // Charger les rendez-vous depuis la base de données et les afficher dans la table
     }
+    public void consulterProfil(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/patient/profile-view.fxml", "Profil", false);
+    }
+    public void mesRDV(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/patient/mesRDV-view.fxml", "Profil", false);
+    }
+
+    public void consulterOrdonnances(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/patient/ordonnance-view.fxml", "Ordonnances", false);
+    }
+
+    public void demandeRendezVous(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/patient/demanderdv-view.fxml", "Rendez-vous", false);
+    }
+
+    public void consulterPharmacies(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/patient/pharmacie-view.fxml", "Pharmacies", false);
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "Login", false);
+        UserSession.logout();
+    }
 }
+
+
 

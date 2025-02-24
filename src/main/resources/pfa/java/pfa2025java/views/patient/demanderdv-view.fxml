@@ -29,18 +29,13 @@
                 </font>
             </Text>
 
-            <Button fx:id="accueilButton" onAction="#consulterProfil" text="Profil"
-                    styleClass="sidebar-button"/>
-            <Button onAction="#consulterOrdonnances" text="Mes Ordonnances"
-                    styleClass="sidebar-button"/>
-            <Button onAction="#mesRDV" text="Mes RendezVous"
-                    styleClass="sidebar-button" />
-            <Button onAction="#consulterPharmacies" text="Consulter Pharmacies"
-                    styleClass="sidebar-button"/>
-            <Button onAction="#demandeRendezVous" text="Demande RDV"
-                    styleClass="sidebar-button"/>
-            <Button onAction="#logout" text="Déconnexion"
-                    style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;" />
+            <Button fx:id="accueilButton" onAction="#consulterProfil" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Profil" />
+            <Button onAction="#consulterOrdonnances" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Mes Ordonnance" />
+            <Button onAction="#mesRDV" style=" -fx-cursor: hand; -fx-background-color: #27AE60; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Mes RDV" />
+            <Button onAction="#consulterPharmacies" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Consulter Pharmacies" />
+            <Button onAction="#demandeRendezVous" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Demande RDV" />
+
+            <Button onAction="#logout" style=" -fx-cursor: hand; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Déconnexion" />
         </VBox>
 
         <!-- Contenu principal -->
