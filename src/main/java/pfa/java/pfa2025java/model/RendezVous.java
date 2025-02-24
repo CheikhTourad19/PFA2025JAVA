@@ -6,13 +6,15 @@ public class RendezVous {
     private int patientId;
     private String statut;
     private String medecinNom;
+    private String date;
 
-    public RendezVous(int id, int medecinId, int patientId, String statut, String medecinNom) {
+    public RendezVous(int id, int medecinId, int patientId, String statut, String medecinNom, String date) {
         this.id = id;
         this.medecinId = medecinId;
         this.patientId = patientId;
         this.statut = statut;
         this.medecinNom = medecinNom;
+        this.date = date;
     }
 
     public int getId() {

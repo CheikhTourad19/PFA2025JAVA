@@ -89,20 +89,28 @@ public class OrdonnanceController {
 
     }
     public void consulterPharmacies(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent,"views/patient/accueil-view.fxml","Pharmacie",false);
     }
 
     public void demandeRendezVous(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent,"views/patient/demanderdv-view.fxml","demande",false);
     }
 
     public void logout(ActionEvent actionEvent) {
+        UserSession.logout();
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent,"views/hello-view.fxml","Accueil",false);
     }
 
     public void gotoaccueil(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent,"views/patient/accueil-view.fxml","Accueil",false);
+        swtichScene.loadScene(actionEvent,"views/patient/pharmacie-view.fxml","Accueil",false);
     }
 
     public void gotprofil(ActionEvent actionEvent) {
-
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent,"views/patient/profile-view.fxml","profile",false);
     }
 }
