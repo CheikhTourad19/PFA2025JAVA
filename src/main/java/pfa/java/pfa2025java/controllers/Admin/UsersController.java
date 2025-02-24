@@ -21,6 +21,7 @@ import pfa.java.pfa2025java.model.User;
 import pfa.java.pfa2025java.model.UserDAO;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class UsersController {
@@ -50,11 +51,17 @@ public class UsersController {
 
         // Add buttons in the actions column
         actionsColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button editButton = new Button("Modifier");
+            private final Button editButton = new Button("Initialiser MDP");
             private final Button deleteButton = new Button("Supprimer");
 
             {
-                editButton.setOnAction(event -> handleEditUser(getTableView().getItems().get(getIndex())));
+                editButton.setOnAction(event -> {
+                    try {
+                        handleEditUser(getTableView().getItems().get(getIndex()));
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
                 deleteButton.setOnAction(event -> handleDeleteUser(getTableView().getItems().get(getIndex())));
             }
 
@@ -79,9 +86,14 @@ public class UsersController {
 
 
 
-    private void handleEditUser(User user) {
+    private void handleEditUser(User user) throws SQLException {
+        UserDAO.changePassword("12345678",user.getId());
         System.out.println("Modifier utilisateur: " + user.getNom());
         // Open Edit User form (implement later)
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Password Renitialisee");
+        alert.setHeaderText(null);
+        alert.show();
     }
 
 

@@ -78,7 +78,7 @@ public class AccueilController {
     public void updateProfile() throws SQLException {
         if (newpasswordField.getText().equals(newpasswordFieldConfirmed.getText()) && !newpasswordField.getText().isEmpty() && newpasswordField.getText().length()>=8) {
             if (PasswordUtils.checkPassword(oldpasswordField.getText(),UserSession.getPassword())) {
-                if (UserDAO.changePassword(newpasswordField.getText())){
+                if (UserDAO.changePassword(newpasswordField.getText(),UserSession.getId())){
                     UserSession.setPassword(PasswordUtils.hashPassword(newpasswordField.getText()));
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Succes");

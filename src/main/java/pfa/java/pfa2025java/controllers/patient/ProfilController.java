@@ -59,7 +59,7 @@ public class ProfilController {
         Alert alert;
         if (!oldpasswordField.getText().isEmpty() && PasswordUtils.checkPassword(oldpasswordField.getText(), UserSession.getPassword())) {
             if (newpasswordField.getText().equals(newpasswordFieldConfirmed.getText()) && !newpasswordField.getText().isEmpty() && newpasswordField.getText().length() >= 8) {
-                boolean updatedPass = UserDAO.changePassword(newpasswordField.getText());
+                boolean updatedPass = UserDAO.changePassword(newpasswordField.getText() , UserSession.getId());
                 if (updatedPass) {
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("mot de passe a bien ete mise a jour");

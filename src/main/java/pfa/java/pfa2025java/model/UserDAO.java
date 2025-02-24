@@ -69,11 +69,11 @@ public class UserDAO {
 
 
 
-    public static boolean changePassword(String newPassword) throws SQLException {
+    public static boolean changePassword(String newPassword,int id) throws SQLException {
         String sql = "UPDATE user SET password = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)){
             stmt.setString(1, PasswordUtils.hashPassword(newPassword));
-            stmt.setInt(2, UserSession.getId());
+            stmt.setInt(2, id);
             return stmt.executeUpdate() > 0;
         }
 
