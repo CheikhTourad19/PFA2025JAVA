@@ -1,38 +1,46 @@
-package pfa.java.pfa2025java.controllers;
+package pfa.java.pfa2025java.controllers.Admin;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
-import pfa.java.pfa2025java.SwtichScene;
+import javafx.stage.Stage;
+import pfa.java.pfa2025java.model.PharmacieDAO;
+import pfa.java.pfa2025java.model.User;
 import pfa.java.pfa2025java.model.UserDAO;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import static pfa.java.pfa2025java.controllers.InsrciptionController.isValidEmail;
 
-public class InsrciptionController {
-    public PasswordField passwordField;
-    public PasswordField confirmPasswordField;
-    public TextField emailField;
-    public Button signupButton;
+public class AddPharmacienController {
     public TextField prenom;
     public TextField nom;
-    public Text message;
-    public Button loginButton;
+    public TextField emailField;
     public TextField numero;
+    public PasswordField passwordField;
+    public PasswordField confirmPasswordField;
+    public Button signupButton;
+    public Text message;
 
-    public void initialize() {
-    }
+
     public void saveUser() {
-        boolean log = UserDAO.registerUser(nom.getText(), emailField.getText(), passwordField.getText(), prenom.getText(), numero.getText(),"patient");
+        boolean log = UserDAO.registerUser(nom.getText(), emailField.getText(), passwordField.getText(), prenom.getText(), numero.getText(),"pharmacie");
         if (log) {
-            Alert message = new Alert(Alert.AlertType.INFORMATION);
-            message.setHeaderText("Succes ");
-            message.setContentText("Votre Compte a ete cree avec succes");
-            message.showAndWait();
-            if (message.getResult() == ButtonType.OK) {
-                SwtichScene swtichScene = new SwtichScene();
-                swtichScene.loadScene(nom, "views/hello-view.fxml", "login", false);
-            }
+            User pharmacie=UserDAO.getUserByEmail(emailField.getText());
+            if (PharmacieDAO.addPharmacie(pharmacie)){
+                Alert message = new Alert(Alert.AlertType.INFORMATION);
+                message.setHeaderText("Succes ");
+                message.setContentText("Votre Compte a ete cree avec succes");
+                message.showAndWait();
+                if (message.getResult() == ButtonType.OK) {
+                    Stage stage = (Stage) signupButton.getScene().getWindow();
+                    stage.close();
+                }
+
+            }else  {
+                Alert message = new Alert(Alert.AlertType.ERROR);
+                message.setHeaderText("Erreur ");
+                message.setContentText("Votre Compte n'a pas ete cree");
+                message.showAndWait();            }
+
         } else {
             Alert message = new Alert(Alert.AlertType.ERROR);
             message.setHeaderText("Erreur ");
@@ -41,10 +49,12 @@ public class InsrciptionController {
         }
 
 
+
+
     }
     public void handleSignup(ActionEvent actionEvent) {
         if (nom.getText().isEmpty() || prenom.getText().isEmpty() || emailField.getText().isEmpty() || passwordField.getText().isEmpty() ||
-                confirmPasswordField.getText().isEmpty()) {
+                confirmPasswordField.getText().isEmpty() ) {
             message.setText("Veuillez remplir tous les champs");
         } else if (passwordField.getText().equals(confirmPasswordField.getText())) {
             if (passwordField.getText().length() < 8) {
@@ -65,18 +75,5 @@ public class InsrciptionController {
             }
         } else
             message.setText("Les mots de passe ne correspondent pas");
-    }
-
-    public static boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-
-
-    public void login(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "Login", false);
     }
 }

@@ -64,14 +64,14 @@ public class MedecinDAO {
     return medecins;
     }
 
-    public static void addMedecin(Medecin m) {
-        UserDAO.registerUser(m.getNom(), m.getPrenom(), m.getEmail(), m.getPassword(), m.getRole());
-        int idMedecin = Objects.requireNonNull(UserDAO.getUserByEmail(m.getEmail())).getId();
-        String sqlMedecin = "INSERT INTO medecin (service) VALUES (?) WHERE medecin_id = ?";
+    public static boolean addMedecin(User m,String service) {
+        int id = UserDAO.getUserByEmail(m.getEmail()).getId();
+        String sqlMedecin = "INSERT INTO medecin (service,medecin_id) VALUES (?,?) ";
         try (PreparedStatement stmtMedecin = connection.prepareStatement(sqlMedecin)) {
-            stmtMedecin.setString(1, m.getService());
-            stmtMedecin.setInt(2, idMedecin);
-            stmtMedecin.executeQuery();
+            stmtMedecin.setString(1, service);
+            stmtMedecin.setInt(2, id);
+            stmtMedecin.executeUpdate();
+            return true;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

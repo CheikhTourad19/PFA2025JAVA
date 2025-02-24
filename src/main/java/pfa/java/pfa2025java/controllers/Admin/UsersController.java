@@ -99,8 +99,14 @@ public class UsersController {
     }
 
 
-    public void handleAddUser(ActionEvent event) throws IOException {
+    public void handleAddUser(ActionEvent event) {
         SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(root,"/pfa/java/pfa2025java/views/Admin/addUser.fxml","ajouter utilisateur",false);
+        swtichScene.loadScene((Node) null,"views/Admin/addMedecin.fxml","ajouter utilisateur",true);
+    }
+
+    public void handleAddPharmacie(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene((Node) null,"views/Admin/addPharmacie.fxml","ajouter utilisateur",true);
+
     }
 }

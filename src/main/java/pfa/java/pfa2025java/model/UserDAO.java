@@ -48,15 +48,16 @@ public class UserDAO {
         return user != null && PasswordUtils.checkPassword(password, user.getPassword());
     }
 
-    public static boolean registerUser(String nom, String email, String password, String prenom, String numero) {
+    public static boolean registerUser(String nom, String email, String password, String prenom, String numero , String role) {
         String hashedPassword = PasswordUtils.hashPassword(password);  // Hashage du mot de passe
-        String sql = "INSERT INTO user (nom, email, password,prenom,numero) VALUES (?, ?, ?,?,?)";
+        String sql = "INSERT INTO user (nom, email, password,prenom,numero,role) VALUES (?, ?, ?,?,?,?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, nom);
             stmt.setString(2, email);
             stmt.setString(3, hashedPassword);
             stmt.setString(4, prenom);
             stmt.setString(5, numero);
+            stmt.setString(6, role);
 
             stmt.executeUpdate();
             return true;
@@ -65,6 +66,9 @@ public class UserDAO {
         }
         return false;
     }
+
+
+
     public static boolean changePassword(String newPassword) throws SQLException {
         String sql = "UPDATE user SET password = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)){

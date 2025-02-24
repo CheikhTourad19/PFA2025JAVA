@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" prefHeight="1024.0" prefWidth="720.0" spacing="10" styleClass="root" stylesheets="@../../Style/Insrciption.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.Admin.AddMedecinController">
+
+
+
+    <Label styleClass="title" text="Ajouter utilisateur" />
+    <TextField fx:id="prenom" promptText="prenom" styleClass="input-field" />
+    <TextField fx:id="nom" promptText="nom" styleClass="input-field" />
+    <TextField fx:id="emailField" promptText="E-mail" styleClass="input-field" />
+    <TextField fx:id="numero" promptText="numero" styleClass="input-field" />
+   <TextField fx:id="service" layoutX="30.0" layoutY="509.0" promptText="service" styleClass="input-field" />
+    <PasswordField fx:id="passwordField" promptText="Mot de passe" styleClass="input-field" />
+    <PasswordField fx:id="confirmPasswordField" promptText="Confirmer le mot de passe" styleClass="input-field" />
+
+    <Button fx:id="signupButton" onAction="#handleSignup" styleClass="signup-button" text="S'inscrire" />
+    <Text fx:id="message" fill="#f80e0e" />
+</VBox>

@@ -21,7 +21,7 @@ public class MedecinController {
         if (selectedRdv != null) {
             // Met à jour le statut du rendez-vous à "Accepté"
             //?????
-            MedecinDAO.updateRDVStatus(selectedRdv.getId(), "Accepté");
+            //MedecinDAO.updateRDVStatus(selectedRdv.getId(), "Accepté");
 
             // Affiche une confirmation que le rendez-vous a été accepté
             Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
