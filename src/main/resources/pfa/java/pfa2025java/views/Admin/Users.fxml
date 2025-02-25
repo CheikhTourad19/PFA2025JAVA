@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.Admin.UsersController">
+<VBox alignment="CENTER" spacing="10" stylesheets="@../../Style/admin/Users.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.Admin.UsersController">
     <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="👥 Gestion Utilisateurs" />
     <TableView fx:id="usersTable" prefHeight="400">
         <columns>
-            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
             <TableColumn fx:id="nomColumn" text="Nom" />
-            <TableColumn fx:id="prenomColumn" text="Prénom" />
-            <TableColumn fx:id="emailColumn" text="Email" />
-            <TableColumn fx:id="roleColumn" text="Role" />
-            <TableColumn fx:id="actionsColumn" text="Actions" />
+            <TableColumn fx:id="prenomColumn" prefWidth="100.0" text="Prénom" />
+            <TableColumn fx:id="emailColumn" prefWidth="250.0" text="Email" />
+            <TableColumn fx:id="roleColumn" prefWidth="90.0" text="Role" />
+            <TableColumn fx:id="actionsColumn" prefWidth="250.0" text="Actions" />
         </columns>
     </TableView>
 
@@ -25,5 +25,5 @@
         <Button onAction="#handleAddUser" text="Ajouter Medecin" />
       <Button layoutX="10.0" layoutY="10.0" onAction="#handleAddPharmacie" text="Ajouter pharmacie" />
     </HBox>
-   <AnchorPane fx:id="root" prefHeight="200.0" prefWidth="200.0" />
+   <AnchorPane fx:id="root" />
 </VBox>

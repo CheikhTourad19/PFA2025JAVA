@@ -1,6 +1,6 @@
 package pfa.java.pfa2025java.constant;
 
-public class MessageRequet {
+public  class MessageRequet {
     public static  String  saveMsg= "INSERT INTO messages (sender_id, receiver_id, content, sent_at) VALUES (?, ?, ?, ?)";
     public static  String  getMsgBetweenUsers= "SELECT * FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY sent_at ASC";
     public static  String  getUsersWithLastMsg= "SELECT u.id AS user_id, u.prenom, m.content, m.sent_at, m.vu " +

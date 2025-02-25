@@ -8,17 +8,18 @@
 <BorderPane prefHeight="600.0" prefWidth="800.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pfa.java.pfa2025java.controllers.Admin.DashboardController">
+            fx:controller="pfa.java.pfa2025java.controllers.Admin.DashboardController"
+            >
 
     <!-- Sidebar -->
     <left>
-        <VBox prefWidth="200.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;">
-            <Label fx:id="UserNameLabel" style="-fx-text-fill: white; -fx-font-size: 16px;" />
-            <Button text="Dashboard" onAction="#gotodashboard" />
-            <Button text="Utilisateurs" onAction="#gotousers" />
-            <Button text="Rapports" onAction="#gotorapports" />
-            <Button text="Paramètres" onAction="#gotoparametre" />
-            <Button text="Déconnexion" onAction="#gotodeconnexion" style="-fx-background-color: #E74C3C; -fx-text-fill: white;" />
+        <VBox prefWidth="200.0" spacing="10" styleClass="sidebar" stylesheets="@../../Style/admin/Sidebar.css">
+            <Label fx:id="UserNameLabel"  id="userLabel" style="-fx-text-fill: white; -fx-font-size: 16px;" />
+            <Button styleClass="sidebar-button" text="🏠Dashboard" onAction="#gotodashboard" />
+            <Button styleClass="sidebar-button" text="👥Utilisateurs" onAction="#gotousers" />
+            <Button styleClass="sidebar-button" text="📊Rapports" onAction="#gotorapports" />
+            <Button styleClass="sidebar-button" text="⚙️Paramètres" onAction="#gotoparametre" />
+            <Button id="logoutButton" text="🚪Déconnexion" onAction="#gotodeconnexion"  />
         </VBox>
     </left>
 

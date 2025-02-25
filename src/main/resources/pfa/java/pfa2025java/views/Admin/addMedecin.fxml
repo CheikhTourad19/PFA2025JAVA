@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="1024.0" prefWidth="720.0" spacing="10" styleClass="root" stylesheets="@../../Style/Insrciption.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.Admin.AddMedecinController">
+<VBox alignment="CENTER" spacing="10" styleClass="root" stylesheets="@../../Style/Insrciption.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.Admin.AddMedecinController">
 
 
 
-    <Label styleClass="title" text="Ajouter utilisateur" />
+    <Label styleClass="title" text="Ajouter Médecin" />
     <TextField fx:id="prenom" promptText="prenom" styleClass="input-field" />
     <TextField fx:id="nom" promptText="nom" styleClass="input-field" />
     <TextField fx:id="emailField" promptText="E-mail" styleClass="input-field" />
