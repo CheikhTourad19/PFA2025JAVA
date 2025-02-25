@@ -76,16 +76,10 @@ public class OrdonnanceDAO {
         return null;
     }
 
-    public static boolean creerOrdonnanceParMedecin(int patientId, String dateCreation, List<Integer> medicamentIds) {
-        int medecinId = UserSession.getId(); // Récupération de l'ID du médecin connecté
-        return creerOrdonnance(medecinId, patientId, dateCreation, medicamentIds);
-    }
 
-
-    // Méthode privée qui effectue l'insertion en base de données
-    private static boolean creerOrdonnance(int createurId, int patientId, String dateCreation, List<Integer> medicamentIds) {
+    public static boolean creerOrdonnance(int createurId, int patientId, String dateCreation, List<Medicament> medicaments) {
         String insertOrdonnanceSQL = "INSERT INTO ordonnance (medecin_id, patient_id, date_creation) VALUES (?, ?, ?)";
-        String insertOrdonnanceMedicamentSQL = "INSERT INTO ordonnance_medicament (ordonnance_id, medicament_id) VALUES (?, ?)";
+        String insertOrdonnanceMedicamentSQL = "INSERT INTO ordonnance_medicament (ordonnance_id, medicament_id, quantite, instructions) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement stmtOrdonnance = connection.prepareStatement(insertOrdonnanceSQL, Statement.RETURN_GENERATED_KEYS)) {
             stmtOrdonnance.setInt(1, createurId);
@@ -102,11 +96,13 @@ public class OrdonnanceDAO {
             if (generatedKeys.next()) {
                 int ordonnanceId = generatedKeys.getInt(1);
 
-                // Insérer les médicaments associés à l'ordonnance
+                // Insérer les médicaments associés à l'ordonnance avec quantité et instructions
                 try (PreparedStatement stmtMedicament = connection.prepareStatement(insertOrdonnanceMedicamentSQL)) {
-                    for (int medicamentId : medicamentIds) {
+                    for (Medicament medicament : medicaments) {
                         stmtMedicament.setInt(1, ordonnanceId);
-                        stmtMedicament.setInt(2, medicamentId);
+                        stmtMedicament.setInt(2, medicament.getId());
+                        stmtMedicament.setInt(3, medicament.getQuantite());
+                        stmtMedicament.setString(4, medicament.getInstruction());
                         stmtMedicament.addBatch(); // Exécuter en batch pour optimiser
                     }
                     stmtMedicament.executeBatch();
