@@ -18,6 +18,7 @@
             <Button text="Utilisateurs" onAction="#gotousers" />
             <Button text="Rapports" onAction="#gotorapports" />
             <Button text="Paramètres" onAction="#gotoparametre" />
+            <Button text="Chatbot" onAction="#chatbot" />
             <Button text="Déconnexion" onAction="#gotodeconnexion" style="-fx-background-color: #E74C3C; -fx-text-fill: white;" />
         </VBox>
     </left>

@@ -57,4 +57,9 @@ public class DashboardController {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent,"/pfa/java/pfa2025java/views/hello-view.fxml","connexion",false);
     }
+
+    public void chatbot(ActionEvent actionEvent) {
+        loadView("/pfa/java/pfa2025java/views/chatbot.fxml");
+    }
+
 }

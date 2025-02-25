@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+
+    <!-- Include the chatbot script dynamically -->
+    <script>
+        function loadChatbot() {
+            console.log("🔄 Loading chatbot...");
+            let script = document.createElement("script");
+            script.src = "https://www.gptbots.ai/widget/wexydl6muj0jgmn7y7oulfw/chat.js";
+            script.async = true;
+
+            script.onload = function () {
+                console.log("✅ Chatbot script loaded successfully!");
+                notifyJavaFX("Chatbot Loaded"); // Notify JavaFX
+            };
+
+            script.onerror = function () {
+                console.error("❌ Failed to load chatbot script.");
+                notifyJavaFX("Chatbot Load Failed");
+            };
+
+            document.body.appendChild(script);
+        }
+
+        function notifyJavaFX(message) {
+            if (typeof java !== "undefined" && java.notifyChatbotStatus) {
+                java.notifyChatbotStatus(message);
+            } else {
+                console.warn("⚠️ JavaFX bridge not available.");
+            }
+        }
+
+        window.onload = function () {
+            loadChatbot();
+        };
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        iframe {
+            width: 400px;
+            height: 600px;
+            border: none;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 9999;
+            display: block !important;
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- Chatbot Container -->
+<div id="chatbot-container"></div>
+
+</body>
+</html>
