@@ -7,8 +7,8 @@ import javafx.scene.control.*;
 
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.Medicament;
-import pfa.java.pfa2025java.model.MedicamentDAO;
-import pfa.java.pfa2025java.model.OrdonnanceDAO;
+import pfa.java.pfa2025java.dao.MedicamentDAO;
+import pfa.java.pfa2025java.dao.OrdonnanceDAO;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
