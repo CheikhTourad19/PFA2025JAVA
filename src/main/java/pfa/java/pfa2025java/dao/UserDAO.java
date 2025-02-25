@@ -1,6 +1,8 @@
-package pfa.java.pfa2025java.model;
+package pfa.java.pfa2025java.dao;
 
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.model.PasswordUtils;
+import pfa.java.pfa2025java.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

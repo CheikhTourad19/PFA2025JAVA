@@ -1,4 +1,7 @@
-package pfa.java.pfa2025java.model;
+package pfa.java.pfa2025java.dao;
+
+import pfa.java.pfa2025java.model.Medecin;
+import pfa.java.pfa2025java.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class MedecinDAO {
     private static final Connection connection;
@@ -64,7 +66,7 @@ public class MedecinDAO {
     return medecins;
     }
 
-    public static boolean addMedecin(User m,String service) {
+    public static boolean addMedecin(User m, String service) {
         int id = UserDAO.getUserByEmail(m.getEmail()).getId();
         String sqlMedecin = "INSERT INTO medecin (service,medecin_id) VALUES (?,?) ";
         try (PreparedStatement stmtMedecin = connection.prepareStatement(sqlMedecin)) {

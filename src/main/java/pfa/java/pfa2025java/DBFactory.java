@@ -1,7 +1,6 @@
 package pfa.java.pfa2025java;
 
 import com.github.javafaker.Faker;
-import pfa.java.pfa2025java.model.MedicamentDAO;
 
 public class DBFactory {
     private static  Faker faker = new Faker();
