@@ -173,30 +173,32 @@ public class MedicamentDAO {
         List<Medicament> medicaments = new ArrayList<>();
         String sql;
 
-        // Build the SQL query based on the role
         if ("pharmacie".equals(UserSession.getRole())) {
-            sql = "SELECT m.id, m.nom, m.description, m.prix, om.instructions, om.quantite, s.quantite AS stock " +
-                    "FROM medicament m " +
-                    "JOIN ordonnance_medicament om ON m.id = om.medicament_id " +
-                    "JOIN stock s ON m.id = s.medicament_id " +
-                    "WHERE om.ordonnance_id = ? AND s.pharmacie_id = ?";
+            sql = """
+            SELECT m.id, m.nom, m.description, m.prix, om.instructions, om.quantite, 
+                   COALESCE(s.quantite, 0) AS stock
+            FROM medicament m
+            JOIN ordonnance_medicament om ON m.id = om.medicament_id
+            LEFT JOIN stock s ON m.id = s.medicament_id AND s.pharmacie_id = ?
+            WHERE om.ordonnance_id = ?
+        """;
         } else {
-            sql = "SELECT m.id, m.nom, m.description, m.prix, om.instructions, om.quantite " +
-                    "FROM medicament m " +
-                    "JOIN ordonnance_medicament om ON m.id = om.medicament_id " +
-                    "WHERE om.ordonnance_id = ?";
+            sql = """
+            SELECT m.id, m.nom, m.description, m.prix, om.instructions, om.quantite, 0 AS stock
+            FROM medicament m
+            JOIN ordonnance_medicament om ON m.id = om.medicament_id
+            WHERE om.ordonnance_id = ?
+        """;
         }
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            // Set the first parameter (ordonnanceId)
-            stmt.setInt(1, ordonnanceId);
-
-            // If the role is "pharmacie", set the second parameter (pharmacie_id)
             if ("pharmacie".equals(UserSession.getRole())) {
-                stmt.setInt(2, UserSession.getId());
+                stmt.setInt(1, UserSession.getId());
+                stmt.setInt(2, ordonnanceId);
+            } else {
+                stmt.setInt(1, ordonnanceId);
             }
 
-            // Execute the query
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Medicament medicament = new Medicament(
@@ -204,7 +206,7 @@ public class MedicamentDAO {
                         rs.getString("nom"),
                         rs.getString("description"),
                         rs.getInt("prix"),
-                        "pharmacie".equals(UserSession.getRole()) ? rs.getInt("stock") : 0,  // Set stock only for pharmacies
+                        rs.getInt("stock"), // La colonne stock est toujours présente
                         rs.getString("instructions"),
                         rs.getInt("quantite")
                 );
@@ -216,6 +218,8 @@ public class MedicamentDAO {
 
         return medicaments;
     }
+
+
 
 }
 

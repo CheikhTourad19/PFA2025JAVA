@@ -80,10 +80,10 @@ public class HelloController {
                             case "pharmacie" -> swtichScene.loadScene(event, "views/pharmacie/accueil-view.fxml", "Pharmacie", false);
                             case "medecin" -> {
 
-                                swtichScene.loadScene(event, "views/medicin/sidebar-view.fxml", "Médecin", false);
+                                swtichScene.loadScene(event, "views/Medecin/sidebar-view.fxml", "Médecin", false);
                             }
                             case "patient" ->
-                                    swtichScene.loadScene(event, "views/patient/mesRDV.fxml", "Mes RDV", false);
+                                    swtichScene.loadScene(event, "views/patient/accueil-view.fxml", "Mes RDV", false);
                             case "admin" -> swtichScene.loadScene(event, "views/Admin/dashboard.fxml", "Admin", false);
                             default -> {
                                 loginresult.setText("Rôle inconnu !");

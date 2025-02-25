@@ -59,10 +59,7 @@ public class AccueilController {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/patient/profile-view.fxml", "Profil", false);
     }
-    public void mesRDV(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/mesRDV-view.fxml", "Profil", false);
-    }
+
 
     public void consulterOrdonnances(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();

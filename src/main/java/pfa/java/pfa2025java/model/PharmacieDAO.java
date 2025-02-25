@@ -20,6 +20,18 @@ public class PharmacieDAO {
             e.printStackTrace();
         }
     }
+    public static boolean addPharmacie(User m) {
+        int id = UserDAO.getUserByEmail(m.getEmail()).getId();
+        String sqlMedecin = "INSERT INTO pharmacie (pharmacie_id,cin) VALUES (?,?) ";
+        try (PreparedStatement stmtMedecin = connection.prepareStatement(sqlMedecin)) {
+            stmtMedecin.setInt(1, id);
+            stmtMedecin.setString(2, "gg");
+            stmtMedecin.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static boolean UpdatePharmacieAdresse(String rue, String ville, String quartier) {
         String checkSql = "SELECT adresse_id FROM pharmacie WHERE pharmacie_id = ?";

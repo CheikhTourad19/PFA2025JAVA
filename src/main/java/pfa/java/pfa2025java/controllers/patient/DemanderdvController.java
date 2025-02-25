@@ -36,16 +36,16 @@ public class DemanderdvController {
 
     private final ObservableList<Medecin> medecinList = FXCollections.observableArrayList();
 
-    public void initialize() throws SQLException {
-        mednameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        serviceCol.setCellValueFactory(new PropertyValueFactory<>("service"));
-
-        loadMedecins();
-        loadSpecialties();
-
-        // Activer la recherche dynamique
-        setupSearchFilter();
-    }
+//    public void initialize() throws SQLException {
+//        mednameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+//        serviceCol.setCellValueFactory(new PropertyValueFactory<>("service"));
+//
+//        loadMedecins();
+//        loadSpecialties();
+//
+//        // Activer la recherche dynamique
+//        setupSearchFilter();
+//    }
 
 
     private void loadMedecins() throws SQLException {
@@ -62,16 +62,23 @@ public class DemanderdvController {
         //serviceCol.setCellValueFactory(new PropertyValueFactory<>("service")); // Ensure "specialite" matches Medecin class attribute
         //serviceCol.setCellValueFactory(cellData -> cellData.getValue().getService().asObject());
     }
-    
+
+
+    @FXML
+
+    public void consulterProfil(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/patient/profile-view.fxml", "Profil", false);
+    }
     @FXML
     private ComboBox<String> specialtyComboBox;
 
-    private void loadSpecialties() {
-        specialtyComboBox.getItems().clear(); // Nettoyer le ComboBox avant de charger les nouvelles valeurs
-
-        // Récupérer les spécialités depuis la base de données via MedecinDAO
-        specialtyComboBox.getItems().addAll(MedecinDAO.getAllSpecialties());
-    }
+//    private void loadSpecialties() {
+//        specialtyComboBox.getItems().clear(); // Nettoyer le ComboBox avant de charger les nouvelles valeurs
+//
+//        // Récupérer les spécialités depuis la base de données via MedecinDAO
+//        specialtyComboBox.getItems().addAll(MedecinDAO.getAllSpecialties());
+//    }
 
 
     private void setupSearchFilter() {
@@ -101,41 +108,33 @@ public class DemanderdvController {
         MedecinTable.setItems(sortedData);
     }
 
-    @FXML
-    private void handleMedecinSelection() {
-        Medecin selectedMedecin = (Medecin) MedecinTable.getSelectionModel().getSelectedItem();
-
-        if (selectedMedecin != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Prendre un rendez-vous");
-            alert.setHeaderText(null);
-            alert.setContentText("Voulez-vous prendre un rendez-vous avec " + selectedMedecin.getNom() + " ?");
-
-            // Ajouter le bouton OK
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                sendRDVRequest(selectedMedecin.getId());
-            }
-        }
-    }
-    private void sendRDVRequest(int medecinId) {
-        int patientId = UserSession.getCurrentUser().getId(); // Récupérer l'ID du patient connecté
-        MedecinDAO.sendRDVRequest(medecinId, patientId);
-
-        Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
-        confirmation.setTitle("Demande envoyée");
-        confirmation.setHeaderText(null);
-        confirmation.setContentText("Votre demande de rendez-vous a été envoyée !");
-        confirmation.showAndWait();
-    }
-    public void consulterProfil(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/profile-view.fxml", "Profil", false);
-    }
-    public void mesRDV(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/mesRDV-view.fxml", "Profil", false);
-    }
+//    @FXML
+//    private void handleMedecinSelection() {
+//        Medecin selectedMedecin = (Medecin) MedecinTable.getSelectionModel().getSelectedItem();
+//
+//        if (selectedMedecin != null) {
+//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//            alert.setTitle("Prendre un rendez-vous");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Voulez-vous prendre un rendez-vous avec " + selectedMedecin.getNom() + " ?");
+//
+//            // Ajouter le bouton OK
+//            Optional<ButtonType> result = alert.showAndWait();
+//            if (result.isPresent() && result.get() == ButtonType.OK) {
+//                sendRDVRequest(selectedMedecin.getId());
+//            }
+//        }
+//    }
+//    private void sendRDVRequest(int medecinId) {
+//        int patientId = UserSession.getCurrentUser().getId(); // Récupérer l'ID du patient connecté
+//        MedecinDAO.sendRDVRequest(medecinId, patientId);
+//
+//        Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+//        confirmation.setTitle("Demande envoyée");
+//        confirmation.setHeaderText(null);
+//        confirmation.setContentText("Votre demande de rendez-vous a été envoyée !");
+//        confirmation.showAndWait();
+//    }
 
     public void consulterOrdonnances(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
@@ -146,12 +145,15 @@ public class DemanderdvController {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/patient/demanderdv-view.fxml", "Rendez-vous", false);
     }
+    public void mesRDV(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/patient/mesRDV-view.fxml", "Rendez-vous", false);
+    }
 
     public void consulterPharmacies(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/patient/pharmacie-view.fxml", "Pharmacies", false);
     }
-
     public void logout(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "Login", false);

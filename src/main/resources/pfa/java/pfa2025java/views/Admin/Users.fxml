@@ -2,8 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,16 +22,8 @@
     </TableView>
 
     <HBox spacing="10">
-      <MenuButton mnemonicParsing="false" text="selection">
-        <items>
-            <MenuItem mnemonicParsing="false" text="tous utilisateurs" />
-            <MenuItem mnemonicParsing="false" text="Medecin" />
-            <MenuItem mnemonicParsing="false" text="infermier(e)(s)" />
-            <MenuItem mnemonicParsing="false" text="pharmacies" />
-            <MenuItem mnemonicParsing="false" text="patients" />
-        </items>
-      </MenuButton>
-        <Button onAction="#handleAddUser" text="Ajouter Utilisateur" />
+        <Button onAction="#handleAddUser" text="Ajouter Medecin" />
+      <Button layoutX="10.0" layoutY="10.0" onAction="#handleAddPharmacie" text="Ajouter pharmacie" />
     </HBox>
    <AnchorPane fx:id="root" prefHeight="200.0" prefWidth="200.0" />
 </VBox>
