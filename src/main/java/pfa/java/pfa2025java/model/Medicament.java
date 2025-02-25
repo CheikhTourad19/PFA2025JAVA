@@ -88,6 +88,13 @@ public class Medicament {
         this.id.set(id);
     }
 
+    public void setQuantite(int Quantite) {
+        this.quantite.set(Quantite);
+    }
+
+    public void setInstruction(String instruction) {
+        this.instruction.set(instruction);
+    }
     public String getNom() {
         return nom.get();
     }

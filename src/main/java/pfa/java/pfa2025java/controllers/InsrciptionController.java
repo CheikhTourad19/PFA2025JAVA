@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
-import pfa.java.pfa2025java.model.UserDAO;
+import pfa.java.pfa2025java.dao.UserDAO;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

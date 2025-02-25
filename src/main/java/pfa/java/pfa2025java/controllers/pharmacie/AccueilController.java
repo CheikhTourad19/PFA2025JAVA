@@ -4,12 +4,13 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.dao.PharmacieDAO;
+import pfa.java.pfa2025java.dao.UserDAO;
 import pfa.java.pfa2025java.model.*;
 
 import java.sql.SQLException;

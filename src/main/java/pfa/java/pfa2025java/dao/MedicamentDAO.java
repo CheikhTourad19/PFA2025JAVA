@@ -1,6 +1,7 @@
-package pfa.java.pfa2025java.model;
+package pfa.java.pfa2025java.dao;
 
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.model.Medicament;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -211,6 +212,28 @@ public class MedicamentDAO {
                         rs.getInt("quantite")
                 );
                 medicaments.add(medicament);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return medicaments;
+    }
+
+    public static List<Medicament> getAllMedicaments() throws SQLException {
+        List<Medicament> medicaments = new ArrayList<>();
+        String sql = "SELECT * FROM medicament";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                medicaments.add(
+                        new Medicament(
+                                rs.getInt("id"),
+                                rs.getString("nom"),
+                                rs.getString("description"),
+                                rs.getInt("prix")
+                        )
+                );
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

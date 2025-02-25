@@ -17,7 +17,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.Medicament;
-import pfa.java.pfa2025java.model.OrdonnanceDAO;
+import pfa.java.pfa2025java.dao.OrdonnanceDAO;
 import pfa.java.pfa2025java.model.OrdonnanceDetails;
 
 import java.io.File;
