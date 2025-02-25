@@ -10,14 +10,16 @@ public class UserMessage {
     private String lastMessage;
     private LocalDateTime sentAt;
     private String timeAgo;
- public UserMessage() {}
-    public UserMessage(int userId, String username, String lastMessage, LocalDateTime sentAt) {
+    private boolean isSeen; // حالة المشاهدة
+
+
+    public UserMessage(int userId, String username, String lastMessage, LocalDateTime sentAt, boolean isSeen) {
         this.userId = userId;
         this.username = username;
         this.lastMessage = lastMessage;
         this.sentAt = sentAt;
+        this.isSeen = isSeen;
         this.timeAgo = calculateTimeAgo(sentAt);
-
     }
     private String calculateTimeAgo(LocalDateTime sentAt) {
         Duration duration = Duration.between(sentAt, LocalDateTime.now());
@@ -32,6 +34,13 @@ public class UserMessage {
         } else {
             return (seconds / 86400) + " day";
         }
+    }
+    public boolean isSeen() {
+        return isSeen;
+    }
+
+    public void setSeen(boolean seen) {
+        isSeen = seen;
     }
 
     public int getUserId() {

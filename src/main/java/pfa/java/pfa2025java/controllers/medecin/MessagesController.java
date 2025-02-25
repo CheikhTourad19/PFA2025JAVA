@@ -15,10 +15,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
-import pfa.java.pfa2025java.model.Message;
-import pfa.java.pfa2025java.model.MessageDAO;
-import pfa.java.pfa2025java.model.User;
-import pfa.java.pfa2025java.model.UserMessage;
+import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.model.*;
 
 import java.io.*;
 import java.net.Socket;
@@ -30,7 +28,7 @@ import java.util.Set;
 
 
 public class MessagesController {
-    private User user;
+
     private Set<String> displayedMessages = new HashSet<>();
     @FXML private TextField messageField;
     @FXML private VBox chatBox;
@@ -39,7 +37,7 @@ public class MessagesController {
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
-    private final int userId = user.getId();
+    private final int userId = UserSession.getId();
     private   int receiverId ;
     private MessageDAO messageDao = new MessageDAO();
     private LocalDateTime sent_at = LocalDateTime.now();
@@ -50,32 +48,43 @@ public class MessagesController {
 
     public void initialize() {
         try {
+
             setupNetworkConnection();
             loadPreviousMessages();
             startMessageUpdater();
             startMessageListener();
             loadUserList();
             setupSearchListener();
-            userList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue != null) {
-                    receiverId = newValue.getUserId();
-                    System.out.println("Selected User ID: " + receiverId);
-                    loadChatWithUser(receiverId);
-                    UserMessage.setText(  newValue.getUsername());                }
-            });
+            setupUserSelectionListener();
+            setupScrollListener();
+            startAutoRefresh();
 
-            // Add listener to track user scrolling
-            scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue.doubleValue() < 1.0) {
-                    userScrolledUp = true;
-                } else {
-                    userScrolledUp = false;
-                }
-            });
 
         } catch (IOException e) {
             showError("Connection error: " + e.getMessage());
         }
+    }
+    private void setupUserSelectionListener() {
+        userList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                receiverId = newValue.getUserId();
+                System.out.println("Selected User ID: " + receiverId);
+                loadChatWithUser(receiverId);
+                UserMessage.setText(newValue.getUsername());
+            }
+        });
+    }
+    private void setupScrollListener() {
+        scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
+            userScrolledUp = (newValue.doubleValue() < 1.0);
+        });
+    }
+    private void startAutoRefresh() {
+        Timeline refreshTimeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), e -> userList.refresh())
+        );
+        refreshTimeline.setCycleCount(Timeline.INDEFINITE);
+        refreshTimeline.play();
     }
 
     private void setupNetworkConnection() throws IOException {
@@ -147,7 +156,7 @@ public class MessagesController {
             Message message = new Message(userId, receiverId, content,sent_at);
             try {
                 messageDao.saveMessage(message);
-                out.println(receiverId + ":" + content); // Envoyer via le réseau
+                out.println(receiverId + ":" + content);
                 addMessageToUI(userId, content);
                 messageField.clear();
                 scrollToBottom();
@@ -251,6 +260,8 @@ public class MessagesController {
             showError("Failed to load messages: " + e.getMessage());
         }
     }
+
+
     private void setupSearchListener() {
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(300), e -> {

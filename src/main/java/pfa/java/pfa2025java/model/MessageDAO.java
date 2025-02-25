@@ -1,5 +1,7 @@
 package pfa.java.pfa2025java.model;
 
+import pfa.java.pfa2025java.constant.MessageRequet;
+
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class MessageDAO {
         }
     }
     public void saveMessage(Message message) throws SQLException {
-        String sql = "INSERT INTO messages (sender_id, receiver_id, content, sent_at) VALUES (?, ?, ?, ?)";
+        String sql = MessageRequet.saveMsg;
         try (
              PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -36,7 +38,7 @@ public class MessageDAO {
 
     public List<Message> getMessagesBetweenUsers(int user1, int user2) throws SQLException {
         List<Message> messages = new ArrayList<>();
-        String sql = "SELECT * FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY sent_at ASC";
+        String sql = MessageRequet.getMsgBetweenUsers;
 
         try (
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -66,7 +68,7 @@ public class MessageDAO {
 
     public List<Message> getNewMessages(int user1, int user2, LocalDateTime lastCheck) throws SQLException {
         List<Message> messages = new ArrayList<>();
-        String sql = "SELECT * FROM messages WHERE ((sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)) AND sent_at > ?";
+        String sql = MessageRequet.getNewMsg;
 
         try (
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -95,21 +97,7 @@ public class MessageDAO {
     }
     public List<UserMessage> getUsersWithLastMessage(int userId) throws SQLException {
         List<UserMessage> userMessages = new ArrayList<>();
-        String sql = "SELECT u.id AS user_id, u.nom, m.content, m.sent_at " +
-                "FROM user u " +
-                "JOIN messages m ON (u.id = m.sender_id OR u.id = m.receiver_id) " +
-                "WHERE (m.sender_id = ? OR m.receiver_id = ?) AND u.id != ? " +
-                "AND m.id = ( " +
-                "    SELECT MAX(id) " +
-                "    FROM messages " +
-                "    WHERE (sender_id = u.id AND receiver_id = ?) OR (sender_id = ? AND receiver_id = u.id) " +
-                "    AND sent_at = ( " +
-                "        SELECT MAX(sent_at) " +
-                "        FROM messages " +
-                "        WHERE (sender_id = u.id AND receiver_id = ?) OR (sender_id = ? AND receiver_id = u.id) " +
-                "    ) " +
-                ") " +
-                "ORDER BY m.sent_at DESC";
+        String sql = MessageRequet.getUsersWithLastMsg;
 
         try (
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -126,9 +114,10 @@ public class MessageDAO {
                 while (rs.next()) {
                     UserMessage userMessage = new UserMessage(
                             rs.getInt("user_id"),
-                            rs.getString("username"),
+                            rs.getString("prenom"),
                             rs.getString("content"),
-                            rs.getTimestamp("sent_at").toLocalDateTime()
+                            rs.getTimestamp("sent_at").toLocalDateTime(),
+                            rs.getBoolean("vu")
                     );
                     userMessages.add(userMessage);
                 }
@@ -138,13 +127,7 @@ public class MessageDAO {
     }
     public List<UserMessage> searchUsers(int currentUserId, String query) throws SQLException {
         List<UserMessage> userMessages = new ArrayList<>();
-        String sql = "SELECT u.id AS user_id, u.username, m.content, m.sent_at " +
-                "FROM users u " +
-                "LEFT JOIN messages m ON (u.id = m.sender_id OR u.id = m.receiver_id) " +
-                "WHERE (u.username LIKE ?) AND u.id != ? " +
-                "GROUP BY u.id " +
-                "ORDER BY m.sent_at DESC";
-
+        String sql = MessageRequet.search_Users;
         try (
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
@@ -155,10 +138,11 @@ public class MessageDAO {
                 while (rs.next()) {
                     UserMessage userMessage = new UserMessage(
                             rs.getInt("user_id"),
-                            rs.getString("username"),
+                            rs.getString("prenom"),
                             rs.getString("content"),
                             rs.getTimestamp("sent_at") != null ?
-                                    rs.getTimestamp("sent_at").toLocalDateTime() : LocalDateTime.now()
+                                    rs.getTimestamp("sent_at").toLocalDateTime() : LocalDateTime.now(),
+                            rs.getBoolean("vu")
                     );
                     userMessages.add(userMessage);
                 }
