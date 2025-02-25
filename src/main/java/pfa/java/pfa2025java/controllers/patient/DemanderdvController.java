@@ -85,19 +85,11 @@ public class DemanderdvController {
         FilteredList<Medecin> filteredData = new FilteredList<>(medecinList, b -> true);
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(medecin -> {
-                // Si la barre de recherche est vide, afficher tout
-                if (newValue == null || newValue.trim().isEmpty()) {
-                    return true;
-                }
+            applyFilter(filteredData);
+        });
 
-                // Convertir la recherche en minuscule pour éviter la casse
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                // Vérifier si le nom ou le service du médecin contient la recherche
-                return medecin.getNom().toLowerCase().contains(lowerCaseFilter) ||
-                        medecin.getService().toLowerCase().contains(lowerCaseFilter);
-            });
+        specialtyComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            applyFilter(filteredData);
         });
 
         // Trier les résultats
@@ -107,6 +99,23 @@ public class DemanderdvController {
         // Appliquer les données filtrées à la TableView
         MedecinTable.setItems(sortedData);
     }
+
+    private void applyFilter(FilteredList<Medecin> filteredData) {
+        String searchText = searchField.getText();
+        String selectedSpecialty = specialtyComboBox.getValue();
+
+        filteredData.setPredicate(medecin -> {
+            boolean matchesSearch = (searchText == null || searchText.trim().isEmpty()) ||
+                    medecin.getNom().toLowerCase().contains(searchText.toLowerCase()) ||
+                    medecin.getService().toLowerCase().contains(searchText.toLowerCase());
+
+            boolean matchesSpecialty = (selectedSpecialty == null || selectedSpecialty.trim().isEmpty()) ||
+                    medecin.getService().equalsIgnoreCase(selectedSpecialty);
+
+            return matchesSearch && matchesSpecialty;
+        });
+    }
+
 
 //    @FXML
 //    private void handleMedecinSelection() {
