@@ -1,5 +1,6 @@
 package pfa.java.pfa2025java.controllers.Admin;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,6 +18,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pfa.java.pfa2025java.HelloApplication;
 import pfa.java.pfa2025java.SwtichScene;
+import pfa.java.pfa2025java.model.Infermier;
+import pfa.java.pfa2025java.model.Medecin;
 import pfa.java.pfa2025java.model.User;
 import pfa.java.pfa2025java.model.UserDAO;
 
@@ -25,6 +28,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class UsersController {
+
     @FXML
     protected AnchorPane root;
     @FXML
@@ -35,6 +39,7 @@ public class UsersController {
     @FXML private TableColumn<User, String> emailColumn;
     @FXML private TableColumn<User, String> roleColumn;
     @FXML private TableColumn<User, Void> actionsColumn;
+
     @FXML private MenuButton menuButton;
     private final ObservableList<User> userList = FXCollections.observableArrayList();
 
@@ -45,6 +50,8 @@ public class UsersController {
         prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+
+
 
         // Load data
         loadUsers();

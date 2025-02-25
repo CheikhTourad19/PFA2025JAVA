@@ -1,5 +1,7 @@
 package pfa.java.pfa2025java.controllers.patient;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,52 +10,53 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.model.RendezVous;
+import pfa.java.pfa2025java.model.RendezVousDAO;
+
+import java.sql.SQLException;
+import java.util.List;
 
 public class AccueilController {
 
     @FXML
-    private Text Bienvenu;
+    private TableView<RendezVous> TVRDV;
 
     @FXML
-    private Button accueilButton;
+    private TableColumn<RendezVous, String> TcMedecin;
 
     @FXML
-    private ComboBox<?> cityComboBox;
+    private TableColumn<RendezVous, String> TcDate;
 
     @FXML
-    private ComboBox<?> countryComboBox;
+    private TableColumn<RendezVous, String> TcStatus;
 
     @FXML
-    private ComboBox<?> genderComboBox;
+    private Text nomUtil;
+
 
     @FXML
-    private ProgressIndicator loading;
+    public void initialize() {
+        nomUtil.setText(UserSession.getPrenom()+" "+UserSession.getNom());
+        TcMedecin.setCellValueFactory(new PropertyValueFactory<>("medecinNom")); // Assuming medecinId refers to doctor's name
+        TcDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        TcStatus.setCellValueFactory(new PropertyValueFactory<>("statut"));
 
-    @FXML
-    private TableView<?> medicamentTable;
+        try {
+            loadRDVs();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle exception properly
+        }
+    }
 
-    @FXML
-    private TableColumn<?, ?> mednameCol;
-
-    @FXML
-    private TableColumn<?, ?> quantiteCol;
-
-    @FXML
-    private Button searchButton;
-
-    @FXML
-    private Button searchDoctorsButton;
-
-    @FXML
-    private TextField searchField;
-
-    @FXML
-    private ComboBox<?> specialtyComboBox;
-
-    @FXML
+    private void loadRDVs() throws SQLException {
+        List<RendezVous> rdvList = RendezVousDAO.getRDVByPatientId(UserSession.getId()); // Fetch RDVs
+        ObservableList<RendezVous> observableList = FXCollections.observableArrayList(rdvList);
+        TVRDV.setItems(observableList); //
+    }
 
     public void consulterProfil(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
@@ -82,3 +85,4 @@ public class AccueilController {
         UserSession.logout();
     }
 }
+
