@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.User;
-import pfa.java.pfa2025java.model.UserDAO;
+import pfa.java.pfa2025java.dao.UserDAO;
 
 import java.util.prefs.Preferences;
 

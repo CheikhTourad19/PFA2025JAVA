@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.dao.MessageDAO;
 import pfa.java.pfa2025java.model.*;
 
 import java.io.*;
@@ -126,6 +127,7 @@ public class MessagesController {
                     String content = parts[1];
 
                     Platform.runLater(() -> {
+                        refreshUserList();
                         addMessageToUI(senderId, content);
                         scrollToBottom();
                     });

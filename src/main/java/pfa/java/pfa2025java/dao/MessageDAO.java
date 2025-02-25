@@ -1,6 +1,8 @@
-package pfa.java.pfa2025java.model;
+package pfa.java.pfa2025java.dao;
 
 import pfa.java.pfa2025java.constant.MessageRequet;
+import pfa.java.pfa2025java.model.Message;
+import pfa.java.pfa2025java.model.UserMessage;
 
 import java.sql.*;
 import java.time.LocalDateTime;

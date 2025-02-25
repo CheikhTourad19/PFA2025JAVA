@@ -1,4 +1,4 @@
-package pfa.java.pfa2025java.model;
+package pfa.java.pfa2025java.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

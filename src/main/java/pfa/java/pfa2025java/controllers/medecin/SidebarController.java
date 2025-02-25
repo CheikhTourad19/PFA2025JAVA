@@ -18,6 +18,8 @@ import java.util.List;
 public class SidebarController {
 
 
+    public Label ordonnanceLabel;
+    public ImageView ordonnanceImage;
     @FXML
     private AnchorPane mainContent;
     @FXML
@@ -25,9 +27,9 @@ public class SidebarController {
     @FXML
     private ImageView Toggle_sidebar;
     @FXML
-    private ImageView dashboard, tasks, messages, appointments, settings, logout;
+    private ImageView dashboard, tasks, messages, appointments, settings, logout, profilImage;
     @FXML
-    private Label dashboardLabel, tasksLabel, messagesLabel, appointmentsLabel, settingsLabel, logoutLabel;
+    private Label dashboardLabel, tasksLabel, messagesLabel, appointmentsLabel, settingsLabel, logoutLabel, profilLabel;
 
     private boolean isCollapsed = false;
 
@@ -72,6 +74,8 @@ public class SidebarController {
         animateImage(timeline, appointments, 39.0, targetWidth);
         animateImage(timeline, settings, 39.0, targetWidth);
         animateImage(timeline, logout, 31.0, targetWidth);
+        animateImage(timeline, profilImage, 31.0, targetWidth);
+        animateImage(timeline, ordonnanceImage, 31.0, targetWidth);
         animateImage(timeline, Toggle_sidebar, Toggle_sidebar.getFitWidth(), targetWidth);
 
         // Gestion finale des labels
@@ -98,7 +102,7 @@ public class SidebarController {
     private void updateLabelsVisibility(boolean visible) {
         List<Label> labels = Arrays.asList(
                 dashboardLabel, tasksLabel, messagesLabel,
-                appointmentsLabel, settingsLabel, logoutLabel
+                appointmentsLabel, settingsLabel, logoutLabel, profilLabel, ordonnanceLabel
         );
 
         labels.forEach(label -> {
@@ -114,6 +118,8 @@ public class SidebarController {
         appointments.setLayoutX(position);
         settings.setLayoutX(position);
         logout.setLayoutX(position);
+        profilImage.setLayoutX(position);
+        ordonnanceImage.setLayoutX(position);
     }
 
 
@@ -133,5 +139,14 @@ public class SidebarController {
         NavigationUtil.navigateTo(mainContent, "task");
     }
 
+    @FXML
+    private void goToProfil() {
+        NavigationUtil.navigateTo(mainContent, "profil");
+    }
+
+    @FXML
+    private void goToOrdonnance() {
+        NavigationUtil.navigateTo(mainContent, "ordonnance");
+    }
 }
 

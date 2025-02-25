@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import pfa.java.pfa2025java.model.RendezVous;
-import pfa.java.pfa2025java.model.MedecinDAO;
 
 public class MedecinController {
 

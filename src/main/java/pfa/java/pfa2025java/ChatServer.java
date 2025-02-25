@@ -1,7 +1,7 @@
 package pfa.java.pfa2025java;
 
 import pfa.java.pfa2025java.model.Message;
-import pfa.java.pfa2025java.model.MessageDAO;
+import pfa.java.pfa2025java.dao.MessageDAO;
 
 import java.io.BufferedReader;
 import java.io.IOException;
