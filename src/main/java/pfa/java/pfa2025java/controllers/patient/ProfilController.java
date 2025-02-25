@@ -8,7 +8,7 @@ import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.controllers.InsrciptionController;
 import pfa.java.pfa2025java.model.PasswordUtils;
-import pfa.java.pfa2025java.model.UserDAO;
+import pfa.java.pfa2025java.dao.UserDAO;
 
 import java.sql.SQLException;
 

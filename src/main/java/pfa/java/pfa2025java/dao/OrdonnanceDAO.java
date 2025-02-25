@@ -1,6 +1,8 @@
-package pfa.java.pfa2025java.model;
+package pfa.java.pfa2025java.dao;
 
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.model.Medicament;
+import pfa.java.pfa2025java.model.OrdonnanceDetails;
 
 import java.sql.*;
 import java.util.ArrayList;

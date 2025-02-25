@@ -28,4 +28,5 @@ module pfa.java.pfa2025java {
     exports pfa.java.pfa2025java.controllers.pharmacie;
     exports pfa.java.pfa2025java.controllers.Admin;
     opens pfa.java.pfa2025java.controllers to javafx.fxml;
+    exports pfa.java.pfa2025java.dao;
 }

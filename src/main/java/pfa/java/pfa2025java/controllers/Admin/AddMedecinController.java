@@ -4,10 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import pfa.java.pfa2025java.SwtichScene;
-import pfa.java.pfa2025java.model.MedecinDAO;
+import pfa.java.pfa2025java.dao.MedecinDAO;
 import pfa.java.pfa2025java.model.User;
-import pfa.java.pfa2025java.model.UserDAO;
+import pfa.java.pfa2025java.dao.UserDAO;
 
 import static pfa.java.pfa2025java.controllers.InsrciptionController.isValidEmail;
 
