@@ -36,16 +36,16 @@ public class DemanderdvController {
 
     private final ObservableList<Medecin> medecinList = FXCollections.observableArrayList();
 
-//    public void initialize() throws SQLException {
-//        mednameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-//        serviceCol.setCellValueFactory(new PropertyValueFactory<>("service"));
-//
-//        loadMedecins();
-//        loadSpecialties();
-//
-//        // Activer la recherche dynamique
-//        setupSearchFilter();
-//    }
+    public void initialize() throws SQLException {
+        mednameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        serviceCol.setCellValueFactory(new PropertyValueFactory<>("service"));
+
+        loadMedecins();
+        loadSpecialties();
+
+        // Activer la recherche dynamique
+        setupSearchFilter();
+    }
 
 
     private void loadMedecins() throws SQLException {
@@ -57,9 +57,9 @@ public class DemanderdvController {
         // Set the list in the TableView
         MedecinTable.setItems(medecinList);
 
-        // Initialize columns
-        //mednameCol.setCellValueFactory(new PropertyValueFactory<>("nom")); // Ensure "nom" matches Medecin class attribute
-        //serviceCol.setCellValueFactory(new PropertyValueFactory<>("service")); // Ensure "specialite" matches Medecin class attribute
+         //Initialize columns
+        mednameCol.setCellValueFactory(new PropertyValueFactory<>("nom")); // Ensure "nom" matches Medecin class attribute
+        serviceCol.setCellValueFactory(new PropertyValueFactory<>("service")); // Ensure "specialite" matches Medecin class attribute
         //serviceCol.setCellValueFactory(cellData -> cellData.getValue().getService().asObject());
     }
 
@@ -73,12 +73,12 @@ public class DemanderdvController {
     @FXML
     private ComboBox<String> specialtyComboBox;
 
-//    private void loadSpecialties() {
-//        specialtyComboBox.getItems().clear(); // Nettoyer le ComboBox avant de charger les nouvelles valeurs
-//
-//        // Récupérer les spécialités depuis la base de données via MedecinDAO
-//        specialtyComboBox.getItems().addAll(MedecinDAO.getAllSpecialties());
-//    }
+    private void loadSpecialties() {
+        specialtyComboBox.getItems().clear(); // Nettoyer le ComboBox avant de charger les nouvelles valeurs
+
+        // Récupérer les spécialités depuis la base de données via MedecinDAO
+        specialtyComboBox.getItems().addAll(MedecinDAO.getAllSpecialties());
+    }
 
 
     private void setupSearchFilter() {

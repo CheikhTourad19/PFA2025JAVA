@@ -122,47 +122,9 @@ public class MedecinDAO {
         return specialties;
     }
 
-    public static void sendRDVRequest(int medecinId, int patientId) {
-        String sql = "INSERT INTO rdv (medecin_id, patient_id, status) VALUES (?, ?, 'Pending')";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, medecinId);
-            stmt.setInt(2, patientId);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    public static void updateRDVStatus(int id, String accepté) {
-        String sql = "UPDATE rdv SET status = ? WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, accepté);
-            stmt.setInt(2, id);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    public static RendezVous getAcceptedRendezVous(int id) {
-        String sql = "SELECT * FROM rdv WHERE id = ? AND status = 'Accepted'";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                // Assuming the RendezVous object has fields for id, medecin_id, patient_id, and status
-                return new RendezVous(
-                        rs.getInt("id"),
-                        rs.getInt("medecin_id"),
-                        rs.getInt("patient_id"),
-                        rs.getString("status")
-                );
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return null; // return null if no accepted appointment is found
-    }
+
 
 }
 
