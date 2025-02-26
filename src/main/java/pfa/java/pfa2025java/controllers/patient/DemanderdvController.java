@@ -4,8 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
@@ -14,12 +13,10 @@ import pfa.java.pfa2025java.dao.MedecinDAO;
 import pfa.java.pfa2025java.model.*;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.scene.control.ComboBox;
 
-
-import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class DemanderdvController {
 
@@ -142,6 +139,57 @@ public class DemanderdvController {
 //        confirmation.setContentText("Votre demande de rendez-vous a été envoyée !");
 //        confirmation.showAndWait();
 //    }
+@FXML
+private void handleMedecinSelection() {
+    Medecin selectedMedecin = (Medecin) MedecinTable.getSelectionModel().getSelectedItem();
+
+    if (selectedMedecin != null) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Prendre un rendez-vous");
+        alert.setHeaderText(null);
+        alert.setContentText("Voulez-vous prendre un rendez-vous avec " + selectedMedecin.getNom() + " ?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            sendRDVRequest(selectedMedecin.getId());
+        }
+    } else {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Aucun médecin sélectionné");
+        alert.setHeaderText(null);
+        alert.setContentText("Veuillez sélectionner un médecin avant de demander un rendez-vous.");
+        alert.showAndWait();
+    }
+}
+
+    private void sendRDVRequest(int medecinId) {
+        int patientId = UserSession.getId(); // Récupérer l'ID du patient connecté
+        try {
+            boolean success = MedecinDAO.sendRDVRequest(medecinId, patientId);
+
+            if (success) {
+                Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+                confirmation.setTitle("Demande envoyée");
+                confirmation.setHeaderText(null);
+                confirmation.setContentText("Votre demande de rendez-vous a été envoyée !");
+                confirmation.showAndWait();
+            } else {
+                Alert error = new Alert(Alert.AlertType.ERROR);
+                error.setTitle("Erreur");
+                error.setHeaderText(null);
+                error.setContentText("Une erreur s'est produite lors de l'envoi de votre demande.");
+                error.showAndWait();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Erreur SQL");
+            error.setHeaderText(null);
+            error.setContentText("Problème lors de l'accès à la base de données.");
+            error.showAndWait();
+        }
+    }
+
 
     public void consulterOrdonnances(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
@@ -154,7 +202,7 @@ public class DemanderdvController {
     }
     public void mesRDV(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/mesRDV-view.fxml", "Rendez-vous", false);
+        swtichScene.loadScene(actionEvent, "views/patient/accueil-view.fxml", "Rendez-vous", false);
     }
 
     public void consulterPharmacies(ActionEvent actionEvent) {

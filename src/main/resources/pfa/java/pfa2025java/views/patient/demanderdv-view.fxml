@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
@@ -10,18 +11,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import java.net.URL?>
-<HBox style="-fx-background-color: #1E3A5F; -fx-padding: 15px;"
-      xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="pfa.java.pfa2025java.controllers.patient.DemanderdvController">
+<HBox style="-fx-background-color: #1E3A5F; -fx-padding: 15px;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.patient.DemanderdvController">
     <stylesheets>
         <URL value="@../../Style/patient/accueilRDV.css" />
     </stylesheets>
     <children>
         <!-- Barre latérale -->
-        <VBox alignment="CENTER_LEFT" prefHeight="600.0" prefWidth="220.0" spacing="12"
-              style="-fx-background-color: #14243D; -fx-padding: 15px; -fx-border-radius: 10px;">
+        <VBox alignment="CENTER_LEFT" prefHeight="600.0" prefWidth="220.0" spacing="12" style="-fx-background-color: #14243D; -fx-padding: 15px; -fx-border-radius: 10px;">
 
             <Text fx:id="Bienvenu" fill="#ffffff" text="Ali Ben Jannet" textAlignment="CENTER">
                 <font>
@@ -31,38 +27,32 @@
 
             <Button fx:id="accueilButton" onAction="#consulterProfil" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Profil" />
             <Button onAction="#consulterOrdonnances" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Mes Ordonnance" />
-            <Button onAction="#mesRDV" style=" -fx-cursor: hand; -fx-background-color: #27AE60; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Mes RDV" />
+            <Button onAction="#mesRDV" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Mes RDV" />
             <Button onAction="#consulterPharmacies" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Consulter Pharmacies" />
-            <Button onAction="#demandeRendezVous" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Demande RDV" />
+            <Button onAction="#demandeRendezVous" style=" -fx-cursor: hand; -fx-background-color: #27AE60; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Demande RDV" />
 
             <Button onAction="#logout" style=" -fx-cursor: hand; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Déconnexion" />
         </VBox>
 
         <!-- Contenu principal -->
-        <VBox alignment="CENTER" prefHeight="600.0" prefWidth="650.0" spacing="15"
-              style="-fx-padding: 20px; -fx-background-radius: 10px;">
+        <VBox alignment="CENTER" prefHeight="600.0" prefWidth="650.0" spacing="15" style="-fx-padding: 20px; -fx-background-radius: 10px;">
 
             <!-- Barre de recherche -->
             <HBox alignment="CENTER" spacing="10">
-                <TextField fx:id="searchField" prefHeight="40.0" prefWidth="220.0"
-                           promptText="Rechercher un médecin..."
-                           style="-fx-background-radius: 20px; -fx-padding: 5px;"/>
-                <Button fx:id="searchDoctorsButton" text="🔍 Rechercher"
-                        style="-fx-background-color: #FFC107; -fx-text-fill: black; -fx-font-size: 14px; -fx-background-radius: 20px;"/>
+                <TextField fx:id="searchField" prefHeight="40.0" prefWidth="220.0" promptText="Rechercher un médecin..." style="-fx-background-radius: 20px; -fx-padding: 5px;" />
             </HBox>
 
             <!-- Menu déroulant des spécialités -->
-            <ComboBox fx:id="specialtyComboBox" promptText="Spécialité"
-                      style="-fx-pref-width: 220px; -fx-background-radius: 20px;"/>
+            <ComboBox fx:id="specialtyComboBox" promptText="Spécialité" style="-fx-pref-width: 220px; -fx-background-radius: 20px;" />
 
             <!-- Tableau des médecins -->
-            <TableView fx:id="MedecinTable" prefHeight="300.0" prefWidth="600.0"
-                       style="-fx-background-radius: 10px;">
+            <TableView fx:id="MedecinTable" prefHeight="300.0" prefWidth="600.0" style="-fx-background-radius: 10px;">
                 <columns>
                     <TableColumn fx:id="mednameCol" prefWidth="300.0" text="Nom du Médecin" />
                     <TableColumn fx:id="serviceCol" prefWidth="300.0" text="Spécialité" />
                 </columns>
             </TableView>
+         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="184.0" text="Demande rendez-vous" onAction="#handleMedecinSelection" />
 
         </VBox>
     </children>

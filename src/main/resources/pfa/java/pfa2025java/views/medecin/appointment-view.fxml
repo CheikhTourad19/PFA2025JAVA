@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="pfa.java.pfa2025java.controllers.patient.AccueilController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox spacing="10" alignment="CENTER" prefWidth="600.0" prefHeight="400.0">
+        <Label text="Mes Demandes de Rendez-vous" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+        <TableView fx:id="rendezVousTable" prefHeight="300.0" prefWidth="580.0">
+            <columns>
+                <TableColumn fx:id="medecinCol" text="Médecin" prefWidth="200.0"/>
+                <TableColumn fx:id="dateCol" text="Date" prefWidth="150.0"/>
+                <TableColumn fx:id="statutCol" text="Statut" prefWidth="100.0"/>
+                <TableColumn text="Actions" prefWidth="130.0">
+                    <cellFactory>
+                        <Callback fx:factory="pfa.java.pfa2025java.utils.ButtonCellFactory"/>
+                    </cellFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>
