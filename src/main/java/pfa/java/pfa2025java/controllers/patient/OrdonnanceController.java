@@ -114,7 +114,7 @@ public class OrdonnanceController {
     }
     public void mesRDV(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/mesRDV-view.fxml", "mes RDV", false);
+        swtichScene.loadScene(actionEvent, "views/patient/accueil-view.fxml", "mes RDV", false);
     }
 
 }
