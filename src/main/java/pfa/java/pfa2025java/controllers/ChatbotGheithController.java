@@ -72,10 +72,9 @@ public class ChatbotGheithController {
                     StringBuilder fullResponse = new StringBuilder();
                     String line;
 
-                    // Read the response line by line
                     try (BufferedReader reader = new BufferedReader(new InputStreamReader(response.body().byteStream()))) {
                         while ((line = reader.readLine()) != null) {
-                            System.out.println("Réponse brute de l'API : " + line); // Log each line for debugging
+                            System.out.println("Réponse brute de l'API : " + line);
 
                             try {
                                 JSONObject jsonResponse = new JSONObject(line);
@@ -84,21 +83,25 @@ public class ChatbotGheithController {
 
                                     // Filtrer les segments de raisonnement (balises <think> et </think>)
                                     if (partialResponse.contains("\u003cthink\u003e") || partialResponse.contains("\u003c/think\u003e")) {
-                                        continue; // Ignore these parts
+                                        continue;
                                     }
 
-                                    // Décoder les caractères Unicode comme \u003c
+                                    // Décoder les caractères Unicode
                                     partialResponse = java.net.URLDecoder.decode(partialResponse, "UTF-8");
 
                                     // Accumuler la réponse
                                     fullResponse.append(partialResponse);
-                                }
 
-                                // Vérifier si la réponse est complète
-                                if (jsonResponse.optBoolean("done", false)) {
+                                    // ✅ Mise à jour en temps réel du TextArea
                                     String finalResponse = fullResponse.toString().trim();
                                     javafx.application.Platform.runLater(() -> responseArea.setText(finalResponse));
                                 }
+
+                                // Si la réponse est complète, arrêter la lecture
+                                if (jsonResponse.optBoolean("done", false)) {
+                                    break;
+                                }
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 javafx.application.Platform.runLater(() -> responseArea.setText("Format de réponse JSON invalide."));
@@ -109,6 +112,7 @@ public class ChatbotGheithController {
                     javafx.application.Platform.runLater(() -> responseArea.setText("Réponse invalide de l'API."));
                 }
             }
+
 
         });
     }
