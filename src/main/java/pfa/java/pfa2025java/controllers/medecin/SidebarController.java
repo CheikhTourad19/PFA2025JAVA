@@ -136,7 +136,8 @@ public class SidebarController {
     @FXML
     private void goToDashboard() {
         NavigationUtil.navigateTo(mainContent, "dashboard");
-    } @FXML
+    }
+    @FXML
     private void goToTask() {
         NavigationUtil.navigateTo(mainContent, "task");
     }

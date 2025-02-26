@@ -112,33 +112,7 @@ public class DemanderdvController {
     }
 
 
-//    @FXML
-//    private void handleMedecinSelection() {
-//        Medecin selectedMedecin = (Medecin) MedecinTable.getSelectionModel().getSelectedItem();
-//
-//        if (selectedMedecin != null) {
-//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//            alert.setTitle("Prendre un rendez-vous");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Voulez-vous prendre un rendez-vous avec " + selectedMedecin.getNom() + " ?");
-//
-//            // Ajouter le bouton OK
-//            Optional<ButtonType> result = alert.showAndWait();
-//            if (result.isPresent() && result.get() == ButtonType.OK) {
-//                sendRDVRequest(selectedMedecin.getId());
-//            }
-//        }
-//    }
-//    private void sendRDVRequest(int medecinId) {
-//        int patientId = UserSession.getCurrentUser().getId(); // Récupérer l'ID du patient connecté
-//        MedecinDAO.sendRDVRequest(medecinId, patientId);
-//
-//        Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
-//        confirmation.setTitle("Demande envoyée");
-//        confirmation.setHeaderText(null);
-//        confirmation.setContentText("Votre demande de rendez-vous a été envoyée !");
-//        confirmation.showAndWait();
-//    }
+
 @FXML
 private void handleMedecinSelection() {
     Medecin selectedMedecin = (Medecin) MedecinTable.getSelectionModel().getSelectedItem();
