@@ -5,27 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
 
-    <!-- Include the chatbot script dynamically -->
     <script>
-        function loadChatbot() {
-            console.log("🔄 Loading chatbot...");
-            let script = document.createElement("script");
-            script.src = "https://www.gptbots.ai/widget/wexydl6muj0jgmn7y7oulfw/chat.js";
-            script.async = true;
-
-            script.onload = function () {
-                console.log("✅ Chatbot script loaded successfully!");
-                notifyJavaFX("Chatbot Loaded"); // Notify JavaFX
-            };
-
-            script.onerror = function () {
-                console.error("❌ Failed to load chatbot script.");
-                notifyJavaFX("Chatbot Load Failed");
-            };
-
-            document.body.appendChild(script);
-        }
-
         function notifyJavaFX(message) {
             if (typeof java !== "undefined" && java.notifyChatbotStatus) {
                 java.notifyChatbotStatus(message);
@@ -34,8 +14,16 @@
             }
         }
 
+        function toggleChatbotFromJS() {
+            if (typeof java !== "undefined" && java.toggleChatbot) {
+                java.toggleChatbot(); // Call JavaFX function
+            } else {
+                console.warn("⚠️ JavaFX bridge not available for toggling chatbot.");
+            }
+        }
+
         window.onload = function () {
-            loadChatbot();
+            notifyJavaFX("Chatbot Loaded");
         };
     </script>
 
@@ -50,22 +38,39 @@
         }
 
         iframe {
-            width: 400px;
-            height: 600px;
+            width: 100%;
+            height: 100%;
             border: none;
+        }
+
+        /* Floating Chatbot Toggle Button */
+        .toggle-button {
             position: fixed;
-            bottom: 10px;
-            right: 10px;
-            z-index: 9999;
-            display: block !important;
+            bottom: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
 
+<!-- Chatbot Frame -->
+<iframe id="chatbot-frame" allow="microphone *"
+        src="https://www.gptbots.ai/widget/eejnzwdmqdcffkslajxnv4n/chat.html">
+</iframe>
 
-<!-- Chatbot Container -->
-<div id="chatbot-container"></div>
+
 
 </body>
 </html>

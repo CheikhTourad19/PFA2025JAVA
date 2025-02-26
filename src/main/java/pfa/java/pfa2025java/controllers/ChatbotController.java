@@ -1,21 +1,20 @@
 package pfa.java.pfa2025java.controllers;
+
 import javafx.fxml.FXML;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import netscape.javascript.JSObject;
 
-
-
 public class ChatbotController {
 
     @FXML
-    private WebView webView;
+    private WebView chatbotWebView;
 
     private WebEngine webEngine;
 
     @FXML
     public void initialize() {
-        webEngine = webView.getEngine();
+        webEngine = chatbotWebView.getEngine();
 
         try {
             String chatbotUrl = getClass().getResource("/pfa/java/pfa2025java/views/chatbot.html").toExternalForm();

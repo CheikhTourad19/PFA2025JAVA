@@ -4,8 +4,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.layout.Pane?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0"
+<BorderPane prefHeight="1000.0" prefWidth="1400.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="pfa.java.pfa2025java.controllers.Admin.DashboardController">
@@ -19,13 +22,24 @@
             <Button text="Rapports" onAction="#gotorapports" />
             <Button text="Paramètres" onAction="#gotoparametre" />
             <Button text="Chatbot" onAction="#chatbot" />
+            <Button text="Rapport" onAction="#report" />
             <Button text="Déconnexion" onAction="#gotodeconnexion" style="-fx-background-color: #E74C3C; -fx-text-fill: white;" />
         </VBox>
     </left>
 
     <!-- Main Content -->
     <center>
-        <VBox fx:id="mainContent" prefHeight="600.0" prefWidth="600.0" />
+        <StackPane>
+            <VBox fx:id="mainContent" prefHeight="900.0" prefWidth="1200.0" />
+        </StackPane>
     </center>
 
+    <!-- Chatbot Button in Bottom-Right Corner -->
+
+    <!-- Chatbot Container -->
+    <bottom>
+        <StackPane fx:id="chatbotContainer" visible="false" style="-fx-background-color: white; -fx-padding: 10; -fx-alignment: bottom-right;">
+            <WebView fx:id="chatbotWebView" prefWidth="300" prefHeight="400"/>
+        </StackPane>
+    </bottom>
 </BorderPane>

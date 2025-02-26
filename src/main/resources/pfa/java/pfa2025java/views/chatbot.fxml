@@ -3,5 +3,5 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.ChatbotController">
-    <WebView fx:id="webView" prefWidth="720" prefHeight="1080"/>
+    <WebView fx:id="webView" prefWidth="400" prefHeight="600"/>
 </VBox>
