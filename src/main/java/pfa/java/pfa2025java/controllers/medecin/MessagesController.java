@@ -215,7 +215,6 @@ public class MessagesController {
         try {
             List<UserMessage> userMessages = messageDao.getUsersWithLastMessage(userId);
 
-
             userList.getItems().setAll(userMessages);
 
             userList.setCellFactory(param -> new ListCell<UserMessage>() {
@@ -233,9 +232,12 @@ public class MessagesController {
                         Label usernameLabel = new Label(userMessage.getUsername());
                         usernameLabel.setStyle("-fx-font-weight: bold;");
 
-
                         Label lastMessageLabel = new Label(userMessage.getLastMessage());
-                        lastMessageLabel.setStyle("-fx-text-fill: gray;");
+
+
+
+                            lastMessageLabel.setStyle("-fx-font-weight: normal;");
+
 
                         Label timeAgoLabel = new Label(userMessage.getTimeAgo());
                         timeAgoLabel.setStyle("-fx-text-fill: gray; -fx-font-size: 10;");
