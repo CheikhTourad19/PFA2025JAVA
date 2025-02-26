@@ -52,7 +52,7 @@ public class ChatbotGheithController {
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(MediaType.parse("application/json"),
                 "{\"model\": \"deepseek-r1:8b\", \"prompt\": \"" + userInput + "\"}");
-
+//Réponse brute de l'API : {"model":"deepseek-r1:8b","created_at":"2025-02-26T14:38:05.9964243Z","response":"\u003c/think\u003e","done":false}
         Request request = new Request.Builder()
                 .url(ollamaApiUrl)
                 .addHeader("Content-Type", "application/json")
@@ -82,13 +82,19 @@ public class ChatbotGheithController {
                                 if (jsonResponse.has("response")) {
                                     String partialResponse = jsonResponse.getString("response");
 
-                                    // Filter out the <think> parts
-                                    if (!partialResponse.contains("<think>") && !partialResponse.contains("</think>")) {
-                                        fullResponse.append(partialResponse); // Accumulate the response
+                                    // Filtrer les segments de raisonnement (balises <think> et </think>)
+                                    if (partialResponse.contains("\u003cthink\u003e") || partialResponse.contains("\u003c/think\u003e")) {
+                                        continue; // Ignore these parts
                                     }
+
+                                    // Décoder les caractères Unicode comme \u003c
+                                    partialResponse = java.net.URLDecoder.decode(partialResponse, "UTF-8");
+
+                                    // Accumuler la réponse
+                                    fullResponse.append(partialResponse);
                                 }
 
-                                // Check if the stream is done
+                                // Vérifier si la réponse est complète
                                 if (jsonResponse.optBoolean("done", false)) {
                                     String finalResponse = fullResponse.toString().trim();
                                     javafx.application.Platform.runLater(() -> responseArea.setText(finalResponse));
@@ -103,6 +109,7 @@ public class ChatbotGheithController {
                     javafx.application.Platform.runLater(() -> responseArea.setText("Réponse invalide de l'API."));
                 }
             }
+
         });
     }
 
