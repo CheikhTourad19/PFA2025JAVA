@@ -109,5 +109,10 @@ public class AccueilController {
         swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "Login", false);
         UserSession.logout();
     }
+
+    public void chat(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(actionEvent, "views/chatbotgheith-view.fxml", "Login", false);
+    }
 }
 

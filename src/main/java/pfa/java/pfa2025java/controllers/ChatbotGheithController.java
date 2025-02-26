@@ -1,5 +1,6 @@
 package pfa.java.pfa2025java.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -117,4 +118,21 @@ public class ChatbotGheithController {
         });
     }
 
+    public void consulterProfil(ActionEvent actionEvent) {
+    }
+
+    public void consulterOrdonnances(ActionEvent actionEvent) {
+    }
+
+    public void consulterPharmacies(ActionEvent actionEvent) {
+    }
+
+    public void demandeRendezVous(ActionEvent actionEvent) {
+    }
+
+    public void logout(ActionEvent actionEvent) {
+    }
+
+    public void mesRdv(ActionEvent actionEvent) {
+    }
 }
