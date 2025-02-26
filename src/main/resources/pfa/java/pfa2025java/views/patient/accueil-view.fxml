@@ -17,6 +17,7 @@
                 <Font size="23.0" />
             </font>
         </Text>
+
         <Button fx:id="accueilButton" onAction="#consulterProfil" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Profil" />
         <Button onAction="#consulterOrdonnances" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Mes Ordonnance" />
         <Button style=" -fx-cursor: hand; -fx-background-color: #27AE60; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Mes RDV" />
@@ -44,8 +45,6 @@
          <Insets top="28.0" />
       </padding>
    </VBox>
-
-
 
    <stylesheets>
       <URL value="@../../Style/patient/accueilRDV.css" />

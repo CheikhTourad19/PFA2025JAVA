@@ -3,11 +3,9 @@ package pfa.java.pfa2025java.dao;
 import pfa.java.pfa2025java.model.Medecin;
 import pfa.java.pfa2025java.model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MedecinDAO {
@@ -123,9 +121,18 @@ public class MedecinDAO {
         }
         return specialties;
     }
+    public static boolean sendRDVRequest(int medecinId, int patientId) throws SQLException {
+        String query = "INSERT INTO rendez_vous (medecin_id, patient_id, statut,date) VALUES (?, ?, 'attente',?)";
 
+        try (Connection conn = DBconnection.connect();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
-
+            stmt.setInt(1, medecinId);
+            stmt.setInt(2, patientId);
+            stmt.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+            return stmt.executeUpdate() > 0;
+        }
+    }
 
 
 }
