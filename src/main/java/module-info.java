@@ -12,6 +12,8 @@ module pfa.java.pfa2025java {
     requires java.prefs;
     requires org.apache.pdfbox;
     requires javafaker;
+    requires okhttp3;
+    requires org.json;
 
     opens pfa.java.pfa2025java to javafx.fxml;
     opens pfa.java.pfa2025java.controllers.pharmacie to javafx.fxml;

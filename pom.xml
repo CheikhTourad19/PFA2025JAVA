@@ -16,9 +16,19 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20231013</version> <!-- Utilisez la dernière version disponible -->
+        </dependency>
+        <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.11.0</version> <!-- Utilise la version la plus récente si nécessaire -->
         </dependency>
         <dependency>
             <groupId>de.jensd</groupId>
