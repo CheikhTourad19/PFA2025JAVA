@@ -22,7 +22,7 @@ public class MessageDAO {
     public void saveMessage(Message message) throws SQLException {
         String sql = MessageRequet.saveMsg;
         try (
-             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setInt(1, message.getSenderId());
             stmt.setInt(2, message.getReceiverId());
@@ -43,7 +43,7 @@ public class MessageDAO {
         String sql = MessageRequet.getMsgBetweenUsers;
 
         try (
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+                PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setInt(1, user1);
             stmt.setInt(2, user2);
@@ -73,7 +73,7 @@ public class MessageDAO {
         String sql = MessageRequet.getNewMsg;
 
         try (
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+                PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setInt(1, user1);
             stmt.setInt(2, user2);
@@ -102,15 +102,14 @@ public class MessageDAO {
         String sql = MessageRequet.getUsersWithLastMsg;
 
         try (
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+                PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
             stmt.setInt(2, userId);
             stmt.setInt(3, userId);
             stmt.setInt(4, userId);
-            stmt.setInt(5, userId);
-            stmt.setInt(6, userId);
-            stmt.setInt(7, userId);
+           
+
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -120,6 +119,7 @@ public class MessageDAO {
                             rs.getString("content"),
                             rs.getTimestamp("sent_at").toLocalDateTime(),
                             rs.getBoolean("vu")
+
                     );
                     userMessages.add(userMessage);
                 }
@@ -131,7 +131,7 @@ public class MessageDAO {
         List<UserMessage> userMessages = new ArrayList<>();
         String sql = MessageRequet.search_Users;
         try (
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+                PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setString(1, "%" + query + "%");
             stmt.setInt(2, currentUserId);

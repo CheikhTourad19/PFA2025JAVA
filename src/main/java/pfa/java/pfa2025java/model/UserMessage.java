@@ -10,7 +10,7 @@ public class UserMessage {
     private String lastMessage;
     private LocalDateTime sentAt;
     private String timeAgo;
-    private boolean isSeen; // حالة المشاهدة
+    private boolean isSeen;
 
 
     public UserMessage(int userId, String username, String lastMessage, LocalDateTime sentAt, boolean isSeen) {
@@ -20,6 +20,7 @@ public class UserMessage {
         this.sentAt = sentAt;
         this.isSeen = isSeen;
         this.timeAgo = calculateTimeAgo(sentAt);
+
     }
     private String calculateTimeAgo(LocalDateTime sentAt) {
         Duration duration = Duration.between(sentAt, LocalDateTime.now());

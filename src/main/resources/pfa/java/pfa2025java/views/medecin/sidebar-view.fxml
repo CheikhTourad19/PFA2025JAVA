@@ -41,8 +41,7 @@
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="logoutLabel" layoutX="64.0" layoutY="497.0" text="Logout"
-                                       textFill="WHITE">
+                                <Label fx:id="logoutLabel" layoutX="64.0" layoutY="497.0" text="Logout" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
@@ -67,13 +66,12 @@
                                         <ImageView fx:id="Toggle_sidebar" fitHeight="24.0" fitWidth="46.0" layoutX="1.0" layoutY="2.0" onMouseClicked="#toggleSidebar" pickOnBounds="true" preserveRatio="true">
                                             <Image url="@../../assets/back.png" />
                                         </ImageView>
-                                        <ImageView fx:id="appointments" fitHeight="25.0" fitWidth="39.0" layoutX="2.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="appointments" fitHeight="25.0" fitWidth="39.0" layoutX="2.0" layoutY="285.0" onMouseClicked="#goToRDV" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/appointments.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="logout" fitHeight="25.0" fitWidth="31.0" layoutX="8.0"
-                                                   layoutY="449.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="logout" fitHeight="25.0" fitWidth="31.0" layoutX="8.0" layoutY="449.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/logout.png" />
                                             </image>
@@ -83,32 +81,26 @@
                                                 <Image url="@../../assets/settings.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="profilImage" fitHeight="25.0" fitWidth="39.0" layoutX="5.0"
-                                                   layoutY="370.0" onMouseClicked="#goToProfil" pickOnBounds="true"
-                                                   preserveRatio="true">
+                                        <ImageView fx:id="profilImage" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="370.0" onMouseClicked="#goToProfil" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../../assets/profil.png"/>
+                                                <Image url="@../../assets/profil.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="ordonnanceImage" fitHeight="25.0" fitWidth="39.0"
-                                                   layoutX="5.0" layoutY="407.0" onMouseClicked="#goToOrdonnance"
-                                                   pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="ordonnanceImage" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="407.0" onMouseClicked="#goToOrdonnance" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../../assets/medical-record.png"/>
+                                                <Image url="@../../assets/medical-record.png" />
                                             </image>
                                         </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label fx:id="profilLabel" layoutX="57.0" layoutY="419.0" text="Profil"
-                                       textFill="WHITE">
+                                <Label fx:id="profilLabel" layoutX="57.0" layoutY="419.0" text="Profil" textFill="WHITE">
                                     <font>
-                                        <Font name="System Bold Italic" size="12.0"/>
+                                        <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="ordonnanceLabel" layoutX="57.0" layoutY="457.0" text="Ordonnance"
-                                       textFill="WHITE">
+                                <Label fx:id="ordonnanceLabel" layoutX="57.0" layoutY="457.0" text="Ordonnance" textFill="WHITE">
                                     <font>
-                                        <Font name="System Bold Italic" size="12.0"/>
+                                        <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
                             </children>

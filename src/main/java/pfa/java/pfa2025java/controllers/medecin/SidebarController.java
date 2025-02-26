@@ -10,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import javafx.util.Duration;
+import pfa.java.pfa2025java.SwtichScene;
+import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.controllers.medecin.util.NavigationUtil;
 
 import java.util.Arrays;
@@ -134,7 +136,8 @@ public class SidebarController {
     @FXML
     private void goToDashboard() {
         NavigationUtil.navigateTo(mainContent, "dashboard");
-    } @FXML
+    }
+    @FXML
     private void goToTask() {
         NavigationUtil.navigateTo(mainContent, "task");
     }
@@ -147,6 +150,18 @@ public class SidebarController {
     @FXML
     private void goToOrdonnance() {
         NavigationUtil.navigateTo(mainContent, "ordonnance");
+    }
+    @FXML
+    private void logout() {
+        UserSession.logout();
+
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene(logoutLabel,"views/hello-view.fxml","login",false);
+    }
+
+    @FXML
+    private void goToRDV() {
+        NavigationUtil.navigateTo(mainContent, "appointment");
     }
 }
 

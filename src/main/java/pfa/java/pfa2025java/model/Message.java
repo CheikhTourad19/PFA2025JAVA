@@ -9,7 +9,6 @@ public class Message {
     private String content;
     private LocalDateTime sentAt;
     private boolean seen;
-    private LocalDateTime seenAt;
 
 
     // Constructor, Getters & Setters
@@ -17,7 +16,7 @@ public class Message {
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.content = content;
-        this.sentAt = LocalDateTime.now();
+        this.sentAt = sentAt;
     }
 
 
@@ -65,8 +64,5 @@ public class Message {
         this.senderId = senderId;
     }
 
-    public LocalDateTime getSeenAt() { return seenAt; }
-
-    public void setSeenAt(LocalDateTime seenAt) { this.seenAt = seenAt; }
 }
 

@@ -64,12 +64,12 @@ public class ChatServer {
                     // Sauvegarde en base
                     LocalDateTime sentAt = LocalDateTime.now();
                     Message message = new Message(userId, receiverId, content, sentAt);
-                    messageDao.saveMessage(message);
+
 
                     // Envoi au destinataire
                     forwardMessage(receiverId, message);
                 }
-            } catch (IOException | SQLException | NumberFormatException e) {
+            } catch (IOException |  NumberFormatException e) {
                 System.err.println("Client error: " + e.getMessage());
             } finally {
                 try {
