@@ -157,5 +157,10 @@ public class SidebarController {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(logoutLabel,"views/hello-view.fxml","login",false);
     }
+
+    @FXML
+    private void goToRDV() {
+        NavigationUtil.navigateTo(mainContent, "appointment");
+    }
 }
 
