@@ -19,6 +19,7 @@ public class ResetPasswordController {
     @FXML
     private TextField emailField; // TextField for the user's email
     private String password = PasswordGenerator.generateTemporaryPassword();
+    private String messagetosend = "Voici Votre mot de passe tamporaire :" + password;
 
     @FXML
     private void handleSendPassword() throws SQLException {
@@ -30,7 +31,7 @@ public class ResetPasswordController {
         }
 
         // Send the email
-        boolean emailSent = sendEmail(userEmail);
+        boolean emailSent = sendEmail(userEmail, messagetosend);
         User user = UserDAO.getUserByEmail(userEmail);
 
         if (emailSent) {
@@ -42,7 +43,7 @@ public class ResetPasswordController {
     }
 
     // Method to send an email
-    private boolean sendEmail(String toEmail) {
+    public static boolean sendEmail(String toEmail, String message1) {
         final String username = "elghothvadel@gmail.com"; // Your email address
         final String appPassword = "mjzf sfqp kcsh ytke"; // Your email app password
 
@@ -71,7 +72,7 @@ public class ResetPasswordController {
 
             // Set the email subject and body
             message.setSubject("Email de E-Medical ");
-            message.setText("Voici un mot de passe tamporaire que vous allez utiliser modifier le au plus vite  :  " + password);
+            message.setText(message1);
 
             // Send the email
             Transport.send(message);

@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.controllers.ResetPasswordController;
 import pfa.java.pfa2025java.dao.MedecinDAO;
 import pfa.java.pfa2025java.model.*;
 import javafx.collections.transformation.FilteredList;
@@ -125,7 +126,7 @@ private void handleMedecinSelection() {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            sendRDVRequest(selectedMedecin.getId());
+            sendRDVRequest(selectedMedecin.getId(), selectedMedecin.getEmail());
         }
     } else {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -136,12 +137,13 @@ private void handleMedecinSelection() {
     }
 }
 
-    private void sendRDVRequest(int medecinId) {
+    private void sendRDVRequest(int medecinId, String medecinMail) {
         int patientId = UserSession.getId(); // Récupérer l'ID du patient connecté
         try {
             boolean success = MedecinDAO.sendRDVRequest(medecinId, patientId);
 
             if (success) {
+                ResetPasswordController.sendEmail(medecinMail, "Vous avez une nouvelle demande de rendez-vous");
                 Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
                 confirmation.setTitle("Demande envoyée");
                 confirmation.setHeaderText(null);
