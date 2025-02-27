@@ -14,6 +14,9 @@ module pfa.java.pfa2025java {
     requires javafaker;
     requires okhttp3;
     requires org.json;
+    requires mysql.connector.java;
+    requires java.mail;
+
 
     opens pfa.java.pfa2025java to javafx.fxml;
     opens pfa.java.pfa2025java.controllers.pharmacie to javafx.fxml;

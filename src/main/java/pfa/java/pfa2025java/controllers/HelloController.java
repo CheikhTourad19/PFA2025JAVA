@@ -5,6 +5,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.scene.Node;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -119,6 +120,12 @@ public class HelloController {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/inscription-view.fxml", "Inscription", false);
 
+    }
+
+    @FXML
+    private void gotoreset() {
+        SwtichScene swtichScene = new SwtichScene();
+        swtichScene.loadScene((Node) null, "views/resetpassword-view.fxml", "Renitialiser", false);
     }
 
 }
