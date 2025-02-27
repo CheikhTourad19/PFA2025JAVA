@@ -51,10 +51,11 @@ public class ChatbotGheithController {
             responseArea.clear();
             responseArea.setText("En cours...");
         });
-        String guidance="ne reponds qu'aux question medical : ";
+        String guidance = "Tu es un assistant médical. Réponds uniquement aux questions liées à la santé, aux symptômes, aux médicaments, aux traitements ou aux conseils médicaux. Si la question n'est pas médicale, réponds simplement par : 'Je ne peux répondre qu'aux questions médicales.'";
+
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(MediaType.parse("application/json"),
-                "{\"model\": \"llama3.2\", \"prompt\": juste reponds a une question medical\"" + userInput + guidance + "\"}");
+                "{\"model\": \"llama3.2\", \"prompt\": \"" + userInput + guidance + "\"}");
         Request request = new Request.Builder()
                 .url(ollamaApiUrl)
                 .addHeader("Content-Type", "application/json")
