@@ -51,10 +51,10 @@ public class ChatbotGheithController {
             responseArea.clear();
             responseArea.setText("En cours...");
         });
-
+        String guidance="ne reponds qu'aux question medical : ";
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(MediaType.parse("application/json"),
-                "{\"model\": \"llama3.2\", \"prompt\": \"" + userInput + "\"}");
+                "{\"model\": \"llama3.2\", \"prompt\": \"" + userInput + guidance+ "\"}");
         Request request = new Request.Builder()
                 .url(ollamaApiUrl)
                 .addHeader("Content-Type", "application/json")
