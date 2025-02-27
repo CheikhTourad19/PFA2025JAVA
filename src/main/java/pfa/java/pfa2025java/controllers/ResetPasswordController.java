@@ -1,10 +1,13 @@
 package pfa.java.pfa2025java.controllers;
 
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import pfa.java.pfa2025java.PasswordGenerator;
+import pfa.java.pfa2025java.dao.ResetPasswordDAO;
 import pfa.java.pfa2025java.dao.UserDAO;
 import pfa.java.pfa2025java.model.User;
 
@@ -16,10 +19,20 @@ import java.util.Properties;
 
 
 public class ResetPasswordController {
+    public VBox contianerDemande;
+    public TextField codeField;
+    public VBox resetVbx;
+    public TextField newpass;
+    public TextField newpass1;
     @FXML
     private TextField emailField; // TextField for the user's email
     private String password = PasswordGenerator.generateTemporaryPassword();
-    private String messagetosend = "Voici Votre mot de passe tamporaire :" + password;
+    private String messagetosend = "Voici Votre code  :" + password;
+
+    public void initialize() {
+        contianerDemande.setVisible(false);
+        resetVbx.setVisible(false);
+    }
 
     @FXML
     private void handleSendPassword() throws SQLException {
@@ -32,11 +45,13 @@ public class ResetPasswordController {
 
         // Send the email
         boolean emailSent = sendEmail(userEmail, messagetosend);
-        User user = UserDAO.getUserByEmail(userEmail);
+
 
         if (emailSent) {
-            UserDAO.changePassword(password, user.getId());
+            ResetPasswordDAO.createDemande(userEmail, password);
+            contianerDemande.setVisible(true);
             showAlert("Success", "Verifier votre Boite Email vous y trouverrai un mot de passe tamporaire");
+
         } else {
             showAlert("Error", "Erreur d'envoi");
         }
@@ -91,5 +106,23 @@ public class ResetPasswordController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void handledmenade(ActionEvent actionEvent) {
+        String code = codeField.getText();
+        String email = emailField.getText();
+        if (ResetPasswordDAO.checkCode(code, email)) {
+            resetVbx.setVisible(true);
+        }
+    }
+
+    public void reset(ActionEvent actionEvent) throws SQLException {
+        User user = UserDAO.getUserByEmail(emailField.getText());
+        if (newpass.getText().equals(newpass1.getText()) && newpass.getText().length() > 8) {
+            UserDAO.changePassword(newpass.getText(), user.getId());
+            showAlert("Demande", "Mot de passe renitialisee avec succes");
+        } else {
+            showAlert("Demande", "Verifier votre mot de passe et sa longueur");
+        }
     }
 }
