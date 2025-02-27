@@ -6,7 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import pfa.java.pfa2025java.PasswordGenerator;
+import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.dao.ResetPasswordDAO;
 import pfa.java.pfa2025java.dao.UserDAO;
 import pfa.java.pfa2025java.model.User;
@@ -118,9 +120,11 @@ public class ResetPasswordController {
 
     public void reset(ActionEvent actionEvent) throws SQLException {
         User user = UserDAO.getUserByEmail(emailField.getText());
-        if (newpass.getText().equals(newpass1.getText()) && newpass.getText().length() > 8) {
+        if (newpass.getText().equals(newpass1.getText()) && newpass.getText().length() >= 8) {
             UserDAO.changePassword(newpass.getText(), user.getId());
             showAlert("Demande", "Mot de passe renitialisee avec succes");
+            Stage stage = (Stage) resetVbx.getScene().getWindow();
+            stage.close();
         } else {
             showAlert("Demande", "Verifier votre mot de passe et sa longueur");
         }

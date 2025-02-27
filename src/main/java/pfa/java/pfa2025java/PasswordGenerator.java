@@ -5,8 +5,8 @@ import java.security.SecureRandom;
 
 public class PasswordGenerator {
 
-    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%!&*";
-    private static final int PASSWORD_LENGTH = 10;
+    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final int PASSWORD_LENGTH = 5;
 
     public static String generateTemporaryPassword() {
         SecureRandom random = new SecureRandom();
