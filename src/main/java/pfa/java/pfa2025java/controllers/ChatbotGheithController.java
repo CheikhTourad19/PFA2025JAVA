@@ -55,7 +55,6 @@ public class ChatbotGheithController {
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(MediaType.parse("application/json"),
                 "{\"model\": \"llama3.2\", \"prompt\": \"" + userInput + "\"}");
-//Réponse brute de l'API : {"model":"deepseek-r1:8b","created_at":"2025-02-26T14:38:05.9964243Z","response":"\u003c/think\u003e","done":false}
         Request request = new Request.Builder()
                 .url(ollamaApiUrl)
                 .addHeader("Content-Type", "application/json")

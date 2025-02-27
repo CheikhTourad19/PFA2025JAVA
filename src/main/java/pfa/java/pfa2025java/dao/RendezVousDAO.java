@@ -114,6 +114,44 @@ public class RendezVousDAO {
             return stmt.executeUpdate() > 0;
         }
     }
+    public static List<RendezVous> getRendezVousConfirmes(int medecinId) throws SQLException {
+        List<RendezVous> list = new ArrayList<>();
+        String sql = "SELECT * FROM rendez_vous WHERE medecin_id = ? AND statut = 'confirmé'";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, medecinId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                list.add(new RendezVous(
+                        rs.getInt("id"),
+                        rs.getInt("medecin_id"),
+                        rs.getInt("patient_id"),
+                        rs.getString("statut"),
+                        rs.getString("date")
+                ));
+            }
+        }
+        return list;
+    }
+
+    public static List<RendezVous> getDemandesRendezVous(int medecinId) throws SQLException {
+        List<RendezVous> list = new ArrayList<>();
+        String sql = "SELECT * FROM rendez_vous WHERE medecin_id = ? AND statut = 'attente'";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, medecinId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                list.add(new RendezVous(
+                        rs.getInt("id"),
+                        rs.getInt("medecin_id"),
+                        rs.getInt("patient_id"),
+                        rs.getString("statut"),
+                        rs.getString("date")
+                ));
+            }
+        }
+        return list;
+    }
+
     public static boolean deleteRendezVous(int id) throws SQLException {
         String sql = "DELETE FROM rendez_vous WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
