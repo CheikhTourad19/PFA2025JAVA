@@ -55,7 +55,7 @@ public class ChatbotGheithController {
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(MediaType.parse("application/json"),
-                "{\"model\": \"llama3.2\", \"prompt\": \"" + userInput + guidance + "\"}");
+                "{\"model\": \"llama3.2\", \"prompt\": \"" + guidance + userInput + "\"}");
         Request request = new Request.Builder()
                 .url(ollamaApiUrl)
                 .addHeader("Content-Type", "application/json")
