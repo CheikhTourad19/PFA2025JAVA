@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import pfa.java.pfa2025java.EmaliSender;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.controllers.ResetPasswordController;
@@ -143,7 +144,7 @@ private void handleMedecinSelection() {
             boolean success = MedecinDAO.sendRDVRequest(medecinId, patientId);
 
             if (success) {
-                ResetPasswordController.sendEmail(medecinMail, "Vous avez une nouvelle demande de rendez-vous");
+                EmaliSender.sendEmail(medecinMail, "Vous avez une nouvelle demande de rendez-vous");
                 Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
                 confirmation.setTitle("Demande envoyée");
                 confirmation.setHeaderText(null);
