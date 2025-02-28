@@ -39,7 +39,8 @@ public class ResetPasswordController {
     @FXML
     private void handleSendPassword() throws SQLException {
         String userEmail = emailField.getText().trim(); // Get the email from the TextField
-
+        resetVbx.setVisible(false);
+        contianerDemande.setVisible(false);
         if (userEmail.isEmpty() || UserDAO.getUserByEmail(userEmail) == null) {
             showAlert("Error", "Compte n'existe pas doit exister");
             return;
@@ -51,6 +52,7 @@ public class ResetPasswordController {
 
         if (emailSent) {
             ResetPasswordDAO.createDemande(userEmail, password);
+
             contianerDemande.setVisible(true);
             showAlert("Success", "Verifier votre Boite Email vous y trouverrai un mot de passe tamporaire");
 
@@ -110,10 +112,12 @@ public class ResetPasswordController {
         alert.showAndWait();
     }
 
-    public void handledmenade(ActionEvent actionEvent) {
+    public void handledmenade(ActionEvent actionEvent) throws SQLException {
+        resetVbx.setVisible(false);
         String code = codeField.getText();
         String email = emailField.getText();
         if (ResetPasswordDAO.checkCode(code, email)) {
+            ResetPasswordDAO.used(code,email);
             resetVbx.setVisible(true);
         }
     }
