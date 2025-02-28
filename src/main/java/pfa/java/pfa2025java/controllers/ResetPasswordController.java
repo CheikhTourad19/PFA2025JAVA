@@ -54,7 +54,7 @@ public class ResetPasswordController {
             ResetPasswordDAO.createDemande(userEmail, password);
 
             contianerDemande.setVisible(true);
-            showAlert("Success", "Verifier votre Boite Email vous y trouverrai un mot de passe tamporaire");
+            showAlert("Success", "Verifier votre Boite Email vous y trouverrais un code ");
 
         } else {
             showAlert("Error", "Erreur d'envoi");
