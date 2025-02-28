@@ -37,7 +37,7 @@ public class Chatbot extends Application {
 
     private void showMainStage(Stage stage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("views/chatbotgheith-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("views/chatbot-view.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
             SwtichScene.loadImage(stage);
