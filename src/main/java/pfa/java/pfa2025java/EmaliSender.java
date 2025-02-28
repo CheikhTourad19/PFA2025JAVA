@@ -8,8 +8,8 @@ import java.util.Properties;
 public class EmaliSender {
 
     public static boolean sendEmail(String toEmail, String message1) {
-        final String username = "elghothvadel@gmail.com"; // Your email address
-        final String appPassword = "mjzf sfqp kcsh ytke"; // Your email app password
+        final String username = "donotreplyemedical@gmail.com"; // Your email address
+        final String appPassword = "qmmc zhsl mfeh jfrs"; // Your email app password
 
         // Set up mail server properties
         Properties props = new Properties();
