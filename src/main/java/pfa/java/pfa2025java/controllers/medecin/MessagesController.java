@@ -30,6 +30,8 @@ import java.util.Set;
 
 public class MessagesController {
 
+    private SidebarController sidebarController;
+
     private Set<String> displayedMessages = new HashSet<>();
     @FXML private TextField messageField;
     @FXML private VBox chatBox;
@@ -49,7 +51,6 @@ public class MessagesController {
 
     public void initialize() {
         try {
-
             setupNetworkConnection();
             loadPreviousMessages();
             startMessageUpdater();
@@ -59,12 +60,11 @@ public class MessagesController {
             setupUserSelectionListener();
             setupScrollListener();
             startAutoRefresh();
-
-
         } catch (IOException e) {
             showError("Connection error: " + e.getMessage());
         }
     }
+
     private void setupUserSelectionListener() {
         userList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -72,17 +72,20 @@ public class MessagesController {
                 System.out.println("Selected User ID: " + receiverId);
                 loadChatWithUser(receiverId);
                 UserMessage.setText(newValue.getUsername());
+                startMessageUpdater();
             }
         });
     }
+
     private void setupScrollListener() {
         scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
             userScrolledUp = (newValue.doubleValue() < 1.0);
         });
     }
+
     private void startAutoRefresh() {
         Timeline refreshTimeline = new Timeline(
-                new KeyFrame(Duration.seconds(1), e -> userList.refresh())
+                new KeyFrame(Duration.seconds(2), e -> userList.refresh())
         );
         refreshTimeline.setCycleCount(Timeline.INDEFINITE);
         refreshTimeline.play();
@@ -92,14 +95,16 @@ public class MessagesController {
         socket = new Socket("localhost", 5000);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out.println(userId); // Envoyer l'ID utilisateur au serveur
+        out.println(userId);
+
     }
+
 
     private void loadPreviousMessages() {
         try {
             List<Message> messages = messageDao.getMessagesBetweenUsers(userId, receiverId);
             for (Message message : messages) {
-                addMessageToUI(message.getSenderId(), message.getContent());
+                addMessageToUI(message.getSenderId(), message.getContent(), message.isSeen());
             }
             scrollToBottom();
         } catch (SQLException e) {
@@ -120,17 +125,30 @@ public class MessagesController {
             try {
                 String message;
                 while ((message = in.readLine()) != null) {
-                    String[] parts = message.split(":", 2);
-                    if (parts.length < 2) continue;
+                    if (message.startsWith("SEEN_UPDATE:")) {
+                        int messageId = Integer.parseInt(message.split(":")[1]);
+                        Platform.runLater(() -> {
+                            try {
+                                messageDao.markMessagesAsSeen(userId, receiverId);
+                                refreshUserList();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                    }
+                    else if (message.startsWith("MSG:")) {
+                        String[] parts = message.split(":", 4);
+                        int senderId = Integer.parseInt(parts[1]);
+                        String content = parts[2];
+                        int messageId = Integer.parseInt(parts[3]);
 
-                    int senderId = Integer.parseInt(parts[0]);
-                    String content = parts[1];
+                        Platform.runLater(() -> {
+                            addMessageToUI(senderId, content, false);
+                            scrollToBottom();
+                            refreshUserList();
+                        });
+                    }
 
-                    Platform.runLater(() -> {
-                        refreshUserList();
-                        addMessageToUI(senderId, content);
-                        scrollToBottom();
-                    });
                 }
             } catch (IOException e) {
                 Platform.runLater(() -> showError("Network error: " + e.getMessage()));
@@ -142,7 +160,7 @@ public class MessagesController {
         try {
             List<Message> newMessages = messageDao.getNewMessages(userId, receiverId, sent_at);
             for (Message message : newMessages) {
-                addMessageToUI(message.getSenderId(), message.getContent());
+                addMessageToUI(message.getSenderId(), message.getContent(), message.isSeen());
             }
             sent_at = LocalDateTime.now();
             scrollToBottom();
@@ -154,12 +172,16 @@ public class MessagesController {
     @FXML
     private void sendMessage(ActionEvent event) {
         String content = messageField.getText().trim();
+        if (receiverId == 0) {
+            showError("Select  user!");
+            return;
+        }
         if (!content.isEmpty()) {
-            Message message = new Message(userId, receiverId, content,sent_at);
+            Message message = new Message(userId, receiverId, content, sent_at);
             try {
                 messageDao.saveMessage(message);
-                out.println(receiverId + ":" + content);
-                addMessageToUI(userId, content);
+                out.println("MSG:" + receiverId + ":" + content + ":" + message.getId());
+                addMessageToUI(userId, content, true);
                 messageField.clear();
                 scrollToBottom();
                 refreshUserList();
@@ -169,9 +191,8 @@ public class MessagesController {
         }
     }
 
-    private void addMessageToUI(int senderId, String content) {
-        //refresh mn ghyr message key ysir 3 fois
-        String messageKey = senderId + ":" + content+sent_at;
+    private void addMessageToUI(int senderId, String content, boolean isSeen) {
+        String messageKey = senderId + ":" + content + sent_at;
         if (!displayedMessages.contains(messageKey)) {
             HBox messageContainer = new HBox();
             messageContainer.setAlignment(senderId == userId ? Pos.CENTER_RIGHT : Pos.CENTER_LEFT);
@@ -180,17 +201,21 @@ public class MessagesController {
             TextFlow textFlow = new TextFlow(new Text(content));
             textFlow.setMaxWidth(300);
             textFlow.setPadding(new Insets(8));
-            textFlow.setStyle(senderId == userId ?
+            String baseStyle = senderId == userId ?
                     "-fx-background-color: #0084ff; -fx-background-radius: 15; -fx-text-fill: white;" :
-                    "-fx-background-color: #e0e0e0; -fx-background-radius: 15;");
+                    "-fx-background-color: #e0e0e0; -fx-background-radius: 15;";
 
+            if (senderId != userId && !isSeen) {
+                baseStyle += "-fx-font-weight: bold;";
+            }
+
+            textFlow.setStyle(baseStyle);
             messageContainer.getChildren().add(textFlow);
             chatBox.getChildren().add(messageContainer);
 
             displayedMessages.add(messageKey);
         }
     }
-
 
     private void scrollToBottom() {
         Platform.runLater(() -> {
@@ -200,6 +225,7 @@ public class MessagesController {
             }
         });
     }
+
     private void showError(String message) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -209,7 +235,6 @@ public class MessagesController {
             alert.showAndWait();
         });
     }
-
 
     private void loadUserList() {
         try {
@@ -234,16 +259,16 @@ public class MessagesController {
 
                         Label lastMessageLabel = new Label(userMessage.getLastMessage());
 
-
-
+                        if (userMessage.getSenderId() != userId && !userMessage.isSeen()) {
+                            lastMessageLabel.setStyle("-fx-font-weight: bold;");
+                        } else {
                             lastMessageLabel.setStyle("-fx-font-weight: normal;");
-
+                        }
 
                         Label timeAgoLabel = new Label(userMessage.getTimeAgo());
                         timeAgoLabel.setStyle("-fx-text-fill: gray; -fx-font-size: 10;");
 
                         hbox.getChildren().addAll(usernameLabel, lastMessageLabel, timeAgoLabel);
-
                         setGraphic(hbox);
                     }
                 }
@@ -252,19 +277,22 @@ public class MessagesController {
             showError("Failed to load user list: " + e.getMessage());
         }
     }
+
     private void loadChatWithUser(int otherUserId) {
         try {
+            messageDao.markMessagesAsSeen(userId, otherUserId);
+            out.println("SEEN:" + otherUserId);
 
             chatBox.getChildren().clear();
             List<Message> messages = messageDao.getMessagesBetweenUsers(userId, otherUserId);
             for (Message message : messages) {
-                addMessageToUI(message.getSenderId(), message.getContent());
-            }scrollToBottom();
+                addMessageToUI(message.getSenderId(), message.getContent(), message.isSeen());
+            }
+            scrollToBottom();
         } catch (SQLException e) {
             showError("Failed to load messages: " + e.getMessage());
         }
     }
-
 
     private void setupSearchListener() {
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -279,6 +307,7 @@ public class MessagesController {
             timeline.play();
         });
     }
+
     private void searchUsers(String query) {
         try {
             List<UserMessage> searchResults = messageDao.searchUsers(userId, query);
@@ -287,6 +316,7 @@ public class MessagesController {
             showError("Search error: " + e.getMessage());
         }
     }
+
     private void refreshUserList() {
         try {
             List<UserMessage> updatedList = messageDao.getUsersWithLastMessage(userId);
@@ -297,6 +327,5 @@ public class MessagesController {
             showError("Error refreshing user list: " + e.getMessage());
         }
     }
-
 
 }
