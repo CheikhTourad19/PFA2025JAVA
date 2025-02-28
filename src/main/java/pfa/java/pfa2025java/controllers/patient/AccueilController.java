@@ -112,7 +112,7 @@ public class AccueilController {
 
     public void chat(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/chatbotgheith-view.fxml", "Login", false);
+        swtichScene.loadScene(actionEvent, "views/chatbot-view.fxml", "Login", false);
     }
 }
 

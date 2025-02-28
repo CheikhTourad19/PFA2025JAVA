@@ -19,15 +19,15 @@ public class MessageDAO {
             throw new RuntimeException(e);
         }
     }
+
     public void saveMessage(Message message) throws SQLException {
         String sql = MessageRequet.saveMsg;
-        try (
-                PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-
+        try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, message.getSenderId());
             stmt.setInt(2, message.getReceiverId());
             stmt.setString(3, message.getContent());
             stmt.setTimestamp(4, Timestamp.valueOf(message.getSentAt()));
+            stmt.setBoolean(5, message.isSeen());
             stmt.executeUpdate();
 
             try (ResultSet rs = stmt.getGeneratedKeys()) {
@@ -42,14 +42,12 @@ public class MessageDAO {
         List<Message> messages = new ArrayList<>();
         String sql = MessageRequet.getMsgBetweenUsers;
 
-        try (
-                PreparedStatement stmt = connection.prepareStatement(sql)) {
-
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, user1);
-            stmt.setInt(2, user2);
+            stmt.setInt(2, user1);
             stmt.setInt(3, user2);
-            stmt.setInt(4, user1);
-
+            stmt.setInt(4, user2);
+            stmt.setInt(5, user1);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -60,7 +58,7 @@ public class MessageDAO {
                             rs.getTimestamp("sent_at").toLocalDateTime()
                     );
                     message.setId(rs.getInt("id"));
-                    message.setSentAt(rs.getTimestamp("sent_at").toLocalDateTime());
+                    message.setSeen(rs.getBoolean("vu"));
                     messages.add(message);
                 }
             }
@@ -72,9 +70,7 @@ public class MessageDAO {
         List<Message> messages = new ArrayList<>();
         String sql = MessageRequet.getNewMsg;
 
-        try (
-                PreparedStatement stmt = connection.prepareStatement(sql)) {
-
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, user1);
             stmt.setInt(2, user2);
             stmt.setInt(3, user2);
@@ -90,36 +86,34 @@ public class MessageDAO {
                             rs.getTimestamp("sent_at").toLocalDateTime()
                     );
                     message.setId(rs.getInt("id"));
-                    message.setSentAt(rs.getTimestamp("sent_at").toLocalDateTime());
+                    message.setSeen(rs.getBoolean("vu"));
                     messages.add(message);
                 }
             }
         }
         return messages;
     }
+
     public List<UserMessage> getUsersWithLastMessage(int userId) throws SQLException {
         List<UserMessage> userMessages = new ArrayList<>();
-        String sql = MessageRequet.getUsersWithLastMsg;
+        String sql =MessageRequet.getUsersWithLastMsg;
 
-        try (
-                PreparedStatement stmt = connection.prepareStatement(sql)) {
-
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, userId);
             stmt.setInt(2, userId);
             stmt.setInt(3, userId);
             stmt.setInt(4, userId);
-           
-
+            stmt.setInt(5, userId);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     UserMessage userMessage = new UserMessage(
-                            rs.getInt("user_id"),
+                            rs.getInt("id"),
                             rs.getString("prenom"),
                             rs.getString("content"),
                             rs.getTimestamp("sent_at").toLocalDateTime(),
-                            rs.getBoolean("vu")
-
+                            rs.getBoolean("vu"),
+                            rs.getInt("sender_id")
                     );
                     userMessages.add(userMessage);
                 }
@@ -127,30 +121,49 @@ public class MessageDAO {
         }
         return userMessages;
     }
+
     public List<UserMessage> searchUsers(int currentUserId, String query) throws SQLException {
         List<UserMessage> userMessages = new ArrayList<>();
         String sql = MessageRequet.search_Users;
-        try (
-                PreparedStatement stmt = connection.prepareStatement(sql)) {
 
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, "%" + query + "%");
             stmt.setInt(2, currentUserId);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     UserMessage userMessage = new UserMessage(
-                            rs.getInt("user_id"),
+                            rs.getInt("id"),
                             rs.getString("prenom"),
                             rs.getString("content"),
                             rs.getTimestamp("sent_at") != null ?
                                     rs.getTimestamp("sent_at").toLocalDateTime() : LocalDateTime.now(),
-                            rs.getBoolean("vu")
+                            rs.getBoolean("vu"),
+                            rs.getInt("sender_id")
                     );
                     userMessages.add(userMessage);
                 }
             }
         }
         return userMessages;
+    }
+
+
+    public void markMessagesAsSeen(int receiverId, int senderId) throws SQLException {
+        String sql = MessageRequet.markMsgAsSeen;
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, senderId);
+            stmt.setInt(2, receiverId);
+            stmt.executeUpdate();
+        }
+    }
+    public int getUnreadCount(int userId) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM messages WHERE receiver_id = ? AND vu = false";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() ? rs.getInt(1) : 0;
+        }
     }
 
 }

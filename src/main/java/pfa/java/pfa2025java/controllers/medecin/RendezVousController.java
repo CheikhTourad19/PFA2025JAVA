@@ -57,6 +57,7 @@ public class RendezVousController {
         }
     }
     public void accepterRendezVous(ActionEvent actionEvent) {
+
     }
 
     public void refuserRendezVous(ActionEvent actionEvent) {

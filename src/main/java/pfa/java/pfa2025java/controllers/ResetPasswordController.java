@@ -7,8 +7,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import pfa.java.pfa2025java.EmaliSender;
 import pfa.java.pfa2025java.PasswordGenerator;
 import pfa.java.pfa2025java.SwtichScene;
+import pfa.java.pfa2025java.TwilioSmsSender;
 import pfa.java.pfa2025java.dao.ResetPasswordDAO;
 import pfa.java.pfa2025java.dao.UserDAO;
 import pfa.java.pfa2025java.model.User;
@@ -18,6 +20,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import static pfa.java.pfa2025java.EmaliSender.sendEmail;
 
 
 public class ResetPasswordController {
@@ -39,20 +43,22 @@ public class ResetPasswordController {
     @FXML
     private void handleSendPassword() throws SQLException {
         String userEmail = emailField.getText().trim(); // Get the email from the TextField
-
+        resetVbx.setVisible(false);
+        contianerDemande.setVisible(false);
         if (userEmail.isEmpty() || UserDAO.getUserByEmail(userEmail) == null) {
             showAlert("Error", "Compte n'existe pas doit exister");
             return;
         }
-
+        User user = UserDAO.getUserByEmail(userEmail);
         // Send the email
-        boolean emailSent = sendEmail(userEmail, messagetosend);
+        boolean emailSent = EmaliSender.sendEmail(userEmail, messagetosend);
+        boolean smsSent= TwilioSmsSender.sendSms(user.getNumero(), messagetosend);
 
-
-        if (emailSent) {
+        if (emailSent || smsSent) {
             ResetPasswordDAO.createDemande(userEmail, password);
+
             contianerDemande.setVisible(true);
-            showAlert("Success", "Verifier votre Boite Email vous y trouverrai un mot de passe tamporaire");
+            showAlert("Success", "Verifier votre Boite Email ou votre numero vous y trouverrais un code ");
 
         } else {
             showAlert("Error", "Erreur d'envoi");
@@ -60,46 +66,7 @@ public class ResetPasswordController {
     }
 
     // Method to send an email
-    public static boolean sendEmail(String toEmail, String message1) {
-        final String username = "elghothvadel@gmail.com"; // Your email address
-        final String appPassword = "mjzf sfqp kcsh ytke"; // Your email app password
 
-        // Set up mail server properties
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-
-        // Create a session with authentication
-        Session session = Session.getInstance(props, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, appPassword);
-            }
-        });
-
-        try {
-            // Create a MimeMessage object
-            Message message = new MimeMessage(session);
-
-            // Set the sender and recipient addresses
-            message.setFrom(new InternetAddress(username));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-
-            // Set the email subject and body
-            message.setSubject("Email de E-Medical ");
-            message.setText(message1);
-
-            // Send the email
-            Transport.send(message);
-            return true; // Email sent successfully
-
-        } catch (MessagingException e) {
-            e.printStackTrace();
-            return false; // Email failed to send
-        }
-    }
 
     // Utility method to show alerts
     private void showAlert(String title, String message) {
@@ -110,10 +77,12 @@ public class ResetPasswordController {
         alert.showAndWait();
     }
 
-    public void handledmenade(ActionEvent actionEvent) {
+    public void handledmenade(ActionEvent actionEvent) throws SQLException {
+        resetVbx.setVisible(false);
         String code = codeField.getText();
         String email = emailField.getText();
         if (ResetPasswordDAO.checkCode(code, email)) {
+            ResetPasswordDAO.used(code,email);
             resetVbx.setVisible(true);
         }
     }
