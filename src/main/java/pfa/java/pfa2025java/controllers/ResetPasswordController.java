@@ -9,19 +9,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pfa.java.pfa2025java.EmaliSender;
 import pfa.java.pfa2025java.PasswordGenerator;
-import pfa.java.pfa2025java.SwtichScene;
-import pfa.java.pfa2025java.TwilioSmsSender;
+import pfa.java.pfa2025java.SmsSender;
 import pfa.java.pfa2025java.dao.ResetPasswordDAO;
 import pfa.java.pfa2025java.dao.UserDAO;
 import pfa.java.pfa2025java.model.User;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.sql.SQLException;
-import java.util.Properties;
-
-import static pfa.java.pfa2025java.EmaliSender.sendEmail;
 
 
 public class ResetPasswordController {
@@ -50,9 +43,9 @@ public class ResetPasswordController {
             return;
         }
         User user = UserDAO.getUserByEmail(userEmail);
-        // Send the email
+        boolean smsSent = SmsSender.sendSms(user.getNumero(), messagetosend);
         boolean emailSent = EmaliSender.sendEmail(userEmail, messagetosend);
-        boolean smsSent= TwilioSmsSender.sendSms(user.getNumero(), messagetosend);
+
 
         if (emailSent || smsSent) {
             ResetPasswordDAO.createDemande(userEmail, password);

@@ -56,7 +56,7 @@
             </effect>
         </Button>
         <Text fill="#fc0000" layoutX="98.0" layoutY="377.0" onMouseClicked="#gotoreset"
-              style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14px;" text="Mot de passe Oublié ?"
+              style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14px; -fx-cursor: hand" text="Mot de passe Oublié ?"
               textAlignment="RIGHT" wrappingWidth="283.0654296875"/>
 
         <!-- Sign Up Section -->

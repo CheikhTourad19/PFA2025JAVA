@@ -4,7 +4,7 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
-public class TwilioSmsSender {
+public class SmsSender {
     // Replace with your Twilio account SID, auth token, and Twilio phone number
     public static final String ACCOUNT_SID = "ACdbe0fe323dbc301d92992eea69b19aa0";
     public static final String AUTH_TOKEN = "638b3395b09a4eb95934bd766891cde3";
