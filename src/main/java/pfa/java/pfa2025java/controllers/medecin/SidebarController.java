@@ -3,6 +3,7 @@ package pfa.java.pfa2025java.controllers.medecin;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
@@ -32,6 +33,7 @@ public class SidebarController {
     private ImageView dashboard, tasks, messages, appointments, settings, logout, profilImage;
     @FXML
     private Label dashboardLabel, tasksLabel, messagesLabel, appointmentsLabel, settingsLabel, logoutLabel, profilLabel;
+    @FXML private Label countMsg;
 
     private boolean isCollapsed = false;
 
@@ -130,6 +132,7 @@ public class SidebarController {
 
     private void goToMessages() {
         NavigationUtil.navigateTo(mainContent, "message");
+
     }
 
     // Exemple pour la page dashboard
@@ -163,5 +166,9 @@ public class SidebarController {
     private void goToRDV() {
         NavigationUtil.navigateTo(mainContent, "appointment");
     }
+
+
+
+
 }
 
