@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import pfa.java.pfa2025java.EmaliSender;
 import pfa.java.pfa2025java.PasswordGenerator;
 import pfa.java.pfa2025java.SwtichScene;
+import pfa.java.pfa2025java.TwilioSmsSender;
 import pfa.java.pfa2025java.dao.ResetPasswordDAO;
 import pfa.java.pfa2025java.dao.UserDAO;
 import pfa.java.pfa2025java.model.User;
@@ -48,16 +49,16 @@ public class ResetPasswordController {
             showAlert("Error", "Compte n'existe pas doit exister");
             return;
         }
-
+        User user = UserDAO.getUserByEmail(userEmail);
         // Send the email
         boolean emailSent = EmaliSender.sendEmail(userEmail, messagetosend);
+        boolean smsSent= TwilioSmsSender.sendSms(user.getNumero(), messagetosend);
 
-
-        if (emailSent) {
+        if (emailSent || smsSent) {
             ResetPasswordDAO.createDemande(userEmail, password);
 
             contianerDemande.setVisible(true);
-            showAlert("Success", "Verifier votre Boite Email vous y trouverrais un code ");
+            showAlert("Success", "Verifier votre Boite Email ou votre numero vous y trouverrais un code ");
 
         } else {
             showAlert("Error", "Erreur d'envoi");
