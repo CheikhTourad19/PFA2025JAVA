@@ -17,7 +17,7 @@ public class TwilioSmsSender {
     public static boolean sendSms(String toPhoneNumber, String messageBody) {
         try {
             Message message = Message.creator(
-                    new PhoneNumber(toPhoneNumber),
+                    new PhoneNumber("+216"+toPhoneNumber),
                     new PhoneNumber(FROM_PHONE_NUMBER),
                     messageBody
             ).create();
