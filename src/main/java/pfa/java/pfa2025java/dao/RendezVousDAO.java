@@ -65,36 +65,10 @@ public class RendezVousDAO {
         return list;
     }
 
-    public static List<RendezVous> getRDVByMedecinId(int medecinId) throws SQLException {
-        List<RendezVous> list = new ArrayList<>();
-        String sql = "SELECT * FROM rendez_vous WHERE medecin_id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, medecinId);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                list.add(new RendezVous(
-                        rs.getInt("id"),
-                        rs.getInt("medecin_id"),
-                        rs.getInt("patient_id"),
-                        rs.getString("statut"),
-                        rs.getString("date")
-                ));
-            }
-        }
-        return list;
-    }
 
 
-    public static boolean addRendezVous(RendezVous rdv) throws SQLException {
-        String sql = "INSERT INTO rendez_vous (medecin_id, patient_id, statut, date) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, rdv.getMedecinId());
-            stmt.setInt(2, rdv.getPatientId());
-            stmt.setString(3, rdv.getStatut());
-            stmt.setString(4, rdv.getDate());
-            return stmt.executeUpdate() > 0;
-        }
-    }
+
+
     public static boolean updateRdvState(int id, String status) throws SQLException {
         String sql = "UPDATE rendez_vous SET statut = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
