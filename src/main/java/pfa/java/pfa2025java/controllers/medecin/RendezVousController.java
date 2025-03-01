@@ -2,8 +2,10 @@ package pfa.java.pfa2025java.controllers.medecin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.RendezVous;
@@ -12,9 +14,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 
 public class RendezVousController {
+    public TextField timeFieldRdv;
+    public DatePicker datePickerRdv;
     @FXML
     private TableView<RendezVous> tableViewConfirme;
     @FXML
@@ -57,12 +62,51 @@ public class RendezVousController {
         }
     }
     public void accepterRendezVous(ActionEvent actionEvent) {
+        RendezVous selectedRdv = tableViewDemandes.getSelectionModel().getSelectedItem();
+        if (selectedRdv != null) {
+            LocalDate date = datePickerRdv.getValue();
+            String time = timeFieldRdv.getText();
 
+            if (date == null || time.isEmpty()) {
+                System.out.println("Veuillez sélectionner une date et une heure.");
+                return;
+            }
+            String formattedDateTime = date + " " + time;
+            RendezVous rendezVous = selectedRdv;
+            rendezVous.setDate(formattedDateTime);
+            rendezVous.setStatut("confirme");
+
+            try {
+                RendezVousDAO.updateRendezVous(rendezVous);
+                loadRendezVousData(); // Refresh tables
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void refuserRendezVous(ActionEvent actionEvent) {
+        RendezVous selectedRdv = tableViewDemandes.getSelectionModel().getSelectedItem();
+        if (selectedRdv != null) {
+            try {
+                RendezVousDAO.updateRdvState(selectedRdv.getId(),"annule");
+                loadRendezVousData();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void annulerRendezVous(ActionEvent actionEvent) {
+        RendezVous selectedRdv = tableViewConfirme.getSelectionModel().getSelectedItem();
+        if (selectedRdv != null) {
+            try {
+                RendezVousDAO.deleteRendezVous(selectedRdv.getId());
+                loadRendezVousData();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 }
