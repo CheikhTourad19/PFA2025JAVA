@@ -5,11 +5,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.StackPane?>
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFAFA;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.SidebarController">
     <children>
         <VBox fx:id="sidebar" prefHeight="600.0" prefWidth="178.0">
@@ -18,32 +17,32 @@
                     <children>
                         <AnchorPane fx:id="drawer" prefHeight="600.0" prefWidth="121.0" style="-fx-background-color: #0F72B3;" styleClass="drawer" stylesheets="@../../Style/medicin/sidebar.css">
                             <children>
-                                <Label fx:id="dashboardLabel" layoutX="51.0" layoutY="180.0" text="Dashboard" textFill="WHITE">
+                                <Label fx:id="dashboardLabel" layoutX="50.0" layoutY="150.0" text="Dashboard" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="tasksLabel" layoutX="53.0" layoutY="229.0" text="Tasks" textFill="WHITE">
+                                <Label fx:id="tasksLabel" layoutX="50.0" layoutY="200.0" text="Tasks" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="messagesLabel" layoutX="55.0" layoutY="272.0" text="Messages" textFill="WHITE">
+                                <Label fx:id="messagesLabel" layoutX="50.0" layoutY="245.0" text="Messages" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="appointmentsLabel" layoutX="55.0" layoutY="326.0" text="Appointments" textFill="WHITE">
+                                <Label fx:id="appointmentsLabel" layoutX="50.0" layoutY="300.0" text="Appointments" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="settingsLabel" layoutX="59.0" layoutY="380.0" text="Settings" textFill="WHITE">
+                                <Label fx:id="settingsLabel" layoutX="50.0" layoutY="350.0" text="Settings" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="logoutLabel" layoutX="64.0" layoutY="497.0" text="Logout" textFill="WHITE">
+                                <Label fx:id="logoutLabel" layoutX="50.0" layoutY="500.0" text="Logout" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
@@ -52,36 +51,13 @@
                                     <children>
 
 
-                                        <StackPane layoutX="1.0" layoutY="233.0">
-                                            <ImageView fx:id="messages"
-                                                       fitHeight="25.0" fitWidth="39.0"
-                                                       onMouseClicked="#goToMessages"
-                                                       pickOnBounds="true"
-                                            preserveRatio="true"
-                                            mouseTransparent="false">
-                                            <image>
-                                                <Image url="@../../assets/message.png" />
-                                            </image>
-                                            </ImageView>
-                                            <Label fx:id="countMsg"
-                                                   style="-fx-background-color: red; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 10;"
-                                                   layoutX="20"
-                                            layoutY="-10"
-                                            minWidth="15"
-                                            minHeight="15"
-                                            alignment="CENTER"
-                                            visible="false"
-                                            mouseTransparent="true"/>
-                                        </StackPane>
 
-
-
-                                        <ImageView fx:id="dashboard" fitHeight="25.0" fitWidth="39.0" layoutX="2.0" layoutY="132.0" onMouseClicked="#goToDashboard" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="dashboard" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="100.0" onMouseClicked="#goToDashboard" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/dashboard.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="tasks" fitHeight="25.0" fitWidth="31.0" layoutX="2.0" layoutY="184.0" onMouseClicked="#goToTask" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="tasks" fitHeight="25.0" fitWidth="31.0" layoutX="2.0" layoutY="150.0" onMouseClicked="#goToTask" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/task.png" />
                                             </image>
@@ -89,39 +65,49 @@
                                         <ImageView fx:id="Toggle_sidebar" fitHeight="24.0" fitWidth="46.0" layoutX="1.0" layoutY="2.0" onMouseClicked="#toggleSidebar" pickOnBounds="true" preserveRatio="true">
                                             <Image url="@../../assets/back.png" />
                                         </ImageView>
-                                        <ImageView fx:id="appointments" fitHeight="25.0" fitWidth="39.0" layoutX="2.0" layoutY="285.0" onMouseClicked="#goToRDV" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="appointments" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="250.0" onMouseClicked="#goToRDV" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/appointments.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="logout" fitHeight="25.0" fitWidth="31.0" layoutX="8.0" layoutY="449.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="logout" fitHeight="25.0" fitWidth="31.0" layoutX="8.0" layoutY="450.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/logout.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="settings" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="settings" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/settings.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="profilImage" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="370.0" onMouseClicked="#goToProfil" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="profilImage" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="350.0" onMouseClicked="#goToProfil" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/profil.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="ordonnanceImage" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="407.0" onMouseClicked="#goToOrdonnance" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="ordonnanceImage" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="400.0" onMouseClicked="#goToOrdonnance" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/medical-record.png" />
                                             </image>
                                         </ImageView>
+                                         <ImageView fx:id="messages" fitHeight="25.0" fitWidth="39.0" layoutX="4.0" layoutY="200.0" mouseTransparent="false" onMouseClicked="#goToMessages" pickOnBounds="true" preserveRatio="true">
+                                         <image>
+                                             <Image url="@../../assets/message.png" />
+                                         </image>
+                                         </ImageView>
+      
+      
+                                        <StackPane layoutX="23.0" layoutY="193.0">
+                                            <Label fx:id="countMsg" alignment="CENTER" layoutX="20" layoutY="-10" minHeight="15" minWidth="15" mouseTransparent="true" style="-fx-background-color: red; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 10;" visible="false" />
+                                        </StackPane>
                                     </children>
                                 </AnchorPane>
-                                <Label fx:id="profilLabel" layoutX="57.0" layoutY="419.0" text="Profil" textFill="WHITE">
+                                <Label fx:id="profilLabel" layoutX="50.0" layoutY="400.0" text="Profil" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="ordonnanceLabel" layoutX="57.0" layoutY="457.0" text="Ordonnance" textFill="WHITE">
+                                <Label fx:id="ordonnanceLabel" layoutX="50.0" layoutY="450.0" text="Ordonnance" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>

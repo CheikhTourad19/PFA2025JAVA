@@ -14,7 +14,9 @@ import javafx.util.Duration;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.controllers.medecin.util.NavigationUtil;
+import pfa.java.pfa2025java.dao.MessageDAO;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,10 +48,9 @@ public class SidebarController {
 
 
     private void initializeComponents() {
-        // Position initiale des icônes
         setImagePositions(12.0);
-        // État initial des labels
         updateLabelsVisibility(!isCollapsed);
+        startUnreadCountUpdater();
     }
 
     @FXML
@@ -131,28 +132,27 @@ public class SidebarController {
 
 
     private void goToMessages() {
-        NavigationUtil.navigateTo(mainContent, "message");
+        NavigationUtil.navigateTo(mainContent, "message",this);
 
     }
 
-    // Exemple pour la page dashboard
     @FXML
     private void goToDashboard() {
-        NavigationUtil.navigateTo(mainContent, "dashboard");
+        NavigationUtil.navigateTo(mainContent, "dashboard",this);
     }
     @FXML
     private void goToTask() {
-        NavigationUtil.navigateTo(mainContent, "task");
+        NavigationUtil.navigateTo(mainContent, "task",this);
     }
 
     @FXML
     private void goToProfil() {
-        NavigationUtil.navigateTo(mainContent, "profil");
+        NavigationUtil.navigateTo(mainContent, "profil",this);
     }
 
     @FXML
     private void goToOrdonnance() {
-        NavigationUtil.navigateTo(mainContent, "ordonnance");
+        NavigationUtil.navigateTo(mainContent, "ordonnance",this);
     }
     @FXML
     private void logout() {
@@ -164,7 +164,31 @@ public class SidebarController {
 
     @FXML
     private void goToRDV() {
-        NavigationUtil.navigateTo(mainContent, "appointment");
+        NavigationUtil.navigateTo(mainContent, "appointment",this);
+    }
+
+    private void startUnreadCountUpdater() {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(2), e -> updateUnreadCount())
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    protected void updateUnreadCount() {
+        try {
+            int unreadCount = new MessageDAO().getUnreadCount(UserSession.getId());
+            Platform.runLater(() -> {
+                if (unreadCount > 0) {
+                    countMsg.setText(String.valueOf(unreadCount));
+                    countMsg.setVisible(true);
+                } else {
+                    countMsg.setVisible(false);
+                }
+            });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -30,7 +30,6 @@ import java.util.Set;
 
 public class MessagesController {
 
-    private SidebarController sidebarController;
 
     private Set<String> displayedMessages = new HashSet<>();
     @FXML private TextField messageField;
@@ -48,7 +47,7 @@ public class MessagesController {
     @FXML
     private ListView<UserMessage> userList;
     private boolean userScrolledUp = false; // Track if user scrolled up
-
+    private SidebarController sidebarController;
     public void initialize() {
         try {
             setupNetworkConnection();
@@ -171,6 +170,7 @@ public class MessagesController {
 
     @FXML
     private void sendMessage(ActionEvent event) {
+
         String content = messageField.getText().trim();
         if (receiverId == 0) {
             showError("Select  user!");
@@ -289,6 +289,9 @@ public class MessagesController {
                 addMessageToUI(message.getSenderId(), message.getContent(), message.isSeen());
             }
             scrollToBottom();
+            if (sidebarController != null) {
+                sidebarController.updateUnreadCount();
+            }
         } catch (SQLException e) {
             showError("Failed to load messages: " + e.getMessage());
         }
@@ -322,10 +325,16 @@ public class MessagesController {
             List<UserMessage> updatedList = messageDao.getUsersWithLastMessage(userId);
             Platform.runLater(() -> {
                 userList.getItems().setAll(updatedList);
+                if (sidebarController != null) {
+                    sidebarController.updateUnreadCount();
+                }
             });
         } catch (SQLException e) {
             showError("Error refreshing user list: " + e.getMessage());
         }
+    }
+    public void setSidebarController(SidebarController sidebarController) {
+        this.sidebarController = sidebarController;
     }
 
 }

@@ -68,7 +68,7 @@ public class ChatServer {
                         LocalDateTime sentAt = LocalDateTime.now();
                         Message message = new Message(userId, receiverId, content, sentAt);
                         message.setId(messageId);
-                        messageDao.saveMessage(message);
+
                         forwardMessage(receiverId, message);
                     }
                 }

@@ -23,6 +23,8 @@ public class MessageDAO {
     public void saveMessage(Message message) throws SQLException {
         String sql = MessageRequet.saveMsg;
         try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            connection.setAutoCommit(false);
+
             stmt.setInt(1, message.getSenderId());
             stmt.setInt(2, message.getReceiverId());
             stmt.setString(3, message.getContent());
@@ -30,11 +32,17 @@ public class MessageDAO {
             stmt.setBoolean(5, message.isSeen());
             stmt.executeUpdate();
 
+            connection.commit();
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 if (rs.next()) {
                     message.setId(rs.getInt(1));
                 }
             }
+        } catch (SQLException e) {
+            connection.rollback();
+            throw e;
+        } finally {
+            connection.setAutoCommit(true);
         }
     }
 
@@ -158,8 +166,9 @@ public class MessageDAO {
         }
     }
     public int getUnreadCount(int userId) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM messages WHERE receiver_id = ? AND vu = false";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        String query = "SELECT COUNT(*) FROM messages WHERE receiver_id = ? AND vu = false";
+        try (
+             PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
             return rs.next() ? rs.getInt(1) : 0;
