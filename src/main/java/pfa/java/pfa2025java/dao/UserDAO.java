@@ -47,7 +47,7 @@ public class UserDAO {
         return user != null && PasswordUtils.checkPassword(password, user.getPassword());
     }
 
-    public static boolean registerUser(String nom, String email, String password, String prenom, String numero, String role, String cin) {
+    public static boolean registerUser(String nom, String email, String password, String prenom, String numero, String role) {
         String hashedPassword = PasswordUtils.hashPassword(password);  // Hashage du mot de passe
         String sql = "INSERT INTO user (nom, email, password, prenom, numero, role) VALUES (?, ?, ?, ?, ?, ?)";
         String sql2 = "INSERT INTO patient (patient_id, cin) VALUES (?, ?)";
@@ -72,7 +72,7 @@ public class UserDAO {
 
                         try (PreparedStatement stmt2 = connection.prepareStatement(sql2)) {
                             stmt2.setInt(1, userId);
-                            stmt2.setString(2, cin);
+                            stmt2.setString(2, "0");
                             stmt2.executeUpdate();
                         }
 
