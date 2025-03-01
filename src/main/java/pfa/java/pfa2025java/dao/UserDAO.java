@@ -4,10 +4,7 @@ import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.PasswordUtils;
 import pfa.java.pfa2025java.model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,10 +47,12 @@ public class UserDAO {
         return user != null && PasswordUtils.checkPassword(password, user.getPassword());
     }
 
-    public static boolean registerUser(String nom, String email, String password, String prenom, String numero , String role) {
+    public static boolean registerUser(String nom, String email, String password, String prenom, String numero, String role, String cin) {
         String hashedPassword = PasswordUtils.hashPassword(password);  // Hashage du mot de passe
-        String sql = "INSERT INTO user (nom, email, password,prenom,numero,role) VALUES (?, ?, ?,?,?,?)";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        String sql = "INSERT INTO user (nom, email, password, prenom, numero, role) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql2 = "INSERT INTO patient (patient_id, cin) VALUES (?, ?)";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, nom);
             stmt.setString(2, email);
             stmt.setString(3, hashedPassword);
@@ -61,13 +60,34 @@ public class UserDAO {
             stmt.setString(5, numero);
             stmt.setString(6, role);
 
-            stmt.executeUpdate();
-            return true;
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int userId = generatedKeys.getInt(1);
+
+
+                        try (PreparedStatement stmt2 = connection.prepareStatement(sql2)) {
+                            stmt2.setInt(1, userId);
+                            stmt2.setString(2, cin);
+                            stmt2.executeUpdate();
+                        }
+
+
+                    return true;
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
+
 
 
 
