@@ -89,7 +89,7 @@ public class RendezVousController {
         RendezVous selectedRdv = tableViewDemandes.getSelectionModel().getSelectedItem();
         if (selectedRdv != null) {
             try {
-                RendezVousDAO.updateRdvState(selectedRdv.getId(),"annule");
+                RendezVousDAO.updateRdvState(selectedRdv.getId(),"refuse");
                 loadRendezVousData();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -101,7 +101,7 @@ public class RendezVousController {
         RendezVous selectedRdv = tableViewConfirme.getSelectionModel().getSelectedItem();
         if (selectedRdv != null) {
             try {
-                RendezVousDAO.deleteRendezVous(selectedRdv.getId());
+                RendezVousDAO.updateRdvState(selectedRdv.getId(),"annule");
                 loadRendezVousData();
             } catch (SQLException e) {
                 e.printStackTrace();

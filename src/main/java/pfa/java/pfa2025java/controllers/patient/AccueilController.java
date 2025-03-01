@@ -62,7 +62,15 @@ public class AccueilController {
                         } else if ("annule".equals(statut)) {
                             setTextFill(javafx.scene.paint.Color.WHITE);
                             setStyle("-fx-background-color: #ff3f3f;"); // Red for "annule"
-                        } else {
+
+                        } else if ("refuse".equals(statut)) {
+                            setTextFill(javafx.scene.paint.Color.WHITE);
+                            setStyle("-fx-background-color: #ff3f3f;");
+                        }else if ("termine".equals(statut)) {
+                            setTextFill(javafx.scene.paint.Color.WHITE);
+                            setStyle("-fx-background-color: #00399f;");
+                        }
+                        else {
                             setTextFill(javafx.scene.paint.Color.BLACK); // Default color (black) for any other status
                         }
                     }
