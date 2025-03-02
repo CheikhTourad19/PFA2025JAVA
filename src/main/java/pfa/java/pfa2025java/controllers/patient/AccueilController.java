@@ -4,9 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
@@ -121,6 +119,27 @@ public class AccueilController {
     public void chat(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/chatbot-view.fxml", "Login", false);
+    }
+
+    public void annuler(ActionEvent actionEvent) {
+        RendezVous selectedRdv = TVRDV.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        if (selectedRdv != null) {
+
+            alert.setTitle("Attention");
+            alert.setHeaderText(null);
+            alert.setContentText("Voulez-vous vraiment annuler ?");
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) {
+                try {
+                    RendezVousDAO.updateRdvState(selectedRdv.getId(),"annule");
+                    loadRDVs();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 }
 

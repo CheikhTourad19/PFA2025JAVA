@@ -23,9 +23,7 @@
         <Button style=" -fx-cursor: hand; -fx-background-color: #27AE60; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Mes RDV" />
         <Button onAction="#consulterPharmacies" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Consulter Pharmacies" />
         <Button onAction="#demandeRendezVous" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Demande RDV" />
-        <Button layoutX="20.0" layoutY="336.0" onAction="#chat"
-                style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
-                text="Chat AI (test)"/>
+        <Button layoutX="20.0" layoutY="336.0" onAction="#chat" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Chat AI (test)" />
 
         <Button onAction="#logout" style=" -fx-cursor: hand; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Déconnexion" />
     </VBox>
@@ -43,6 +41,7 @@
                <TableColumn fx:id="TcStatus" prefWidth="126.39990234375" text="Status" />
            </columns>
          </TableView>
+         <Button mnemonicParsing="false" onAction="#annuler" text="Annuler" />
       </children>
       <padding>
          <Insets top="28.0" />
