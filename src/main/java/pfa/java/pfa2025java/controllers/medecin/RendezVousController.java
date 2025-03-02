@@ -109,4 +109,15 @@ public class RendezVousController {
         }
     }
 
+    public void finish(ActionEvent actionEvent) {
+        RendezVous selectedRdv = tableViewConfirme.getSelectionModel().getSelectedItem();
+        if (selectedRdv != null) {
+            try {
+                RendezVousDAO.updateRdvState(selectedRdv.getId(),"termine");
+                loadRendezVousData();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
