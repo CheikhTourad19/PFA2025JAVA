@@ -24,7 +24,12 @@
                 <TableColumn fx:id="colStatutConfirme" prefWidth="265.0" text="Statut" />
             </columns>
         </TableView>
-        <Button fx:id="btnAnnuler" onAction="#annulerRendezVous" text="Annuler" />
+      <HBox alignment="CENTER" spacing="20.0">
+         <children>
+              <Button fx:id="btnAnnuler" onAction="#annulerRendezVous" text="Annuler" />
+            <Button fx:id="btnAnnuler1" onAction="#finish" text="Marquer Terminé" />
+         </children>
+      </HBox>
 
         <!-- TableView pour les demandes de rendez-vous -->
         <TableView fx:id="tableViewDemandes" prefHeight="200" prefWidth="580">
