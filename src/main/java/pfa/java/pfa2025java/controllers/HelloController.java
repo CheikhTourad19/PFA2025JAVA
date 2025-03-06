@@ -85,7 +85,7 @@ public class HelloController {
                                 swtichScene.loadScene(event, "views/Medecin/sidebar-view.fxml", "Médecin", false);
                             }
                             case "patient" ->
-                                    swtichScene.loadScene(event, "views/patient/accueil-view.fxml", "Mes RDV", false);
+                                    swtichScene.loadScene(event, "views/patient/sidebar-view.fxml", "Mes RDV", false);
                             case "admin" -> swtichScene.loadScene(event, "views/Admin/dashboard.fxml", "Admin", false);
                             default -> {
                                 loginresult.setText("Rôle inconnu !");

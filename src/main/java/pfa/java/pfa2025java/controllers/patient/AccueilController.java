@@ -35,7 +35,7 @@ public class AccueilController {
 
     @FXML
     public void initialize() {
-        nomUtil.setText(UserSession.getPrenom()+" "+UserSession.getNom());
+
         TcMedecin.setCellValueFactory(new PropertyValueFactory<>("medecinNom")); // Assuming medecinId refers to doctor's name
         TcDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         TcStatus.setCellValueFactory(new PropertyValueFactory<>("statut"));

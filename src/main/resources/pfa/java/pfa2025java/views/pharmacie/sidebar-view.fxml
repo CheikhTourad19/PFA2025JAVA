@@ -27,7 +27,7 @@
                 </font>
             </Text>
             <Button style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
-                    text="Accueil"/>
+                    text="Accueil" onAction="#gotoaccueil"/>
             <Button fx:id="ordonnanceButton" onAction="#gotoordonnance"
                     style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                     text="Ordonnance"/>

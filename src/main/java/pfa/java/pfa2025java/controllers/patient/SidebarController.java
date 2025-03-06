@@ -1,30 +1,22 @@
-package pfa.java.pfa2025java.controllers.pharmacie;
+package pfa.java.pfa2025java.controllers.patient;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 
 public class SidebarController {
+
+    public Text nomUtil;
     public VBox mainContent;
-    public Text name;
 
     public void initialize() {
-        NavigationUtil.navigateTo(mainContent, "accueil", this);
-        name.setText(UserSession.getNom() + " " + UserSession.getPrenom());
+        nomUtil.setText(UserSession.getNom() + " " + UserSession.getPrenom());
+        NavigationUtil.navigateTo(mainContent, "profile", this);
 
-    }
-
-    public void gotoordonnance(ActionEvent actionEvent) {
-        NavigationUtil.navigateTo(mainContent, "ordonnance", this);
-    }
-
-    public void gotostock(ActionEvent actionEvent) {
-        NavigationUtil.navigateTo(mainContent, "stock", this);
     }
 
     public void logout(ActionEvent actionEvent) {
@@ -41,7 +33,27 @@ public class SidebarController {
         }
     }
 
-    public void gotoaccueil(ActionEvent actionEvent) {
+    public void demandeRendezVous(ActionEvent actionEvent) {
+        NavigationUtil.navigateTo(mainContent, "demanderdv", this);
+    }
+
+    public void chat(ActionEvent actionEvent) {
+        NavigationUtil.navigateTo(mainContent, "chatbot", this);
+    }
+
+    public void consulterPharmacies(ActionEvent actionEvent) {
+        NavigationUtil.navigateTo(mainContent, "pharmacie", this);
+    }
+
+    public void consulterOrdonnances(ActionEvent actionEvent) {
+        NavigationUtil.navigateTo(mainContent, "ordonnance", this);
+    }
+
+    public void consulterProfil(ActionEvent actionEvent) {
+        NavigationUtil.navigateTo(mainContent, "profile", this);
+    }
+
+    public void consulterRDV(ActionEvent actionEvent) {
         NavigationUtil.navigateTo(mainContent, "accueil", this);
     }
 }
