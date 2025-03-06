@@ -52,7 +52,6 @@ public class OrdonnanceController {
 
     @FXML
     public void initialize() {
-        name.setText(UserSession.getNom() + " " + UserSession.getPrenom());
         loading.setVisible(false);
         Medicamentcolumn.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
         dispoColumn.setCellValueFactory(cellData -> cellData.getValue().stockProperty().asObject());
@@ -62,15 +61,7 @@ public class OrdonnanceController {
         ordonnannceTable.setItems(medicamentList);
     }
 
-    public void gotostock(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/pharmacie/stock-view.fxml", "Stock", false);
-    }
 
-    public void gotoaccueil(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/pharmacie/accueil-view.fxml", "Accueil", false);
-    }
 
     public void logout(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();

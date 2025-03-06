@@ -17,23 +17,9 @@
 <HBox alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="pfa.java.pfa2025java.controllers.pharmacie.StockController">
     <children>
-        <VBox prefHeight="852.0" prefWidth="223.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;">
-            <ImageView fitHeight="115.0" fitWidth="194.0" pickOnBounds="true">
-                <Image url="@../../assets/pharamalogo.png"/>
-            </ImageView>
-            <Text fx:id="name" fill="#f2f0f0" strokeType="OUTSIDE" strokeWidth="0.0" text="nom" textAlignment="CENTER"
-                  wrappingWidth="180.0">
-                <font>
-                    <Font size="15.0"/>
-                </font>
-            </Text>
-            <Button fx:id="accueilButton" onAction="#gotoaccueil" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Accueil" />
-            <Button onAction="#gotoordonnance" style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Ordonnance" />
-            <Button style=" -fx-cursor: hand; -fx-background-color: #27AE60; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Stock" />
-            <Button onAction="#logout" style=" -fx-cursor: hand; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;" text="Déconnexion" />
-        </VBox>
 
-        <!-- Main Content -->
+
+    <!-- Main Content -->
         <VBox prefHeight="852.0" prefWidth="651.0" spacing="20" style="-fx-padding: 5; -fx-background-color: #FFFFFF;">
             <!-- Title -->
             <Text style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #2C3E50;"

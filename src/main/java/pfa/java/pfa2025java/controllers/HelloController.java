@@ -78,7 +78,8 @@ public class HelloController {
                         // Changer de scène en fonction du rôle
                         SwtichScene swtichScene = new SwtichScene();
                         switch (user.getRole()) {
-                            case "pharmacie" -> swtichScene.loadScene(event, "views/pharmacie/accueil-view.fxml", "Pharmacie", false);
+                            case "pharmacie" ->
+                                    swtichScene.loadScene(event, "views/pharmacie/sidebar-view.fxml", "Pharmacie", false);
                             case "medecin" -> {
 
                                 swtichScene.loadScene(event, "views/Medecin/sidebar-view.fxml", "Médecin", false);

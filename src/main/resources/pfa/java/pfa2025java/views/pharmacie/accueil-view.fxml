@@ -15,30 +15,9 @@
 <HBox alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="pfa.java.pfa2025java.controllers.pharmacie.AccueilController">
     <children>
-        <VBox prefHeight="541.0" prefWidth="198.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;">
-            <ImageView fitHeight="114.0" fitWidth="203.0" pickOnBounds="true">
-                <Image url="@../../assets/pharamalogo.png"/>
-            </ImageView>
-            <Text fx:id="name" fill="#f5efef" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER"
-                  wrappingWidth="188.0">
-                <font>
-                    <Font name="Segoe UI" size="17.0"/>
-                </font>
-            </Text>
-            <Button style=" -fx-cursor: hand; -fx-background-color: #27AE60; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
-                    text="Accueil"/>
-            <Button fx:id="ordonnanceButton" onAction="#gotoordonnance"
-                    style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
-                    text="Ordonnance"/>
-            <Button fx:id="stockButton" onAction="#gotostock"
-                    style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
-                    text="Stock"/>
-            <Button onAction="#logout"
-                    style=" -fx-cursor: hand; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
-                    text="Déconnexion"/>
-        </VBox>
 
-        <!-- Profile Update Section -->
+
+    <!-- Profile Update Section -->
         <VBox prefHeight="350.0" prefWidth="437.0" spacing="15"
               style="-fx-padding: 25; -fx-background-color: #FFFFFF; -fx-border-color: #BDC3C7; -fx-border-radius: 10;">
             <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"

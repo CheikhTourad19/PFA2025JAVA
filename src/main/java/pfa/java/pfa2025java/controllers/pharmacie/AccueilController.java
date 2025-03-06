@@ -39,7 +39,7 @@ public class AccueilController {
 
 
     public void initialize() {
-        name.setText(UserSession.getNom() + " " + UserSession.getPrenom());
+
         Task<Void> backgroundTask = new Task<>() {
             @Override
             protected Void call() throws SQLException {

@@ -5,8 +5,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
@@ -14,29 +12,6 @@
 <HBox alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="pfa.java.pfa2025java.controllers.pharmacie.OrdonnanceController">
     <children>
-        <VBox style="-fx-background-color: #2C3E50;">
-            <children>
-                <ImageView fitHeight="141.0" fitWidth="180.0" pickOnBounds="true">
-                    <Image url="@../../assets/pharamalogo.png"/>
-                </ImageView>
-                <Text fx:id="name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Pharma"
-                      textAlignment="CENTER" wrappingWidth="177.13671875"/>
-                <VBox prefHeight="469.0" prefWidth="178.0" spacing="15"
-                      style="-fx-background-color: #2C3E50; -fx-padding: 15;">
-                    <Button onAction="#gotoaccueil"
-                            style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-pref-width: 180;"
-                            text="Accueil"/>
-                    <Button style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-pref-width: 180px;"
-                            text="Ordonnance"/>
-                    <Button fx:id="stockButton" onAction="#gotostock"
-                            style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-pref-width: 180px;"
-                            text="Stock"/>
-                    <Button onAction="#logout"
-                            style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-pref-width: 180px;"
-                            text="Déconnexion"/>
-                </VBox>
-            </children>
-        </VBox>
 
         <!-- Main Content -->
         <VBox prefHeight="583.0" prefWidth="580.0" spacing="15">

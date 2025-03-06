@@ -54,7 +54,6 @@ public class StockController {
 
     @FXML
     public void initialize() {
-        name.setText(UserSession.getNom() + " " + UserSession.getPrenom());
         loading.setVisible(true);
         Task<Void> backgroundTask = new Task<>() {
             @Override
