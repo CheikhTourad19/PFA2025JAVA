@@ -24,7 +24,7 @@
                 <TableColumn fx:id="dateColOrd" prefWidth="211.0" text="date" />
               </columns>
             </TableView>
-            <TableView fx:id="medicamentTable" prefHeight="281.0" prefWidth="467.0">
+             <TableView fx:id="medicamentTable" prefHeight="240.0" prefWidth="725.0">
                <columns>
                   <TableColumn fx:id="mednameCol" prefWidth="128.0" text="Medicament" />
                   <TableColumn fx:id="quantiteCol" prefWidth="97.0" text="quantite" />

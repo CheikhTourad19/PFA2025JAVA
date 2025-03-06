@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
@@ -29,6 +31,8 @@ public class HelloController {
 
     @FXML
     public void initialize() {
+        password.setOnKeyPressed(this::handleEnterKey);
+        username.setOnKeyPressed(this::handleEnterKey);
         loading.setVisible(false);
         Preferences prefs = Preferences.userNodeForPackage(getClass());
         String last_seremail = prefs.get("last_seremail", "");
@@ -37,8 +41,14 @@ public class HelloController {
         }
     }
 
+    private void handleEnterKey(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            login();
+        }
+    }
+
     @FXML
-    public void login(ActionEvent event) {
+    public void login() {
         if (username.getText().isEmpty() || password.getText().isEmpty()) {
             loginresult.setText("Username ou password vide");
             loginresult.setStyle("-fx-text-fill: red;");
@@ -79,14 +89,15 @@ public class HelloController {
                         SwtichScene swtichScene = new SwtichScene();
                         switch (user.getRole()) {
                             case "pharmacie" ->
-                                    swtichScene.loadScene(event, "views/pharmacie/sidebar-view.fxml", "Pharmacie", false);
+                                    swtichScene.loadScene(password, "views/pharmacie/sidebar-view.fxml", "Pharmacie", false);
                             case "medecin" -> {
 
-                                swtichScene.loadScene(event, "views/Medecin/sidebar-view.fxml", "Médecin", false);
+                                swtichScene.loadScene(password, "views/Medecin/sidebar-view.fxml", "Médecin", false);
                             }
                             case "patient" ->
-                                    swtichScene.loadScene(event, "views/patient/sidebar-view.fxml", "Mes RDV", false);
-                            case "admin" -> swtichScene.loadScene(event, "views/Admin/dashboard.fxml", "Admin", false);
+                                    swtichScene.loadScene(password, "views/patient/sidebar-view.fxml", "Mes RDV", false);
+                            case "admin" ->
+                                    swtichScene.loadScene(password, "views/Admin/dashboard.fxml", "Admin", false);
                             default -> {
                                 loginresult.setText("Rôle inconnu !");
                                 loginresult.setStyle("-fx-text-fill: red;");
