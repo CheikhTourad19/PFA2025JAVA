@@ -1,6 +1,8 @@
 package pfa.java.pfa2025java.controllers.pharmacie;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -27,6 +29,15 @@ public class SidebarController {
 
     public void logout(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/hello-view", "login", false);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText(null);
+        alert.setContentText("Voulez vous vous deconnecter ?");
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.OK) {
+            swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "login", false);
+            UserSession.logout();
+
+        }
     }
 }
