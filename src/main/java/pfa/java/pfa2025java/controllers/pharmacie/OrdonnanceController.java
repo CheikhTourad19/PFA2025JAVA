@@ -7,6 +7,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -32,6 +33,7 @@ public class OrdonnanceController {
     public TableColumn<Medicament, Integer> prixColumn;
     public ProgressIndicator loading;
     public Text name;
+    public VBox detailsContainer;
     @FXML
     private TableView<Medicament> ordonnannceTable;
     @FXML
@@ -112,6 +114,7 @@ public class OrdonnanceController {
             @Override
             protected void succeeded() {
                 loading.setVisible(false); // Masquer après la fin
+                detailsContainer.setVisible(true);
             }
 
             @Override
@@ -121,6 +124,7 @@ public class OrdonnanceController {
         };
 
         new Thread(task).start();
+
     }
 
     public void exportToPdf(ActionEvent actionEvent) {
