@@ -13,11 +13,16 @@
 
        <VBox alignment="CENTER" prefHeight="666.0" prefWidth="725.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Consulter les ordonnances">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Text>
+             <HBox alignment="CENTER">
+                 <children>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Consulter les ordonnances">
+                         <font>
+                             <Font size="26.0"/>
+                         </font>
+                     </Text>
+                     <ProgressIndicator fx:id="loading" prefHeight="52.0" prefWidth="76.0" visible="false"/>
+                 </children>
+             </HBox>
             <TableView fx:id="ordonnancesTable" prefHeight="273.0" prefWidth="431.0">
               <columns>
                 <TableColumn fx:id="MedecinColOrd" prefWidth="217.0" text="Medecin" />
@@ -31,7 +36,6 @@
                    <TableColumn fx:id="instruCol" minWidth="0.0" prefWidth="204.0" text="instructions" />
                </columns>
             </TableView>
-             <ProgressIndicator fx:id="loading" prefHeight="52.0" prefWidth="27.0" visible="false"/>
          </children>
       </VBox>
    </children>

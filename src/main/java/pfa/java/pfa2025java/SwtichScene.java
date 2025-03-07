@@ -37,6 +37,7 @@ public class SwtichScene {
 
             loadImage(stage);
             stage.show();
+            stage.setResizable(false);
         } catch (IOException e) {
 
             System.out.println("Erreur de chargement Impossible de charger la vue : " + fxmlPath);
@@ -63,6 +64,7 @@ public class SwtichScene {
 
             loadImage(stage);
             stage.show();
+            stage.setResizable(false);
         } catch (IOException e) {
 
             System.out.println("Erreur de chargement : Impossible de charger la vue " + fxmlPath);

@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -38,6 +40,14 @@ public class ChatbotGheithController {
     @FXML
     public void initialize() {
         sendButton.setOnAction(event -> sendRequestToOllama());
+        inputField.setOnKeyPressed(this::handleEnterKey);
+
+    }
+
+    private void handleEnterKey(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            sendRequestToOllama();
+        }
     }
 
     private void sendRequestToOllama() {
