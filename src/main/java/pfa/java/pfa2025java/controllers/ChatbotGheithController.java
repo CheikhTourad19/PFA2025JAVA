@@ -24,6 +24,8 @@ import pfa.java.pfa2025java.UserSession;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChatbotGheithController {
     @FXML
@@ -36,6 +38,7 @@ public class ChatbotGheithController {
     private TextArea responseArea;
 
     private final String ollamaApiUrl = "http://127.0.0.1:11434/api/generate";
+
 
     @FXML
     public void initialize() {
@@ -130,35 +133,5 @@ public class ChatbotGheithController {
         });
     }
 
-    public void consulterOrdonnances(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/ordonnance-view.fxml", "Ordonnances", false);
-    }
 
-    public void demandeRendezVous(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/demanderdv-view.fxml", "Rendez-vous", false);
-    }
-
-    public void consulterPharmacies(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/pharmacie-view.fxml", "Pharmacies", false);
-    }
-
-    public void consulterProfil(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/profile-view.fxml", "profile", false);
-    }
-
-    public void mesRdv(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/accueil-view.fxml", "Rendez-vous", false);
-    }
-
-
-    public void logout(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "Login", false);
-        UserSession.logout();
-    }
 }
