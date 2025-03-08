@@ -64,7 +64,7 @@ public class ChatbotGheithController {
             responseArea.clear();
             responseArea.setText("En cours...");
         });
-        String guidance = "Tu es un assistant médical de E-Medical de l'esprim en Tunisie. Présente-toi toujours en tant qu'assistant de E-Medical. Réponds uniquement aux questions liées à la santé, aux symptômes, aux médicaments, aux traitements ou aux conseils médicaux. Si la question n'est pas médicale, réponds simplement par : 'Je ne peux répondre qu'aux questions médicales.'";
+        String guidance = "Tu es un assistant médical de E-Medical. Présente-toi toujours en tant qu'assistant de E-Medical. Réponds uniquement aux questions liées à la santé, aux symptômes, aux médicaments, aux traitements ou aux conseils médicaux. Si la question n'est pas médicale, réponds simplement par : 'Je ne peux répondre qu'aux questions médicales.'";
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(MediaType.parse("application/json"),
