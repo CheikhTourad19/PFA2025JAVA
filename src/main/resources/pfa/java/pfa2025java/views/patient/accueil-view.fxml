@@ -5,29 +5,41 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="550.0" spacing="16.0"
+      style="-fx-background-color: #f4f4f8; -fx-padding: 20px; -fx-border-radius: 15px; -fx-background-radius: 15px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0, 0, 5);"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pfa.java.pfa2025java.controllers.patient.AccueilController">
 
-<VBox alignment="CENTER" prefHeight="521.0" prefWidth="524.0" spacing="16.0" xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.patient.AccueilController">
     <children>
-        <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes Rendez-vous"
-              textAlignment="CENTER">
-            <font>
-                <Font name="Arial Bold" size="23.0"/>
-            </font>
-        </Text>
-        <TableView fx:id="TVRDV" prefHeight="200.0" prefWidth="200.0">
+        <!-- Title -->
+        <Text text="Mes Rendez-vous" textAlignment="CENTER"
+              style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: #333;"/>
+
+        <!-- Table -->
+        <TableView fx:id="TVRDV" prefHeight="250.0" prefWidth="480.0"
+                   style="-fx-background-color: white; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 5px;">
             <columns>
-                <TableColumn fx:id="TcMedecin" prefWidth="178.3999481201172" text="Medecin"/>
-                <TableColumn fx:id="TcDate" prefWidth="211.20001220703125" text="Date"/>
-                <TableColumn fx:id="TcStatus" prefWidth="126.39990234375" text="Status"/>
+                <TableColumn fx:id="TcMedecin" prefWidth="180.0" text="Médecin"/>
+                <TableColumn fx:id="TcDate" prefWidth="200.0" text="Date"/>
+                <TableColumn fx:id="TcStatus" prefWidth="100.0" text="Statut"/>
             </columns>
         </TableView>
-        <Button mnemonicParsing="false" onAction="#annuler" text="Annuler"/>
+
+        <!-- Spacer -->
+        <Region prefHeight="10.0"/>
+
+        <!-- Cancel Button -->
+        <Button mnemonicParsing="false" onAction="#annuler" text="Annuler"
+                style="-fx-background-color: #FF6B6B; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;
+                       -fx-background-radius: 20px; -fx-padding: 10px 20px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 3);"/>
     </children>
+
     <padding>
-        <Insets top="28.0"/>
+        <Insets top="20.0" left="20.0" right="20.0" bottom="20.0"/>
     </padding>
+
 </VBox>

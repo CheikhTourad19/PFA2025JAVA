@@ -35,6 +35,7 @@ public class OrdonnanceController {
 
 
     public void initialize() {
+        medicamentTable.setVisible(false);
         MedecinColOrd.setCellValueFactory(new PropertyValueFactory<>("medecinNom"));
         dateColOrd.setCellValueFactory(new PropertyValueFactory<>("dateCreation"));
 
@@ -49,6 +50,7 @@ public class OrdonnanceController {
         // Ajouter un listener pour charger les médicaments lors de la sélection d'une ordonnance
         ordonnancesTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
+                medicamentTable.setVisible(true);
                 medicamentList.setAll(newSelection.getMedicaments()); // Charger les médicaments
             }
         });
@@ -87,34 +89,6 @@ public class OrdonnanceController {
         new Thread(task).start();
 
     }
-    public void consulterPharmacies(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent,"views/patient/accueil-view.fxml","Pharmacie",false);
-    }
 
-    public void demandeRendezVous(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent,"views/patient/demanderdv-view.fxml","demande",false);
-    }
-
-    public void logout(ActionEvent actionEvent) {
-        UserSession.logout();
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent,"views/hello-view.fxml","Accueil",false);
-    }
-
-    public void gotoaccueil(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent,"views/patient/pharmacie-view.fxml","Accueil",false);
-    }
-
-    public void gotprofil(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent,"views/patient/profile-view.fxml","profile",false);
-    }
-    public void mesRDV(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/accueil-view.fxml", "mes RDV", false);
-    }
 
 }

@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 public class AccueilController {
 
 
+    public TextField numeroField;
     @FXML
     private Text name;
     @FXML
@@ -56,25 +57,13 @@ public class AccueilController {
         new Thread(backgroundTask).start();
 
         emailField.setText(UserSession.getEmail());
+        numeroField.setText(UserSession.getNumero());
 
     }
 
-    public void gotostock(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent,"views/pharmacie/stock-view.fxml","Stock",false);
-    }
 
-    public void gotoordonnance(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent,"views/pharmacie/ordonnance-view.fxml","Ordonnance",false);
-    }
 
-    public void logout(ActionEvent actionEvent) {
 
-        UserSession.logout();
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent,"views/hello-view.fxml","Login",false);
-    }
 
     public void updateProfile() throws SQLException {
         if (newpasswordField.getText().equals(newpasswordFieldConfirmed.getText()) && !newpasswordField.getText().isEmpty() && newpasswordField.getText().length()>=8) {
@@ -141,6 +130,20 @@ public class AccueilController {
             alert.setHeaderText(null);
             alert.setContentText("email n'est pas valide ");
             alert.show();
+        }
+        if (!numeroField.getText().isEmpty()) {
+            UserSession.setNumero(numeroField.getText());
+            if (UserDAO.changePrenomNomNumero(UserSession.getPrenom(), UserSession.getNom(), numeroField.getText())) {
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Succes");
+                alert.setHeaderText(null);
+                alert.setContentText("numero ete mise a jour");
+            }
+        } else {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("le numero ne peut etre vide");
         }
 
     }

@@ -7,36 +7,53 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.Region?>
 
-<HBox prefHeight="666.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.patient.OrdonnanceController">
-   <children>
+<HBox prefHeight="666.0" prefWidth="726.0"
+      style="-fx-background-color: #f4f4f8; -fx-padding: 20px; -fx-border-radius: 15px; -fx-background-radius: 15px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0, 0, 5);"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pfa.java.pfa2025java.controllers.patient.OrdonnanceController">
 
-       <VBox alignment="CENTER" prefHeight="666.0" prefWidth="725.0">
-         <children>
-             <HBox alignment="CENTER">
-                 <children>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Consulter les ordonnances">
-                         <font>
-                             <Font size="26.0"/>
-                         </font>
-                     </Text>
-                     <ProgressIndicator fx:id="loading" prefHeight="52.0" prefWidth="76.0" visible="false"/>
-                 </children>
-             </HBox>
-            <TableView fx:id="ordonnancesTable" prefHeight="273.0" prefWidth="431.0">
-              <columns>
-                <TableColumn fx:id="MedecinColOrd" prefWidth="217.0" text="Medecin" />
-                <TableColumn fx:id="dateColOrd" prefWidth="211.0" text="date" />
-              </columns>
-            </TableView>
-             <TableView fx:id="medicamentTable" prefHeight="240.0" prefWidth="725.0">
-               <columns>
-                  <TableColumn fx:id="mednameCol" prefWidth="128.0" text="Medicament" />
-                  <TableColumn fx:id="quantiteCol" prefWidth="97.0" text="quantite" />
-                   <TableColumn fx:id="instruCol" minWidth="0.0" prefWidth="204.0" text="instructions" />
-               </columns>
-            </TableView>
-         </children>
-      </VBox>
-   </children>
+    <children>
+        <VBox alignment="CENTER" prefHeight="666.0" prefWidth="725.0" spacing="20.0">
+            <children>
+
+                <!-- Header with Title & Loading Indicator -->
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Text text="Consulter les ordonnances"
+                              style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-fill: #333;"/>
+                        <ProgressIndicator fx:id="loading" prefHeight="40.0" prefWidth="40.0" visible="false"/>
+                    </children>
+                </HBox>
+
+                <!-- Spacer -->
+                <Region prefHeight="10.0"/>
+
+                <!-- Ordonnances Table -->
+                <TableView fx:id="ordonnancesTable" prefHeight="273.0" prefWidth="550.0"
+                           style="-fx-background-color: white; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 5px;">
+                    <columns>
+                        <TableColumn fx:id="MedecinColOrd" prefWidth="250.0" text="Médecin"/>
+                        <TableColumn fx:id="dateColOrd" prefWidth="250.0" text="Date"/>
+                    </columns>
+                </TableView>
+
+                <!-- Spacer -->
+                <Region prefHeight="10.0"/>
+
+                <!-- Medicament Table -->
+                <TableView fx:id="medicamentTable" prefHeight="240.0" prefWidth="550.0"
+                           style="-fx-background-color: white; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 5px;">
+                    <columns>
+                        <TableColumn fx:id="mednameCol" prefWidth="150.0" text="Médicament"/>
+                        <TableColumn fx:id="quantiteCol" prefWidth="120.0" text="Quantité"/>
+                        <TableColumn fx:id="instruCol" prefWidth="280.0" text="Instructions"/>
+                    </columns>
+                </TableView>
+
+            </children>
+        </VBox>
+    </children>
 </HBox>
