@@ -24,19 +24,19 @@
                     <Button fx:id="accueilButton" onAction="#consulterProfil"
                             style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                             text="Profil"/>
-                    <Button onAction="#consulterOrdonnances"
+                    <Button fx:id="ordonnanceButton" onAction="#consulterOrdonnances"
                             style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                             text="Mes Ordonnance"/>
-                    <Button onAction="#consulterRDV"
+                    <Button fx:id="rdvButton" onAction="#consulterRDV"
                             style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                             text="Mes RDV"/>
-                    <Button onAction="#consulterPharmacies"
+                    <Button fx:id="pharmaButton" onAction="#consulterPharmacies"
                             style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                             text="Consulter Pharmacies"/>
-                    <Button onAction="#demandeRendezVous"
+                    <Button fx:id="demandeButton" onAction="#demandeRendezVous"
                             style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                             text="Demande RDV"/>
-                    <Button layoutX="20.0" layoutY="336.0" onAction="#chat"
+                    <Button fx:id="chatButton" layoutX="20.0" layoutY="336.0" onAction="#chat"
                             style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                             text="Chat AI (test)"/>
 

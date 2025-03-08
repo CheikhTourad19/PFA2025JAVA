@@ -26,7 +26,7 @@
                     <Font name="Segoe UI" size="17.0"/>
                 </font>
             </Text>
-            <Button onAction="#gotoaccueil"
+            <Button fx:id="accueilButton" onAction="#gotoaccueil"
                     style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                     text="Accueil"/>
             <Button fx:id="ordonnanceButton" onAction="#gotoordonnance"
@@ -39,6 +39,6 @@
                     style=" -fx-cursor: hand; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                     text="Déconnexion"/>
         </VBox>
-        <VBox fx:id="mainContent" prefHeight="827.0" prefWidth="731.0"/>
+        <VBox fx:id="mainContent" alignment="CENTER" prefHeight="827.0" prefWidth="731.0"/>
     </children>
 </HBox>
