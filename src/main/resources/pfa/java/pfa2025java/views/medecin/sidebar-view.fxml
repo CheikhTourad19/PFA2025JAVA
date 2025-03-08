@@ -22,7 +22,7 @@
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="tasksLabel" layoutX="50.0" layoutY="200.0" text="Tasks" textFill="WHITE">
+                                <Label fx:id="tasksLabel" layoutX="50.0" layoutY="200.0" text="Taches" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
@@ -32,17 +32,14 @@
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="appointmentsLabel" layoutX="50.0" layoutY="300.0" text="Appointments" textFill="WHITE">
+                                <Label fx:id="appointmentsLabel" layoutX="50.0" layoutY="300.0" text="Rendez-Vous"
+                                       textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="settingsLabel" layoutX="50.0" layoutY="350.0" text="Settings" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold Italic" size="12.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="logoutLabel" layoutX="50.0" layoutY="500.0" text="Logout" textFill="WHITE">
+                                <Label fx:id="logoutLabel" layoutX="52.0" layoutY="430.0" text="Deconnecter"
+                                       textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
@@ -70,22 +67,23 @@
                                                 <Image url="@../../assets/appointments.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="logout" fitHeight="25.0" fitWidth="31.0" layoutX="8.0" layoutY="450.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="logout" fitHeight="25.0" fitWidth="31.0" layoutX="7.0"
+                                                   layoutY="382.0" onMouseClicked="#logout" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/logout.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="settings" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../assets/settings.png" />
-                                            </image>
-                                        </ImageView>
-                                        <ImageView fx:id="profilImage" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="350.0" onMouseClicked="#goToProfil" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="profilImage" fitHeight="25.0" fitWidth="39.0" layoutX="4.0"
+                                                   layoutY="294.0" onMouseClicked="#goToProfil" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/profil.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="ordonnanceImage" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="400.0" onMouseClicked="#goToOrdonnance" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="ordonnanceImage" fitHeight="25.0" fitWidth="39.0"
+                                                   layoutX="4.0" layoutY="338.0" onMouseClicked="#goToOrdonnance"
+                                                   pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/medical-record.png" />
                                             </image>
@@ -102,12 +100,14 @@
                                         </StackPane>
                                     </children>
                                 </AnchorPane>
-                                <Label fx:id="profilLabel" layoutX="50.0" layoutY="400.0" text="Profil" textFill="WHITE">
+                                <Label fx:id="profilLabel" layoutX="50.0" layoutY="342.0" text="Profil"
+                                       textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="ordonnanceLabel" layoutX="50.0" layoutY="450.0" text="Ordonnance" textFill="WHITE">
+                                <Label fx:id="ordonnanceLabel" layoutX="48.0" layoutY="388.0" text="Ordonnance"
+                                       textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
