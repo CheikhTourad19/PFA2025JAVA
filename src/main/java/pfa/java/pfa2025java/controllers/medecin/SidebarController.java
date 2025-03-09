@@ -32,9 +32,9 @@ public class SidebarController {
     @FXML
     private ImageView Toggle_sidebar;
     @FXML
-    private ImageView dashboard, tasks, messages, appointments, settings, logout, profilImage;
+    private ImageView dashboard, tasks, messages, appointments,  logout, profilImage;
     @FXML
-    private Label dashboardLabel, tasksLabel, messagesLabel, appointmentsLabel, settingsLabel, logoutLabel, profilLabel;
+    private Label dashboardLabel, tasksLabel, messagesLabel, appointmentsLabel, logoutLabel, profilLabel;
     @FXML private Label countMsg;
 
     private boolean isCollapsed = false;
@@ -77,7 +77,6 @@ public class SidebarController {
         animateImage(timeline, tasks, 31.0, targetWidth);
         animateImage(timeline, messages, 39.0, targetWidth);
         animateImage(timeline, appointments, 39.0, targetWidth);
-        animateImage(timeline, settings, 39.0, targetWidth);
         animateImage(timeline, logout, 31.0, targetWidth);
         animateImage(timeline, profilImage, 31.0, targetWidth);
         animateImage(timeline, ordonnanceImage, 31.0, targetWidth);
@@ -107,7 +106,7 @@ public class SidebarController {
     private void updateLabelsVisibility(boolean visible) {
         List<Label> labels = Arrays.asList(
                 dashboardLabel, tasksLabel, messagesLabel,
-                appointmentsLabel, settingsLabel, logoutLabel, profilLabel, ordonnanceLabel
+                appointmentsLabel,  logoutLabel, profilLabel, ordonnanceLabel
         );
 
         labels.forEach(label -> {
@@ -121,7 +120,7 @@ public class SidebarController {
         tasks.setLayoutX(position);
         messages.setLayoutX(position);
         appointments.setLayoutX(position);
-        settings.setLayoutX(position);
+
         logout.setLayoutX(position);
         profilImage.setLayoutX(position);
         ordonnanceImage.setLayoutX(position);
