@@ -1,14 +1,22 @@
 package pfa.java.pfa2025java.controllers.medecin;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.controllers.InsrciptionController;
 import pfa.java.pfa2025java.model.PasswordUtils;
 import pfa.java.pfa2025java.dao.UserDAO;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.SQLException;
 
 public class ProfilController {
@@ -20,13 +28,44 @@ public class ProfilController {
     public PasswordField oldpasswordField;
     public PasswordField newpasswordField;
     public PasswordField newpasswordFieldConfirmed;
+    @FXML
+    private ImageView profileImageView;
+
+    private File selectedImageFile;
+    private final String DEFAULT_IMAGE_PATH = "/pfa/java/pfa2025java/assets/profil.png";
+
 
     public void initialize() {
         nom.setText(UserSession.getNom());
         prenom.setText(UserSession.getPrenom());
         numero.setText(UserSession.getNumero());
         emailField.setText(UserSession.getEmail());
+        loadImageFromDatabase();
     }
+
+
+    private void loadImageFromDatabase() {
+        InputStream is = UserDAO.getUserImage(UserSession.getId());
+        if (is != null) {
+            profileImageView.setImage(new Image(is));
+        }
+    }
+
+    @FXML
+    private void handleImageUpload(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            selectedImageFile = file;
+            profileImageView.setImage(new Image(file.toURI().toString()));
+        }
+    }
+
 
     public void updateProfile(ActionEvent actionEvent) throws SQLException {
         Alert alert;
@@ -100,5 +139,17 @@ public class ProfilController {
             alert.setHeaderText(null);
             alert.show();
         }
+        if (selectedImageFile != null) {
+            boolean success = UserDAO.saveUserImage(UserSession.getId(), selectedImageFile);
+            if (success) {
+                System.out.println("Image enregistrée avec succès.");
+            } else {
+                System.out.println("Échec de l'enregistrement de l'image.");
+            }
+        } else {
+            System.out.println("Aucune image sélectionnée.");
+        }
+
+
     }
 }

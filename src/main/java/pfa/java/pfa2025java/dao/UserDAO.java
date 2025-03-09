@@ -4,6 +4,7 @@ import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.PasswordUtils;
 import pfa.java.pfa2025java.model.User;
 
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -153,6 +154,45 @@ public class UserDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static InputStream getUserImage(int userId) {
+        String query = "SELECT image FROM user_images WHERE user_id = ?";
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                byte[] imageBytes = rs.getBytes("image");
+                if (imageBytes != null) {
+                    return new ByteArrayInputStream(imageBytes);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public static boolean saveUserImage(int userId, File imageFile) {
+        String query = "REPLACE INTO user_images (user_id, image) VALUES (?, ?)";
+        try (
+                PreparedStatement pstmt = connection.prepareStatement(query);
+                FileInputStream fis = new FileInputStream(imageFile)) {
+
+            pstmt.setInt(1, userId);
+            pstmt.setBinaryStream(2, fis, (int) imageFile.length());
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 
 }
