@@ -2,6 +2,7 @@ package pfa.java.pfa2025java.dao;
 
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.Adresse;
+import pfa.java.pfa2025java.model.Pharmacie;
 import pfa.java.pfa2025java.model.User;
 
 import java.sql.Connection;
@@ -9,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class PharmacieDAO {
@@ -124,5 +127,19 @@ public class PharmacieDAO {
     }
 
 
+    public static List<Pharmacie> getPharmaciesWithAdresse() throws SQLException {
+        String sql = "SELECT * FROM pharmacie p join user u on p.pharmacie_id=u.id join adresse a on p.adresse_id=a.id";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        List<Pharmacie> pharmacies = new ArrayList<>();
+        while (rs.next()) {
+            Adresse adresse = new Adresse(rs.getString("rue"), rs.getString("ville"), rs.getString("quartier"), rs.getInt("id"));
+            Pharmacie pharmacie = new Pharmacie(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"),
+                    null, null, rs.getString("numero"), adresse);
+            pharmacies.add(pharmacie);
 
+        }
+
+        return pharmacies;
+    }
 }

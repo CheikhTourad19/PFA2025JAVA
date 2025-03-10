@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import pfa.java.pfa2025java.EmaliSender;
+import pfa.java.pfa2025java.SmsSender;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.controllers.ResetPasswordController;
@@ -61,12 +62,7 @@ public class DemanderdvController {
     }
 
 
-    @FXML
 
-    public void consulterProfil(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/profile-view.fxml", "Profil", false);
-    }
     @FXML
     private ComboBox<String> specialtyComboBox;
 
@@ -127,7 +123,7 @@ private void handleMedecinSelection() {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            sendRDVRequest(selectedMedecin.getId(), selectedMedecin.getEmail());
+            sendRDVRequest(selectedMedecin.getId(), selectedMedecin.getEmail(), selectedMedecin.getNumero());
         }
     } else {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -138,13 +134,14 @@ private void handleMedecinSelection() {
     }
 }
 
-    private void sendRDVRequest(int medecinId, String medecinMail) {
+    private void sendRDVRequest(int medecinId, String medecinMail, String medecinNum) {
         int patientId = UserSession.getId(); // Récupérer l'ID du patient connecté
         try {
             boolean success = MedecinDAO.sendRDVRequest(medecinId, patientId);
 
             if (success) {
                 EmaliSender.sendEmail(medecinMail, "Vous avez une nouvelle demande de rendez-vous");
+                SmsSender.sendSms(medecinNum, "Vous avez une nouvelle demande de rendez-vous");
                 Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
                 confirmation.setTitle("Demande envoyée");
                 confirmation.setHeaderText(null);
@@ -168,24 +165,7 @@ private void handleMedecinSelection() {
     }
 
 
-    public void consulterOrdonnances(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/ordonnance-view.fxml", "Ordonnances", false);
-    }
 
-    public void demandeRendezVous(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/demanderdv-view.fxml", "Rendez-vous", false);
-    }
-    public void mesRDV(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/accueil-view.fxml", "Rendez-vous", false);
-    }
-
-    public void consulterPharmacies(ActionEvent actionEvent) {
-        SwtichScene swtichScene = new SwtichScene();
-        swtichScene.loadScene(actionEvent, "views/patient/pharmacie-view.fxml", "Pharmacies", false);
-    }
     public void logout(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "Login", false);

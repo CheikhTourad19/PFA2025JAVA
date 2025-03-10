@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.effect.DropShadow?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="pfa.java.pfa2025java.controllers.patient.PharmacieController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane prefHeight="470.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pfa.java.pfa2025java.controllers.patient.PharmacieController">
+    <top>
+        <StackPane prefHeight="100.0" prefWidth="737.0" style="-fx-background-color: #3498db;">
+            <Label text="Chercher une Pharmacie Par Adresse" textAlignment="CENTER"
+                   style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;">
+                <font>
+                    <Font size="20.0"/>
+                </font>
+            </Label>
+        </StackPane>
+    </top>
+    <center>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <HBox alignment="CENTER" spacing="10" style="-fx-padding: 10;">
+                <TextField fx:id="FilterField" prefHeight="40.0" prefWidth="500.0" onKeyReleased="#onFilter"
+                           style="-fx-font-size: 14px; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #ccc; -fx-border-width: 1px;"
+                           promptText="Entrez l'adresse de la pharmacie..."/>
+                <ImageView fitHeight="30.0" fitWidth="30.0">
+                    <Image url="@../../assets/search.png"/>
+                </ImageView>
+            </HBox>
+            <TableView fx:id="pharmacieTable" prefHeight="285.0" prefWidth="737.0"
+                       style="-fx-background-color: #f9f9f9; -fx-border-color: #ddd; -fx-border-width: 1px;">
+                <columns>
+                    <TableColumn fx:id="nomColumn" prefWidth="146.0" text="Nom"
+                                 style="-fx-font-size: 14px; -fx-alignment: CENTER;"/>
+                    <TableColumn fx:id="numeroColumn" minWidth="4.0" prefWidth="132.0" text="Numero"
+                                 style="-fx-font-size: 14px; -fx-alignment: CENTER;"/>
+                    <TableColumn fx:id="emailColumn" minWidth="0.0" prefWidth="181.0" text="Email"
+                                 style="-fx-font-size: 14px; -fx-alignment: CENTER;"/>
+                    <TableColumn fx:id="adresseColumn" prefWidth="277.0" text="Adresse"
+                                 style="-fx-font-size: 14px; -fx-alignment: CENTER;"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: #f1f1f1; -fx-padding: 10;">
+            <Label text="© 2025 E-Medical App" style="-fx-text-fill: #666; -fx-font-size: 12px;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

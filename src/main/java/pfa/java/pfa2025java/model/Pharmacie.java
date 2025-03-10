@@ -9,5 +9,9 @@ public class Pharmacie extends User{
         this.adresse = adresse;
     }
 
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
 
 }
