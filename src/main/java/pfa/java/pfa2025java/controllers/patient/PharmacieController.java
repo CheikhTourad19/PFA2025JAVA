@@ -47,7 +47,7 @@ public class PharmacieController {
             pharmacieTable.setItems(pharmacieList);
         } else {
             ObservableList<Pharmacie> filteredList = pharmacieList.filtered(pharmacie ->
-                    pharmacie.getAdresse().toString().toLowerCase().contains(filter)
+                    pharmacie.getAdresse().toString().toLowerCase().contains(filter) || (pharmacie.getNom().toLowerCase()+pharmacie.getPrenom()).contains(filter)
             );
             pharmacieTable.setItems(filteredList);
         }
