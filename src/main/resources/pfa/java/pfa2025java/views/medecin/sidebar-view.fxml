@@ -21,7 +21,8 @@
                                     style="-fx-background-color: #0F72B3;" styleClass="drawer"
                                     stylesheets="@../../Style/medicin/sidebar.css">
                             <children>
-                                <Label fx:id="dashboardLabel" layoutX="50.0" layoutY="150.0" text="Dashboard" textFill="WHITE">
+                                <Label fx:id="dashboardLabel" layoutX="46.0" layoutY="124.0" text="Dashboard"
+                                       textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
@@ -52,8 +53,9 @@
                                     <children>
 
 
-
-                                        <ImageView fx:id="dashboard" fitHeight="25.0" fitWidth="39.0" layoutX="5.0" layoutY="100.0" onMouseClicked="#goToDashboard" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="dashboard" fitHeight="25.0" fitWidth="39.0" layoutX="7.0"
+                                                   layoutY="77.0" onMouseClicked="#goToDashboard" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/dashboard.png" />
                                             </image>
@@ -97,13 +99,13 @@
                                              <Image url="@../../assets/message.png" />
                                          </image>
                                          </ImageView>
-      
-      
+
+
                                         <StackPane layoutX="23.0" layoutY="193.0">
                                             <Label fx:id="countMsg" alignment="CENTER" layoutX="20" layoutY="-10" minHeight="15" minWidth="15" mouseTransparent="true" style="-fx-background-color: red; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 10;" visible="false" />
                                         </StackPane>
-                                        <ImageView fx:id="calendrierIcon" fitHeight="25.0" fitWidth="39.0" layoutX="7.0"
-                                                   layoutY="65.0" onMouseClicked="#goToCalendar" pickOnBounds="true"
+                                        <ImageView fx:id="calendrierIcon" fitHeight="25.0" fitWidth="39.0" layoutX="5.0"
+                                                   layoutY="113.0" onMouseClicked="#goToCalendar" pickOnBounds="true"
                                                    preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/calendrier.png"/>
@@ -123,7 +125,7 @@
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="calendarLabel" layoutX="51.0" layoutY="116.0" text="Calendrier"
+                                <Label fx:id="calendarLabel" layoutX="47.0" layoutY="163.0" text="Calendrier"
                                        textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0"/>
