@@ -25,6 +25,8 @@ public class SidebarController {
 
     public Label ordonnanceLabel;
     public ImageView ordonnanceImage;
+    public ImageView calendrierIcon;
+    public Label calendarLabel;
     @FXML
     private AnchorPane mainContent;
     @FXML
@@ -80,6 +82,7 @@ public class SidebarController {
         animateImage(timeline, logout, 31.0, targetWidth);
         animateImage(timeline, profilImage, 31.0, targetWidth);
         animateImage(timeline, ordonnanceImage, 31.0, targetWidth);
+        animateImage(timeline, calendrierIcon, 31.0, targetWidth);
         animateImage(timeline, Toggle_sidebar, Toggle_sidebar.getFitWidth(), targetWidth);
 
         // Gestion finale des labels
@@ -106,7 +109,7 @@ public class SidebarController {
     private void updateLabelsVisibility(boolean visible) {
         List<Label> labels = Arrays.asList(
                 dashboardLabel, tasksLabel, messagesLabel,
-                appointmentsLabel,  logoutLabel, profilLabel, ordonnanceLabel
+                appointmentsLabel, logoutLabel, profilLabel, ordonnanceLabel, calendarLabel
         );
 
         labels.forEach(label -> {
@@ -124,6 +127,7 @@ public class SidebarController {
         logout.setLayoutX(position);
         profilImage.setLayoutX(position);
         ordonnanceImage.setLayoutX(position);
+        calendrierIcon.setLayoutX(position);
     }
 
 
@@ -133,6 +137,11 @@ public class SidebarController {
     private void goToMessages() {
         NavigationUtil.navigateTo(mainContent, "message",this);
 
+    }
+
+    @FXML
+    private void goToCalendar() {
+        NavigationUtil.navigateTo(mainContent, "calendrier", this);
     }
 
     @FXML
