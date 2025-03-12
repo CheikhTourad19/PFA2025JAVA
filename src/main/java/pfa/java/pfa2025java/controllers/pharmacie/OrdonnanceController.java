@@ -7,6 +7,8 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -34,6 +36,7 @@ public class OrdonnanceController {
     public ProgressIndicator loading;
     public Text name;
     public VBox detailsContainer;
+    public Button searchB;
     @FXML
     private TableView<Medicament> ordonnannceTable;
     @FXML
@@ -61,6 +64,7 @@ public class OrdonnanceController {
         instructionColumn.setCellValueFactory(cellData -> cellData.getValue().instructionProperty());
         prixColumn.setCellValueFactory(cellData -> cellData.getValue().prixProperty().asObject());
         ordonnannceTable.setItems(medicamentList);
+        searchB.setOnKeyPressed(this::handleEnterKey);
     }
 
 
@@ -68,6 +72,12 @@ public class OrdonnanceController {
     public void logout(ActionEvent actionEvent) {
         SwtichScene swtichScene = new SwtichScene();
         swtichScene.loadScene(actionEvent, "views/hello-view.fxml", "Login", false);
+    }
+
+    private void handleEnterKey(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            search();
+        }
     }
 
     public void search() {

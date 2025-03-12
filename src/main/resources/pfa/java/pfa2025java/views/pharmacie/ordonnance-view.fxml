@@ -21,7 +21,7 @@
             <HBox alignment="CENTER" spacing="10">
                 <TextField fx:id="code" prefHeight="37.0" prefWidth="386.0" promptText="Insérer code..."
                            style="-fx-background-radius: 10; -fx-padding: 10;"/>
-                <Button onAction="#search"
+                <Button fx:id="searchB" onAction="#search"
                         style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10;"
                         text="Chercher"/>
                 <ProgressIndicator fx:id="loading" prefHeight="31.0" prefWidth="57.0"/>
