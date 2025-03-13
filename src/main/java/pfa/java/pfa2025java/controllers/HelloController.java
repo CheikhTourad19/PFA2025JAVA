@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
+import pfa.java.pfa2025java.FaceCapture;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.User;
@@ -140,4 +141,36 @@ public class HelloController {
         swtichScene.loadScene((Node) null, "views/resetpassword-view.fxml", "Renitialiser", false);
     }
 
+    public void loginWithFacialRecognition(ActionEvent actionEvent) {
+        loading.setVisible(true);
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                byte[] capturedFacialData = FaceCapture.captureFace();
+                if (capturedFacialData == null) {
+                    Platform.runLater(() -> {
+                        loginresult.setText("Aucun visage détecté. Veuillez réessayer.");
+                        loginresult.setStyle("-fx-text-fill: red;");
+                        loading.setVisible(false);
+                    });
+                    return null;
+                }
+
+                boolean isValid = UserDAO.loginWithFacialData(capturedFacialData);
+                Platform.runLater(() -> {
+                    if (isValid) {
+                        loginresult.setText("Connexion réussie par reconnaissance faciale");
+                        loginresult.setStyle("-fx-text-fill: green;");
+                        // Rediriger selon le rôle si nécessaire
+                    } else {
+                        loginresult.setText("Échec de la reconnaissance faciale");
+                        loginresult.setStyle("-fx-text-fill: red;");
+                    }
+                    loading.setVisible(false);
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+    }
 }

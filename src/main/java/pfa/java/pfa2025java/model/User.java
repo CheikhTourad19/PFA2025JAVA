@@ -8,6 +8,16 @@ public class User {
     protected String password;
     protected String role;
     protected String numero;
+    private byte[] facialData;
+
+    public byte[] getFacialData() {
+        return facialData;
+    }
+
+    public void setFacialData(byte[] facialData) {
+        this.facialData = facialData;
+    }
+
 
     // Constructeur
 

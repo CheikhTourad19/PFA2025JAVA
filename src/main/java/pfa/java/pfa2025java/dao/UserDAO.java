@@ -7,6 +7,7 @@ import pfa.java.pfa2025java.model.User;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserDAO {
@@ -155,6 +156,45 @@ public class UserDAO {
             return false;
         }
     }
+
+    public static boolean saveFacialData(int userId, byte[] facialData) {
+        String sql = "UPDATE user SET facial_data = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setBytes(1, facialData);
+            stmt.setInt(2, userId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static byte[] getFacialDataByEmail(String email) {
+        String sql = "SELECT facial_data FROM user WHERE email = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getBytes("facial_data");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static boolean loginWithFacialData(byte[] facialData) {
+        String sql = "SELECT id FROM user WHERE facial_data = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setBytes(1, facialData);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     public static InputStream getUserImage(int userId) {
         String query = "SELECT image FROM user_images WHERE user_id = ?";

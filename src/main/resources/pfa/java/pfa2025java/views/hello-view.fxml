@@ -55,6 +55,11 @@
                 <DropShadow color="rgba(0,0,0,0.1)" offsetX="2" offsetY="2" radius="5" />
             </effect>
         </Button>
+        <Button onAction="#loginWithFacialRecognition" prefHeight="45.0" prefWidth="270.0"
+                style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-weight: bold;"
+                text="Connexion Faciale">
+        </Button>
+
         <Text fill="#fc0000" layoutX="98.0" layoutY="377.0" onMouseClicked="#gotoreset"
               style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14px; -fx-cursor: hand" text="Mot de passe Oublié ?"
               textAlignment="RIGHT" wrappingWidth="283.0654296875"/>
