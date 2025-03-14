@@ -21,13 +21,11 @@ public class OpenCVUtils {
             String arch = System.getProperty("os.arch").toLowerCase();
 
             // Map the operating system and architecture to the appropriate library name
-            String libraryName;
+            String libraryName="";
             if (osName.contains("win") && arch.contains("64")) {
                 libraryName = "opencv_java4110.dll"; // Windows 64-bit
             } else if (osName.contains("linux") && arch.contains("64")) {
-                libraryName = "libopencv_java451.so"; // Linux 64-bit
             } else if (osName.contains("mac")) {
-                libraryName = "libopencv_java451.dylib"; // macOS
             } else {
                 throw new UnsupportedOperationException("Unsupported platform: " + osName + " " + arch);
             }

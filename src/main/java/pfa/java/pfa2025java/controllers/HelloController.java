@@ -10,11 +10,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
-import org.opencv.core.*;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.objdetect.CascadeClassifier;
-import org.opencv.videoio.VideoCapture;
-import pfa.java.pfa2025java.OpenCVUtils;
+import org.bytedeco.opencv.opencv_core.Mat;
+import org.bytedeco.opencv.opencv_core.Rect;
+import org.bytedeco.opencv.opencv_core.RectVector;
+import org.bytedeco.opencv.global.opencv_imgcodecs;
+import org.bytedeco.opencv.global.opencv_objdetect;
+import org.bytedeco.opencv.global.opencv_videoio;
+import org.bytedeco.javacpp.BytePointer;
+import org.bytedeco.opencv.opencv_objdetect.CascadeClassifier;
+import org.bytedeco.opencv.opencv_videoio.VideoCapture;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.model.User;
@@ -23,6 +27,7 @@ import pfa.java.pfa2025java.dao.UserDAO;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.prefs.Preferences;
@@ -35,17 +40,6 @@ public class HelloController {
     private TextField username;
     @FXML
     private TextField password;
-
-    static {
-        String osName = System.getProperty("os.name").toLowerCase();
-        String arch = System.getProperty("os.arch").toLowerCase();
-
-        // Map the operating system and architecture to the appropriate library name
-        if (osName.contains("win") && arch.contains("64")) {
-            OpenCVUtils.initialize();        }
-
-        // Initialize OpenCV
-    }
 
     @FXML
     public void initialize() {
@@ -184,12 +178,13 @@ public class HelloController {
             return null;
         }
 
-        MatOfRect faceDetections = new MatOfRect();
+        RectVector faceDetections = new RectVector();
         faceDetector.detectMultiScale(image, faceDetections);
 
-        if (faceDetections.toArray().length > 0) {
-            return faceDetections.toArray()[0]; // Return the first detected face
+        if (faceDetections.size() > 0) {
+            return faceDetections.get(0);
         }
+
         return null;
     }
 
@@ -230,8 +225,16 @@ public class HelloController {
             protected User call() throws Exception {
                 // Capture image from webcam
                 Mat capturedImage = captureImage();
-                Rect faceRect = detectFace(capturedImage);
+                if (capturedImage == null) {
+                    Platform.runLater(() -> {
+                        loginresult.setText("Erreur: Impossible de capturer l'image !");
+                        loginresult.setStyle("-fx-text-fill: red;");
+                        loading.setVisible(false);
+                    });
+                    return null;
+                }
 
+                Rect faceRect = detectFace(capturedImage);
                 if (faceRect == null) {
                     Platform.runLater(() -> {
                         loginresult.setText("Aucun visage détecté !");
@@ -245,9 +248,11 @@ public class HelloController {
                 Mat detectedFace = new Mat(capturedImage, faceRect);
 
                 // Convert the detected face to a byte array
-                MatOfByte matOfByte = new MatOfByte();
-                Imgcodecs.imencode(".jpg", detectedFace, matOfByte);
-                byte[] capturedFacialData = matOfByte.toArray();
+                BytePointer buf = new BytePointer();
+                opencv_imgcodecs.imencode(".jpg", detectedFace, buf);
+                long size = buf.limit();
+                byte[] capturedFacialData = new byte[(int)size];
+                buf.get(capturedFacialData);
 
                 // Retrieve the user by comparing facial data
                 return UserDAO.getUserByFacialData(capturedFacialData);
