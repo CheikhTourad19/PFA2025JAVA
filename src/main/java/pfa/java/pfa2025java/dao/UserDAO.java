@@ -219,5 +219,18 @@ public class UserDAO {
         }
         return null;
     }
+    public static boolean saveUserFacialData(int userId, byte[] facialData) {
+        String sql = "UPDATE user SET facial_data = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setBytes(1, facialData);
+            stmt.setInt(2, userId);
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 }
