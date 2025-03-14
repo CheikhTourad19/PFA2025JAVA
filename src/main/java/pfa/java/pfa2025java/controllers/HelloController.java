@@ -37,7 +37,15 @@ public class HelloController {
     private TextField password;
 
     static {
-        OpenCVUtils.initialize(); // Initialize OpenCV
+        String osName = System.getProperty("os.name").toLowerCase();
+        String arch = System.getProperty("os.arch").toLowerCase();
+        if (osName.contains("mac")) {
+            System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        } else {
+            OpenCVUtils.initialize();
+        }
+
+        // Initialize OpenCV
     }
 
     @FXML

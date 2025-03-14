@@ -33,7 +33,16 @@ public class OpenCVUtils {
             }
 
             // Load the native library from resources
-            File tempFile = File.createTempFile("opencv_java451", ".dll");
+            File tempFile;
+            if (osName.contains("win") && arch.contains("64")) {
+                tempFile = File.createTempFile("opencv_java4110", ".dll");
+            } else if (osName.contains("linux") && arch.contains("64")) {
+                tempFile = File.createTempFile("opencv_java4110", ".dll");
+            } else if (osName.contains("mac")) {
+                tempFile = File.createTempFile("opencv_java4110", ".dll");
+            } else {
+                throw new UnsupportedOperationException("Unsupported platform: " + osName + " " + arch);
+            }
             tempFile.deleteOnExit();
 
             try (InputStream inputStream = OpenCVUtils.class.getClassLoader().getResourceAsStream("native/" + libraryName)) {
