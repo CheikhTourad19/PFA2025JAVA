@@ -27,7 +27,7 @@ public class OpenCVUtils {
             } else if (osName.contains("linux") && arch.contains("64")) {
                 libraryName = "libopencv_java451.so"; // Linux 64-bit
             } else if (osName.contains("mac")) {
-                libraryName = "libopencv_java451.dylib"; // macOS
+                libraryName = "libopencv_java.dylib"; // macOS
             } else {
                 throw new UnsupportedOperationException("Unsupported platform: " + osName + " " + arch);
             }
@@ -39,7 +39,7 @@ public class OpenCVUtils {
             } else if (osName.contains("linux") && arch.contains("64")) {
                 tempFile = File.createTempFile("opencv_java4110", ".dll");
             } else if (osName.contains("mac")) {
-                tempFile = File.createTempFile("opencv_java4110", ".dll");
+                tempFile = File.createTempFile("opencv_java4110", ".dylib");
             } else {
                 throw new UnsupportedOperationException("Unsupported platform: " + osName + " " + arch);
             }
