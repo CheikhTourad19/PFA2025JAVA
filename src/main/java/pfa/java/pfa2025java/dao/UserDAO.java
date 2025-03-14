@@ -157,43 +157,6 @@ public class UserDAO {
         }
     }
 
-    public static boolean saveFacialData(int userId, byte[] facialData) {
-        String sql = "UPDATE user SET facial_data = ? WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setBytes(1, facialData);
-            stmt.setInt(2, userId);
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public static byte[] getFacialDataByEmail(String email) {
-        String sql = "SELECT facial_data FROM user WHERE email = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, email);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return rs.getBytes("facial_data");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static boolean loginWithFacialData(byte[] facialData) {
-        String sql = "SELECT id FROM user WHERE facial_data = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setBytes(1, facialData);
-            ResultSet rs = stmt.executeQuery();
-            return rs.next();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
 
     public static InputStream getUserImage(int userId) {
@@ -233,6 +196,28 @@ public class UserDAO {
             throw new RuntimeException(e);
         }
         return false;
+    }
+
+    public static User getUserByFacialData(byte[] facialData) {
+        String sql = "SELECT * FROM user WHERE facial_data = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setBytes(1, facialData);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("role"),
+                        rs.getString("numero")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
