@@ -27,7 +27,7 @@ public class OpenCVUtils {
             } else if (osName.contains("linux") && arch.contains("64")) {
                 libraryName = "libopencv_java451.so"; // Linux 64-bit
             } else if (osName.contains("mac")) {
-                libraryName = "libopencv_java.dylib"; // macOS
+                libraryName = "libopencv_java451.dylib"; // macOS
             } else {
                 throw new UnsupportedOperationException("Unsupported platform: " + osName + " " + arch);
             }

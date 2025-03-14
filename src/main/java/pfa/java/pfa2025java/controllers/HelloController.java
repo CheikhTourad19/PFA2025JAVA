@@ -37,9 +37,12 @@ public class HelloController {
     private TextField password;
 
     static {
+        String osName = System.getProperty("os.name").toLowerCase();
+        String arch = System.getProperty("os.arch").toLowerCase();
 
-        OpenCVUtils.initialize();
-
+        // Map the operating system and architecture to the appropriate library name
+        if (osName.contains("win") && arch.contains("64")) {
+            OpenCVUtils.initialize();        }
 
         // Initialize OpenCV
     }

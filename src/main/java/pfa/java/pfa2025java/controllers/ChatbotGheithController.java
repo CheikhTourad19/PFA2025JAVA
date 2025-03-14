@@ -98,9 +98,7 @@ public class ChatbotGheithController {
                                     String partialResponse = jsonResponse.getString("response");
 
                                     // Filtrer les segments de raisonnement (balises <think> et </think>)
-                                    if (partialResponse.contains("\u003cthink\u003e") || partialResponse.contains("\u003c/think\u003e")) {
-                                        continue;
-                                    }
+
 
                                     // Décoder les caractères Unicode
                                     partialResponse = java.net.URLDecoder.decode(partialResponse, "UTF-8");
