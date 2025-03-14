@@ -21,11 +21,7 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.bytedeco</groupId>
-            <artifactId>javacv-platform</artifactId>
-            <version>1.5.9</version> <!-- Utilisez la dernière version disponible -->
-        </dependency>
+
 
         <dependency>
             <groupId>com.twilio.sdk</groupId>

@@ -17,7 +17,6 @@ module pfa.java.pfa2025java {
     requires mysql.connector.java;
     requires java.mail;
     requires twilio;
-    requires org.bytedeco.opencv;
 
 
     opens pfa.java.pfa2025java to javafx.fxml;
