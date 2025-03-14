@@ -150,9 +150,22 @@ public class HelloController {
     public Mat captureImage() {
         VideoCapture capture = new VideoCapture(0); // 0 for default webcam
         Mat frame = new Mat();
-        if (capture.isOpened()) {
-            capture.read(frame);
+
+        // Check if the camera is opened successfully
+        if (!capture.isOpened()) {
+            System.out.println("Erreur: Impossible d'ouvrir la caméra.");
+            return null;
         }
+
+        // Capture a frame
+        if (capture.read(frame)) {
+            System.out.println("Image capturée avec succès.");
+        } else {
+            System.out.println("Erreur: Impossible de capturer l'image.");
+            frame = null;
+        }
+
+        // Release the camera
         capture.release();
         return frame;
     }
