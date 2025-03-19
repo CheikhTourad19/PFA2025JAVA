@@ -34,9 +34,9 @@ public class SwtichScene {
             stage.setScene(scene);
             stage.setTitle(title);
 
-
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("assets/img.jpg")));
             stage.show();
-            stage.setResizable(false);
+
         } catch (IOException e) {
 
             System.out.println("Erreur de chargement Impossible de charger la vue : " + fxmlPath);
@@ -63,7 +63,7 @@ public class SwtichScene {
 
 
             stage.show();
-            stage.setResizable(false);
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("assets/img.jpg")));
         } catch (IOException e) {
 
             System.out.println("Erreur de chargement : Impossible de charger la vue " + fxmlPath);

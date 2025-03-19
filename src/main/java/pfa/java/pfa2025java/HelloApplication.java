@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -39,7 +40,7 @@ public class HelloApplication extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("views/hello-view.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
-
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("assets/img.jpg")));
             stage.show();
             stage.setTitle("E-Medical");
             closeAlert(stage);
