@@ -6,39 +6,30 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox alignment="CENTER" prefHeight="827.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.pharmacie.SidebarController">
-    <children>
+<HBox alignment="CENTER" prefHeight="827.0" prefWidth="947.0" stylesheets="@../../Style/pharmacie/accueil.css"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pfa.java.pfa2025java.controllers.pharmacie.SidebarController">
 
-        <VBox prefHeight="541.0" prefWidth="198.0" spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 10;">
-            <ImageView fitHeight="114.0" fitWidth="203.0" pickOnBounds="true">
+
+    <children>
+        <!-- Sidebar -->
+        <VBox prefHeight="541.0" prefWidth="220.0" spacing="20" styleClass="sidebar">
+            <ImageView fitHeight="100.0" fitWidth="180.0" pickOnBounds="true">
                 <Image url="@../../assets/pharamalogo.png"/>
                 <VBox.margin>
-                    <Insets bottom="50.0"/>
+                    <Insets bottom="30.0"/>
                 </VBox.margin>
             </ImageView>
-            <Text fx:id="name" fill="#f5efef" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER"
-                  wrappingWidth="188.0">
-                <font>
-                    <Font name="Segoe UI" size="17.0"/>
-                </font>
-            </Text>
-            <Button fx:id="accueilButton" onAction="#gotoaccueil"
-                    style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
-                    text="Accueil"/>
-            <Button fx:id="ordonnanceButton" onAction="#gotoordonnance"
-                    style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
-                    text="Ordonnance"/>
-            <Button fx:id="stockButton" onAction="#gotostock"
-                    style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
-                    text="Stock"/>
-            <Button onAction="#logout"
-                    style=" -fx-cursor: hand; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
-                    text="Déconnexion"/>
+            <Text fx:id="name" styleClass="user-name" text="Text" textAlignment="CENTER" wrappingWidth="188.0"/>
+            <Button fx:id="accueilButton" onAction="#gotoaccueil" styleClass="sidebar-button" text="Accueil"/>
+            <Button fx:id="ordonnanceButton" onAction="#gotoordonnance" styleClass="sidebar-button" text="Ordonnance"/>
+            <Button fx:id="stockButton" onAction="#gotostock" styleClass="sidebar-button" text="Stock"/>
+            <Button onAction="#logout" styleClass="logout-button" text="Déconnexion"/>
         </VBox>
-        <VBox fx:id="mainContent" alignment="CENTER" prefHeight="827.0" prefWidth="731.0"/>
+
+        <!-- Main Content -->
+        <VBox fx:id="mainContent" alignment="CENTER" prefHeight="827.0" prefWidth="731.0" styleClass="main-content"/>
     </children>
 </HBox>

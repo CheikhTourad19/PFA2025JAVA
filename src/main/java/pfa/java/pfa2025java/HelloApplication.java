@@ -39,7 +39,7 @@ public class HelloApplication extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("views/hello-view.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
-            SwtichScene.loadImage(stage);
+
             stage.show();
             stage.setTitle("E-Medical");
             closeAlert(stage);

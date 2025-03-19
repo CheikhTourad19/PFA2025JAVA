@@ -7,7 +7,6 @@ module pfa.java.pfa2025java {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires java.desktop;
-    requires javafx.swing;
     requires jbcrypt;
     requires java.prefs;
     requires org.apache.pdfbox;

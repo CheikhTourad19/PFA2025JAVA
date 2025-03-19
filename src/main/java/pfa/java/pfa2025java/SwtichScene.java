@@ -1,6 +1,6 @@
 package pfa.java.pfa2025java;
 
-import javafx.embed.swing.SwingFXUtils;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -35,7 +35,6 @@ public class SwtichScene {
             stage.setTitle(title);
 
 
-            loadImage(stage);
             stage.show();
             stage.setResizable(false);
         } catch (IOException e) {
@@ -62,7 +61,7 @@ public class SwtichScene {
             stage.setScene(scene);
             stage.setTitle(title);
 
-            loadImage(stage);
+
             stage.show();
             stage.setResizable(false);
         } catch (IOException e) {
@@ -72,38 +71,8 @@ public class SwtichScene {
         }
     }
 
-    public static void loadImage(Stage stage) {
-        String imagePath = "assets/img.jpg"; // Chemin depuis src/main/resources
 
-        try (InputStream imageStream = SwtichScene.class.getResourceAsStream(imagePath)) {
-            if (imageStream == null) {
-                System.out.println("⚠ Image non trouvée : " + imagePath);
-                return;
-            }
 
-            // Charger l'image en mémoire
-            Image fxImage = new Image(imageStream);
-            stage.getIcons().add(fxImage);
 
-            // Définir l'icône pour la barre des tâches (Windows/Linux) et le Dock (macOS)
-            setTaskbarIcon(fxImage);
-        } catch (Exception e) {
-            System.out.println("⚠ Erreur lors du chargement de l'icône : " + e.getMessage());
-        }
-    }
-
-    private static void setTaskbarIcon(Image fxImage) {
-        if (Taskbar.isTaskbarSupported()) {
-            try {
-                Taskbar taskbar = Taskbar.getTaskbar();
-                java.awt.Image awtImage = SwingFXUtils.fromFXImage(fxImage, null);
-                if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE) && awtImage != null) {
-                    taskbar.setIconImage(awtImage);
-                }
-            } catch (Exception e) {
-                System.out.println("⚠ Impossible de définir l'icône du Dock/Taskbar : " + e.getMessage());
-            }
-        }
-    }
 
 }
