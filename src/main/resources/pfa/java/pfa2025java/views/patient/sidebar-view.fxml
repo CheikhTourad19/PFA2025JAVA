@@ -40,6 +40,7 @@
                             style=" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                             text="Chat AI (test)"/>
 
+
                     <Button onAction="#logout"
                             style=" -fx-cursor: hand; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"
                             text="Déconnexion"/>

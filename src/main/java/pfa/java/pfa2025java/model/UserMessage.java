@@ -6,23 +6,25 @@ import java.time.LocalDateTime;
 
 public class UserMessage {
     private int userId;
-    private String username;
+    private String fullName;
     private String lastMessage;
     private LocalDateTime sentAt;
     private String timeAgo;
     private boolean isSeen;
     private int senderId;
 
-    public UserMessage(int userId, String username, String lastMessage, LocalDateTime sentAt, boolean isSeen, int senderId) {
+    public UserMessage(int userId, String fullName, String lastMessage,
+                       LocalDateTime sentAt, boolean isSeen, int senderId) {
         this.userId = userId;
-        this.username = username;
+        this.fullName = fullName;
         this.lastMessage = lastMessage;
         this.sentAt = sentAt;
         this.isSeen = isSeen;
         this.timeAgo = calculateTimeAgo(sentAt);
         this.senderId = senderId;
-    }
 
+
+    }
     private String calculateTimeAgo(LocalDateTime sentAt) {
         Duration duration = Duration.between(sentAt, LocalDateTime.now());
         long seconds = duration.getSeconds();
@@ -41,16 +43,19 @@ public class UserMessage {
     public boolean isSeen() { return isSeen; }
     public void setSeen(boolean seen) { isSeen = seen; }
     public int getUserId() { return userId; }
-    public String getUsername() { return username; }
+    public String getFullName() { return fullName; }
+
+    @Override
+    public String toString() {
+        return fullName + ": " + lastMessage + " (" + timeAgo + ")";
+    }
     public String getLastMessage() { return lastMessage; }
     public LocalDateTime getSentAt() { return sentAt; }
     public String getTimeAgo() { return timeAgo; }
     public int getSenderId() { return senderId; }
 
-    @Override
-    public String toString() {
-        return username + ": " + lastMessage + " (" + timeAgo + ")";
-    }
+
+
 
 }
 

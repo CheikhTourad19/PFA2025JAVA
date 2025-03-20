@@ -19,7 +19,7 @@
                     <children>
                         <AnchorPane fx:id="drawer" prefHeight="742.0" prefWidth="146.0"
                                     style="-fx-background-color: #0F72B3;" styleClass="drawer"
-                                    stylesheets="@../../Style/medicin/sidebar.css">
+                                    stylesheets="@../../Style/medecin/sidebar.css">
                             <children>
                                 <Label fx:id="dashboardLabel" layoutX="46.0" layoutY="124.0" text="Dashboard"
                                        textFill="WHITE">

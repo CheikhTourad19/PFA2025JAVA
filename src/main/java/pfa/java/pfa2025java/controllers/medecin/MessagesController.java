@@ -70,7 +70,7 @@ public class MessagesController {
                 receiverId = newValue.getUserId();
                 System.out.println("Selected User ID: " + receiverId);
                 loadChatWithUser(receiverId);
-                UserMessage.setText(newValue.getUsername());
+                UserMessage.setText(newValue.getFullName());
                 startMessageUpdater();
             }
         });
@@ -254,7 +254,7 @@ public class MessagesController {
                         HBox hbox = new HBox(10);
                         hbox.setAlignment(Pos.CENTER_LEFT);
 
-                        Label usernameLabel = new Label(userMessage.getUsername());
+                        Label usernameLabel = new Label(userMessage.getFullName());
                         usernameLabel.setStyle("-fx-font-weight: bold;");
 
                         Label lastMessageLabel = new Label(userMessage.getLastMessage());
