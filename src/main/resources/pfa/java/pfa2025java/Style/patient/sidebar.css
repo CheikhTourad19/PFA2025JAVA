@@ -1,0 +1,44 @@
+/* Base styles for sidebar buttons */
+.sidebar-button {
+    -fx-background-color: #34495E;
+    -fx-text-fill: white;
+    -fx-pref-width: 180;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 12 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 3);
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Hover effect for sidebar buttons */
+.sidebar-button:hover {
+    -fx-background-color: #3498db;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+}
+
+/* Active button style */
+.active-button {
+    -fx-background-color: #3498db;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+}
+
+/* Logout button style */
+.logout-button {
+    -fx-background-color: #E74C3C;
+    -fx-text-fill: white;
+    -fx-pref-width: 180;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 12 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 3);
+}
+
+/* Hover effect for logout button */
+.logout-button:hover {
+    -fx-background-color: #c0392b;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+}
