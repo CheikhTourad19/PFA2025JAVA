@@ -81,30 +81,6 @@ public class TaskDAO {
         }
         return users;
     }
-    public List<Task> getTasksByUser(int userId) {
-        List<Task> tasks = new ArrayList<>();
-        String sql = "SELECT t.* FROM tasks t " +
-                "JOIN tasks ta ON t.id = ta.task_id " +
-                "WHERE ta.user_id = ?";
-
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, userId);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                Task task = new Task();
-                task.setTaskId(rs.getInt("id"));
-                task.setTitle(rs.getString("title"));
-                task.setDescription(rs.getString("description"));
-                task.setDeadline(rs.getDate("deadline").toLocalDate());
-                task.setStatus(TaskStatus.fromString(rs.getString("status")));
-                tasks.add(task);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return tasks;
-    }
 
     public List<Task> getTasksWithCreatorInfo(int userId) {
         List<Task> tasks = new ArrayList<>();
@@ -145,4 +121,28 @@ public class TaskDAO {
         }
     }
 
+    public List<Task> getTasksCreatedByUser(int creatorId) throws SQLException {
+        List<Task> tasks = new ArrayList<>();
+        String sql = "SELECT t.task_id, t.title, t.deadline, t.status, "
+                + "u.nom || ' ' || u.prenom AS assignee_name "  // Concaténation nom/prénom
+                + "FROM tasks t "
+                + "LEFT JOIN user u ON t.assigned_to = u.id "   // Correction de la colonne de jointure
+                + "WHERE t.created_by = ?";                     // Supposition du nom de colonne
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, creatorId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Task task = new Task();
+                task.setTaskId(rs.getInt("task_id"));
+                task.setTitle(rs.getString("title"));
+                task.setDeadline(rs.getDate("deadline").toLocalDate());
+                task.setStatus(TaskStatus.fromString(rs.getString("status")));
+                task.setAssigneeName(rs.getString("assignee_name")); // Récupération du nom complet
+                tasks.add(task);
+            }
+        }
+        return tasks;
+    }
 }

@@ -1,0 +1,54 @@
+/* Conteneur principal */
+.task-container {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 0, 2, 3, 3);
+}
+
+/* En-tête de tâche */
+.task-header {
+    -fx-alignment: center-left;
+    -fx-spacing: 10;
+}
+
+/* Styles des textes */
+.task-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.task-assignee {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.task-deadline {
+    -fx-font-size: 14px;
+    -fx-text-fill: #e74c3c;
+}
+
+/* Styles des statuts */
+.task-status {
+    -fx-font-weight: bold;
+    -fx-padding: 3 8;
+    -fx-background-radius: 4;
+}
+
+.status-pending {
+    -fx-background-color: #f39c12;
+    -fx-text-fill: white;
+}
+
+.status-in-progress {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.status-completed {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+}
