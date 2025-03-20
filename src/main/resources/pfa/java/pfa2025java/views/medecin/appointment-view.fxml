@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="589.0" prefWidth="600.0" stylesheets="@../../Style/medicin/appointements.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.RendezVousController">
+<AnchorPane prefHeight="589.0" prefWidth="600.0" stylesheets="@../../Style/medecin/appointements.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.RendezVousController">
 
     <VBox alignment="CENTER" prefHeight="589.0" prefWidth="600.0" spacing="10">
         <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Mes Rendez-vous" />

@@ -18,7 +18,7 @@
 <AnchorPane fx:id="messageRoot" prefHeight="600.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.MessagesController">
 
     <stylesheets>
-        <URL value="@../../Style/medicin/messages.css" />
+        <URL value="@../../Style/medecin/messages.css" />
     </stylesheets>
 
     <children>
