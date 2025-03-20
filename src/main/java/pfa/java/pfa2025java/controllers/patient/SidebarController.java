@@ -1,13 +1,22 @@
 package pfa.java.pfa2025java.controllers.patient;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
+import pfa.java.pfa2025java.dao.MessageDAO;
+
+import java.sql.SQLException;
 
 public class SidebarController {
 
@@ -19,7 +28,10 @@ public class SidebarController {
     public Button pharmaButton;
     public Button demandeButton;
     public Button chatButton;
+    public Button messagerie;
     private Button activeButton;
+    @FXML
+    private Label countMsg;
 
 
     public void initialize() {
@@ -86,5 +98,10 @@ public class SidebarController {
     public void consulterRDV(ActionEvent actionEvent) {
         NavigationUtil.navigateTo(mainContent, "accueil", this);
         setActiveButton(rdvButton);
+    } public void goToMsg(ActionEvent actionEvent) {
+        NavigationUtil.navigateTo(mainContent, "message", this);
+        setActiveButton(messagerie);
     }
+
+
 }

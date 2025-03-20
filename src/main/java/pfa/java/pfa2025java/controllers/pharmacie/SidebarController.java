@@ -26,13 +26,13 @@ public class SidebarController {
     }
 
     private void setActiveButton(Button button) {
-        // Réinitialiser les styles des boutons
-        ordonnanceButton.setStyle(" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;");
-        stockButton.setStyle(" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;");
-        accueilButton.setStyle(" -fx-cursor: hand; -fx-background-color: #34495E; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;");
+        // Reset all buttons to default style
+        ordonnanceButton.getStyleClass().remove("active-button");
+        stockButton.getStyleClass().remove("active-button");
+        accueilButton.getStyleClass().remove("active-button");
 
-        // Appliquer un style au bouton actif
-        button.setStyle(" -fx-cursor: hand; -fx-background-color: #3498db; -fx-text-fill: white; -fx-pref-width: 180; -fx-font-size: 14px; -fx-font-weight: bold;"); // Bleu clair
+        // Apply active style to the selected button
+        button.getStyleClass().add("active-button");
         activeButton = button;
     }
 

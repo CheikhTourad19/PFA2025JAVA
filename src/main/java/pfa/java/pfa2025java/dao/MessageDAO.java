@@ -30,6 +30,7 @@ public class MessageDAO {
             stmt.setString(3, message.getContent());
             stmt.setTimestamp(4, Timestamp.valueOf(message.getSentAt()));
             stmt.setBoolean(5, message.isSeen());
+
             stmt.executeUpdate();
 
             connection.commit();
@@ -104,7 +105,7 @@ public class MessageDAO {
 
     public List<UserMessage> getUsersWithLastMessage(int userId) throws SQLException {
         List<UserMessage> userMessages = new ArrayList<>();
-        String sql =MessageRequet.getUsersWithLastMsg;
+        String sql = MessageRequet.getUsersWithLastMsg;
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, userId);
@@ -117,7 +118,7 @@ public class MessageDAO {
                 while (rs.next()) {
                     UserMessage userMessage = new UserMessage(
                             rs.getInt("id"),
-                            rs.getString("prenom"),
+                            rs.getString("fullname"), // Correction ici
                             rs.getString("content"),
                             rs.getTimestamp("sent_at").toLocalDateTime(),
                             rs.getBoolean("vu"),
@@ -135,14 +136,16 @@ public class MessageDAO {
         String sql = MessageRequet.search_Users;
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, "%" + query + "%");
-            stmt.setInt(2, currentUserId);
+            String searchTerm = "%" + query + "%";
+            stmt.setString(1, searchTerm);  // Pour prenom LIKE
+            stmt.setString(2, searchTerm);  // Pour nom LIKE
+            stmt.setInt(3, currentUserId);  // ID à exclure (u.id != ?)
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     UserMessage userMessage = new UserMessage(
                             rs.getInt("id"),
-                            rs.getString("prenom"),
+                            rs.getString("fullname"), // Récupération du fullname
                             rs.getString("content"),
                             rs.getTimestamp("sent_at") != null ?
                                     rs.getTimestamp("sent_at").toLocalDateTime() : LocalDateTime.now(),
@@ -155,8 +158,6 @@ public class MessageDAO {
         }
         return userMessages;
     }
-
-
     public void markMessagesAsSeen(int receiverId, int senderId) throws SQLException {
         String sql = MessageRequet.markMsgAsSeen;
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {

@@ -8,6 +8,11 @@ public class Message {
     private int senderId;
     private int receiverId;
     private String content;
+
+
+
+
+
     private LocalDateTime sentAt;
     private boolean seen;
     private LocalDateTime seenAt;
@@ -18,7 +23,10 @@ public class Message {
         this.content = content;
         this.sentAt = sentAt;
         this.seen = false;
+
     }
+
+
 
     // Getters and Setters
     public int getId() { return id; }

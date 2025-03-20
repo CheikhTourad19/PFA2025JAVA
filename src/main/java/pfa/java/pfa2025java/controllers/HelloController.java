@@ -95,7 +95,7 @@ public class HelloController {
                             case "pharmacie" ->
                                     swtichScene.loadScene(password, "views/pharmacie/sidebar-view.fxml", "Pharmacie", false);
                             case "medecin" -> {
-                                swtichScene.loadScene(password, "views/Medecin/sidebar-view.fxml", "Médecin", false);
+                                swtichScene.loadScene(password, "views/medecin/sidebar-view.fxml", "Médecin", false);
                             }
                             case "patient" ->
                                     swtichScene.loadScene(password, "views/patient/sidebar-view.fxml", "Mes RDV", false);
