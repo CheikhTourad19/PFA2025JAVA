@@ -245,7 +245,7 @@ public class StockController {
         alert.show();
 
         // Ajout d'un son d'alerte
-        java.awt.Toolkit.getDefaultToolkit().beep();
+
     }
 
 
