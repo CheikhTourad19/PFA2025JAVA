@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="pfa.java.pfa2025java.controllers.patient.FeedbackController">
+
+    <Label text="Rate your experience:"/>
+
+    <HBox spacing="5">
+        <ToggleButton text="★" fx:id="star1"/>
+        <ToggleButton text="★" fx:id="star2"/>
+        <ToggleButton text="★" fx:id="star3"/>
+        <ToggleButton text="★" fx:id="star4"/>
+        <ToggleButton text="★" fx:id="star5"/>
+    </HBox>
+
+    <Label text="Leave a comment:"/>
+    <TextArea fx:id="commentField" prefRowCount="3" prefWidth="400"/>
+
+    <Button text="Submit Feedback" fx:id="submitButton"/>
+</VBox>
