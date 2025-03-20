@@ -162,17 +162,17 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>pfa.java.pfa2025java.HelloApplication</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <transformers>
-                        <transformer
-                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                            <mainClass>pfa.java.pfa2025java.HelloApplication</mainClass>
-                        </transformer>
-                    </transformers>
-                </configuration>
             </plugin>
+
         </plugins>
     </build>
 

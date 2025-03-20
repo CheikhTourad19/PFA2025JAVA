@@ -1,0 +1,16 @@
+{
+  "platform": "mac",
+  "jdk": "/Users/pc/Library/Java/JavaVirtualMachines/openjdk-23.0.1/Contents/Home",
+  "executable": "E-Medical",
+  "classpath": [
+    "target/PFA2025JAVA-1.0-SNAPSHOT.jar"
+  ],
+  "mainclass": "pfa.java.pfa2025java.HelloApplication",
+  "vmargs": [
+    "--module-path", "/Users/pc/Downloads/javafx-sdk-24/lib",
+    "--add-modules", "javafx.controls,javafx.fxml"
+  ],
+  "resources": [
+  ],
+  "output": "output"
+}
