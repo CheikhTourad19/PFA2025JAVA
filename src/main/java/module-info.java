@@ -15,6 +15,7 @@ module pfa.java.pfa2025java {
     requires java.mail;
     requires twilio;
     requires javafx.web;
+    requires jdk.jsobject;
 
 
     opens pfa.java.pfa2025java to javafx.fxml;

@@ -4,5 +4,5 @@
 <?import javafx.scene.web.WebView?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="pfa.java.pfa2025java.controllers.DashboardController">
-    <WebView fx:id="webView" prefWidth="1300" prefHeight="1000" />
+    <WebView fx:id="webView" prefWidth="1000" prefHeight="800" />
 </AnchorPane>
