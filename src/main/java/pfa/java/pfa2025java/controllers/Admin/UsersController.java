@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import pfa.java.pfa2025java.SmsSender;
 import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.model.Infermier;
 import pfa.java.pfa2025java.model.Medecin;
@@ -88,6 +89,7 @@ public class UsersController {
     private void handleEditUser(User user) throws SQLException {
         UserDAO.changePassword("12345678",user.getId());
         System.out.println("Modifier utilisateur: " + user.getNom());
+        SmsSender.sendSms(user.getNumero(),"votre mot de passe a ete reinitialiser a :12345678");
         // Open Edit User form (implement later)
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("Password Renitialisee");
