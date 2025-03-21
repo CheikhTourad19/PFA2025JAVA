@@ -104,4 +104,16 @@ public class SidebarController {
     }
 
 
+    public void Link(ActionEvent actionEvent) {
+        SwtichScene swtichScene = new SwtichScene();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Navigation");
+        alert.setHeaderText(null);
+        alert.setContentText("Voulez-vous ouvrir la nouvelle page ?");
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.OK) {
+            swtichScene.loadScene(actionEvent, "views/sample.fxml", "Nouvelle Page", false);
+        }
+    }
 }

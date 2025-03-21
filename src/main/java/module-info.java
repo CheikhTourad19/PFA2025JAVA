@@ -6,7 +6,6 @@ module pfa.java.pfa2025java {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires jbcrypt;
-    requires java.prefs;
     requires org.apache.pdfbox;
 
     requires okhttp3;
@@ -16,6 +15,8 @@ module pfa.java.pfa2025java {
     requires twilio;
     requires javafx.web;
     requires jdk.jsobject;
+    requires java.desktop;
+    requires java.prefs;
 
 
     opens pfa.java.pfa2025java to javafx.fxml;
