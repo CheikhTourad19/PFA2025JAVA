@@ -94,7 +94,7 @@
                                                 <Image url="@../../assets/calendrier.png" />
                                             </image>
                                         </ImageView>
-                              <ImageView fx:id="dossierMedical" fitHeight="25.0" fitWidth="25.0" layoutX="5.0" layoutY="410.0" mouseTransparent="false" onMouseClicked="#goToMessages" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="dossierMedical" fitHeight="25.0" fitWidth="25.0" layoutX="5.0" layoutY="410.0" mouseTransparent="false" onMouseClicked="#goToDM" pickOnBounds="true" preserveRatio="true">
                                          <image>
                                              <Image url="@../../assets/dm.png" />
                                          </image>

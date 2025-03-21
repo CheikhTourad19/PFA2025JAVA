@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<?import java.lang.String?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.DmViewController">
+
+    <children>
+        <Label text="Gestion des Dossiers Médicaux" layoutX="20" layoutY="20" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <GridPane layoutX="20" layoutY="60" hgap="10" vgap="10">
+            <children>
+                <Label text="Patient ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtPatientId" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Groupe Sanguin:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cmbGroupeSanguin" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="A+"/>
+                            <String fx:value="A-"/>
+                            <String fx:value="B+"/>
+                            <String fx:value="B-"/>
+                            <String fx:value="AB+"/>
+                            <String fx:value="AB-"/>
+                            <String fx:value="O+"/>
+                            <String fx:value="O-"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <Label text="Allergies:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtAllergies" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Antécédents Médicaux:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtAntecedentsMedicaux" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Antécédents Familiaux:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtAntecedentsFamiliaux" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            </children>
+        </GridPane>
+
+        <TableView fx:id="tableTraitements" layoutX="20" layoutY="220" prefWidth="450" prefHeight="150">
+            <columns>
+                <TableColumn text="ID" fx:id="colId"/>
+                <TableColumn text="Traitement" fx:id="colTraitement"/>
+                <TableColumn text="Observations" fx:id="colObservations"/>
+            </columns>
+        </TableView>
+
+        <HBox layoutX="20" layoutY="400" spacing="10">
+            <children>
+                <Button text="Ajouter" onAction="#ajouterDossier"/>
+                <Button text="Modifier" onAction="#modifierDossier"/>
+                <Button text="Supprimer" onAction="#supprimerDossier"/>
+                <Button text="Rechercher" onAction="#rechercherDossier"/>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

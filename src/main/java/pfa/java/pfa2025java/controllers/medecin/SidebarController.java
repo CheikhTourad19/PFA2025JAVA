@@ -170,8 +170,9 @@ public class SidebarController {
     private void goToOrdonnance() {
         NavigationUtil.navigateTo(mainContent, "ordonnance",this);
     }
+    @FXML
     private void goToDM() {
-        NavigationUtil.navigateTo(mainContent, "DM-view",this);
+        NavigationUtil.navigateTo(mainContent, "dm",this);
     }
     @FXML
     private void logout() {
