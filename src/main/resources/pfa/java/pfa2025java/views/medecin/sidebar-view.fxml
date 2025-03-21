@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="800.0" style="-fx-background-color: #FFFAFA;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.SidebarController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFAFA;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.SidebarController">
     <children>
         <VBox fx:id="sidebar" prefHeight="600.0" prefWidth="178.0">
             <children>
@@ -19,6 +19,11 @@
                             <children>
 
                                 <Label fx:id="tasksLabel" layoutX="50.0" layoutY="170.0" text="Taches" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold Italic" size="12.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="DMLabel" layoutX="50.0" layoutY="420.0" text="dossier medical" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
@@ -33,7 +38,7 @@
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="logoutLabel" layoutX="50.0" layoutY="420.0" text="Deconnecter" textFill="WHITE">
+                                <Label fx:id="logoutLabel" layoutX="50.0" layoutY="480.0" text="Deconnecter" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold Italic" size="12.0" />
                                     </font>
@@ -59,7 +64,7 @@
                                                 <Image url="@../../assets/appointments.png" />
                                             </image>
                                         </ImageView>
-                                        <ImageView fx:id="logout" fitHeight="25.0" fitWidth="25.0" layoutX="5.0" layoutY="410.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="logout" fitHeight="25.0" fitWidth="25.0" layoutX="5.0" layoutY="470.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../assets/logout.png" />
                                             </image>
@@ -89,6 +94,11 @@
                                                 <Image url="@../../assets/calendrier.png" />
                                             </image>
                                         </ImageView>
+                              <ImageView fx:id="dossierMedical" fitHeight="25.0" fitWidth="25.0" layoutX="5.0" layoutY="410.0" mouseTransparent="false" onMouseClicked="#goToMessages" pickOnBounds="true" preserveRatio="true">
+                                         <image>
+                                             <Image url="@../../assets/dm.png" />
+                                         </image>
+                                         </ImageView>
                                     </children>
                                 </AnchorPane>
                                 <Label fx:id="profilLabel" layoutX="50.0" layoutY="320.0" text="Profil" textFill="WHITE">
