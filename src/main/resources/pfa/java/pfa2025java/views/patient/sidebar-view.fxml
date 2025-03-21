@@ -30,7 +30,7 @@
                     text="Consulter Pharmacies"/>
             <Button fx:id="demandeButton" onAction="#demandeRendezVous" styleClass="sidebar-button" text="Demande RDV"/>
             <Button fx:id="chatButton" onAction="#chat" styleClass="sidebar-button" text="Chat AI "/>
-            <Button fx:id="LinkVutton" onAction="#Link" styleClass="sidebar-button" text="Medical VR"/>
+            <Button fx:id="LinkVutton" onAction="#Link" styleClass="sidebar-button" text="Medical RA"/>
 
             <!-- Logout Button -->
             <Button onAction="#logout" styleClass="logout-button" text="Déconnexion"/>

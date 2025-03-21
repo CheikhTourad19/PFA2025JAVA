@@ -113,7 +113,7 @@ public class SidebarController {
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.OK) {
-            swtichScene.loadScene(actionEvent, "views/sample.fxml", "Nouvelle Page", false);
+            swtichScene.loadScene(actionEvent, "views/sample.fxml", "Nouvelle Page", true);
         }
     }
 }

@@ -4,37 +4,44 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import java.awt.Desktop;
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 public class LinkController {
 
-        @FXML
-        private Hyperlink downloadLink;
+    @FXML
+    private Hyperlink downloadLink;
 
-        @FXML
-        private void handleDownload() {
-            try {
-                // Use double backslashes (\\) to properly escape the path in Java
-                File file = new File("C:\\Users\\khali\\OneDrive\\Desktop\\cyc 1\\SEM2\\medical App");
+    @FXML
+    private void handleDownload() {
+        try {
+            // URL of the file to download
+            String fileURL = "https://we.tl/t-w48EgLI1Z8";
 
-                if (!file.exists()) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Le fichier n'existe pas !");
-                    alert.showAndWait();
-                    return;
-                }
+            // Attempt to open the URL in the default web browser
+            URI uri = new URI(fileURL);
 
-                Desktop.getDesktop().open(file);
-            } catch (IOException e) {
-                e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur");
-                alert.setHeaderText(null);
-                alert.setContentText("Impossible d'ouvrir le fichier.");
-                alert.showAndWait();
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.browse(uri);
+            } else {
+                showErrorAlert("Impossible d'ouvrir le lien dans le navigateur.");
             }
-        }}
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            showErrorAlert("L'URL est mal formatée.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            showErrorAlert("Impossible d'ouvrir le fichier.");
+        }
+    }
+
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+}
