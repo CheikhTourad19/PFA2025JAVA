@@ -165,7 +165,6 @@ public class SidebarController {
     private void goToProfil() {
         NavigationUtil.navigateTo(mainContent, "profil",this);
     }
-
     @FXML
     private void goToOrdonnance() {
         NavigationUtil.navigateTo(mainContent, "ordonnance",this);
