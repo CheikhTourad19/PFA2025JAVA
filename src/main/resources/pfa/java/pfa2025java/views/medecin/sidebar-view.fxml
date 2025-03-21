@@ -48,6 +48,9 @@
                                                 <Image url="@../../assets/task.png" />
                                             </image>
                                         </ImageView>
+                                        <StackPane layoutX="18.0" layoutY="153.0">
+                                            <Label fx:id="countTask" alignment="CENTER" minHeight="15" minWidth="15" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 10;" visible="false" />
+                                        </StackPane>
                                         <ImageView fx:id="Toggle_sidebar" fitHeight="24.0" fitWidth="46.0" layoutX="1.0" layoutY="2.0" onMouseClicked="#toggleSidebar" pickOnBounds="true" preserveRatio="true">
                                             <Image url="@../../assets/back.png" />
                                         </ImageView>
@@ -78,7 +81,7 @@
                                          </ImageView>
 
 
-                                        <StackPane layoutX="23.0" layoutY="193.0">
+                                        <StackPane layoutX="18.0" layoutY="203.0">
                                             <Label fx:id="countMsg" alignment="CENTER" layoutX="20" layoutY="-10" minHeight="15" minWidth="15" mouseTransparent="true" style="-fx-background-color: red; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 10;" visible="false" />
                                         </StackPane>
                                         <ImageView fx:id="calendrierIcon" fitHeight="25.0" fitWidth="25.0" layoutX="5.0" layoutY="260.0" onMouseClicked="#goToCalendar" pickOnBounds="true" preserveRatio="true">

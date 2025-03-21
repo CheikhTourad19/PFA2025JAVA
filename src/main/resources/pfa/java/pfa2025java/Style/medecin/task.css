@@ -12,7 +12,7 @@
 
 /* Conteneur principal de chaque tâche */
 .task-cell {
-    -fx-background-color: #ffffff;
+    -fx-background-color: #F5F5F5;
     -fx-border-color: #e0e0e0;
     -fx-border-radius: 8;
     -fx-background-radius: 8;

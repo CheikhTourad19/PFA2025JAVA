@@ -67,3 +67,12 @@
     -fx-border-style: solid;
     -fx-border-color: #0F72B3;
 }
+.notification-badge {
+    -fx-background-radius: 10;
+    -fx-padding: 2 5;
+    -fx-font-weight: bold;
+}
+
+#countTask {
+    -fx-background-color: #27ae60;
+}

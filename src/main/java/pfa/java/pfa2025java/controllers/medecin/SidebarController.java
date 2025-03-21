@@ -15,12 +15,15 @@ import pfa.java.pfa2025java.SwtichScene;
 import pfa.java.pfa2025java.UserSession;
 import pfa.java.pfa2025java.controllers.medecin.util.NavigationUtil;
 import pfa.java.pfa2025java.dao.MessageDAO;
+import pfa.java.pfa2025java.dao.TaskDAO;
+import pfa.java.pfa2025java.model.Task;
 
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
 public class SidebarController {
+    @FXML private Label countTask;
 
 
     public Label ordonnanceLabel;
@@ -45,6 +48,9 @@ public class SidebarController {
     private void initialize() {
         initializeComponents();
          goToRDV();
+        setupInitialNotifications();
+
+
 
     }
 
@@ -53,6 +59,9 @@ public class SidebarController {
         setImagePositions(12.0);
         updateLabelsVisibility(!isCollapsed);
         startUnreadCountUpdater();
+        countTask.setVisible(false);
+        countMsg.setVisible(false);
+
     }
 
     @FXML
@@ -129,6 +138,7 @@ public class SidebarController {
     }
 
 
+
     @FXML
 
 
@@ -197,6 +207,42 @@ public class SidebarController {
         }
     }
 
+    private void setupInitialNotifications() {
+        updateUnreadCount(); // Messages
+        updateTaskCount();
+        updateUnreadCount(); // Messages
+        updateTaskCount();// Tâches
+        startUnreadCounttaskUpdater();
+    }
+
+
+
+    private void startUnreadCounttaskUpdater() {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(2), e -> {
+                    updateUnreadCount();
+                    updateTaskCount();
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    protected void updateTaskCount() {
+        try {
+            List<Task> tasks = new TaskDAO().getTasksByUser(UserSession.getId());
+            Platform.runLater(() -> {
+                if (!tasks.isEmpty()) {
+                    countTask.setText(String.valueOf(tasks.size()));
+                    countTask.setVisible(true);
+                } else {
+                    countTask.setVisible(false);
+                }
+            });
+        } catch (Exception e) {
+            Platform.runLater(() -> countTask.setVisible(false));
+        }
+    }
 
 
 

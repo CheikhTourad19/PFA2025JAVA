@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="messageRoot" prefHeight="600.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.MessagesController">
+<AnchorPane fx:id="messageRoot" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.MessagesController">
 
     <stylesheets>
         <URL value="@../../Style/medecin/messages.css" />
@@ -71,9 +71,9 @@
                      <Font name="System Bold Italic" size="11.0" />
                   </font>
                </Label>
-                    <ScrollPane fx:id="scrollPane" fitToWidth="true" vvalue="1.0">
-                        <AnchorPane>
-                            <VBox fx:id="chatBox" layoutY="1.0" prefHeight="450.0" prefWidth="454.0" spacing="10" style="-fx-background-color: #f0f0f0;">
+                    <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="378.0" prefWidth="380.0" vvalue="1.0">
+                        <AnchorPane prefHeight="364.0" prefWidth="366.0">
+                            <VBox fx:id="chatBox" layoutY="87.0" prefHeight="364.0" prefWidth="366.0" spacing="10" style="-fx-background-color: #f0f0f0;">
                                 <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
                             </VBox>
                         </AnchorPane>

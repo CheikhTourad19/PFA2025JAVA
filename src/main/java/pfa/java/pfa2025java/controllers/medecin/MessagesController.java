@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -251,14 +252,17 @@ public class MessagesController {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        HBox hbox = new HBox(10);
-                        hbox.setAlignment(Pos.CENTER_LEFT);
+                        VBox vbox = new VBox();
+                        vbox.setSpacing(2);
+                        vbox.setPadding(new Insets(5));
 
                         Label usernameLabel = new Label(userMessage.getFullName());
                         usernameLabel.setStyle("-fx-font-weight: bold;");
 
                         Label lastMessageLabel = new Label(userMessage.getLastMessage());
+                        lastMessageLabel.setMaxWidth(Double.MAX_VALUE); // Allow wrapping
 
+                        // Style based on seen status
                         if (userMessage.getSenderId() != userId && !userMessage.isSeen()) {
                             lastMessageLabel.setStyle("-fx-font-weight: bold;");
                         } else {
@@ -268,8 +272,14 @@ public class MessagesController {
                         Label timeAgoLabel = new Label(userMessage.getTimeAgo());
                         timeAgoLabel.setStyle("-fx-text-fill: gray; -fx-font-size: 10;");
 
-                        hbox.getChildren().addAll(usernameLabel, lastMessageLabel, timeAgoLabel);
-                        setGraphic(hbox);
+                        // HBox to hold message and time
+                        HBox messageLine = new HBox();
+                        messageLine.setSpacing(10);
+                        HBox.setHgrow(lastMessageLabel, Priority.ALWAYS); // Push time to right
+                        messageLine.getChildren().addAll(lastMessageLabel, timeAgoLabel);
+
+                        vbox.getChildren().addAll(usernameLabel, messageLine);
+                        setGraphic(vbox);
                     }
                 }
             });

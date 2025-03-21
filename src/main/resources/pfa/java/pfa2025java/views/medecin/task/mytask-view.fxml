@@ -3,8 +3,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane stylesheets="@../../../Style/medecin/task.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.MyTasksController">
+<AnchorPane style="-fx-background-color: #FFFFFF;" stylesheets="@../../../Style/medecin/task.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.MyTasksController">
 
-    <ListView fx:id="tasksListView" layoutX="10" layoutY="10" prefHeight="600" prefWidth="780" />
+    <ListView fx:id="tasksListView" layoutX="10" layoutY="10" prefHeight="600" prefWidth="400" />
 
 </AnchorPane>

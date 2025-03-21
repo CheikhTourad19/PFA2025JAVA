@@ -145,4 +145,38 @@ public class TaskDAO {
         }
         return tasks;
     }
+    public List<Task> getTasksByUser(int userId) throws SQLException {
+        List<Task> tasks = new ArrayList<>();
+        String sql = "SELECT task_id, title, description, assigned_to, created_by, status, deadline "
+                + "FROM tasks WHERE assigned_to = ? AND status != 'COMPLETED'";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Task task = new Task();
+
+                // Récupération des données de base
+                task.setTaskId(rs.getInt("task_id"));
+                task.setTitle(rs.getString("title"));
+                task.setDescription(rs.getString("description"));
+                task.setAssignedTo(rs.getInt("assigned_to"));
+                task.setCreatedBy(rs.getInt("created_by"));
+
+                // Conversion du statut
+                String statusValue = rs.getString("status");
+                task.setStatus(TaskStatus.fromString(statusValue));
+
+                // Gestion des dates NULL
+                Date deadlineDate = rs.getDate("deadline");
+                if (!rs.wasNull()) {
+                    task.setDeadline(deadlineDate.toLocalDate());
+                }
+
+                tasks.add(task);
+            }
+        }
+        return tasks;
+    }
 }

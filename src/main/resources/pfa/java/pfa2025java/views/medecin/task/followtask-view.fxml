@@ -4,9 +4,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"   fx:controller="pfa.java.pfa2025java.controllers.medecin.FollowTasksController" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pfa.java.pfa2025java.controllers.medecin.FollowTasksController">
 
-    <ListView fx:id="tasksListView" layoutX="10" layoutY="10" prefHeight="600" prefWidth="780" />
+    <ListView fx:id="tasksListView" layoutX="10" layoutY="10" prefHeight="600" prefWidth="400" />
    <stylesheets>
 
       <URL value="@../../../Style/medecin/followtask.css" />
