@@ -83,8 +83,9 @@ public class TaskController {
     private void updateUserListView(List<User> users) {
         userListView.setItems(FXCollections.observableArrayList(users));
         userListView.setVisible(!users.isEmpty());
+        userListView.getSelectionModel().clearSelection(); // Add this line
 
-        userListView.setCellFactory(lv -> new ListCell<User>() {
+        userListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(User user, boolean empty) {
                 super.updateItem(user, empty);

@@ -30,9 +30,9 @@
             <DatePicker fx:id="deadlinePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
             <Label text="Assigner à :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
-                <TextField fx:id="searchUser" />
-                <ListView fx:id="userListView" prefHeight="100" visible="false" />
+            <VBox prefHeight="91.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <TextField fx:id="searchUser" prefHeight="41.0" prefWidth="300.0" />
+                <ListView fx:id="userListView" prefHeight="42.0" prefWidth="300.0" visible="false" />
             </VBox>
 
             <Label text="Description :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
@@ -45,8 +45,8 @@
          <rowConstraints>
             <RowConstraints />
             <RowConstraints />
-            <RowConstraints maxHeight="120.0" minHeight="21.0" prefHeight="33.0" />
-            <RowConstraints maxHeight="205.0" minHeight="98.0" prefHeight="130.0" />
+            <RowConstraints maxHeight="120.0" minHeight="21.0" prefHeight="85.0" />
+            <RowConstraints maxHeight="205.0" minHeight="72.0" prefHeight="78.0" />
             <RowConstraints maxHeight="120.0" minHeight="30.0" prefHeight="88.0" />
          </rowConstraints>
         </GridPane>

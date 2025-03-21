@@ -175,5 +175,15 @@ public class MessageDAO {
             return rs.next() ? rs.getInt(1) : 0;
         }
     }
+    public void deleteMessagesBetweenUsers(int user1, int user2) throws SQLException {
+        String sql = "DELETE FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, user1);
+            stmt.setInt(2, user2);
+            stmt.setInt(3, user2);
+            stmt.setInt(4, user1);
+            stmt.executeUpdate();
+        }
+    }
 
 }
