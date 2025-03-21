@@ -9,7 +9,6 @@
     -fx-transition: all 0.1s ease-in-out;
 }
 
-/* État réduit */
 .drawer.collapsed {
     -fx-pref-width: 50px;
     -fx-background-radius: 0px 15px 15px 0px;

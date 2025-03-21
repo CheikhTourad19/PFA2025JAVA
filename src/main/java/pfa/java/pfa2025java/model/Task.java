@@ -14,7 +14,9 @@ public class Task {
     private LocalDate createdAt;
     private String creatorName;
     private LocalDate deadline;
-    // Constructors
+    private String assigneeName;
+
+
     public Task() {
 
     }
@@ -65,5 +67,8 @@ public class Task {
 
     public String getCreatorName() { return creatorName; }
     public void setCreatorName(String creatorName) { this.creatorName = creatorName; }
+
+    public String getAssigneeName() { return assigneeName; }
+    public void setAssigneeName(String assigneeName) { this.assigneeName = assigneeName; }
 
 }

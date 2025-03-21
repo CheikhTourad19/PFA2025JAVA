@@ -8,7 +8,7 @@ module pfa.java.pfa2025java {
     requires jbcrypt;
     requires java.prefs;
     requires org.apache.pdfbox;
-    requires javafaker;
+
     requires okhttp3;
     requires org.json;
     requires mysql.connector.java;

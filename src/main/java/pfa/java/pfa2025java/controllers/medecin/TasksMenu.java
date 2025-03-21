@@ -48,6 +48,6 @@ public class TasksMenu {
 
     @FXML
     public void loadFollowedTasks() {
-        loadView("/pfa/java/pfa2025java/views/medecin/task/followed-tasks-view.fxml");
+        loadView("/pfa/java/pfa2025java/views/medecin/task/followtask-view.fxml");
     }
 }
