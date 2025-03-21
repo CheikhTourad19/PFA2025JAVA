@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+    >
+    <Label text="Notes Médicales" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+    <Separator/>
+    <TextArea promptText="Saisir une note..." style="-fx-min-height: 300;"/>
+    <Button text="Enregistrer" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+</VBox>

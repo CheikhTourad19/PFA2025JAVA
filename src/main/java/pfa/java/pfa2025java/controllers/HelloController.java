@@ -99,6 +99,8 @@ public class HelloController {
                             }
                             case "patient" ->
                                     swtichScene.loadScene(password, "views/patient/sidebar-view.fxml", "Mes RDV", false);
+                            case "infermier" ->
+                                    swtichScene.loadScene(password, "views/infirmier/sidebar-view.fxml", "My task", false);
                             case "admin" ->
                                     swtichScene.loadScene(password, "views/Admin/dashboard.fxml", "Admin", false);
                             default -> {
