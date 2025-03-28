@@ -3,12 +3,15 @@ package pfa.java.pfa2025java;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class SmsSender {
+    private static final Dotenv dotenv = Dotenv.load();
+
     // Replace with your Twilio account SID, auth token, and Twilio phone number
-    public static final String ACCOUNT_SID = "ACdbe0fe323dbc301d92992eea69b19aa0";
-    public static final String AUTH_TOKEN = "d633f98ed5c30a89948f9c2e602ce871";
-    public static final String FROM_PHONE_NUMBER = "+15173144753";
+    public static final String ACCOUNT_SID = dotenv.get("SMS_SID");
+    public static final String AUTH_TOKEN = dotenv.get("SMS_AUTH_TOKEN");
+    public static final String FROM_PHONE_NUMBER = dotenv.get("SMS_NUMBER");
 
     static {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);

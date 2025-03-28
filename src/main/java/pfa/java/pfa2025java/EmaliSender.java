@@ -1,15 +1,19 @@
 package pfa.java.pfa2025java;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EmaliSender {
+    private static final Dotenv dotenv = Dotenv.load();
+
 
     public static boolean sendEmail(String toEmail, String message1) {
-        final String username = "donotreplyemedical@gmail.com";
-        final String appPassword = "qmmc zhsl mfeh jfrs";
+        final String username = dotenv.get("SMTP_USER");
+        final String appPassword = dotenv.get("SMTP_PASSWORD");
 
         // Set up mail server properties
         Properties props = new Properties();
