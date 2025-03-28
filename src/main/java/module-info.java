@@ -17,6 +17,7 @@ module pfa.java.pfa2025java {
     requires jdk.jsobject;
     requires java.desktop;
     requires java.prefs;
+    requires java.dotenv;
 
 
     opens pfa.java.pfa2025java to javafx.fxml;

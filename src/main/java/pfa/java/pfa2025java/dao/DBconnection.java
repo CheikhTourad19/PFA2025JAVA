@@ -1,14 +1,17 @@
 package pfa.java.pfa2025java.dao;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBconnection {
+    private static final Dotenv dotenv = Dotenv.load();
 
-    private static final String URL = "jdbc:mysql://mysql-1f241da4-elghothvadel-6af2.g.aivencloud.com:13505/defaultdb";
-    private static final String USER = "avnadmin";
-    private static final String PASSWORD = "AVNS_AKPY4L1wQGTZgI0M_XG";//a remplir
+    private static final String URL = "jdbc:mysql://" +
+            dotenv.get("DB_HOST") + ":" + dotenv.get("DB_PORT") + "/" + dotenv.get("DB_NAME");
+    private static final String USER = dotenv.get("DB_USER");
+    private static final String PASSWORD = dotenv.get("DB_PASSWORD");//a remplir
 
     public static Connection connect() throws SQLException {
         try {
