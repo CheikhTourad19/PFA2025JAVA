@@ -82,6 +82,20 @@
             <version>2.0.27</version> <!-- Vérifie la dernière version sur Maven Central -->
         </dependency>
 
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+
+
 
         <dependency>
             <groupId>mysql</groupId>
@@ -109,7 +123,7 @@
         <dependency>
             <groupId>io.github.cdimascio</groupId>
             <artifactId>java-dotenv</artifactId>
-            <version>5.2.2</version>
+            <version>3.3.0</version>
         </dependency>
 
         <dependency>
